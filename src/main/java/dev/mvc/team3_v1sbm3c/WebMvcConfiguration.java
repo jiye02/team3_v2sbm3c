@@ -1,4 +1,4 @@
-package dev.mvc.art_v1sbm3c;
+package dev.mvc.team3_v1sbm3c;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

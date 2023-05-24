@@ -1,4 +1,4 @@
-package dev.mvc.art_v1sbm3c;
+package dev.mvc.team3_v1sbm3c;
 
 import javax.sql.DataSource;
 

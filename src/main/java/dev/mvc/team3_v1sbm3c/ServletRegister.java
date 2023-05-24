@@ -1,4 +1,4 @@
-package dev.mvc.art_v1sbm3c;
+package dev.mvc.team3_v1sbm3c;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
