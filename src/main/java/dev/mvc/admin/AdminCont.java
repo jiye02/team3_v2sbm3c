@@ -28,7 +28,7 @@ public class AdminCont {
   }
   
 //  /**
-//   * 로그인 폼
+//   * 로그인
 //   * http://localhost:9093/admin/login.do
 //   * @return
 //   */
