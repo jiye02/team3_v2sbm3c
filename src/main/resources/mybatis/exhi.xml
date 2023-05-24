@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.exhi.ExhiDAOInter">
+  <!-- 등록: 추가한 레코드 갯수를 리턴 -->
+  <insert id="create" parameterType="dev.mvc.exhi.ExhiVO">
+    INSERT INTO exhi(exhino, name, cnt, rdate, seqno) 
+    VALUES(exhi_seq.nextval, #{name}, 0, sysdate, #{seqno})
+  </insert>
+  
+  <!-- 목록(관리자 접근): ExhiVO 객체를 생성하여 변수에 컬럼의 값을 저장 후, 
+               ArrayList<ExhiVO> 객체를 생성한후 add까지 자동 진행하여 ArrayList 객체를 return -->
+  <select id="list_all" resultType="dev.mvc.exhi.ExhiVO">
+    SELECT exhino, name, cnt, rdate, seqno, visible 
+    FROM exhi 
+    ORDER BY seqno ASC
+  </select>
+  
+  <!-- 읽기 -->
+  <select id="read" resultType="dev.mvc.exhi.ExhiVO" parameterType="int">
+    SELECT exhino, name, cnt, rdate, seqno, visible 
+    FROM exhi 
+    WHERE exhino=#{exhino}
+  </select>
+  
+  <!-- 수정, 수정된 레코드 갯수를 리턴, exhino는 레코드를 고유하게 구분해주는 역활을 함 -->
+  <update id="update" parameterType="dev.mvc.exhi.ExhiVO">
+    UPDATE exhi 
+    SET name=#{name}, seqno=#{seqno} 
+    WHERE exhino=#{exhino}  
+  </update>
+  
+  <!-- 삭제, 삭제된 레코드 갯수를 리턴 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM exhi 
+    WHERE exhino=#{exhino}
+  </delete>
+  
+  <!-- 출력 순서 올림(상향, 10 등 -> 1 등), seqno: 10 -> 1 -->
+  <update id="update_seqno_decrease" parameterType="int">
+    UPDATE exhi
+    SET seqno = seqno - 1
+    WHERE exhino = #{exhino}
+  </update>
+
+  <!-- 출력 순서 내림(상향, 1 등 -> 10 등), seqno: 1 -> 10 -->
+  <update id="update_seqno_increase" parameterType="int">
+    UPDATE exhi
+    SET seqno = seqno + 1
+    WHERE exhino = #{exhino}
+  </update>
+
+  <!-- 공개 -->
+  <update id="update_visible_y" parameterType="int">
+    UPDATE exhi 
+    SET visible='Y'
+    WHERE exhino=#{exhino}
+  </update>
+   
+  <!-- 비공개 -->
+  <update id="update_visible_n" parameterType="int">
+    UPDATE exhi 
+    SET visible='N'
+    WHERE exhino=#{exhino}
+  </update>
+
+  <!-- 목록(사용자 접근): visible이 'Y'인 레코드만 출력
+        ExhiVO 객체를 생성하여 변수에 컬럼의 값을 저장 후, 
+        ArrayList<ExhiVO> 객체를 생성한후 add까지 자동 진행하여 ArrayList 객체를 return -->
+  <select id="list_all_y" resultType="dev.mvc.exhi.ExhiVO">
+    SELECT exhino, name, cnt, rdate, seqno, visible 
+    FROM exhi 
+    WHERE visible='Y'
+    ORDER BY exhino ASC
+  </select>
+  
+  <!-- 자료수 증가, cnt 컬럼 1씩 증가, id: update_cnt_add -->
+  <update id="update_cnt_add" parameterType="int">
+    UPDATE exhi 
+    SET cnt = cnt + 1 
+    WHERE exhino = #{exhino}
+  </update>
+
+  <!-- 자료수 감소, cnt 컬럼 1씩 증가, id: update_cnt_add -->
+  <update id="update_cnt_sub" parameterType="int">
+    UPDATE exhi 
+    SET cnt = cnt - 1 
+    WHERE exhino = #{exhino}
+  </update>
+
+          
+</mapper>
+
+
+
+
+
+
