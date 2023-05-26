@@ -218,7 +218,7 @@
           <defaultValue></defaultValue>
         </net.java.amateras.db.visual.model.ColumnModel>
         <net.java.amateras.db.visual.model.ColumnModel>
-          <columnName>CONTENTSNO</columnName>
+          <columnName>GALLERYNO</columnName>
           <logicalName>전시회내용번호</logicalName>
           <columnType class="net.java.amateras.db.dialect.ColumnType">
             <name>NUMBER</name>
