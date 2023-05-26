@@ -90,7 +90,7 @@
                   <error></error>
                   <linkedPath></linkedPath>
                   <tableName>ORDER_RECORDS</tableName>
-                  <logicalName>Table4</logicalName>
+                  <logicalName>주문 기록</logicalName>
                   <description></description>
                   <columns>
                     <net.java.amateras.db.visual.model.ColumnModel>
@@ -185,7 +185,7 @@
             <error></error>
             <linkedPath></linkedPath>
             <tableName>ORDER_PAY</tableName>
-            <logicalName>Table4</logicalName>
+            <logicalName>주문 결제</logicalName>
             <description></description>
             <columns>
               <net.java.amateras.db.visual.model.ColumnModel>
@@ -341,7 +341,7 @@
       <error></error>
       <linkedPath></linkedPath>
       <tableName>ORDER_ITEM</tableName>
-      <logicalName>Table4</logicalName>
+      <logicalName>주문 상세</logicalName>
       <description></description>
       <columns>
         <net.java.amateras.db.visual.model.ColumnModel>
