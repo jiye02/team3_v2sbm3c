@@ -30,12 +30,12 @@
       <targetConnections/>
       <error></error>
       <linkedPath></linkedPath>
-      <tableName>pian</tableName>
+      <tableName>iljung</tableName>
       <logicalName>일정</logicalName>
       <description></description>
       <columns>
         <net.java.amateras.db.visual.model.ColumnModel>
-          <columnName>planno</columnName>
+          <columnName>dateno</columnName>
           <logicalName>일정 번호</logicalName>
           <columnType class="net.java.amateras.db.dialect.ColumnType">
             <name>NUMERIC</name>
@@ -61,13 +61,13 @@
           </columnType>
           <size>10</size>
           <notNull>true</notNull>
-          <primaryKey>true</primaryKey>
+          <primaryKey>false</primaryKey>
           <description></description>
           <autoIncrement>false</autoIncrement>
           <defaultValue></defaultValue>
         </net.java.amateras.db.visual.model.ColumnModel>
         <net.java.amateras.db.visual.model.ColumnModel>
-          <columnName>planopen</columnName>
+          <columnName>opentime</columnName>
           <logicalName>개장번호</logicalName>
           <columnType class="net.java.amateras.db.dialect.ColumnType">
             <name>INT</name>
@@ -77,18 +77,18 @@
           </columnType>
           <size>10</size>
           <notNull>true</notNull>
-          <primaryKey>true</primaryKey>
+          <primaryKey>false</primaryKey>
           <description></description>
           <autoIncrement>false</autoIncrement>
           <defaultValue></defaultValue>
         </net.java.amateras.db.visual.model.ColumnModel>
         <net.java.amateras.db.visual.model.ColumnModel>
-          <columnName>planclose</columnName>
+          <columnName>closetime</columnName>
           <logicalName>마감번호</logicalName>
           <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[3]/columnType"/>
           <size>10</size>
           <notNull>true</notNull>
-          <primaryKey>true</primaryKey>
+          <primaryKey>false</primaryKey>
           <description></description>
           <autoIncrement>false</autoIncrement>
           <defaultValue></defaultValue>
@@ -105,7 +105,7 @@
   </children>
   <dommains/>
   <dialectName>hsqldb</dialectName>
-  <logicalMode>true</logicalMode>
+  <logicalMode>false</logicalMode>
   <jarFile></jarFile>
   <jdbcDriver>sun.jdbc.odbc.JdbcOdbc</jdbcDriver>
   <jdbcUrl></jdbcUrl>

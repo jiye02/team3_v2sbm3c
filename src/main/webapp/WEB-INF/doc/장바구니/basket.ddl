@@ -1,0 +1,74 @@
+/**********************************/
+/* Table Name: 갤러리 */
+/**********************************/
+CREATE TABLE GALLERY(
+		GALLERYNO NUMERIC(10) NOT NULL PRIMARY KEY,
+		ADMINNO NUMBER(10) NOT NULL,
+		EXHINO NUMBER(10) NOT NULL,
+		TITLE VARCHAR2(50) NOT NULL,
+		GALLERY CLOB(4000) NOT NULL,
+		RECOM NUMBER(7) NOT NULL,
+		CNT NUMBER(7) NOT NULL,
+		REPLYCNT NUMBER(7) NOT NULL,
+		PASSWD VARCHAR2(15) NOT NULL,
+		WORD VARCHAR2(100),
+		RDATE DATE NOT NULL,
+		FILE1 VARCHAR2(100),
+		FILE1SAVED VARCHAR2(100),
+		THUMB1 VARCHAR2(100),
+		SIZE1 NUMBER(10),
+		PRICE NUMBER(10),
+		SALEPRICE NUMBER(10),
+		SALECNT NUMBER(10),
+		MAP VARCHAR2(1000),
+		YOUTUBE VARCHAR2(1000),
+		adminno NUMBER(10),
+		NAME NUMERIC(30),
+		UDATE DATE,
+		SEQNO DATE,
+		visible CHAR(1),
+		memberno NUMBER(10)
+);
+
+/**********************************/
+/* Table Name: 회원 */
+/**********************************/
+CREATE TABLE member(
+		memberno NUMBER(10) NOT NULL PRIMARY KEY,
+		adminno NUMBER(10)
+);
+
+/**********************************/
+/* Table Name: 주문 결제 */
+/**********************************/
+CREATE TABLE ORDER_PAY(
+		ORDER_PAYNO NUMBER(10) NOT NULL PRIMARY KEY,
+		memberno NUMBER(10),
+		RNAME VARCHAR2(30) NOT NULL,
+		RTEL VARCHAR2(14) NOT NULL,
+		RZIPCODE VARCHAR2(5),
+		RADDRESS1 VARCHAR2(80) NOT NULL,
+		RADDRESS2 VARCHAR2(50) NOT NULL,
+		PAYTYPE NUMBER(1) NOT NULL,
+		AMOUNT NUMBER(10) NOT NULL,
+		RDATE DATE NOT NULL,
+		ORDER_ITEMNO NUMBER(10),
+		basketno NUMERIC(10),
+		quantity NUMERIC(10),
+		adminno NUMBER(10)
+);
+
+/**********************************/
+/* Table Name: 장바구니 */
+/**********************************/
+CREATE TABLE basket(
+		basketno NUMERIC(10) NOT NULL PRIMARY KEY,
+		quantity NUMERIC(10) NOT NULL,
+		GALLERYNO NUMERIC(10),
+		memberno NUMBER(10),
+		ORDER_PAYNO NUMBER(10),
+  FOREIGN KEY (GALLERYNO) REFERENCES GALLERY (GALLERYNO),
+  FOREIGN KEY (memberno) REFERENCES member (memberno),
+  FOREIGN KEY (ORDER_PAYNO) REFERENCES ORDER_PAY (ORDER_PAYNO)
+);
+
