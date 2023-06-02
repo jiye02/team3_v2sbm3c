@@ -17,3 +17,4 @@ COMMENT ON COLUMN basket.quantity is '수량';
 COMMENT ON COLUMN basket.galleryno is '갤러리 번호';
 COMMENT ON COLUMN basket.memberno is '회원 번호';
 COMMENT ON COLUMN basket.order_payno is '주문 번호';
+
