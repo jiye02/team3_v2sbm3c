@@ -28,7 +28,7 @@ CREATE TABLE gallery(
         FOREIGN KEY (exhino) REFERENCES exhi (exhino)
 );
 
-COMMENT ON TABLE gallery is '컨텐츠 - 순례길';
+COMMENT ON TABLE gallery is '컨텐츠 - 전시회';
 COMMENT ON COLUMN gallery.galleryno is '컨텐츠 번호';
 COMMENT ON COLUMN gallery.adminno is '관리자 번호';
 COMMENT ON COLUMN gallery.exhino is '카테고리 번호';

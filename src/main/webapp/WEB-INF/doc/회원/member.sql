@@ -57,37 +57,22 @@ WHERE id='user1';
    0   ← 중복 되지 않음.
    
 2) 등록
--- 회원 관리용 계정, Q/A 용 계정
+-- 리뷰 답변 관리 계정
 INSERT INTO member(memberno, id, passwd, mname, tel, zipcode,
                                  address1, address2, mdate, grade)
-VALUES (member_seq.nextval, 'qnaadmin', '1234', '질문답변관리자', '000-0000-0000', '12345',
-             '서울시 종로구', '관철동', sysdate, 1);
- 
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode,
-                                address1, address2, mdate, grade)
-VALUES (member_seq.nextval, 'crm', '1234', '고객관리자', '000-0000-0000', '12345',
+VALUES (member_seq.nextval, 'qnaadmin', '1234', '리뷰답변관리자', '000-0000-0000', '12345',
              '서울시 종로구', '관철동', sysdate, 1);
  
 -- 개인 회원 테스트 계정
 INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade)
-VALUES (member_seq.nextval, 'user1@gmail.com', '1234', '왕눈이', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate, 15);
+VALUES (member_seq.nextval, 'user1@gmail.com', '1234', '용용이', '000-0000-0000', '12345', '서울시 중랑구', '면목동', sysdate, 15);
  
 INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade)
 VALUES (member_seq.nextval, 'user2@gmail.com', '1234', '아로미', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate, 15);
  
 INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade)
-VALUES (member_seq.nextval, 'user3@gmail.com', '1234', '투투투', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate, 15);
+VALUES (member_seq.nextval, 'user3@gmail.com', '1234', '준혀기', '000-0000-0000', '12345', '서울시 동대문구', '전농동', sysdate, 15);
  
--- 부서별(그룹별) 공유 회원 기준
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade)
-VALUES (member_seq.nextval, 'team1', '1234', '개발팀', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate, 15);
- 
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade)
-VALUES (member_seq.nextval, 'team2', '1234', '웹퍼블리셔팀', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate, 15);
- 
-INSERT INTO member(memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade)
-VALUES (member_seq.nextval, 'team3', '1234', '디자인팀', '000-0000-0000', '12345', '서울시 종로구', '관철동', sysdate, 15);
-
 COMMIT;
 
  
@@ -113,7 +98,7 @@ WHERE id = 'user1@gmail.com';
     
 4. 수정
 UPDATE member 
-SET id='user5', mname='아로미', tel='111-1111-1111', zipcode='00000',
+SET id='user3', mname='아로미', tel='111-1111-1111', zipcode='00000',
     address1='경기도', address2='파주시', grade=14
 WHERE memberno=1;
 
@@ -122,7 +107,7 @@ COMMIT;
  
 5. 특정 회원 삭제
 DELETE FROM member
-WHERE memberno=15;
+WHERE memberno=4;
 
 COMMIT;
 
