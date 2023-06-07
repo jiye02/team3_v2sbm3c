@@ -10,12 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  #{galleryno}, #{memberno}, #{content}, #{passwd}, sysdate)
   </insert>
   
-  <select id="list" resultType="ReplyVO">
+  <select id="list" resultType="dev.mvc.reply.ReplyVO">
     SELECT replyno, galleryno, memberno, content, passwd, rdate
     FROM reply
     ORDER BY replyno DESC
   </select>
-
+  
+  <!-- ★★★★★★★★★★★★구현 해야함 ★★★★★★★★★★★ 
   <select id="list_member_join" resultType="ReplyMemberVO">
     SELECT m.id,
               r.replyno, r.galleryno, r.memberno, r.content, r.passwd, r.rdate
@@ -23,15 +24,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE m.memberno = r.memberno
     ORDER BY r.replyno DESC
   </select>
+  -->
   
-  <select id="list_by_galleryno" resultType="ReplyVO" parameterType="int">
+  <select id="list_by_galleryno" resultType="dev.mvc.reply.ReplyVO" parameterType="int">
     SELECT replyno, galleryno, memberno, content, passwd, rdate
     FROM reply
     WHERE galleryno=#{galleryno}
     ORDER BY replyno DESC
   </select>
-
+  
+  
   <!-- 특정글에 대한 전체 댓글 목록 -->
+  <!--  ★★★★★★★★★★★★구현 해야함 ★★★★★★★★★★★
   <select id="list_by_galleryno_join" resultType="ReplyMemberVO" parameterType="int">
     SELECT m.id,
               r.replyno, r.galleryno, r.memberno, r.content, r.passwd, r.rdate
@@ -39,6 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE (m.memberno = r.memberno) AND r.galleryno=#{galleryno}
     ORDER BY r.replyno DESC
   </select>
+  -->
   
   <!-- <select id="checkPasswd" parameterType="HashMap" resultType="int"> -->
   <!-- <select id="checkPasswd" parameterType="ReplyVO" resultType="int"> -->
@@ -54,6 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </delete>
 
   <!-- 더보기 버튼 페이징 구현 -->
+  <!--★★★★★★★★★★★★구현 해야함 ★★★★★★★★★★★  
   <select id="list_by_galleryno_join_add" resultType="ReplyMemberVO" 
              parameterType="HashMap">
     SELECT id, replyno, galleryno, memberno, content, passwd, rdate, r
@@ -69,6 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     )
     WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
   </select>
+  -->
         
 </mapper> 
 

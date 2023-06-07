@@ -22,8 +22,10 @@ import com.zaxxer.hikari.HikariDataSource;
                                          "dev.mvc.admin",
                                          "dev.mvc.gallery",
                                          "dev.mvc.member",
+                                         "dev.mvc.categrp",
                                          "dev.mvc.order_pay",
-                                         "dev.mvc.order_item"})    
+                                         "dev.mvc.order_item",
+                                         "dev.mvc.reply"})    
 public class DatabaseConfiguration {
     
     @Autowired
