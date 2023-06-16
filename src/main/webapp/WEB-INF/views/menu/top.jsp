@@ -69,6 +69,8 @@
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
                           <a class="dropdown-item" href='/member/list.do'>회원 목록</a>
+                           <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
+                            <a class="dropdown-item" href='/jjim/list.do'>찜 목록</a>
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                         </div>
                       </li>

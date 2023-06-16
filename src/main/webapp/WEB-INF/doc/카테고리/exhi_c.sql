@@ -46,11 +46,11 @@ SELECT exhino, name, cnt, rdate, seqno, visible FROM exhi ORDER BY exhino ASC;
 
     EXHINO NAME                                  CNT RDATE                    SEQNO V
 ---------- ------------------------------ ---------- ------------------- ---------- -
-         1 서울                                    0 2023-05-18 10:39:07          1 Y
-         2 경기/인천                               0 2023-05-18 10:39:07          2 Y
-         3 대구                                    0 2023-05-18 10:39:07          3 Y
-         4 부산                                    0 2023-05-18 10:39:07          4 Y
-         5 제주                                    0 2023-05-18 10:39:07          5 Y
+         1 미술 전시회                                    0 2023-05-18 10:39:07          1 Y
+         2 의류 전시회                              0 2023-05-18 10:39:07          2 Y
+         3 팝업스토어                                    0 2023-05-18 10:39:07          3 Y
+         4 이색 전시회                                   0 2023-05-18 10:39:07          4 Y
+         5 지역축제                                  0 2023-05-18 10:39:07          5 Y
 
 -- SELECT READ
 SELECT exhino, name, cnt, rdate, seqno, visible FROM exhi WHERE exhino=1;
