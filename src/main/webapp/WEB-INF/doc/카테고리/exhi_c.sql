@@ -34,11 +34,11 @@ CREATE SEQUENCE exhi_seq
   
 -- CREATE -> SELECT LIST -> SELECT READ -> UPDATE -> DELETE -> COUNT(*)
 -- CREATE
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '서울', 0, sysdate, 0);
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '경기/인천', 0, sysdate, 0);
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '대구', 0, sysdate, 0);
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '부산', 0, sysdate, 0);
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '제주', 0, sysdate, 0);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '미술 전시회', 0, sysdate, 0);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '의류 전시회', 0, sysdate, 0);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '팝업스토어', 0, sysdate, 0);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '이색 전시회', 0, sysdate, 0);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '지역축제', 0, sysdate, 0);
 commit;
 
 -- SELECT LIST
