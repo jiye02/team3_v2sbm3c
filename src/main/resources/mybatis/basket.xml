@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.basket.BasketDAOInter">
+
+  <insert id="create" parameterType="dev.mvc.basket.BasketVO">
+    INSERT INTO basket(basketno, galleryno, memberno, quantity, rdate)
+    VALUES(basket_seq.nextval, #{galleryno}, #{memberno}, #{quantity}, sysdate)
+  </insert> 
+
+  <!-- memberno 회원 번호별 쇼핑카트 목록 출력 -->
+  <select id="list_by_memberno" resultType="dev.mvc.basket.BasketVO" parameterType="int">
+    SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.quantity, t.rdate 
+    FROM gallery c, basket t
+    WHERE (c.galleryno = t.galleryno) AND t.memberno = #{memberno}
+    ORDER BY basketno ASC
+  </select>
+  
+  <!-- 수량 수정, id: update, 입력: BasketVO, 리턴: int -->
+  <update id="update_quantity" parameterType="dev.mvc.basket.BasketVO">
+    UPDATE basket
+    SET quantity=#{quantity}
+    WHERE basketno=#{basketno}
+  </update>
+
+  <!-- 삭제 처리, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM basket 
+    WHERE basketno=#{basketno}
+  </delete>
+    
+</mapper>
+
+
