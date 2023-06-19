@@ -17,18 +17,11 @@
                   <c:forEach var="exhiVO" items="${list}">
                     <c:set var="exhino" value="${exhiVO.exhino }" />
                     <c:set var="name" value="${exhiVO.name }" />
-
-                    <li class="nav-item dropdown"> <%-- 카테고리 서브 메뉴 --%>
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown"  href="#">${name }</a>
-                      <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">1분기 (1~4월)</a>
-                          <a class="dropdown-item" href="#">2분기 (5~8월)</a>
-                          <a class="dropdown-item" href="#">3분기 (9~12월)</a>
-                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=${exhino }&now_page=1" >전체 보기</a>
-                      </div>
+                  <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>         
+                  <a class="nav-link" href="/gallery/list_by_exhino.do?exhino=${exhino }&now_page=1" >${name }</a>
                   </li>
-                  
                   </c:forEach>
+                 
                   
                   <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
                     <a class="nav-link" href="/gallery/list_all.do">전체 글 목록</a>
