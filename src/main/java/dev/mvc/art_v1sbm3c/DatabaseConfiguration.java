@@ -18,11 +18,10 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource("classpath:/application.properties")  // 설정 파일 위치
-@MapperScan(basePackages= {"dev.mvc.exhi",
+@MapperScan(basePackages= {  "dev.mvc.exhi",
                                          "dev.mvc.admin",
                                          "dev.mvc.gallery",
                                          "dev.mvc.member",
-                                         "dev.mvc.categrp",
                                          "dev.mvc.order_pay",
                                          "dev.mvc.order_item",
                                          "dev.mvc.reply"})    

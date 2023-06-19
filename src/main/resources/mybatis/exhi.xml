@@ -89,43 +89,6 @@
     WHERE exhino = #{exhino}
   </update>
   
-    <!-- 수정, id: update_visible, 입력: CategrpVO, 리턴: int -->
-  <update id="update_visible" parameterType="ExhiVO">
-    UPDATE exhi
-    SET visible=#{visible}
-    WHERE exhino=#{exhino}
-  </update>
-  
-    <!-- categrp + exhi inner join,  1 : 다, 통합 VO -->
-  <select id="list_join" resultType="Categrp_Exhi_join">
-    SELECT r.categrpno as r_categrpno, r.name as r_name,
-               c.exhino, c.categrpno, c.name, c.seqno, c.visible, c.rdate, c.cnt
-    FROM categrp r, exhi c
-    WHERE r.categrpno = c.categrpno
-    ORDER BY r.categrpno ASC, c.seqno ASC
-  </select>
- 
-  <!-- categrpno 별 exhi 목록: categrp + exhi inner join,  1 : 다, 통합 VO -->
-  <select id="list_join_by_categrpno" resultType="Categrp_Exhi_join" parameterType="int">
-    SELECT r.categrpno as r_categrpno, r.name as r_name,
-               c.exhino, c.categrpno, c.name, c.seqno, c.visible, c.rdate, c.cnt
-    FROM categrp r, exhi c
-    WHERE (r.categrpno = c.categrpno) AND r.categrpno=#{categrpno}
-    ORDER BY r.categrpno ASC, c.seqno ASC
-  </select>
-  
-  <update id="increaseCnt" parameterType="int">
-    UPDATE exhi 
-    SET cnt = cnt + 1 
-    WHERE exhino=#{exhino}
-  </update>
-
-  <update id="decreaseCnt" parameterType="int">
-    UPDATE exhi 
-    SET cnt = cnt - 1 
-    WHERE exhino=#{exhino}
-  </update>
-  
 </mapper>
 
           
