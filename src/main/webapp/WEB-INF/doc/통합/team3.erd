@@ -107,8 +107,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>328</x>
-                          <y>164</y>
+                          <x>380</x>
+                          <y>217</y>
                         </constraint>
                         <sourceConnections>
                           <net.java.amateras.db.visual.model.ForeignKeyModel reference="../../.."/>
@@ -1985,7 +1985,7 @@
       <targetConnections/>
       <error></error>
       <linkedPath></linkedPath>
-      <tableName>JIYE</tableName>
+      <tableName>지예</tableName>
       <logicalName>지예</logicalName>
       <description></description>
       <columns/>
@@ -2046,7 +2046,7 @@
       <targetConnections/>
       <error></error>
       <linkedPath></linkedPath>
-      <tableName>TABLE_16</tableName>
+      <tableName>유준상</tableName>
       <logicalName>유준상</logicalName>
       <description></description>
       <columns/>
@@ -2075,7 +2075,7 @@
       <targetConnections/>
       <error></error>
       <linkedPath></linkedPath>
-      <tableName>TABLE_18</tableName>
+      <tableName>김보혁</tableName>
       <logicalName>김보혁</logicalName>
       <description></description>
       <columns/>
@@ -2104,7 +2104,7 @@
       <targetConnections/>
       <error></error>
       <linkedPath></linkedPath>
-      <tableName>TABLE_20</tableName>
+      <tableName>김민규</tableName>
       <logicalName>김민규</logicalName>
       <description></description>
       <columns/>
@@ -2116,7 +2116,7 @@
   </children>
   <dommains/>
   <dialectName>hsqldb</dialectName>
-  <logicalMode>true</logicalMode>
+  <logicalMode>false</logicalMode>
   <jarFile></jarFile>
   <jdbcDriver>sun.jdbc.odbc.JdbcOdbc</jdbcDriver>
   <jdbcUrl></jdbcUrl>
