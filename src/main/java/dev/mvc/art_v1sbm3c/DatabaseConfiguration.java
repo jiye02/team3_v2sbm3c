@@ -25,6 +25,7 @@ import com.zaxxer.hikari.HikariDataSource;
                                          "dev.mvc.order_pay",
                                          "dev.mvc.order_item",
                                          "dev.mvc.reply",
+                                         "dev.mvc.jjim",
                                          "dev.mvc.basket"})    
 public class DatabaseConfiguration {
     
