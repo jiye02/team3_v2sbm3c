@@ -4,10 +4,10 @@ package dev.mvc.basket;
 basketno                        NUMBER(10) NOT NULL PRIMARY KEY,
 galleryno                 NUMBER(10) NULL ,
 memberno                 NUMBER(10) NOT NULL,
-quantity                            NUMBER(10) DEFAULT 0 NOT NULL,
+cnt                            NUMBER(10) DEFAULT 0 NOT NULL,
 rdate                          DATE NOT NULL,
   
-SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.quantity, t.rdate 
+SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate 
 FROM gallery c, basket t
 WHERE c.galleryno = t.galleryno
 ORDER BY basketno ASC;
@@ -32,7 +32,7 @@ public class BasketVO {
     /** 회원 번호 */
     private int memberno;
     /** 수량 */
-    private int quantity;
+    private int cnt;
     /** 금액 = 판매가 x 수량 */
     private int tot;
     /** 등록일 */
@@ -111,11 +111,11 @@ public class BasketVO {
     }
 
     public int getCnt() {
-        return quantity;
+        return cnt;
     }
 
-    public void setCnt(int quantity) {
-        this.quantity = quantity;
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
     }
 
     public int getTot() {

@@ -21,7 +21,7 @@ public interface BasketDAOInter {
    * @param basketno
    * @return
    */
-  public int update_quantity(BasketVO basketVO);
+  public int update_cnt(BasketVO basketVO);
   
   /**
    * 상품 삭제

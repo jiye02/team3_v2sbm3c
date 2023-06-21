@@ -66,3 +66,9 @@ WHERE id='user1';
 SELECT COUNT(id) as cnt
 FROM member
 WHERE id='user1';
+
+-- 삭제
+DELETE FROM admin
+WHERE adminno >= 6;
+
+SELECT * FROM admin;

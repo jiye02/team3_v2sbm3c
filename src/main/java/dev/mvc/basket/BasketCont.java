@@ -27,8 +27,8 @@ public class BasketCont {
   // http://localhost:9091/basket/create.do
   /**
    * Ajax 등록 처리
-   * INSERT INTO basket(basketno, galleryno, memberno, quantity, rdate)
-   * VALUES(basket_seq.nextval, #{galleryno}, #{memberno}, #{quantity}, sysdate)
+   * INSERT INTO basket(basketno, galleryno, memberno, cnt, rdate)
+   * VALUES(basket_seq.nextval, #{galleryno}, #{memberno}, #{cnt}, sysdate)
    * @param categrpVO
    * @return
    */
@@ -44,10 +44,10 @@ public class BasketCont {
     
     basketVO.setCnt(1); // 최초 구매 수량 1개로 지정
     
-    int quantity = this.basketProc.create(basketVO); // 등록 처리
+    int cnt = this.basketProc.create(basketVO); // 등록 처리
     
     JSONObject json = new JSONObject();
-    json.put("quantity", quantity); // 1: 정상 등록
+    json.put("cnt", cnt); // 1: 정상 등록
     
     // System.out.println("-> basketCont create: " + json.toString());
 
@@ -127,14 +127,14 @@ public class BasketCont {
    * 수량 변경, http://localhost:9091/basket/delete.do
    * @param session
    * @param basketno 장바구니 번호
-   * @param quantity 수량
+   * @param cnt 수량
    * @return 변경된 레코드 갯수
    */
-  @RequestMapping(value="/basket/update_quantity.do", method=RequestMethod.POST )
-  public ModelAndView update_quantity(HttpSession session, BasketVO basketVO) {
+  @RequestMapping(value="/basket/update_cnt.do", method=RequestMethod.POST )
+  public ModelAndView update_cnt(HttpSession session, BasketVO basketVO) {
     ModelAndView mav = new ModelAndView();
 
-    this.basketProc.update_quantity(basketVO);      
+    this.basketProc.update_cnt(basketVO);      
     mav.setViewName("redirect:/basket/list_by_memberno.do");
     
     return mav;

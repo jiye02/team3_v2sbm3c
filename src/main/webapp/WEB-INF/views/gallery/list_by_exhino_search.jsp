@@ -11,7 +11,11 @@
 <link rel="shortcut icon" href="/images/ex_top.png" />
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
     
 </head> 
  
@@ -57,8 +61,7 @@
       </c:choose>
       <button type='submit' class='btn btn-info btn-sm'>검색</button>
       <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm' 
-                    onclick="location.href='./list_by_exhino.do?exhino=${exhiVO.exhino}&word='">검색 취소</button>  
+        <button type='button' class='btn btn-info btn-sm' onclick="location.href='./list_by_exhino.do?exhino=${exhiVO.exhino}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>
