@@ -61,14 +61,44 @@ CREATE TABLE ORDER_PAY(
 /**********************************/
 /* Table Name: 장바구니 */
 /**********************************/
+DROP TABLE basket CASCADE CONSTRAINTS;
+
 CREATE TABLE basket(
-		basketno NUMERIC(10) NOT NULL PRIMARY KEY,
-		quantity NUMERIC(10) NOT NULL,
-		GALLERYNO NUMERIC(10),
-		memberno NUMBER(10),
-		ORDER_PAYNO NUMBER(10),
-  FOREIGN KEY (GALLERYNO) REFERENCES GALLERY (GALLERYNO),
+    basketno NUMERIC(10) NOT NULL PRIMARY KEY,
+    quantity NUMERIC(10) NOT NULL,
+    galleryno NUMERIC(10),
+    memberno NUMBER(10),
+    order_payno NUMBER(10),
+  FOREIGN KEY (galleryno) REFERENCES gallery (galleryno),
   FOREIGN KEY (memberno) REFERENCES member (memberno),
-  FOREIGN KEY (ORDER_PAYNO) REFERENCES ORDER_PAY (ORDER_PAYNO)
+  FOREIGN KEY (order_payno) REFERENCES order_pay (order_payno)
 );
 
+COMMENT ON TABLE basket is '장바구니';
+COMMENT ON COLUMN basket.basketno is '장바구니 번호';
+COMMENT ON COLUMN basket.quantity is '수량';
+COMMENT ON COLUMN basket.galleryno is '갤러리 번호';
+COMMENT ON COLUMN basket.memberno is '회원 번호';
+COMMENT ON COLUMN basket.order_payno is '주문 번호';
+
+DROP SEQUENCE basket_seq;
+CREATE SEQUENCE basket_seq
+  START WITH 1              -- 시작 번호
+  INCREMENT BY 1          -- 증가값
+  MAXVALUE 9999999999 -- 최대값: 9999999999
+  CACHE 2                     -- 2번은 메모리에서만 계산
+  NOCYCLE;                   -- 다시 1부터 생성되는 것을 방지
+  
+INSERT INTO basket(basketno, quantity, galleryno, memberno, order_payno)
+VALUES (basket_seq.nextval, 1, '1', '1', '1');
+INSERT INTO basket(basketno, quantity, galleryno, memberno, order_payno)
+VALUES (basket_seq.nextval, 2, '2', '2', '2');
+          
+          
+-- 전체 목록            
+SELECT basketno, quantity, galleryno, memberno, order_payno
+FROM basket
+ORDER BY basketno DESC;
+
+
+commit;

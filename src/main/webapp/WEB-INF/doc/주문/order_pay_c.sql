@@ -1,43 +1,47 @@
 /**********************************/
 /* Table Name: 예약_결제 */
 /**********************************/
-DROP TABLE order_pay CASCADE CONSTRAINTS;
+DROP TABLE pay CASCADE CONSTRAINTS;
+DROP TABLE pay;
 
-CREATE TABLE order_pay(
-    order_payno                     NUMBER(10)      NOT NULL    PRIMARY KEY,
-    memberno                        NUMBER(10)      NULL ,
-    rname                           VARCHAR2(30)    NOT NULL,
-    rtel                            VARCHAR2(14)    NOT NULL,
-    rzipcode                        VARCHAR2(5)     NULL ,
-    raddress1                       VARCHAR2(80)    NOT NULL,
-    raddress2                       VARCHAR2(50)    NOT NULL,
-    paytype                         NUMBER(1)       DEFAULT 0     NOT NULL,
-    amount                          NUMBER(10)      DEFAULT 0     NOT NULL,
-    rdate                           DATE            NOT NULL,
-    FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
+CREATE TABLE pay(
+        payno                            NUMBER(10)         NOT NULL         PRIMARY KEY,
+        memberno                              NUMBER(10)     NOT NULL , -- FK
+        tname         VARCHAR(30)      NOT NULL, -- 성명, 한글 10자 저장 가능
+        ttel             VARCHAR(14)      NOT NULL, -- 전화번호
+        tzipcode     VARCHAR(5)        NOT NULL, -- 우편번호, 12345
+        taddress1    VARCHAR(80)     NOT NULL, -- 주소 1
+        taddress2    VARCHAR(50)     NOT NULL, -- 주소 2
+        ptype                           NUMBER(1)    DEFAULT 0     NOT NULL,
+        amount                            NUMBER(10)     DEFAULT 0     NOT NULL,
+        rdate                              DATE     NOT NULL, 
+        FOREIGN KEY (memberno) REFERENCES member (memberno) ON DELETE CASCADE
 );
 
-COMMENT ON TABLE order_pay is '예약 결제';
-COMMENT ON COLUMN order_pay.order_payno is '예약 번호';
-COMMENT ON COLUMN order_pay.MEMBERNO is '회원 번호';
-COMMENT ON COLUMN order_pay.rname is '회원 성명';
-COMMENT ON COLUMN order_pay.rtel is '회원 전화번호';
-COMMENT ON COLUMN order_pay.rzipcode is '회원 우편번호';
-COMMENT ON COLUMN order_pay.raddress1 is '회원 주소1';
-COMMENT ON COLUMN order_pay.raddress2 is '회원 주소2';
-COMMENT ON COLUMN order_pay.paytype is '결제 종류';
-COMMENT ON COLUMN order_pay.amount is '결제 금액';
-COMMENT ON COLUMN order_pay.rdate is '예약 날짜';
+COMMENT ON TABLE pay is '결제';
+COMMENT ON COLUMN pay.payno is '결제 번호';
+COMMENT ON COLUMN pay.memberno is '회원 번호';
+COMMENT ON COLUMN PAY.tname is '받는이 성명';
+COMMENT ON COLUMN PAY.ttel is '받는이 전화번호';
+COMMENT ON COLUMN PAY.tzipcode is '받는이 우편번호';
+COMMENT ON COLUMN PAY.TADDRESS1 is '받는이 주소1';
+COMMENT ON COLUMN PAY.TADDRESS2 is '받는이 주소2';
+COMMENT ON COLUMN pay.ptype is '결재 종류';
+COMMENT ON COLUMN pay.amount is '결재금액';
+COMMENT ON COLUMN pay.rdate is '주문날짜';
 
+DROP SEQUENCE pay_seq;
 
-DROP SEQUENCE order_pay_seq;
-CREATE SEQUENCE order_pay_seq
-  START WITH 1              -- 시작 번호
-  INCREMENT BY 1          -- 증가값
-  MAXVALUE 9999999999 -- 최대값: 9999999999
-  CACHE 2                     -- 2번은 메모리에서만 계산
-  NOCYCLE;                   -- 다시 1부터 생성되는 것을 방지
-
+CREATE SEQUENCE pay_seq
+  START WITH 1                -- 시작 번호
+  INCREMENT BY 1            -- 증가값
+  MAXVALUE 9999999999  -- 최대값: 9999999999 --> NUMBER(10) 대응
+  CACHE 2                        -- 2번은 메모리에서만 계산
+  NOCYCLE;      
+  
+  commit;
+  
+  select * from pay;
 -- 등록  
 -- 결제 종류(paytype):  1: 신용 카드, 2: 모바일, 3: 계좌 이체  
 INSERT INTO order_pay(order_payno, memberno, rname, rtel, rzipcode,

@@ -306,6 +306,7 @@ public class GalleryProc implements GalleryProcInter {
       int cnt = this.galleryDAO.count_by_exhino(exhino);
       return cnt;
     }
+   
 
     @Override
     public int delete_by_exhino(int exhino) {
@@ -324,6 +325,19 @@ public class GalleryProc implements GalleryProcInter {
       return count;
     }
     
+    
+    // 찜 추가.
+    @Override
+    public int jjim_add(int galleryno) {
+      int cnt = this.galleryDAO.jjim_add(galleryno);
+      return cnt;
+    }
+
+    @Override
+    public int jjim_sub(int galleryno) {
+      int cnt = this.galleryDAO.jjim_sub(galleryno);
+      return cnt;
+    }
  
 }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.jjim.JjimDAOInter">
+  
+  <!-- 생성 -->
+  <insert id="create" parameterType="dev.mvc.jjim.JjimVO" >
+    INSERT INTO jjim(jjimno, memberno, galleryno, rdate)
+    VALUES(jjim_seq.nextval, #{memberno}, #{galleryno}, sysdate)
+  
+  </insert>
+      
+  <!-- 체크 -->
+  <select id="check"  resultType="int" parameterType="dev.mvc.jjim.JjimVO">
+  SELECT COUNT(galleryno) FROM jjim
+  WHERE galleryno = #{galleryno} AND memberno = #{memberno}
+  
+  </select>
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="dev.mvc.jjim.JjimVO">
+    DELETE FROM RECOM 
+    WHERE memberno = #{memberno}
+  
+  </delete>
+  
+  
+  
+</mapper>

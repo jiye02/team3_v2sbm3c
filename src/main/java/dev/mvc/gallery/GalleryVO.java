@@ -40,7 +40,7 @@ public class GalleryVO {
   /** 내용 */
   private String content = "";
   /** 추천수 */
-  private int recom;
+  private int jjim = 0;
   /** 조회수 */
   private int cnt = 0;
   /** 댓글수 */
@@ -137,12 +137,12 @@ public class GalleryVO {
     this.content = content;
   }
 
-  public int getRecom() {
-    return recom;
+  public int getJjim() {
+    return jjim;
   }
 
-  public void setRecom(int recom) {
-    this.recom = recom;
+  public void setJjim(int jjim) {
+    this.jjim = jjim;
   }
 
   public int getCnt() {

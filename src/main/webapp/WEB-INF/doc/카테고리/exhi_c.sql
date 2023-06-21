@@ -34,11 +34,11 @@ CREATE SEQUENCE exhi_seq
   
 -- CREATE -> SELECT LIST -> SELECT READ -> UPDATE -> DELETE -> COUNT(*)
 -- CREATE
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '미술 전시회', 0, sysdate, 0);
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '의류 전시회', 0, sysdate, 0);
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '팝업스토어', 0, sysdate, 0);
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '이색 전시회', 0, sysdate, 0);
-INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '지역축제', 0, sysdate, 0);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '미술 전시회', 0, sysdate, 1);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '의류 전시회', 0, sysdate, 2);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '이색 전시회', 0, sysdate, 3);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '팝업스토어', 0, sysdate, 4);
+INSERT INTO exhi(exhino, name, cnt, rdate, seqno) VALUES(exhi_seq.nextval, '지역축제', 0, sysdate, 5);
 commit;
 
 -- SELECT LIST
@@ -59,7 +59,7 @@ SELECT exhino, name, cnt, rdate, seqno, visible FROM exhi WHERE exhino=1;
          1 서울                                    0 2023-05-18 10:39:07          1  Y
          
 -- UPDATE
-UPDATE exhi SET name='서울', seqno=2 WHERE exhino=1;
+UPDATE exhi SET seqno=3 WHERE exhino=4;
 commit;
 SELECT * FROM exhi;
     EXHINO NAME                                  CNT RDATE                    SEQNO V

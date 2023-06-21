@@ -16,6 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
+import dev.mvc.admin.AdminVO;
+import dev.mvc.member.MemberProc;
+import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
+import dev.mvc.jjim.JjimProcInter;
+import dev.mvc.jjim.JjimVO;
 import dev.mvc.exhi.ExhiProcInter;
 import dev.mvc.exhi.ExhiVO;
 import dev.mvc.tool.Tool;
@@ -28,12 +34,20 @@ public class GalleryCont {
   private AdminProcInter adminProc;
   
   @Autowired
+  @Qualifier("dev.mvc.jjim.JjimProc")
+  private JjimProcInter jjimProc;
+  
+  @Autowired
   @Qualifier("dev.mvc.exhi.ExhiProc") 
   private ExhiProcInter exhiProc;
   
   @Autowired
   @Qualifier("dev.mvc.gallery.GalleryProc") 
   private GalleryProcInter galleryProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.member.MemberProc")
+  private MemberProcInter memberProc;
   
   public GalleryCont () {
     System.out.println("-> GalleryCont created.");
@@ -200,7 +214,7 @@ public class GalleryCont {
    * @return
    */
   @RequestMapping(value="/gallery/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int galleryno) {
+  public ModelAndView read(int galleryno, JjimVO jjimVO, HttpSession session) {
     ModelAndView mav = new ModelAndView();
 
     GalleryVO galleryVO = this.galleryProc.read(galleryno);
@@ -228,6 +242,16 @@ public class GalleryCont {
 
     mav.setViewName("/gallery/read"); // /WEB-INF/views/gallery/read.jsp
         
+ // 찜 확인
+    if (memberProc.isMember(session)) {
+      int memberno = (int) (session.getAttribute("memberno"));
+      jjimVO.setMemberno(memberno);
+      
+      int check_cnt = this.jjimProc.check(jjimVO);
+      mav.addObject("check", check_cnt);
+      
+    }
+    
     return mav;
   }
   

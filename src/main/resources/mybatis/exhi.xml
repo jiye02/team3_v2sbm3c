@@ -88,9 +88,6 @@
     SET cnt = cnt - 1 
     WHERE exhino = #{exhino}
   </update>
-
-  
- 
 </mapper>
 
           

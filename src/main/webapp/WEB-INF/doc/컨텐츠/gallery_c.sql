@@ -90,7 +90,7 @@ VALUES(gallery_seq.nextval, 1, 2, '더글로리', '학폭의 결말', 0, 0, 0, '
        '드라마,K드라마,넷플릭스', sysdate, 'space.jpg', 'space_1.jpg', 'space_t.jpg', 1000);
 
 COMMIT;
-
+select * from gallery;
 -- 1번 exhino 만 출력
 SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
            file1, file1saved, thumb1, size1, map, youtube
