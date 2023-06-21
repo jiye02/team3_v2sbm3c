@@ -36,7 +36,7 @@
    
     <DIV class='message'>
       <FORM name='frm' method='POST' action='./delete.do'>
-        '${memberVO.id }' 회원을 삭제하면 복구 할 수 없습니다.<br><br>
+        '${adminVO.id }' 회원을 삭제하면 복구 할 수 없습니다.<br><br>
         정말로 삭제하시겠습니까?<br><br>         
         <input type='hidden' name='adminno' value='${adminVO.adminno}'>     
             

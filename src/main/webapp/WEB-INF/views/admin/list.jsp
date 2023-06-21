@@ -44,7 +44,7 @@
     <div class='menu_line'></div>
     
    
-    <table class="table table-striped" style='width: 100%;'>
+    <table class="table table-striped" style='width: 133.5%;'>
     <colgroup>
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
@@ -58,7 +58,6 @@
       <TH class='th_bs'>등급 </TH>
       <TH class='th_bs'>ID</TH>
       <TH class='th_bs'>성명</TH>
-      <TH class='th_bs'>전화번호</TH>
       <TH class='th_bs'>등록일</TH>
       <TH class='th_bs'>기타</TH>
     </TR>
@@ -68,14 +67,12 @@
       <c:set var="grade" value ="${adminVO.grade}" />
       <c:set var="id" value ="${adminVO.id}" />
       <c:set var="mname" value ="${adminVO.mname}" />
-      <c:set var="tel" value ="${adminVO.tel}" />
       <c:set var="mdate" value ="${adminVO.mdate}" />
        
     <TR>
-      <TD class='td_left'><A href="./read.do?adminno=${adminno}">${id}</A></TD>
-      <TD class='td_left'><A href="./read.do?adminno=${adminno}">${mname}</A></TD>
-      <TD class='td_basic'>${tel}</TD>
-      <TD class='td_left'>
+      <TD class= 'td_basic'><img src='/member/images/admin.png' title="관리자" class="icon">
+      <TD class='td_basic'><A href="./read.do?adminno=${adminno}">${id}</A></TD>
+      <TD class='td_basic'><A href="./read.do?adminno=${adminno}">${mname}</A></TD>
       </TD>
       <TD class='td_basic'>${mdate.substring(0, 10)}</TD> <%-- 년월일 --%>
       <TD class='td_basic'>
