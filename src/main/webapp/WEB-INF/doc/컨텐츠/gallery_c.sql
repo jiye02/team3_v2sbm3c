@@ -363,7 +363,7 @@ WHERE galleryno = 1;
 
 -- 삭제
 DELETE FROM gallery
-WHERE galleryno = 42;
+WHERE galleryno = 1;
 
 commit;
 
