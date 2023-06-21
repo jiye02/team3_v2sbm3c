@@ -34,8 +34,16 @@
                       </div>
                    </li>
 
-             
-                  
+                  <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
+                      <c:choose>
+                          <c:when test="${sessionScope.id == null}">
+                              <a class="nav-link" href="/member/login.do">로그인</a>
+                          </c:when>
+                          <c:otherwise>
+                              <a class="nav-link" href='/member/logout.do'>${sessionScope.id } 로그아웃</a>
+                          </c:otherwise>
+                      </c:choose>
+                  </li>
                   <li class="nav-item dropdown"> <%-- 회원 서브 메뉴 --%>
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">회원</a>
                       <div class="dropdown-menu">
@@ -48,11 +56,6 @@
                           <a class="dropdown-item" href="#">회원 탈퇴</a>
                       </div>
                   </li>
-                  
-                   <li class="nav-item"> <%-- 회원 서브 메뉴 --%>
-                      <a class="nav-link"  href="/jjim/list.do">찜</a>
-                  </li>
-                  
                   
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
@@ -73,7 +76,6 @@
                       </li>
                     </c:otherwise>
                   </c:choose>     
-                  
                 </ul>
             </div>    
         </nav>
