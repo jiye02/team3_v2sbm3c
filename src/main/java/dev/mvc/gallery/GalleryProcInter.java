@@ -116,6 +116,20 @@ public interface GalleryProcInter {
   public int count_by_exhino(int exhino);
   
   /**
+   * 찜 ++
+   * @param itemno
+   * @return
+   */
+  public int jjim_add (int galleryno);
+  
+  /**
+   * 찜--
+   * @param itemno
+   * @return
+   */
+  public int jjim_sub (int galleryno);
+  
+  /**
    * 특정 카테고리에 속한 모든 레코드 삭제
    * @param exhino
    * @return 삭제된 레코드 갯수

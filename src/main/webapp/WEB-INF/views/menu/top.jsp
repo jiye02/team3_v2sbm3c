@@ -5,7 +5,9 @@
 <%@ page import="dev.mvc.exhi.ExhiVO" %>
 
 <DIV class='container_main'> 
-    <!-- 헤더 start -->
+    <!-- 헤더 start 
+    
+    -->
     <div class="header">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="/">ArtWave</a>
