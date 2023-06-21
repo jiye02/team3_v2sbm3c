@@ -7,22 +7,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.basket.BasketDAOInter">
 
   <insert id="create" parameterType="dev.mvc.basket.BasketVO">
-    INSERT INTO basket(basketno, galleryno, memberno, quantity, rdate)
-    VALUES(basket_seq.nextval, #{galleryno}, #{memberno}, #{quantity}, sysdate)
+    INSERT INTO basket(basketno, galleryno, memberno, cnt, rdate)
+    VALUES(basket_seq.nextval, #{galleryno}, #{memberno}, #{cnt}, sysdate)
   </insert> 
 
   <!-- memberno 회원 번호별 쇼핑카트 목록 출력 -->
   <select id="list_by_memberno" resultType="dev.mvc.basket.BasketVO" parameterType="int">
-    SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.quantity, t.rdate 
+    SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate 
     FROM gallery c, basket t
     WHERE (c.galleryno = t.galleryno) AND t.memberno = #{memberno}
     ORDER BY basketno ASC
   </select>
   
   <!-- 수량 수정, id: update, 입력: BasketVO, 리턴: int -->
-  <update id="update_quantity" parameterType="dev.mvc.basket.BasketVO">
+  <update id="update_cnt" parameterType="dev.mvc.basket.BasketVO">
     UPDATE basket
-    SET quantity=#{quantity}
+    SET cnt=#{cnt}
     WHERE basketno=#{basketno}
   </update>
 

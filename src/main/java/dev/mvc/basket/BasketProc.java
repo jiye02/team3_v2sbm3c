@@ -12,8 +12,8 @@ public class BasketProc implements BasketProcInter {
   
   @Override
   public int create(BasketVO basketVO) {
-    int quantity = this.basketDAO.create(basketVO);
-    return quantity;
+    int cnt = this.basketDAO.create(basketVO);
+    return cnt;
   }
   
   @Override
@@ -23,15 +23,15 @@ public class BasketProc implements BasketProcInter {
   }
   
   @Override
-  public int update_quantity(BasketVO basketVO) {
-    int quantity = this.basketDAO.update_quantity(basketVO);
-    return quantity;
+  public int update_cnt(BasketVO basketVO) {
+    int cnt = this.basketDAO.update_cnt(basketVO);
+    return cnt;
   }
   
   @Override
   public int delete(int basketno) {
-    int quantity = this.basketDAO.delete(basketno);
-    return quantity;
+    int cnt = this.basketDAO.delete(basketno);
+    return cnt;
   }
   
 }
