@@ -209,7 +209,7 @@ public class Tool {
    * @return
    */
   public static synchronized String convertChar(String str) {
-    str = str.replace("&", "&amp;");  // 특수 문자 -> 엔티티로 변경 -> 브러우저 출력시 기능이 없는 단순 문자로 출력
+    str = str.replace("&", "&amp;");  // 특수문자 -> 엔티티로 변경 -> 브라우저 출력 시 기능이 없는 단순 문자로 출력
     str = str.replace("<", "&lt;");
     str = str.replace(">", "&gt;");
     str = str.replace("'", "&apos;");
@@ -366,16 +366,16 @@ public class Tool {
       String path = "";
       if (File.separator.equals("\\")) {
           // Windows 개발시 사용 폴더
-          // path="C:\\kd\\ws_java\\resort_v2sbm3c\\src\\main\\resources\\static";
+          // path="C:\\kd\\ws_java\\resort_v2sbm3c_blog\\src\\main\\resources\\static";
           
           // Windows 배포, 폴더 생성
-          path = "C:/kd/deploy/resort_v2sbm3c";
+          path = "C:\\kd\\deploy\\dogproject\\storage\\";
 
       } else {
           // Linux 배포
           // 기본 명령어
           // pwd: 현재 경로 확인, mkdir deploy: 폴더 생성, cd deploy: 폴더 이동, rmdir resort_v2sbm3c: 폴더 삭제, cd ..: 상위 폴더로 이동 
-          path = "/home/ubuntu/deploy/resort_v2sbm3c";
+          path = "/home/ubuntu/deploy/dogproject";
       }
       // System.out.println("path: " + path);
       
@@ -383,37 +383,35 @@ public class Tool {
   }
   
   /**
-   * youtube 영상의 크기를 width 기준 640 px로 변경 
+   * youtube 영상의 크기를 width 기준 640 px로 설정
    * @param str
    * @return
    */
   public static synchronized String youtubeResize(String str) {
-    String[] tokens = str.split(" "); // 공백으로 문자열 분리
+    String[] tokens = str.split(" "); // 공백 문자열로 분리
     
     // 정수 추출
     int width = Integer.parseInt(tokens[1].replaceAll("[^0-9]", ""));
     int height = Integer.parseInt(tokens[2].replaceAll("[^0-9]", ""));
     
-    // 크기 계산
-    double rateper = 640.0/width;
+    //  크기 계산
+    double rateper = 640.0 / width;
     width = (int)(width * rateper);
-    height = (int)(height * rateper);
     
-    // 문자열 생성
+    //  문자열 생성
     tokens[1] = String.format("width='%d'", width);
     tokens[2] = String.format("height='%d'", height);
     
-    // 문자열 결합
+    //  문자열 결합
     StringBuffer sb = new StringBuffer();
     for(String token : tokens) {
-      sb.append(" " + token);
+      sb.append(token + " ");
     }
-    
     return sb.toString();
   }
   
+  
 }
-
 
 
 

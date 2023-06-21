@@ -57,3 +57,12 @@ SELECT adminno, id, passwd, mname, mdate, grade FROM admin ORDER BY adminno ASC;
          4 admin_bh             000829          관리자(BH)           2023-05-18 11:36:13          1
          5 admin_jh             000412          관리자(JH)           2023-05-18 11:36:13          1
 
+
+1) id 중복 확인(null 값을 가지고 있으면 count에서 제외됨)
+SELECT COUNT(id)
+FROM member
+WHERE id='user1';
+
+SELECT COUNT(id) as cnt
+FROM member
+WHERE id='user1';

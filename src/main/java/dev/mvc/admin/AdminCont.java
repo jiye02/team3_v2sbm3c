@@ -1,27 +1,32 @@
 package dev.mvc.admin;
 
-import java.util.HashMap;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import dev.mvc.tool.Tool;
 
 @Controller
 public class AdminCont {
   @Autowired
   @Qualifier("dev.mvc.admin.AdminProc")
-  private AdminProcInter adminProc;
+  private AdminProcInter adminProc = null;
   
   public AdminCont() {
     System.out.println("-> AdminCont created.");
@@ -87,19 +92,6 @@ public class AdminCont {
     mav.setViewName("redirect:/index.do"); 
     
     return mav;
-  }
-  
-  /**
-   * POST 요청시 JSP 페이지에서 JSTL 호출 기능 지원, 새로고침 방지, EL에서 param으로 접근
-   * @return
-   */
-  @RequestMapping(value="/admin/msg.do", method=RequestMethod.GET)
-  public ModelAndView msg(String url){
-    ModelAndView mav = new ModelAndView();
-
-    mav.setViewName(url); // forward
-    
-    return mav; // forward
   }
   
   /**
@@ -260,7 +252,90 @@ public class AdminCont {
     return "";
   
   }
+//http://localhost:9091/admin/checkID.do?id=user1
+ /**
+ * ID 중복 체크, JSON 출력
+ * @return
+ */
+ @ResponseBody
+ @RequestMapping(value="/admin/checkID.do", method=RequestMethod.GET ,
+                        produces = "text/plain;charset=UTF-8" )
+ public String checkID(String id) {
+   int cnt = this.adminProc.checkID(id);
   
+   JSONObject json = new JSONObject();
+   json.put("cnt", cnt);
+  
+   return json.toString(); 
+ }
+
+ // http://localhost:9091/admin/create.do
+ /**
+ * 등록 폼
+ * @return
+ */
+ @RequestMapping(value="/admin/create.do", method=RequestMethod.GET )
+ public ModelAndView create() {
+   ModelAndView mav = new ModelAndView();
+   mav.setViewName("/admin/create"); // webapp/admin/create.jsp
+  
+   return mav; // forward
+ }
+
+ 
+ /**
+  * 등록 처리
+  * @param adminVO
+  * @return
+  */
+ @RequestMapping(value="/admin/create.do", method=RequestMethod.POST)
+ public ModelAndView create(AdminVO adminVO){
+   ModelAndView mav = new ModelAndView();
+   
+   // System.out.println("id: " + adminVO.getId());
+   
+   adminVO.setGrade(15); // 기본 회원 가입 등록 15 지정
+   
+   int cnt= adminProc.create(adminVO); // SQL insert
+   
+   if (cnt == 1) { // insert 레코드 개수
+     mav.addObject("code", "create_success");
+     mav.addObject("mname", adminVO.getMname());  // 홍길동님(user4) 회원 가입을 축하합니다.
+     mav.addObject("id", adminVO.getId());
+   } else {
+     mav.addObject("code", "create_fail");
+   }
+   
+   mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+   
+   mav.addObject("url", "/admin/msg");  // /admin/msg -> /admin/msg.jsp
+   
+   mav.setViewName("redirect:/admin/msg.do"); // POST -> GET -> /admin/msg.jsp
+
+//   mav.addObject("code", "create_fail"); // 가입 실패 test용
+//   mav.addObject("cnt", 0);                 // 가입 실패 test용
+   
+   return mav;
+ }
+ 
+ /**
+  * 새로고침 방지, EL에서 param으로 접근, POST -> GET -> /admin/msg.jsp
+  * @return
+  */
+ @RequestMapping(value="/admin/msg.do", method=RequestMethod.GET)
+ public ModelAndView msg(String url){
+   ModelAndView mav = new ModelAndView();
+
+   mav.setViewName(url); // forward
+   
+   return mav; // forward
+ }
+ 
+ 
 }
+ 
+ 
+
+  
 
 

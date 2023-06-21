@@ -1,4 +1,8 @@
 package dev.mvc.admin;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public interface AdminDAOInter {
   /**
@@ -23,8 +27,22 @@ public interface AdminDAOInter {
    */
   public AdminVO read(int adminno);
   
-}
+  
+  /**
+   * 중복 아이디 검사
+   * @param id
+   * @return 중복 아이디 갯수
+   */
+  public int checkID(String id);
+  /**
+   * 회원 가입
+   * @param adminVO
+   * @return
+   */
+  public int create(AdminVO adminVO); 
 
+}
+ 
 
 
 

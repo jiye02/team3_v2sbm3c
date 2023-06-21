@@ -1,19 +1,18 @@
 package dev.mvc.reply;
 
 public class ReplyVO {
-  /**댓글 번호**/
+  /** 댓글 번호 */
   private int replyno;
-  /**컨텐츠 번호**/
-  private int galleryno;
-  /**회원 번호**/
+  /** 관련 글 번호 */
+  private int contentsno;
+  /** 회원 번호 */
   private int memberno;
-  /**내용**/
+  /** 내용 */
   private String content;
-  /**비밀 번호**/
+  /** 패스워드 */
   private String passwd;
-  /**등록일**/
+  /** 등록일 */
   private String rdate;
-  
   
   public int getReplyno() {
     return replyno;
@@ -21,11 +20,11 @@ public class ReplyVO {
   public void setReplyno(int replyno) {
     this.replyno = replyno;
   }
-  public int getGalleryno() {
-    return galleryno;
+  public int getContentsno() {
+    return contentsno;
   }
-  public void setGalleryno(int galleryno) {
-    this.galleryno = galleryno;
+  public void setContentsno(int contentsno) {
+    this.contentsno = contentsno;
   }
   public int getMemberno() {
     return memberno;

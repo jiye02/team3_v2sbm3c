@@ -78,6 +78,9 @@ public interface ExhiDAOInter {
    */
   public int update_cnt_add(int exhino);
   
+  public ArrayList<ExhiVO> adminList();
+  
+  
   /**
    * 글수 감소
    * @param exhino
@@ -85,9 +88,10 @@ public interface ExhiDAOInter {
    */
   public int update_cnt_sub(int exhino);
   
+  public void recommend_add(int exhino);
+  
   
 }
-
 
 
 

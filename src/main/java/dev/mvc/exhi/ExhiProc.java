@@ -84,9 +84,20 @@ public class ExhiProc implements ExhiProcInter {
     int cnt = this.exhiDAO.update_cnt_sub(exhino);
     return cnt;
   }
+
+  @Override
+  public ArrayList<ExhiVO> adminList() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void recommend_add(int exhino) {
+    // TODO Auto-generated method stub
+    
+  }
   
 }
-
 
 
 

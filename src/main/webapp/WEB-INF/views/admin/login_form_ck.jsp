@@ -43,8 +43,9 @@
           </Label>                    
         </div>   
      
-        <div class="form_input">
-          <button type="submit" class="btn btn-info">로그인</button>
+          <div class="form_input">
+          <button type="submit" class="btn btn-info btn-sm">로그인</button>
+          <button type='button' id='btn_create' class="btn btn-info btn-sm">회원가입</button>
         </div>   
         
       </FORM>

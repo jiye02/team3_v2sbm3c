@@ -2,6 +2,10 @@ package dev.mvc.admin;
 
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,10 +46,20 @@ public class AdminProc implements AdminProcInter {
     AdminVO adminVO = this.adminDAO.read(adminno);
     return adminVO;
   }
-  
-  
-  
-}
+  @Override
+  public int checkID(String id) {
+    int cnt = this.adminDAO.checkID(id);
+    return cnt;
+  }
 
+  @Override
+  public int create(AdminVO adminVO) {
+    int cnt = this.adminDAO.create(adminVO);
+    return cnt;
+  }
+  
+   
+   
+}
 
 

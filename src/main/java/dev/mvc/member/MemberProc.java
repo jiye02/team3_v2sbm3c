@@ -98,6 +98,11 @@ public class MemberProc implements MemberProcInter {
     int cnt = this.memberDAO.login(map);
     return cnt;
   }
+
+  public boolean isAdmin(HttpSession session) {
+    // TODO Auto-generated method stub
+    return false;
+  }
   
 }
 

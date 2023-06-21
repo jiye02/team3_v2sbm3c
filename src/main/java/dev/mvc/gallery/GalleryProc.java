@@ -312,9 +312,20 @@ public class GalleryProc implements GalleryProcInter {
       int cnt = this.galleryDAO.delete_by_exhino(exhino);
       return cnt;
     }
+    @Override
+    public int increaseReplycnt(int galleryno) {
+      int count = galleryDAO.increaseReplycnt(galleryno);
+      return count;
+    }
+
+    @Override
+    public int decreaseReplycnt(int galleryno) {
+      int count = galleryDAO.decreaseReplycnt(galleryno);
+      return count;
+    }
+    
  
 }
-
 
 
 

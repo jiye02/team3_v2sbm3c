@@ -121,8 +121,21 @@ public interface GalleryProcInter {
    * @return 삭제된 레코드 갯수
    */
   public int delete_by_exhino(int exhino);
+  /**
+   * 글 수 증가
+   * @param 
+   * @return
+   */ 
+  public int increaseReplycnt(int galleryno);
+ 
+  /**
+   * 글 수 감소
+   * @param 
+   * @return
+   */   
+  public int decreaseReplycnt(int galleryno);
+  
   
 }
  
-
 

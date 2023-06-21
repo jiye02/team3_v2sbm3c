@@ -8,6 +8,7 @@
       <A class='menu_link'  href='/' >힐링 리조트</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/exhi/create.do'>카테고리 등록</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/exhi/list_all.do'>카테고리 전체 목록</A><span class='top_menu_sep'> </span>
+      
             
     </NAV>
   </DIV>

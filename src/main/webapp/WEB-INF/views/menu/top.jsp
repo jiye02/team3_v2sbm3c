@@ -5,7 +5,9 @@
 <%@ page import="dev.mvc.exhi.ExhiVO" %>
 
 <DIV class='container_main'> 
-    <!-- 헤더 start -->
+    <!-- 헤더 start 
+    
+    -->
     <div class="header">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="/">ArtWave</a>
@@ -17,22 +19,20 @@
                   <c:forEach var="exhiVO" items="${list}">
                     <c:set var="exhino" value="${exhiVO.exhino }" />
                     <c:set var="name" value="${exhiVO.name }" />
-
-                    <li class="nav-item dropdown"> <%-- 카테고리 서브 메뉴 --%>
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown"  href="#">${name }</a>
-                      <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">1분기 (1~4월)</a>
-                          <a class="dropdown-item" href="#">2분기 (5~8월)</a>
-                          <a class="dropdown-item" href="#">3분기 (9~12월)</a>
-                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=${exhino }&now_page=1" >전체 보기</a>
-                      </div>
-                  </li>
                   
                   </c:forEach>
                   
-                  <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
-                    <a class="nav-link" href="/gallery/list_all.do">전체 글 목록</a>
-                  </li>
+                  <li class="nav-item dropdown"> <%-- 카테고리 서브 메뉴 --%>
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown"  href="#">전시회 둘러보기</a>
+                      <div class="dropdown-menu">
+                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=1&now_page=1" >미술전시회</a>
+                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=2&now_page=1" >의류전시회</a>
+                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=3&now_page=1" >이색전시회</a>
+                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=4&now_page=1" >팝업스토어</a>
+                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=5&now_page=1" >지역축제</a>
+                          <a class="dropdown-item" href="/gallery/list_all.do">전체 목록</a>
+                      </div>
+                   </li>
 
                   <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
                       <c:choose>
@@ -71,6 +71,7 @@
                           <a class="dropdown-item" href='/member/list.do'>회원 목록</a>
                            <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
                             <a class="dropdown-item" href='/jjim/list.do'>찜 목록</a>
+                            <a class="dropdown-item" href='/admin/create.do'>관리자 추가</a> 
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                         </div>
                       </li>

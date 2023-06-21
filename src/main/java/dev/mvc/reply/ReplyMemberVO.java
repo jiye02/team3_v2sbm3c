@@ -7,7 +7,7 @@ public class ReplyMemberVO {
   /** 댓글 번호 */
   private int replyno;
   /** 관련 글 번호 */
-  private int contentsno;
+  private int galleryno;
   /** 회원 번호 */
   private int memberno;
   /** 내용 */
@@ -29,11 +29,11 @@ public class ReplyMemberVO {
   public void setReplyno(int replyno) {
     this.replyno = replyno;
   }
-  public int getContentsno() {
-    return contentsno;
+  public int getGalleryno() {
+    return galleryno;
   }
-  public void setContentsno(int contentsno) {
-    this.contentsno = contentsno;
+  public void setGalleryno(int galleryno) {
+    this.galleryno = galleryno;
   }
   public int getMemberno() {
     return memberno;
@@ -59,6 +59,7 @@ public class ReplyMemberVO {
   public void setRdate(String rdate) {
     this.rdate = rdate;
   }
+  
   
  
   

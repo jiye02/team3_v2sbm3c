@@ -84,8 +84,11 @@ public interface ExhiProcInter {
    * @return
    */
   public int update_cnt_sub(int exhino);
+
+  public ArrayList<ExhiVO> adminList();
+
+  public void recommend_add(int exhino);
   
   
 }
-
 

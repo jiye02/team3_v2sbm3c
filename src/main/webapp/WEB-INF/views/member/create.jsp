@@ -328,7 +328,6 @@
 <!-- ------------------------------ DAUM 우편번호 API 종료 ------------------------------ -->
 
     </div>
-    
     <div class="form_input">
       <button type="button" id='btn_send' onclick="send()" class="btn btn-info btn-sm">가입</button>
       <button type="button" onclick="history.back()" class="btn btn-info btn-sm">취소</button>

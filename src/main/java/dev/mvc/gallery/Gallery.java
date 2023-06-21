@@ -21,7 +21,7 @@ public class Gallery {
             
         } else { // Linux, AWS, 서비스용 배치 폴더 
             // System.out.println("Linux");
-            path = "/home/ubuntu/deploy/art_v2sbm3c/gallery/storage/";
+            path = "/home/ubuntu/deploy/resort_v2sbm3c/contents/storage/";
         }
         
         return path;
