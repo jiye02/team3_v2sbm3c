@@ -40,6 +40,9 @@
                               <a class="nav-link" href="/member/login.do">로그인</a>
                           </c:when>
                           <c:otherwise>
+                           <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
+                          <a class="nav-link" href='/basket/list_by_memberno.do'>쇼핑 카트</a>
+                          </li>
                               <a class="nav-link" href='/member/logout.do'>${sessionScope.id } 로그아웃</a>
                           </c:otherwise>
                       </c:choose>

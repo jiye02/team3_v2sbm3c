@@ -179,11 +179,11 @@
           <div class='basket_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
         </td>
         <td style='width: 50%;'>
-          <div class='basket_label' style='font-size: 2.0em;'>전체 주문 금액</div>
-          <div class='basket_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
+          <div class='basket_label' style='font-size: 1.7em;'>전체 주문 금액</div>
+          <div class='basket_price'  style='font-size: 1.7em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
           <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='get'>
-            <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
+            <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.0em;'>주문하기</button>
           </form>
         <td>
       </tr>
