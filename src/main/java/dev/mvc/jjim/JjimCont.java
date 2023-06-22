@@ -105,42 +105,7 @@ public class JjimCont {
   }
 
   
-  /**
-   * 찜 리스트
-   */
-  @RequestMapping(value = "/gallery/list_by_exhino.do", method = RequestMethod.GET)
-  public ModelAndView list_by_memberno_search_paging(GalleryVO galleryVO) {
-    ModelAndView mav = new ModelAndView();
-
-    // 검색된 전체 글 수
-    int search_count = this.galleryProc.search_count(galleryVO);
-    mav.addObject("search_count", search_count);
-    
-    // 검색 목록: 검색된 레코드를 페이지 단위로 분할하여 가져옴
-    ArrayList<GalleryVO> list = galleryProc.list_by_exhino_search_paging(galleryVO);
-    mav.addObject("list", list);
-    // 에러 ******************
-    // ExhiVO exhiVO = exhiProc.read(galleryVO.getExhino());
-    //mav.addObject("exhiVO", exhiVO);
-
-    /*
-     * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 현재 페이지: 11 / 22 [이전] 11 12 13 14 15 16 17
-     * 18 19 20 [다음]
-     * @param exhino 카테고리번호
-     * @param now_page 현재 페이지
-     * @param word 검색어
-     * @return 페이징용으로 생성된 HTML/CSS tag 문자열
-     */
-    String paging = galleryProc.pagingBox(galleryVO.getExhino(), galleryVO.getNow_page(), galleryVO.getWord(), "list_by_exhino.do");
-    mav.addObject("paging", paging);
-
-    // mav.addObject("now_page", now_page);
-    
-    mav.setViewName("/gallery/list_by_exhino_search_paging");  // /gallery/list_by_exhino_search_paging.jsp
-
-    return mav;
-  }
-  
+ 
   
 
 }
