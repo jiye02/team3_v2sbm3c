@@ -21,8 +21,8 @@
 <c:import url="/menu/top.do" />
 
   <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
-    <%-- /static/images/art01.jpg --%>
-    <IMG src='/images/art01.jpg' style='width: 60%;'>
+    <%-- /static/images/art01.png --%>
+    <IMG src='/images/art01.png' style='width: 60%;'>
   </DIV>
   
   <DIV style='margin: 0px auto; width: 90%;'>
