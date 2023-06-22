@@ -29,10 +29,10 @@
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
 <script type="text/javascript">
   $(function(){
@@ -44,8 +44,6 @@
     var frm_reply = $('#frm_reply');
     $('#content', frm_reply).on('click', check_login);  // 댓글 작성시 로그인 여부 확인
     $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
-
-    list_by_galleryno_join(); // 댓글 목록
     // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
     
   });
@@ -264,54 +262,12 @@
         },
         // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
         error: function(request, status, error) { // callback 함수
-          console.log(error);
+          var msg = 'ERROR request.status: '+request.status + '/ ' + error;
+          console.log(msg); // Chrome에 출력
         }
       });
     }
   }
-
-  // galleryno 별 소속된 댓글 목록
-  function list_by_galleryno_join() {
-    var params = 'galleryno=' + ${galleryVO.galleryno };
-
-    $.ajax({
-      url: "../reply/list_by_galleryno_join.do", // action 대상 주소
-      type: "get",           // get, post
-      cache: false,          // 브러우저의 캐시영역 사용안함.
-      async: true,           // true: 비동기
-      dataType: "json",   // 응답 형식: json, xml, html...
-      data: params,        // 서버로 전달하는 데이터
-      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-        // alert(rdata);
-        var msg = '';
-        
-        $('#reply_list').html(''); // 패널 초기화, val(''): 안됨
-        
-        for (i=0; i < rdata.list.length; i++) {
-          var row = rdata.list[i];
-          
-          msg += "<DIV id='"+row.replyno+"' style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
-          msg += "<span style='font-weight: bold;'>" + row.id + "</span>";
-          msg += "  " + row.rdate;
-          
-          if ('${sessionScope.memberno}' == row.memberno) { // 글쓴이 일치여부 확인, 본인의 글만 삭제 가능함 ★
-            msg += " <A href='javascript:reply_delete("+row.replyno+")'><IMG src='/reply/images/delete.png'></A>";
-          }
-          msg += "  " + "<br>";
-          msg += row.content;
-          msg += "</DIV>";
-        }
-        // alert(msg);
-        $('#reply_list').append(msg);
-      },
-      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-      error: function(request, status, error) { // callback 함수
-        console.log(error);
-      }
-    });
-    
-  }
-  
   
 </script>
  
@@ -495,7 +451,7 @@
         <button type='button' id='btn_create'>등록</button>
     </FORM>
     <HR>
-    <DIV id='reply_list' data-replyPage='1'>  <%-- 댓글 목록 --%>
+    <DIV id='reply_list' data-replypage='1'>  <%-- 댓글 목록 --%>
     
     </DIV>
     <DIV id='reply_list_btn' style='border: solid 1px #EEEEEE; margin: 0px auto; width: 100%; background-color: #EEFFFF;'>

@@ -4,10 +4,10 @@ package dev.mvc.jjim;
 basketno                        NUMBER(10) NOT NULL PRIMARY KEY,
 galleryno                 NUMBER(10) NULL ,
 memberno                 NUMBER(10) NOT NULL,
-quantity                            NUMBER(10) DEFAULT 0 NOT NULL,
+cnt                            NUMBER(10) DEFAULT 0 NOT NULL,
 rdate                          DATE NOT NULL,
   
-SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.quantity, t.rdate 
+SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate 
 FROM gallery c, basket t
 WHERE c.galleryno = t.galleryno
 ORDER BY basketno ASC;
@@ -25,6 +25,11 @@ public class JjimVO {
     private String thumb1 = "";
     /** 회원 번호 */
     private int memberno;
+<<<<<<< HEAD
+=======
+    /** 수량 */
+    private int cnt;
+>>>>>>> 120d172d1e1cbea0ac3fe0d85effbeb71e27e5de
     /** 등록일 */
     private String rdate;
 
@@ -74,7 +79,19 @@ public class JjimVO {
     }
 
     public void setMemberno(int memberno) {
+<<<<<<< HEAD
       this.memberno = memberno;
+=======
+        this.memberno = memberno;
+    }
+
+    public int getCnt() {
+        return cnt;
+    }
+
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
+>>>>>>> 120d172d1e1cbea0ac3fe0d85effbeb71e27e5de
     }
 
 

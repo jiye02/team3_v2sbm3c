@@ -1,5 +1,7 @@
 package dev.mvc.gallery;
 
+import java.util.Optional;
+
 import org.springframework.web.multipart.MultipartFile;
 
 /*
@@ -312,4 +314,5 @@ public class GalleryVO {
   public void setNow_page(int now_page) {
     this.now_page = now_page;
   }
+ 
 }

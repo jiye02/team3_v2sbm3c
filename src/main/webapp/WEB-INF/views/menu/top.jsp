@@ -43,6 +43,9 @@
                            <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
                           <a class="nav-link" href='/basket/list_by_memberno.do'>장바구니</a>
                           </li>
+                           <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
+                          <a class="nav-link" href='/jjim/list_by_memberno.do'>찜</a>
+                          </li>
                               <a class="nav-link" href='/member/logout.do'>${sessionScope.id } 로그아웃</a>
                           </c:otherwise>
                       </c:choose>
@@ -76,9 +79,16 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">관리자</a>
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
+                          <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>
                           <a class="dropdown-item" href='/member/list.do'>회원 목록</a>
                            <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
+<<<<<<< HEAD
                             <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
+=======
+                            <a class="dropdown-item" href='/jjim/list.do'>찜 목록</a>
+                            <a class="dropdown-item" href='/admin/create.do'>관리자 추가</a>
+                             <a class="dropdown-item" href='/admin/list.do'>관리자 명단</a>  
+>>>>>>> 120d172d1e1cbea0ac3fe0d85effbeb71e27e5de
                             <a class="dropdown-item" href='/admin/create.do'>관리자 등록</a> 
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                         </div>

@@ -1,94 +1,113 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art world</title>
- <link rel="shortcut icon" href="/images/ex_top.png" />
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<title>Resort world</title>
  
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
-</head>
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+ 
+<script type="text/JavaScript"
+          src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+ 
+<script type="text/JavaScript">
+  // window.onload=function(){
+  //  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
+  // };
+
+  $(function() {
+    CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
+  });
+ 
+</script>
+
+</head> 
  
 <body>
 <c:import url="/menu/top.do" />
- 
-<DIV class='title_line'>${exhiVO.name } > 글 등록</DIV>
-
-<DIV class='content_body'>
+  <DIV class="title_line">
+    ${exhiVO.name}
+  </DIV>
+  
   <ASIDE class="aside_right">
     <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino.do?exhino=${exhiVO.exhino }">기본 목록형</A>    
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
+    <A href="./list_by_exhino_grid1.do?exhino=${exhiVO.exhino }">갤러리형</A>
   </ASIDE> 
-  
-  <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_exhino.do'>
-      <input type='hidden' name='exhino' value='${exhiVO.exhino }'>  <%-- 게시판의 구분 --%>
-      
-      <c:choose>
-        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word }' class='input_word'>
-        </c:when>
-        <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' class='input_word'>
-        </c:otherwise>
-      </c:choose>
-      <button type='submit' class='btn btn-info btn-sm'>검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm' 
-                    onclick="location.href='./list_by_exhino.do?exhino=${exhiVO.exhino}&word='">검색 취소</button>  
-      </c:if>    
-    </form>
-  </DIV>
-  
-  <DIV class='menu_line'></DIV>
-  
-  <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
-    <input type="hidden" name="exhino" value="${param.exhino }">
-    
-    <div>
-       <label>제목</label>
-       <input type='text' name='title' value='' required="required" 
-                 autofocus="autofocus" class="form-control" style='width: 100%;'>
-    </div>
-    <div>
-       <label>내용</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'></textarea>
-    </div>
-    <div>
-       <label>검색어</label>
-       <input type='text' name='word' value='' required="required" 
-                 class="form-control" style='width: 100%;'>
-    </div>   
-    <div>
-       <label>이미지</label>
-       <input type='file' class="form-control" name='file1MF' id='file1MF' 
-                 value='' placeholder="파일 선택">
-    </div>   
-    <div>
-       <label>패스워드</label>
-       <input type='password' name='passwd' value='1234' required="required" 
-                 class="form-control" style='width: 50%;'>
-    </div>   
-    <div class="content_body_bottom">
-      <button type="submit" class="btn btn-primary">등록</button>
-      <button type="button" onclick="location.href='./list_by_exhino.do?exhino=${param.exhino}'" class="btn btn-primary">목록</button>
-    </div>
-  
-  </FORM>
-</DIV>
  
-<jsp:include page="../menu/bottom.jsp" flush='false' />
+  <div class='menu_line'></div>
+  
+  <DIV style='width: 100%;'>
+    <FORM name='frm' method='POST' action='./create.do' class="form-horizontal"
+                enctype="multipart/form-data">
+               
+      <!-- FK memberno 지정 -->
+      <input type='hidden' name='memberno' id='memberno' value='${sessionScope.memberno }'>
+      <!-- FK exhigrpno 지정 -->
+      <input type='hidden' name='exhino' id='exhino' value="${param.exhino }">
+      
+      <div class="form-group">   
+        <div class="col-md-12">
+          <input type='text' class="form-control" name='title' value='겨울' placeholder="제목" required="required" style='width: 80%;'>
+        </div>
+      </div>   
+      
+      <div class="form-group">   
+        <div class="col-md-12">
+          <textarea class="form-control" name='content' id='content' rows='10' placeholder="내용">겨울</textarea>
+        </div>
+      </div>
+
+      <div class="form-group">   
+        <div class="col-md-12">
+          <%-- 실제 컬럼명: file1, Spring File 객체 대응: file1MF --%>
+          <input type='file' class="form-control" name='file1MF' id='file1MF' 
+                    value='' placeholder="파일 선택">
+        </div>
+      </div>
+      
+      <div class="form-group">   
+        <div class="col-md-12">
+          <input type='text' class="form-control" name='web' value='http://www.kma.go.kr' placeholder="인터넷 주소" style='width: 80%;'>
+        </div>
+      </div>   
+      
+      <div class="form-group">   
+        <div class="col-md-12">
+          <input type='text' class="form-control" name='word'  value='단풍,전나무,오대산,월정사,숲길' placeholder="검색어" style='width: 90%;'>
+        </div>
+      </div>
+
+      <div class="form-group">   
+        <div class="col-md-12">
+          <input type='password' class="form-control" name='passwd'  value='1234' placeholder="패스워드" style='width: 20%;'>
+        </div>
+      </div>
+      
+      <DIV class='content_bottom_menu'>
+        <button type="submit" class="btn btn-info">등록</button>
+        <button type="button" 
+                    onclick="location.href='./list.do?exhi=${param.exhi}'" 
+                    class="btn btn-info">취소[목록]</button>
+      </DIV>
+       
+    </FORM>
+  </DIV>
+
+  
+<jsp:include page="../menu/bottom.jsp" />
 </body>
  
 </html>
-
+ 
+  

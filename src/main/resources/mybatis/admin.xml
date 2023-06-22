@@ -14,8 +14,7 @@
     INSERT INTO admin(adminno, id, passwd, mname, mdate, grade)
     VALUES (admin_seq.nextval, #{id}, #{passwd}, #{mname}, sysdate, #{grade})
   </insert>
-  
-  
+
   
   <!-- 로그인 -->
   <select id="login" resultType="int" parameterType="dev.mvc.admin.AdminVO">
@@ -37,7 +36,40 @@
     FROM admin
     WHERE adminno=#{adminno}
   </select>
- 
+  
+  <!-- 관리자 목록 -->
+ <select id="list" resultType="dev.mvc.admin.AdminVO">
+    SELECT adminno, id, passwd, mname, mdate, grade 
+    FROM admin
+    ORDER BY grade ASC, id ASC
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="dev.mvc.admin.AdminVO">
+    UPDATE admin 
+    SET id=#{id}, mname=#{mname}
+    WHERE adminno=#{adminno}
+  </update>
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM admin
+    WHERE adminno=#{adminno}
+  </delete>
+  
+  <!--  현재 패스워드 검사 -->
+  <select id="passwd_check" parameterType="HashMap" resultType="int">
+    SELECT COUNT(adminno) as cnt
+    FROM admin
+    WHERE adminno=#{adminno} AND passwd=#{passwd}
+  </select>
+  
+  <!-- 패스워드 변경 -->
+  <update id="passwd_update" parameterType="HashMap">
+    UPDATE admin
+    SET passwd=#{passwd}
+    WHERE adminno=#{adminno}
+  </update>  
    
 
   

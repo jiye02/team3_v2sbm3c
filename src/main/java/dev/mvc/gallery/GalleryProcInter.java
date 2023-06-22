@@ -3,6 +3,7 @@ package dev.mvc.gallery;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public interface GalleryProcInter {
   /**
@@ -149,7 +150,13 @@ public interface GalleryProcInter {
    */   
   public int decreaseReplycnt(int galleryno);
   
+
+    
+  
   
 }
+  
+  
+
  
 

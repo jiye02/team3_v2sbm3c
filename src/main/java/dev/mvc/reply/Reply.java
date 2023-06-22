@@ -1,6 +1,9 @@
 package dev.mvc.reply;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // 파일 업로드 경로는 war외부의 절대 경로를 지정해야 파일이 손실되지 않는다.
 //  ※그렇지 않으면 war생성시마다 업로드 경로가 초기화 되어 등록된 모든 파일이 삭제된다.※
