@@ -12,8 +12,8 @@ public class JjimProc implements JjimProcInter {
   
   @Override
   public int create(JjimVO jjimVO) {
-    int quantity = this.jjimDAO.create(jjimVO);
-    return quantity;
+    int cnt = this.jjimDAO.create(jjimVO);
+    return cnt;
   }
   
   @Override
@@ -31,8 +31,8 @@ public class JjimProc implements JjimProcInter {
   
   @Override
   public int delete(int memberno) {
-    int quantity = this.jjimDAO.delete(memberno);
-    return quantity;
+    int cnt = this.jjimDAO.delete(memberno);
+    return cnt;
   }
   
 }

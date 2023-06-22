@@ -37,7 +37,7 @@ public class BasketCont {
   public String create(HttpSession session,
                             int galleryno) {
     BasketVO basketVO = new BasketVO();
-    basketVO.setContentsno(galleryno);  // 상품 번호
+    basketVO.setGalleryno(galleryno);  // 상품 번호
     
     int memberno = (Integer)session.getAttribute("memberno");
     basketVO.setMemberno(memberno);   // 회원 번호
