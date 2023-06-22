@@ -7,8 +7,10 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
- 
+
+<title>Art world</title>
+<link rel="shortcut icon" href="/images/ex_top.png" />
+
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <script type="text/JavaScript"
@@ -18,9 +20,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
  
 <script type="text/javascript">
-  $(function(){
- 
-  });
+  $(function(){  });
 </script>
 </head> 
  
@@ -28,7 +28,11 @@
 <c:import url="/menu/top.do" />
  
   <DIV class='title_line'>
+ HEAD
     회원(관리자 전용)
+
+    관리자 목록
+
   </DIV>
 
   <DIV class='content_body'>
@@ -36,7 +40,11 @@
     <ASIDE class="aside_right">
       <A href="javascript:location.reload();">새로고침</A>
       <span class='menu_divide' >│</span> 
+
       <A href='./create.do'>회원 가입</A>
+
+      <A href='./create.do'>관리자 등록</A>
+
       <span class='menu_divide' >│</span> 
       <A href='./list.do'>목록</A>
     </ASIDE> 
@@ -44,13 +52,18 @@
     <div class='menu_line'></div>
     
    
+
     <table class="table table-striped" style='width: 100%;'>
+
+    <table class="table table-striped" style='width: 133.5%;'>
+
     <colgroup>
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
       <col style='width: 15%;'/>
       <col style='width: 15%;'/>
       <col style='width: 30%;'/>
+
       <col style='width: 10%;'/>
     </colgroup>
     <TR>
@@ -60,8 +73,17 @@
       <TH class='th_bs'>전화번호</TH>
       <TH class='th_bs'>등록일</TH>
       <TH class='th_bs'> </TH>
+      <col style='width: 15%;'/>
+      <col style='width: 10%;'/>
+    </colgroup>
+    <TR>
+      <TH class='th_bs'>등급 </TH>
+      <TH class='th_bs'>ID</TH>
+      <TH class='th_bs'>성명</TH>
+      <TH class='th_bs'>등록일</TH>
+      <TH class='th_bs'>기타</TH>
     </TR>
-   
+ 
     <c:forEach var="adminVO" items="${list }">
       <c:set var="adminno" value ="${adminVO.adminno}" />
       <c:set var="grade" value ="${adminVO.grade}" />
@@ -70,6 +92,7 @@
       <c:set var="mdate" value ="${adminVO.mdate}" />
        
     <TR>
+<<<<<<< HEAD
       <TD class='td_basic'>
         <c:choose>
           <c:when test="${grade >= 1 and grade <= 10}"><img src='/admin/images/admin.png' title="관리자" class="icon"></c:when>    
@@ -96,6 +119,17 @@
         <A href="./passwd_update.do?adminno=${adminno}"><IMG src='/admin/images/passwd.png' title='패스워드 변경' class="icon"></A>
         <A href="./read.do?adminno=${adminno}"><IMG src='/admin/images/update.png' title='수정' class="icon"></A>
         <A href="./delete.do?adminno=${adminno}"><IMG src='/admin/images/delete.png' title='삭제' class="icon"></A>
+
+      <TD class= 'td_basic'><img src='/member/images/admin.png' title="관리자" class="icon">
+      <TD class='td_basic'><A href="./read.do?adminno=${adminno}">${id}</A></TD>
+      <TD class='td_basic'><A href="./read.do?adminno=${adminno}">${mname}</A></TD>
+
+      <TD class='td_basic'>${mdate.substring(0, 10)}</TD> <%-- 년월일 --%>
+      <TD class='td_basic'>
+        <A href="./passwd_update.do?adminno=${adminno}"><IMG src='/member/images/passwd.png' title='패스워드 변경' class="icon"></A>
+        <A href="./read.do?adminno=${adminno}"><IMG src='/member/images/update.png' title='수정' class="icon"></A>
+        <A href="./delete.do?adminno=${adminno}"><IMG src='/member/images/delete.png' title='삭제' class="icon"></A>
+
       </TD>
       
     </TR>
@@ -113,4 +147,6 @@
 </body>
  
 </html>
+
  
+

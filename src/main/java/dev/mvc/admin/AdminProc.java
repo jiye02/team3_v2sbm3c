@@ -58,10 +58,39 @@ public class AdminProc implements AdminProcInter {
     return cnt;
   }
 
+  @Override
+  public ArrayList<AdminVO> list() {
+    ArrayList<AdminVO> list = this.adminDAO.list();
+    return list;
   }
+
+  @Override
+  public int update(AdminVO adminVO) {
+    int cnt = this.adminDAO.update(adminVO);
+    return cnt;
+  }
+
+  @Override
+  public int delete(int adminno) {
+    int cnt = this.adminDAO.delete(adminno);
+    return cnt;
+  }
+
+  @Override
+  public int passwd_check(HashMap<Object, Object> map) {
+    int cnt = this.adminDAO.passwd_check(map);
+    return cnt;
+  }
+
+  @Override
+  public int passwd_update(HashMap<Object, Object> map) {
+    int cnt = this.adminDAO.passwd_update(map);
+    return cnt;
+  }
+  
+}
   
    
    
-
 
 

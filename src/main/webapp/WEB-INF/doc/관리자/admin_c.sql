@@ -71,3 +71,10 @@ WHERE id='user1';
 SELECT adminno, id, passwd, mname, mdate, grade
 FROM admin
 ORDER BY grade ASC, id ASC;
+
+-- 삭제
+DELETE FROM admin
+WHERE adminno >= 6;
+
+SELECT * FROM admin;
+>>>>>>> f49bbfc9366e3eecf695b4f2cc0fc5747410489e

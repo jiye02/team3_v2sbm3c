@@ -27,7 +27,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     
@@ -52,7 +52,7 @@
     params = 'galleryno=' + galleryno; // 공백이 값으로 있으면 안됨.
     $.ajax(
       {
-        url: '/gallery/update_recom_ajax.do',
+        url: '/galleryno/update_recom_ajax.do',
         type: 'post',  // get, post
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -78,7 +78,7 @@
     );  //  $.ajax END
 
     // $('#span_animation').css('text-align', 'center');
-    $('#span_animation').html("<img src='/gallery/images/ani04.gif' style='width: 8%;'>");
+    $('#span_animation').html("<img src='/galleryno/images/ani04.gif' style='width: 8%;'>");
     $('#span_animation').show(); // 숨겨진 태그의 출력
   }
 
@@ -390,11 +390,11 @@
         <DIV style="width: 50%; float: left; margin-right: 10px;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <%-- /static/gallery/storage/ --%>
-                <IMG src="/gallery/storage/${file1saved }" style="width: 100%;"> 
+                <%-- /static/galleryno/storage/ --%>
+                <IMG src="/galleryno/storage/${file1saved }" style="width: 100%;"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/gallery/images/none1.png" style="width: 100%;"> 
+                <IMG src="/galleryno/images/none1.png" style="width: 100%;"> 
               </c:otherwise>
             </c:choose>
         </DIV>
@@ -427,7 +427,7 @@
       <li class="li_none">
         <DIV>
           <c:if test="${file1.trim().length() > 0 }">
-            첨부 파일: <A href='/download?dir=/gallery/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
+            첨부 파일: <A href='/download?dir=/galleryno/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
           </c:if>
         </DIV>
       </li>   
@@ -465,8 +465,6 @@
 </body>
  
 </html>
-
-</html>  
    
 
 
