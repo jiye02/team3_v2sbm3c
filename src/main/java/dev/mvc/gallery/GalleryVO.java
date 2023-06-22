@@ -97,7 +97,41 @@ public class GalleryVO {
   private int end_num;
 
   /** 현재 페이지 */
-  private int now_page = 1;
+  private int now_page = 1; 
+  public int getGrpno() {
+    return grpno;
+  }
+
+  public void setGrpno(int grpno) {
+    this.grpno = grpno;
+  }
+
+  public int getIndent() {
+    return indent;
+  }
+
+  public void setIndent(int indent) {
+    this.indent = indent;
+  }
+
+  public int getAnsnum() {
+    return ansnum;
+  }
+
+  public void setAnsnum(int ansnum) {
+    this.ansnum = ansnum;
+  }
+
+  // 답변 관련 시작
+  // -----------------------------------------------------
+  /** 그룹번호 */
+  private int grpno;
+  /** 답변 차수 */
+  private int indent;
+  /** 답변 출력 순서 */
+  private int ansnum;
+  // -----------------------------------------------------  
+  // 답변 관련 종료
 
   public int getGalleryno() {
     return galleryno;

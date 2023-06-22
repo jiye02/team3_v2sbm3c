@@ -3,151 +3,192 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  
 <!DOCTYPE html> 
-<html lang="ko"> 
+<html lang="ko">
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art world</title>
-<link rel="shortcut icon" href="/images/ex_top.png" />
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<title>Art word</title>
+ 
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
+<script type="text/javascript">
+  function update_cnt(cartno) {  // 수량 변경
+    var frm = $('#frm_post');
+    frm.attr('action', './update_cnt.do');
+    $('#cartno',  frm).val(cartno);
+    
+    var new_cnt = $('#' + cartno + '_cnt').val();  // $('#1_cnt').val()로 변환됨, 사용자가 변경한 수량을 다시 읽어옴 ★.
+
+    if (new_cnt > 0) {
+        $('#cnt',  frm).val(new_cnt);
+     
+        frm.submit();
+    } else {
+        alert('수량은 1개 이상이어야 합니다.');
+    }
+    
+  }
+  
+  function delete_func(cartno) {  // GET -> POST 전송, 상품 삭제
+    var frm = $('#frm_post');
+    frm.attr('action', './delete.do');
+    $('#cartno',  frm).val(cartno);
+    
+    frm.submit();
+  }   
+
+
+</script>
+
+<style type="text/css">
+
+    
+</style>
+ 
 </head> 
  
 <body>
 <c:import url="/menu/top.do" />
+
+<%-- GET -> POST: 수량 변경, 상품 삭제용 폼 --%>
+<form name='frm_post' id='frm_post' action='' method='post'>
+  <input type='hidden' name='cartno' id='cartno'>
+  <input type='hidden' name='cnt' id='cnt'>
+</form>
  
-<DIV class='title_line'>
-  ${exhiVO.name }(${search_count })  
-</DIV>
+<DIV class='title_line'>장바구니</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
-  
-    <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
-    <c:if test="${sessionScope.admin_id != null }">
-      <%--
-      http://localhost:9093/gallery/create.do?exhino=1
-      http://localhost:9093/gallery/create.do?exhino=2
-      http://localhost:9093/gallery/create.do?exhino=3
-      --%>
-      <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
-      <span class='menu_divide' >│</span>
+    <%-- 
+    http://localhost:9091/cart/list_by_memberno.do
+    http://localhost:9091/cart/list_by_memberno.do?exhino=
+    http://localhost:9091/cart/list_by_memberno.do?exhino=4  <- 이런 패턴만 링크 출력
+    --%>
+    <c:if test="${param.exhino != null and param.exhino != ''}"> 
+      <A href="/gallery/list_by_exhino_search_paging.do?exhino=${param.exhino }">쇼핑 계속하기</A>
+      <span class='menu_divide' >│</span>  
     </c:if>
-    
+ 
     <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>    
-    <A href="./list_by_exhino.do?exhino=${param.exhino }&now_page=${param.now_page == null ? 1 : param.now_page}&word=${param.word }">기본 목록형</A>    
-  </ASIDE>
-  
-  <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_exhino.do'>
-      <input type='hidden' name='exhino' value='${exhiVO.exhino }'>  <%-- 게시판의 구분 --%>
-      
-      <c:choose>
-        <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word }' class='input_word'>
-        </c:when>
-        <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' class='input_word'>
-        </c:otherwise>
-      </c:choose>
-      <button type='submit' class='btn btn-info btn-sm'>검색</button>
-      <c:if test="${param.word.length() > 0 }">
-        <button type='button' class='btn btn-info btn-sm' 
-                    onclick="location.href='./list_by_exhino.do?exhino=${exhiVO.exhino}&word='">검색 취소</button>  
-      </c:if>    
-    </form>
-  </DIV>
+  </ASIDE> 
 
   <DIV class='menu_line'></DIV>
-  
+
   <table class="table table-striped" style='width: 100%;'>
     <colgroup>
-      <c:choose>
-        <c:when test="${sessionScope.admin_id != null }">
-          <col style="width: 10%;"></col>
-          <col style="width: 80%;"></col>
-          <col style="width: 10%;"></col>        
-        </c:when>
-        <c:otherwise>
-          <col style="width: 10%;"></col>
-          <col style="width: 90%;"></col>
-        </c:otherwise>
-      </c:choose>
+      <col style="width: 10%;"></col>
+      <col style="width: 40%;"></col>
+      <col style="width: 20%;"></col>
+      <col style="width: 10%;"></col> <%-- 수량 --%>
+      <col style="width: 10%;"></col> <%-- 합계 --%>
+      <col style="width: 10%;"></col>
     </colgroup>
-
+    <%-- table 컬럼 --%>
 <!--     <thead>
       <tr>
         <th style='text-align: center;'>파일</th>
-        <th style='text-align: center;'>제목</th>
+        <th style='text-align: center;'>상품명</th>
+        <th style='text-align: center;'>정가, 할인률, 판매가, 포인트</th>
         <th style='text-align: center;'>기타</th>
       </tr>
     
     </thead> -->
     
+    <%-- table 내용 --%>
     <tbody>
-      <c:forEach var="galleryVO" items="${list}">
-        <c:set var="title" value="${galleryVO.title }" />
-        <c:set var="content" value="${galleryVO.content }" />
-        <c:set var="exhino" value="${galleryVO.exhino }" />
-        <c:set var="galleryno" value="${galleryVO.galleryno }" />
-        <c:set var="thumb1" value="${galleryVO.thumb1 }" />
-        <c:set var="rdate" value="${galleryVO.rdate.substring(0, 16) }" />
-        
-         <tr style="height: 112px;" onclick="location.href='./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'>
-          <td style='vertical-align: middle; text-align: center; '>
-            <c:choose>
-              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
-                <%-- registry.addResourceHandler("/gallery/storage/**").addResourceLocations("file:///" +  Gallery.getUploadDir()); --%>
-                <img src="/gallery/storage/${thumb1 }" style="width: 120px; height: 90px;">
-              </c:when>
-              <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/gallery/images/none1.png -->
-                <IMG src="/gallery/images/none1.png" style="width: 120px; height: 90px;">
-              </c:otherwise>
-            </c:choose>
-          </td>  
-          <td style='vertical-align: middle;'>
-            <div style='font-weight: bold;'><a href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }">${title }</a></div>
-            <c:choose> 
-              <c:when test="${content.length() > 160 }"> <%-- 160자 이상이면 160자만 출력 --%>
-                  <a href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }">${content.substring(0, 160)}.....</a>
-              </c:when>
-              <c:when test="${content.length() <= 160 }">
-                  <a href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }">${content}</a>
-              </c:when>
-            </c:choose>
-            <div style='font-size: 0.95em;'>${rdate }</div>
-          </td> 
-          
-          <c:choose>
-            <c:when test="${sessionScope.admin_id != null }"> 
-              <td style='vertical-align: middle; text-align: center;'>
-                <A href="/gallery/map.do?exhino=${exhino }&galleryno=${galleryno}&now_page=${param.now_page == null ? 1 : param.now_page}" title="지도"><IMG src="/gallery/images/map.png" class="icon"></A>
-                <A href="/gallery/youtube.do?exhino=${exhino }&galleryno=${galleryno}&now_page=${param.now_page == null ? 1 : param.now_page}" title="Youtube"><IMG src="/gallery/images/youtube.png" class="icon"></A>
-                <A href="/gallery/delete.do?exhino=${exhino }&galleryno=${galleryno}&now_page=${param.now_page == null ? 1 : param.now_page}" title="삭제"><IMG src="/gallery/images/delete.png" class="icon"></A>
-              </td>
-            </c:when>
-            <c:otherwise>
+      <c:choose>
+        <c:when test="${list.size() > 0 }"> <%-- 상품이 있는지 확인 --%>
+          <c:forEach var="cartVO" items="${list }">  <%-- 상품 목록 출력 --%>
+            <c:set var="cartno" value="${cartVO.cartno }" />
+            <c:set var="galleryno" value="${cartVO.galleryno }" />
+            <c:set var="title" value="${cartVO.title }" />
+            <c:set var="thumb1" value="${cartVO.thumb1 }" />
+            <c:set var="price" value="${cartVO.price }" />
+            <c:set var="dc" value="${cartVO.dc }" />
+            <c:set var="saleprice" value="${cartVO.saleprice }" />
+            <c:set var="point" value="${cartVO.point }" />
+            <c:set var="memberno" value="${cartVO.memberno }" />
+            <c:set var="cnt" value="${cartVO.cnt }" />
+            <c:set var="tot" value="${cartVO.tot }" />
+            <c:set var="rdate" value="${cartVO.rdate }" />
             
-            </c:otherwise>
-          </c:choose>
-          
-        </tr>
+            <tr> 
+              <td style='vertical-align: middle; text-align: center;'>
+                <c:choose>
+                  <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
+                    <%-- /static/gallery/storage/ --%>
+                    <a href="/gallery/read.do?galleryno=${galleryno}"><IMG src="/gallery/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
+                  </c:when>
+                  <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
+                    ${galleryVO.file1}
+                  </c:otherwise>
+                </c:choose>
+              </td>  
+              <td style='vertical-align: middle;'>
+                <a href="/gallery/read.do?galleryno=${galleryno}"><strong>${title}</strong></a> 
+              </td> 
+              <td style='vertical-align: middle; text-align: center;'>
+                <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
+                <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
+                <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
+                <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
+              </td>
+              <td style='vertical-align: middle; text-align: center;'>
+              <%-- 레코드에 따라 ID를 고유하게 구분할 목적으로 id 값 생성, 예) 1_cnt, 2_cnt, c_cnt... --%>
+                <input type='number' id='${cartno }_cnt' min='1' max='100' step='1' value="${cnt }" style='width: 52px;'><br>
+                <button type='button' onclick="update_cnt(${cartno})" class='btn btn-light btn-sm' style='margin-top: 5px;'>변경</button>
+              </td>
+              <td style='vertical-align: middle; text-align: center;'>
+                <fmt:formatNumber value="${tot}" pattern="#,###" />
+              </td>
+              <td style='vertical-align: middle; text-align: center;'>
+                <A href="javascript: delete_func(${cartno })"><IMG src="/cart/images/delete.png" class="icon"></A>
+              </td>
+            </tr>
+          </c:forEach>
         
-      </c:forEach>
-
+        </c:when>
+        <c:otherwise>
+          <tr>
+            <td colspan="6" style="text-align: center; font-size: 1.3em;">장바구니에 상품이 없습니다.</td>
+          </tr>
+        </c:otherwise>
+      </c:choose>
+      
+      
     </tbody>
   </table>
   
-  <!-- 페이지 목록 출력 부분 시작 -->
-  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
-  <!-- 페이지 목록 출력 부분 종료 -->
-  
+  <table class="table table-striped" style='margin-top: 50px; margin-bottom: 50px; width: 100%;'>
+    <tbody>
+      <tr>
+        <td style='width: 50%;'>
+          <div class='cart_label'>상품 금액</div>
+          <div class='cart_price'><fmt:formatNumber value="${tot_sum }" pattern="#,###" /> 원</div>
+          
+          <div class='cart_label'>포인트</div>
+          <div class='cart_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
+          
+          <div class='cart_label'>배송비</div>
+          <div class='cart_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
+        </td>
+        <td style='width: 50%;'>
+          <div class='cart_label' style='font-size: 1.5em;'>전체 주문 금액</div>
+          <div class='cart_price'  style='font-size: 1.5em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
+          
+          <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='get'>
+            <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.2em;'>주문하기</button>
+          </form>
+        <td>
+      </tr>
+    </tbody>
+  </table>   
 </DIV>
 
  
@@ -155,4 +196,3 @@
 </body>
  
 </html>
-

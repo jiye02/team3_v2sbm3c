@@ -5,15 +5,18 @@
 <c:set var="galleryno" value="${galleryVO.galleryno }" />
 <c:set var="exhino" value="${galleryVO.exhino }" />
 <c:set var="title" value="${galleryVO.title }" />        
+<c:set var="price" value="${galleryVO.price }" />
+<c:set var="dc" value="${galleryVO.dc }" />
+<c:set var="saleprice" value="${galleryVO.saleprice }" />
+<c:set var="point" value="${galleryVO.point }" />
+<c:set var="salecnt" value="${galleryVO.salecnt }" />
 <c:set var="file1" value="${galleryVO.file1 }" />
 <c:set var="file1saved" value="${galleryVO.file1saved }" />
 <c:set var="thumb1" value="${galleryVO.thumb1 }" />
 <c:set var="content" value="${galleryVO.content }" />
-<c:set var="map" value="${galleryVO.map }" />
-<c:set var="youtube" value="${galleryVO.youtube }" />
+<c:set var="jjim" value="${galleryVO.jjim }" />
 <c:set var="word" value="${galleryVO.word }" />
 <c:set var="size1_label" value="${galleryVO.size1_label }" />
-<c:set var="rdate" value="${galleryVO.rdate.substring(0, 16) }" />
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -26,14 +29,14 @@
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
 <script type="text/javascript">
   $(function(){
-      $('#btn_recom').on("click", function() { update_recom_ajax(${galleryno}); });
+      $('#btn_jjim').on("click", function() { update_jjim_ajax(${galleryno}); });
     $('#btn_login').on('click', login_ajax);
     $('#btn_loadDefault').on('click', loadDefault);
 
@@ -41,18 +44,20 @@
     var frm_reply = $('#frm_reply');
     $('#content', frm_reply).on('click', check_login);  // 댓글 작성시 로그인 여부 확인
     $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
+
+    list_by_galleryno_join(); // 댓글 목록
     // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
     
   });
 
-  function update_recom_ajax(galleryno) {
+  function update_jjim_ajax(galleryno) {
     // console.log('-> galleryno:' + galleryno);
     var params = "";
     // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     params = 'galleryno=' + galleryno; // 공백이 값으로 있으면 안됨.
     $.ajax(
       {
-        url: '/galleryno/update_recom_ajax.do',
+        url: '/gallery/update_jjim_ajax.do',
         type: 'post',  // get, post
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -62,9 +67,9 @@
           // console.log('-> rdata: '+ rdata);
           var str = '';
           if (rdata.cnt == 1) {
-            // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
-            // console.log('-> btn_recom: ' + $('#btn_recom').html());
-            $('#btn_recom').html('♥('+rdata.recom+')');
+            // console.log('-> btn_jjim: ' + $('#btn_jjim').val());  // X
+            // console.log('-> btn_jjim: ' + $('#btn_jjim').html());
+            $('#btn_jjim').html('♥('+rdata.jjim+')');
             $('#span_animation').hide();
           } else {
             $('#span_animation').html("지금은 추천을 할 수 없습니다.");
@@ -78,7 +83,7 @@
     );  //  $.ajax END
 
     // $('#span_animation').css('text-align', 'center');
-    $('#span_animation').html("<img src='/galleryno/images/ani04.gif' style='width: 8%;'>");
+    $('#span_animation').html("<img src='/gallery/images/ani04.gif' style='width: 8%;'>");
     $('#span_animation').show(); // 숨겨진 태그의 출력
   }
 
@@ -247,7 +252,7 @@
             // global_rdata = new Array(); // 댓글을 새로 등록했음으로 배열 초기화
             // global_rdata_cnt = 0; // 목록 출력 글수
             
-            // list_by_galleryno_join(); // 페이징 댓글
+            list_by_galleryno_join(); // 페이징 댓글
           } else {
             $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
             msg = "댓글 등록에 실패했습니다.";
@@ -259,12 +264,107 @@
         },
         // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
         error: function(request, status, error) { // callback 함수
-          var msg = 'ERROR request.status: '+request.status + '/ ' + error;
-          console.log(msg); // Chrome에 출력
+          console.log(error);
         }
       });
     }
   }
+
+  // galleryno 별 소속된 댓글 목록
+  function list_by_galleryno_join() {
+    var params = 'galleryno=' + ${galleryVO.galleryno };
+
+    $.ajax({
+      url: "../reply/list_by_galleryno_join.do", // action 대상 주소
+      type: "get",           // get, post
+      cache: false,          // 브러우저의 캐시영역 사용안함.
+      async: true,           // true: 비동기
+      dataType: "json",   // 응답 형식: json, xml, html...
+      data: params,        // 서버로 전달하는 데이터
+      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
+        // alert(rdata);
+        var msg = '';
+        
+        $('#reply_list').html(''); // 패널 초기화, val(''): 안됨
+        
+        for (i=0; i < rdata.list.length; i++) {
+          var row = rdata.list[i];
+          
+          msg += "<DIV id='"+row.replyno+"' style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
+          msg += "<span style='font-weight: bold;'>" + row.id + "</span>";
+          msg += "  " + row.rdate;
+          
+          if ('${sessionScope.memberno}' == row.memberno) { // 글쓴이 일치여부 확인, 본인의 글만 삭제 가능함 ★
+            msg += " <A href='javascript:reply_delete("+row.replyno+")'><IMG src='/reply/images/delete.png'></A>";
+          }
+          msg += "  " + "<br>";
+          msg += row.content;
+          msg += "</DIV>";
+        }
+        // alert(msg);
+        $('#reply_list').append(msg);
+      },
+      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+      error: function(request, status, error) { // callback 함수
+        console.log(error);
+      }
+    });
+    
+  }
+  
+  // 댓글 삭제 레이어 출력
+  function reply_delete(replyno) {
+    // alert('replyno: ' + replyno);
+    var frm_reply_delete = $('#frm_reply_delete');
+    $('#replyno', frm_reply_delete).val(replyno); // 삭제할 댓글 번호 저장
+    $('#modal_panel_delete').modal();             // 삭제폼 다이얼로그 출력
+  }
+
+  // 댓글 삭제 처리
+  function reply_delete_proc(replyno) {
+    // alert('replyno: ' + replyno);
+    var params = $('#frm_reply_delete').serialize();
+    $.ajax({
+      url: "../reply/delete.do", // action 대상 주소
+      type: "post",           // get, post
+      cache: false,          // 브러우저의 캐시영역 사용안함.
+      async: true,           // true: 비동기
+      dataType: "json",   // 응답 형식: json, xml, html...
+      data: params,        // 서버로 전달하는 데이터
+      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
+        // alert(rdata);
+        var msg = "";
+        
+        if (rdata.passwd_cnt ==1) { // 패스워드 일치
+          if (rdata.delete_cnt == 1) { // 삭제 성공
+
+            $('#btn_frm_reply_delete_close').trigger("click"); // 삭제폼 닫기, click 발생 
+            
+            $('#' + replyno).remove(); // 태그 삭제
+              
+            return; // 함수 실행 종료
+          } else {  // 삭제 실패
+            msg = "패스 워드는 일치하나 댓글 삭제에 실패했습니다. <br>";
+            msg += " 다시한번 시도해주세요."
+          }
+        } else { // 패스워드 일치하지 않음.
+          // alert('패스워드 불일치');
+          // return;
+          
+          msg = "패스워드가 일치하지 않습니다.";
+          $('#modal_panel_delete_msg').html(msg);
+
+          $('#passwd', '#frm_reply_delete').focus();  // frm_reply_delete 폼의 passwd 태그로 focus 설정
+          
+        }
+      },
+      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+      error: function(request, status, error) { // callback 함수
+        console.log(error);
+      }
+    });
+  }
+  // -------------------- 댓글 관련 종료 --------------------
   
 </script>
  
@@ -291,10 +391,39 @@
     </div>
   </div>
 </div> <!-- Modal 알림창 종료 -->
+
+<!-- -------------------- 댓글 삭제폼 시작 -------------------- -->
+<div class="modal fade" id="modal_panel_delete" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
+      </div>
+      <div class="modal-body">
+        <form name='frm_reply_delete' id='frm_reply_delete'>
+          <input type='hidden' name='replyno' id='replyno' value=''>
+          
+          <label>패스워드</label>
+          <input type='password' name='passwd' id='passwd' class='form-control'>
+          <DIV id='modal_panel_delete_msg' style='color: #AA0000; font-size: 1.1em;'></DIV>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type='button' class='btn btn-danger' 
+                     onclick="reply_delete_proc(frm_reply_delete.replyno.value); frm_reply_delete.passwd.value='';">삭제</button>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" 
+                     id='btn_frm_reply_delete_close'>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -------------------- 댓글 삭제폼 종료 -------------------- -->
    
-<DIV class='title_line'>
-  <A href="../exhigrp/list.do" class='title_link'>카테고리 그룹</A> > 
-  <A href="../exhi/list_by_exhigrpno.do?exhigrpno=${exhigrpVO.exhigrpno }" class='title_link'>${exhigrpVO.name }</A> >
+<DIV class='title_line'> 
+  <A href="../exhi/list_by_exhigrpno.do?exhigrpno=${exhigrpVO.exhigrpno }" class='title_link'>${exhigrpVO.name }</A>
   <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }" class='title_link'>${exhiVO.name }</A>
 </DIV>
 
@@ -390,11 +519,11 @@
         <DIV style="width: 50%; float: left; margin-right: 10px;">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <%-- /static/galleryno/storage/ --%>
-                <IMG src="/galleryno/storage/${file1saved }" style="width: 100%;"> 
+                <%-- /static/gallery/storage/ --%>
+                <IMG src="/gallery/storage/${file1saved }" style="width: 100%;"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/galleryno/images/none1.png" style="width: 100%;"> 
+                <IMG src="/gallery/images/none1.png" style="width: 100%;"> 
               </c:otherwise>
             </c:choose>
         </DIV>
@@ -412,7 +541,7 @@
           <button type='button' onclick="cart_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
           <button type='button' onclick="cart_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
           <button type='button' onclick="" class="btn btn-info">관심 상품</button>
-          <button type='button' id="btn_recom" class="btn btn-info">♥(${recom })</button>
+          <button type='button' id="btn_jjim" class="btn btn-info">♥(${jjim })</button>
           <span id="span_animation"></span>
           </form>
         </DIV> 
@@ -427,7 +556,7 @@
       <li class="li_none">
         <DIV>
           <c:if test="${file1.trim().length() > 0 }">
-            첨부 파일: <A href='/download?dir=/galleryno/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
+            첨부 파일: <A href='/download?dir=/gallery/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
           </c:if>
         </DIV>
       </li>   
@@ -465,7 +594,3 @@
 </body>
  
 </html>
-   
-
-
-

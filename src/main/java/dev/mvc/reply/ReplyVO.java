@@ -16,6 +16,7 @@ public class ReplyVO {
   private String passwd;
   /** 등록일 */
   private String rdate;
+  
   public int getReplyno() {
     return replyno;
   }

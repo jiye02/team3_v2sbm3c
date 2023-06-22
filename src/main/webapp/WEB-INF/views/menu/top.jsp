@@ -64,7 +64,7 @@
                   </li>
                   
                   <li class="nav-item"> <%-- 카테고리 서브 메뉴 --%>
-                      <a class="nav-link"  href="/jjim/list_by_jjim">찜</a>
+                      <a class="nav-link"  href="/jjim/list_by_jjim">찜</a>              
                  
                    </li>
                   
@@ -84,7 +84,11 @@
                            <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
                             <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
+                           <A class='top_menu_link'  href='${pageContext.request.contextPath}/reply/list.do'>댓글목록</A><span class='top_menu_sep'>&nbsp;</span>
+                          
                         </div>
+                        
+                        
                       </li>
                     </c:otherwise>
                   </c:choose>     
