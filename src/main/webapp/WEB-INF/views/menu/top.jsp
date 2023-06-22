@@ -82,14 +82,7 @@
                           <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>
                           <a class="dropdown-item" href='/member/list.do'>회원 목록</a>
                            <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
-<<<<<<< HEAD
                             <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
-=======
-                            <a class="dropdown-item" href='/jjim/list.do'>찜 목록</a>
-                            <a class="dropdown-item" href='/admin/create.do'>관리자 추가</a>
-                             <a class="dropdown-item" href='/admin/list.do'>관리자 명단</a>  
->>>>>>> 120d172d1e1cbea0ac3fe0d85effbeb71e27e5de
-                            <a class="dropdown-item" href='/admin/create.do'>관리자 등록</a> 
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                         </div>
                       </li>
