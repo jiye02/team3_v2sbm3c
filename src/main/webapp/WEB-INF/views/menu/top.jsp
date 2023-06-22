@@ -60,6 +60,11 @@
                       </div>
                   </li>
                   
+                  <li class="nav-item"> <%-- 카테고리 서브 메뉴 --%>
+                      <a class="nav-link"  href="/jjim/list_by_jjim">찜</a>
+                 
+                   </li>
+                  
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
                       <li class="nav-item">
@@ -73,7 +78,7 @@
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
                           <a class="dropdown-item" href='/member/list.do'>회원 목록</a>
                            <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
-                            <a class="dropdown-item" href='/jjim/list.do'>찜 목록</a>
+                            <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
                             <a class="dropdown-item" href='/admin/create.do'>관리자 등록</a> 
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                         </div>
