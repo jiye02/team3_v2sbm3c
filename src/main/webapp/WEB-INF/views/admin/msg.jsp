@@ -52,7 +52,7 @@
                          onclick="location.href='/'"
                          class="btn btn-info btn-sm">시작 화면</button>
             <button type='button' 
-                         onclick="location.href='/member/list.do'"
+                         onclick="location.href='/admin/list.do'"
                          class="btn btn-info btn-sm">관리자 목록</button>                   
           </LI>                                                                       
         </c:when>
@@ -69,7 +69,7 @@
           </LI>   
           <LI class='li_none'>
             <button type='button' 
-                         onclick="location.href='/member/list.do'"
+                         onclick="location.href='/admin/list.do'"
                          class="btn btn-info btn-sm">관리자 목록</button>
           </LI>                                                                     
         </c:when>    
