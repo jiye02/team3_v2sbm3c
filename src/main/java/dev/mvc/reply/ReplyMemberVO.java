@@ -16,7 +16,6 @@ public class ReplyMemberVO {
   private String passwd;
   /** 등록일 */
   private String rdate;
-  
   public String getId() {
     return id;
   }
@@ -59,6 +58,8 @@ public class ReplyMemberVO {
   public void setRdate(String rdate) {
     this.rdate = rdate;
   }
+  
+ 
   
   
  

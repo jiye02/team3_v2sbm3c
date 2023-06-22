@@ -57,9 +57,11 @@ public class AdminProc implements AdminProcInter {
     int cnt = this.adminDAO.create(adminVO);
     return cnt;
   }
+
+  }
   
    
    
-}
+
 
 

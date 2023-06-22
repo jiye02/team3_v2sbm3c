@@ -3,6 +3,7 @@ package dev.mvc.gallery;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import dev.mvc.exhi.ExhiVO;
 
@@ -140,6 +141,7 @@ public interface GalleryDAOInter {
    * @return
    */   
   public int decreaseReplycnt(int galleryno);
+  
   
 }
 

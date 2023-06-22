@@ -66,3 +66,8 @@ WHERE id='user1';
 SELECT COUNT(id) as cnt
 FROM member
 WHERE id='user1';
+
+- 검색을 하지 않는 경우, 전체 목록 출력
+SELECT adminno, id, passwd, mname, mdate, grade
+FROM admin
+ORDER BY grade ASC, id ASC;

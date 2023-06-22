@@ -13,6 +13,14 @@ CREATE TABLE reply(
   FOREIGN KEY (galleryno) REFERENCES gallery (galleryno),
   FOREIGN KEY (memberno) REFERENCES member (memberno)
 );
+DROP SEQUENCE reply_seq;
+CREATE SEQUENCE reply_seq
+  START WITH 1              -- 시작 번호
+  INCREMENT BY 1          -- 증가값
+  MAXVALUE 9999999999 -- 최대값: 9999999999
+  CACHE 2                     -- 2번은 메모리에서만 계산
+  NOCYCLE;                   -- 다시 1부터 생성되는 것을 방지
+                -- 다시 1부터 생성되는 것을 방지
 
 COMMENT ON TABLE reply is '댓글';
 COMMENT ON COLUMN reply.replyno is '댓글번호';
@@ -25,7 +33,7 @@ COMMENT ON COLUMN reply.rdate is '등록일';
 1) 등록
 INSERT INTO reply(replyno, galleryno, memberno, content, passwd, rdate)
 VALUES((SELECT NVL(MAX(replyno), 0) + 1 as replyno FROM reply),
-             35, 1, '댓글1', '1234', sysdate);
+             1, 1, '댓글1', '1234', sysdate);
 INSERT INTO reply(replyno, galleryno, memberno, content, passwd, rdate)
 VALUES((SELECT NVL(MAX(replyno), 0) + 1 as replyno FROM reply),
              35, 1, '댓글2', '1234', sysdate);

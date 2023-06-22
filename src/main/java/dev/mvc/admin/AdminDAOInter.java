@@ -41,6 +41,7 @@ public interface AdminDAOInter {
    */
   public int create(AdminVO adminVO); 
 
+
 }
  
 

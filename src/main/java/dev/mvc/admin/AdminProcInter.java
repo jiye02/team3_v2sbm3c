@@ -50,6 +50,7 @@ public interface AdminProcInter {
    */
   public int checkID(String id);
 
+
 }
  
   
