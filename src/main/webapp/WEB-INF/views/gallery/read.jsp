@@ -116,7 +116,7 @@
             $('#div_login').hide();
             // alert('로그인 성공');
             $('#login_yn').val('YES'); // 로그인 성공 기록
-            cart_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
+            basket_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
             
           } else {
             alert('로그인에 실패했습니다.<br>잠시후 다시 시도해주세요.');
@@ -133,7 +133,7 @@
   }
 
   <%-- 쇼핑 카트에 상품 추가 --%>
-  function cart_ajax(galleryno) {
+  function basket_ajax(galleryno) {
     var f = $('#frm_login');
     $('#galleryno', f).val(galleryno);  // 쇼핑카트 등록시 사용할 상품 번호를 저장.
     
@@ -141,7 +141,7 @@
     
     // console.log('-> id:' + '${sessionScope.id}');
     if ('${sessionScope.id}' != '' || $('#login_yn').val() == 'YES') {  // 로그인이 되어 있다면
-      cart_ajax_post();
+      basket_ajax_post();
     } else { // 로그인 안된 경우
       $('#div_login').show();
     }
@@ -149,7 +149,7 @@
   }
 
   <%-- 쇼핑카트 상품 등록 --%>
-  function cart_ajax_post() {
+  function basket_ajax_post() {
     var f = $('#frm_login');
     var galleryno = $('#galleryno', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
     
@@ -157,12 +157,12 @@
     // params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     params += 'galleryno=' + galleryno;
     params += '&${ _csrf.parameterName }=${ _csrf.token }';
-    console.log('-> cart_ajax_post: ' + params);
+    console.log('-> basket_ajax_post: ' + params);
     // return;
     
     $.ajax(
       {
-        url: '/cart/create.do',
+        url: '/basket/create.do',
         type: 'post',  // get, post
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -170,13 +170,13 @@
         data: params,      // 데이터
         success: function(rdata) { // 응답이 온경우
           var str = '';
-          console.log('-> cart_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
+          console.log('-> basket_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
           
           if (rdata.cnt == 1) {
             var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
             if (sw == true) {
               // 쇼핑카트로 이동
-              location.href='/cart/list_by_memberno.do';
+              location.href='/basket/list_by_memberno.do';
             }           
           } else {
             alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
@@ -537,8 +537,8 @@
           <form>
           <input type='number' name='ordercnt' value='1' required="required" 
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
-          <button type='button' onclick="cart_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
-          <button type='button' onclick="cart_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
+          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
+          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
           <button type='button' onclick="" class="btn btn-info">관심 상품</button>
           <button type='button' id="btn_jjim" class="btn btn-info">♥(${jjim })</button>
           <span id="span_animation"></span>
