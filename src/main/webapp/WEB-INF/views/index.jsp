@@ -22,10 +22,8 @@
 
   <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
 
-    <%-- /static/images/resort01.jpg --%>
-    <IMG src='/images/resort01.jpg' style='width: 60%;'>
-    <%-- /static/images/art01.png --%>
-    <IMG src='/images/art01.png' style='width: 60%;'>
+    <%-- /static/images/art01.jpg --%>
+    <IMG src='/images/art01.jpg' style='width: 60%;'>
 
   </DIV>
   
