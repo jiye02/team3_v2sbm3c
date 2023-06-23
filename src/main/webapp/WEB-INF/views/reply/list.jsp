@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>ART world</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -30,6 +30,7 @@
 <!--     <span class='menu_divide' > | </span> -->
 
   </ASIDE>
+  
    
   <DIV class='menu_line' style='clear: both;'></DIV>
   
@@ -79,8 +80,13 @@
             </td>
             <td style='text-align: center; vertical-align: middle;'>
               <a href="./delete.do?replyno=${replyVO.replyno}"><img src="./images/delete.png" title="삭제"  border='0' /></a>
+                        
             </td>
+            
+           
           </tr>
+          
+          
         </c:forEach>
         
       </tbody>
