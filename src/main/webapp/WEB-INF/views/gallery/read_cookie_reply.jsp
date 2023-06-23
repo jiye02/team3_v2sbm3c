@@ -14,7 +14,7 @@
 <c:set var="file1saved" value="${galleryVO.file1saved }" />
 <c:set var="thumb1" value="${galleryVO.thumb1 }" />
 <c:set var="content" value="${galleryVO.content }" />
-<c:set var="recom" value="${galleryVO.recom }" />
+<c:set var="jjim" value="${galleryVO.jjim }" />
 <c:set var="word" value="${galleryVO.word }" />
 <c:set var="size1_label" value="${galleryVO.size1_label }" />
  
@@ -36,7 +36,7 @@
     
 <script type="text/javascript">
   $(function(){
-      $('#btn_recom').on("click", function() { update_recom_ajax(${galleryno}); });
+      $('#btn_jjim').on("click", function() { update_jjim_ajax(${galleryno}); });
     $('#btn_login').on('click', login_ajax);
     $('#btn_loadDefault').on('click', loadDefault);
 
@@ -48,14 +48,14 @@
     
   });
 
-  function update_recom_ajax(galleryno) {
+  function update_jjim_ajax(galleryno) {
     // console.log('-> galleryno:' + galleryno);
     var params = "";
     // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     params = 'galleryno=' + galleryno; // 공백이 값으로 있으면 안됨.
     $.ajax(
       {
-        url: '/gallery/update_recom_ajax.do',
+        url: '/gallery/update_jjim_ajax.do',
         type: 'post',  // get, post
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -65,9 +65,9 @@
           // console.log('-> rdata: '+ rdata);
           var str = '';
           if (rdata.cnt == 1) {
-            // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
-            // console.log('-> btn_recom: ' + $('#btn_recom').html());
-            $('#btn_recom').html('♥('+rdata.recom+')');
+            // console.log('-> btn_jjim: ' + $('#btn_jjim').val());  // X
+            // console.log('-> btn_jjim: ' + $('#btn_jjim').html());
+            $('#btn_jjim').html('♥('+rdata.jjim+')');
             $('#span_animation').hide();
           } else {
             $('#span_animation').html("지금은 추천을 할 수 없습니다.");
@@ -415,7 +415,7 @@
           <button type='button' onclick="cart_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
           <button type='button' onclick="cart_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
           <button type='button' onclick="" class="btn btn-info">관심 상품</button>
-          <button type='button' id="btn_recom" class="btn btn-info">♥(${recom })</button>
+          <button type='button' id="btn_jjim" class="btn btn-info">♥(${jjim })</button>
           <span id="span_animation"></span>
           </form>
         </DIV> 
