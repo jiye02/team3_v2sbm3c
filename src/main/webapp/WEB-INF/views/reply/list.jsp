@@ -6,14 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>ART world</title>
+<title>Art world</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
  
 </head>
  
@@ -50,7 +50,7 @@
         <tr>
           <th style='text-align: center;'>댓글<br>번호</th>
           <th style='text-align: center;'>글<br>번호</th>
-          <th style='text-align: center;'>회원<br>번호</th>
+          <th style='text-align: center;'>회원<br>아이디</th>
           <th style='text-align: center;'>내용</th>
           <th style='text-align: center;'>등록일</th>
           <th style='text-align: center;'>기타</th>

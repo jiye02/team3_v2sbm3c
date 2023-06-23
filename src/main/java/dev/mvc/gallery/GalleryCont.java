@@ -758,7 +758,7 @@ public class GalleryCont {
     // mav.setViewName("/gallery/read"); // /WEB-INF/views/gallery/read.jsp
     
     // 쇼핑 기능 추가
-    // mav.setViewName("/gallery/read_cookie"); // /WEB-INF/views/gallery/read_cookie.jsp
+    mav.setViewName("/gallery/read_cookie"); // /WEB-INF/views/gallery/read_cookie.jsp
     
     // 댓글 기능 추가 
     mav.setViewName("/gallery/read_cookie_reply"); // /WEB-INF/views/gallery/read_cookie_reply.jsp
