@@ -84,7 +84,7 @@
                            <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
                             <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
-                           <A class='top_menu_link'  href='${pageContext.request.contextPath}/reply/list.do'>댓글목록</A><span class='top_menu_sep'>&nbsp;</span>
+                          <a class="dropdown-item" href='/reply/list.do'> 댓글목록</a>
                           
                         </div>
                         
