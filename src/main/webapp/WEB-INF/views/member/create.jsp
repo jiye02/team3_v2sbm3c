@@ -32,7 +32,7 @@
         $('#modal_title').html('ID(이메일) 중복 확인'); // 제목 
 
         $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-    	  msg = '· ID(이메일)를 입력하세요.<br>· ID(이메일) 입력은 필수 입니다.<br>· ID(이메일)는 3자이상 권장합니다.';
+        msg = '· ID(이메일)를 입력하세요.<br>· ID(이메일) 입력은 필수 입니다.<br>· ID(이메일)는 3자이상 권장합니다.';
         $('#modal_content').html(msg);           // 내용
         
         $('#btn_close').attr("data-focus", "id");  // data-focus: 개발자가 추가한 속성, 닫기 버튼 클릭시 "id" 입력으로 focus 이동
@@ -341,4 +341,3 @@
 </body>
 
 </html>
-

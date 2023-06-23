@@ -78,7 +78,7 @@ public class ReplyCont {
    * @param session
    * @return
    */
-  @RequestMapping(value="/reply/list.do", method=RequestMethod.GET)
+  @RequestMapping(value = "/reply/list.do", method = RequestMethod.GET)
   public ModelAndView list(HttpSession session) {
     ModelAndView mav = new ModelAndView();
     
@@ -86,14 +86,15 @@ public class ReplyCont {
       List<ReplyMemberVO> list = replyProc.list_member_join();
       
       mav.addObject("list", list);
-      mav.setViewName("/reply/list_join"); // /webapp/reply/list_join.jsp
+      mav.setViewName("/reply/list_join"); // /WEB-INF/views/reply/list_join.jsp
 
     } else {
-      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+      mav.setViewName("redirect:/admin/login_need.jsp"); // Redirect to the appropriate login page
     }
     
     return mav;
   }
+
   
   /**
    <xmp>
@@ -185,6 +186,8 @@ public class ReplyCont {
                               method = RequestMethod.POST,
                               produces = "text/plain;charset=UTF-8")
   public String delete(int replyno, String passwd) {
+//    System.out.println("-> replyno: " + replyno);
+//    System.out.println("-> passwd:" + passwd); 
     Map<String, Object> map = new HashMap<String, Object>();
     map.put("replyno", replyno);
     map.put("passwd", passwd);
@@ -201,6 +204,34 @@ public class ReplyCont {
     
     return obj.toString();
   }
+  
+  /**
+   * 관리자가 댓글 삭제 
+   * http://localhost:9090/resort/reply/delete.do?replyno=1&passwd=1234
+   * {"delete_cnt":0,"passwd_cnt":0}
+   * {"delete_cnt":1,"passwd_cnt":1}
+   * @param replyno
+   * @param passwd
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/reply/delete.do", 
+                              method = RequestMethod.GET,
+                              produces = "text/plain;charset=UTF-8")
+   public ModelAndView delete(int replyno) {
+      ModelAndView mav = new ModelAndView();
+//    System.out.println("-> replyno: " + replyno);
+//    System.out.println("-> passwd:" + passwd);    
+      int delete_cnt = 0;                                    // 삭제된 댓글      
+      delete_cnt = replyProc.delete(replyno); // 댓글 삭제      
+      mav.setViewName("redirect:/reply/list.do");
+      
+      return mav;
+  }
+  
+  
+  
+  
   
   /**
    * 더보기 버튼 페이징 목록
@@ -230,5 +261,4 @@ public class ReplyCont {
   }
   
 }
-
 

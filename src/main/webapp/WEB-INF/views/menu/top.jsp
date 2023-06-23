@@ -62,12 +62,7 @@
                           <a class="dropdown-item" href="#">회원 탈퇴</a>
                       </div>
                   </li>
-                  
-                  <li class="nav-item"> <%-- 카테고리 서브 메뉴 --%>
-                      <a class="nav-link"  href="/jjim/list_by_jjim">찜</a>              
-                 
-                   </li>
-                  
+               
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
                       <li class="nav-item">
