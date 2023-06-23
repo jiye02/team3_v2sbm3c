@@ -1,46 +1,46 @@
-DROP TABLE recommendation CASCADE CONSTRAINTS;
 /**********************************/
-/* Table Name: 추천시스템 */
+/* Table Name: 추천 */
 /**********************************/
-CREATE TABLE recommendation(
-		recommendno                       		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		exhino                     		NUMBER(10)		 NOT NULL,  --FK
-		memberno                      		NUMBER(10)		 NOT NULL,  --FK
-		seq                          		FLOAT(10)		 NULL,
-        rcdate                              DATE  NULL,
-        FOREIGN KEY (exhino) REFERENCES jobcate (exhino),
-        FOREIGN KEY (memberno) REFERENCES member (memberno)
+DROP TABLE RECOMMEND;
+
+CREATE TABLE RECOMMEND(
+        RECOMMENDNO                           NUMBER(8)         NOT NULL         PRIMARY KEY,
+        MEMBERNO                              NUMBER(10)         NULL ,
+        exhiNO                                NUMBER(10)         NULL ,
+        SEQ                                   NUMBER(2)         DEFAULT 1         NOT NULL,
+        RDATE                                 DATE         NOT NULL,
+  FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO),
+  FOREIGN KEY (exhiNO) REFERENCES exhi (exhiNO)
 );
 
-COMMENT ON TABLE recommendation is '추천시스템';
-COMMENT ON COLUMN recommendation.recommendno is '추천번호';
-COMMENT ON COLUMN recommendation.exhino is '업종번호';
-COMMENT ON COLUMN recommendation.memberno is '회원번호';
-COMMENT ON COLUMN recommendation.seq  is '추천우선순위';
-COMMENT ON COLUMN recommendation.rcdate is '추천날짜';
+COMMENT ON TABLE RECOMMEND is '추천';
+COMMENT ON COLUMN RECOMMEND.RECOMMENDNO is '추천번호';
+COMMENT ON COLUMN RECOMMEND.MEMBERNO is '회원번호';
+COMMENT ON COLUMN RECOMMEND.exhiNO is '카테고리번호';
+COMMENT ON COLUMN RECOMMEND.seq is '추천 우선순위';
+COMMENT ON COLUMN RECOMMEND.RDATE is '추천 날짜';
 
-DROP SEQUENCE recommendation_seq;
+DROP SEQUENCE RECOMMEND_SEQ;
 
-CREATE SEQUENCE recommendation_seq
-  START WITH 1                -- 시작 번호
-  INCREMENT BY 1            -- 증가값
-  MAXVALUE 9999999999  -- 최대값: 9999999999 --> NUMBER(10) 대응
-  CACHE 2                        -- 2번은 메모리에서만 계산
-  NOCYCLE;                      -- 다시 1부터 생성되는 것을 방지
+CREATE SEQUENCE RECOMMEND_SEQ
+  START WITH 1              -- 시작 번호
+  INCREMENT BY 1          -- 증가값
+  MAXVALUE 9999999999 -- 최대값: 9999999 --> NUMBER(7) 대응
+  CACHE 2                       -- 2번은 메모리에서만 계산
+  NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
 
-INSERT INTO recommendation(recommendno, exhino, memberno, seq , rcdate)
-VALUES (recommendation_seq.nextval, 1, 1, 4.8, sysdate);
+-- 존재하는 memberno, exhino 등록
+INSERT INTO recommend(recommendno, memberno, exhino, seq, rdate)
+VALUES(RECOMMEND_SEQ.nextval, 1, 15, 1, sysdate);
 
--- 조회
-SELECT recommendno, exhino, memberno, seq 
-FROM recommendation
-WHERE recommendno=1;
+SELECT recommendno, memberno, exhino, seq, rdate 
+FROM recommend 
+ORDER BY recommendno ASC;
+-- 1번회원은 1번 카테고리를 추천필요.
+RECOMMENDNO   MEMBERNO     exhiNO        SEQ RDATE              
+----------- ---------- ---------- ---------- -------------------
+          6          1          1          1 2023-06-15 02:53:32
 
--- 수정
-UPDATE recommendation
-SET seq  = 3.5
-WHERE recommendno=1;
-
--- 삭제
-DELETE FROM recommendation
-WHERE recommendno=1;
+DELETE FROM recommend;
+DELETE FROM recommend WHERE memberno=1;
+COMMIT;
