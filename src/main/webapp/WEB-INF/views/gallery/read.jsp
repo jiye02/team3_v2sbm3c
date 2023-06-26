@@ -472,7 +472,6 @@
    
 <DIV class='title_line'>
   <A href="./list_by_exhino.do?exhino=${exhiVO.exhino }" class='title_link'>${exhiVO.name }</A>
-  <A href="./list_by_exhino.do?exhino=${exhino }&now_page=1" class='title_link'>${exhiVO.name }</A>
 </DIV>
 
 <DIV class='content_body'>
