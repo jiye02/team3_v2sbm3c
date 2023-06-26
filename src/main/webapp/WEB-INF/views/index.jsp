@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art world</title>
-<link rel="shortcut icon" href="/images/ex_top.png" /> <%-- /static 기준 --%>
+<title>ART Wave</title>
+<link rel="shortcut icon" href="/images/star.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기준 -->
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -21,8 +21,10 @@
 <c:import url="/menu/top.do" />
 
   <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
+
     <%-- /static/images/art01.jpg --%>
     <IMG src='/images/art01.jpg' style='width: 60%;'>
+
   </DIV>
   
   <DIV style='margin: 0px auto; width: 90%;'>

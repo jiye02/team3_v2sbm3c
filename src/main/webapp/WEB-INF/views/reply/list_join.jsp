@@ -8,27 +8,30 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Resort world</title>
  
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
  
 </head>
  
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
+<c:import url="/menu/top.do" />
   <DIV class="title_line">
     등록된 모든 댓글
   </DIV>
-  <ASIDE class='aside_right'>
-    <span class='menu_divide' >│</span>  
+  <ASIDE class='aside_left'>
     <A href='./list.do'>모든 댓글</A>
-    <span class='menu_divide' >│</span> 
+  </ASIDE>
+  <ASIDE class='aside_right'>
     <A href="javascript:location.reload();">새로고침</A>
+<!--     <span class='menu_divide' > | </span> -->
+
   </ASIDE>
    
-  <div class='menu_line'></div>
+  <DIV class='menu_line' style='clear: both;'></DIV>
   
   <div style='width: 100%;'>
     <table class="table table-striped" style='width: 100%;'>
@@ -46,7 +49,7 @@
         <tr>
           <th style='text-align: center;'>댓글<br>번호</th>
           <th style='text-align: center;'>글<br>번호</th>
-          <th style='text-align: center;'>회원<br> ID</th>
+          <th style='text-align: center;'>회원<br>아이디</th>
           <th style='text-align: center;'>내용</th>
           <th style='text-align: center;'>등록일</th>
           <th style='text-align: center;'>기타</th>
@@ -79,7 +82,7 @@
               ${rdate.substring(0, 10)}
             </td>
             <td style='text-align: center; vertical-align: middle;'>
-              <a href="./delete.do?replyno=${replyno}"><img src="/reply/images/delete.png" title="삭제"  border='0' /></a>
+              <a href="./delete.do?replyno=${replyno}"><img src="./images/delete.png" title="삭제"  border='0' /></a>
             </td>
           </tr>
         </c:forEach>
@@ -92,3 +95,5 @@
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  
+</html>
+   

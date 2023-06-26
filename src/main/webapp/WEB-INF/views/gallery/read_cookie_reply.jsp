@@ -14,7 +14,7 @@
 <c:set var="file1saved" value="${galleryVO.file1saved }" />
 <c:set var="thumb1" value="${galleryVO.thumb1 }" />
 <c:set var="content" value="${galleryVO.content }" />
-<c:set var="recom" value="${galleryVO.recom }" />
+<c:set var="jjim" value="${galleryVO.jjim }" />
 <c:set var="word" value="${galleryVO.word }" />
 <c:set var="size1_label" value="${galleryVO.size1_label }" />
  
@@ -29,14 +29,14 @@
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
 <script type="text/javascript">
   $(function(){
-      $('#btn_recom').on("click", function() { update_recom_ajax(${galleryno}); });
+      $('#btn_jjim').on("click", function() { update_jjim_ajax(${galleryno}); });
     $('#btn_login').on('click', login_ajax);
     $('#btn_loadDefault').on('click', loadDefault);
 
@@ -44,20 +44,18 @@
     var frm_reply = $('#frm_reply');
     $('#content', frm_reply).on('click', check_login);  // 댓글 작성시 로그인 여부 확인
     $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
-
-    list_by_galleryno_join(); // 댓글 목록
     // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
     
   });
 
-  function update_recom_ajax(galleryno) {
+  function update_jjim_ajax(galleryno) {
     // console.log('-> galleryno:' + galleryno);
     var params = "";
     // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
     params = 'galleryno=' + galleryno; // 공백이 값으로 있으면 안됨.
     $.ajax(
       {
-        url: '/gallery/update_recom_ajax.do',
+        url: '/gallery/update_jjim_ajax.do',
         type: 'post',  // get, post
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -67,9 +65,9 @@
           // console.log('-> rdata: '+ rdata);
           var str = '';
           if (rdata.cnt == 1) {
-            // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
-            // console.log('-> btn_recom: ' + $('#btn_recom').html());
-            $('#btn_recom').html('♥('+rdata.recom+')');
+            // console.log('-> btn_jjim: ' + $('#btn_jjim').val());  // X
+            // console.log('-> btn_jjim: ' + $('#btn_jjim').html());
+            $('#btn_jjim').html('♥('+rdata.jjim+')');
             $('#span_animation').hide();
           } else {
             $('#span_animation').html("지금은 추천을 할 수 없습니다.");
@@ -264,54 +262,12 @@
         },
         // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
         error: function(request, status, error) { // callback 함수
-          console.log(error);
+          var msg = 'ERROR request.status: '+request.status + '/ ' + error;
+          console.log(msg); // Chrome에 출력
         }
       });
     }
   }
-
-  // galleryno 별 소속된 댓글 목록
-  function list_by_galleryno_join() {
-    var params = 'galleryno=' + ${galleryVO.galleryno };
-
-    $.ajax({
-      url: "../reply/list_by_galleryno_join.do", // action 대상 주소
-      type: "get",           // get, post
-      cache: false,          // 브러우저의 캐시영역 사용안함.
-      async: true,           // true: 비동기
-      dataType: "json",   // 응답 형식: json, xml, html...
-      data: params,        // 서버로 전달하는 데이터
-      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-        // alert(rdata);
-        var msg = '';
-        
-        $('#reply_list').html(''); // 패널 초기화, val(''): 안됨
-        
-        for (i=0; i < rdata.list.length; i++) {
-          var row = rdata.list[i];
-          
-          msg += "<DIV id='"+row.replyno+"' style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
-          msg += "<span style='font-weight: bold;'>" + row.id + "</span>";
-          msg += "  " + row.rdate;
-          
-          if ('${sessionScope.memberno}' == row.memberno) { // 글쓴이 일치여부 확인, 본인의 글만 삭제 가능함 ★
-            msg += " <A href='javascript:reply_delete("+row.replyno+")'><IMG src='/reply/images/delete.png'></A>";
-          }
-          msg += "  " + "<br>";
-          msg += row.content;
-          msg += "</DIV>";
-        }
-        // alert(msg);
-        $('#reply_list').append(msg);
-      },
-      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-      error: function(request, status, error) { // callback 함수
-        console.log(error);
-      }
-    });
-    
-  }
-  
   
 </script>
  
@@ -459,7 +415,7 @@
           <button type='button' onclick="cart_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
           <button type='button' onclick="cart_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
           <button type='button' onclick="" class="btn btn-info">관심 상품</button>
-          <button type='button' id="btn_recom" class="btn btn-info">♥(${recom })</button>
+          <button type='button' id="btn_jjim" class="btn btn-info">♥(${jjim })</button>
           <span id="span_animation"></span>
           </form>
         </DIV> 
@@ -495,7 +451,7 @@
         <button type='button' id='btn_create'>등록</button>
     </FORM>
     <HR>
-    <DIV id='reply_list' data-replyPage='1'>  <%-- 댓글 목록 --%>
+    <DIV id='reply_list' data-replypage='1'>  <%-- 댓글 목록 --%>
     
     </DIV>
     <DIV id='reply_list_btn' style='border: solid 1px #EEEEEE; margin: 0px auto; width: 100%; background-color: #EEFFFF;'>

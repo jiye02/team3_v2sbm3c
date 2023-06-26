@@ -47,8 +47,8 @@
 <jsp:include page="../menu/top.jsp" flush='false' />
   <form name='frm' id='frm' method='post' action='./delete.do'>
     <input type='hidden' name='attachfileno' id='attachfileno' value=''>
-    <input type='hidden' name='contentsno' id='contentsno' value='${param.contentsno }'>
-    <input type='hidden' name='rurl' id='rurl' value='./list_by_contentsno.do'>
+    <input type='hidden' name='galleryno' id='galleryno' value='${param.galleryno }'>
+    <input type='hidden' name='rurl' id='rurl' value='./list_by_galleryno.do'>
         
   </form>
   
@@ -76,12 +76,12 @@
   <!-- ********** Modal 알림창 종료 ********** -->
 
   <DIV class='title_line'>
-    ${contentsVO.title } 첨부 파일
+    ${galleryVO.title } 첨부 파일
   </DIV>
 
   <ASIDE class='aside_left'>
-    <A href='../contents/read.do?contentsno=${contentsVO.contentsno }'>관련글</A> >
-    <A href='./create.do?contentsno=${contentsVO.contentsno }&cateno=${contentsVO.cateno }'>첨부 파일 등록</A>
+    <A href='../gallery/read.do?galleryno=${galleryVO.galleryno }'>관련글</A> >
+    <A href='./create.do?galleryno=${galleryVO.galleryno }&exhino=${galleryVO.exhino }'>첨부 파일 등록</A>
   </ASIDE>
   <ASIDE class='aside_right'>
     <A href="javascript:location.reload();">새로고침</A>
@@ -119,7 +119,7 @@
       <%-- table 내용 --%>
       <tbody>
         <c:forEach var="attachfileVO" items="${list }">
-          <c:set var="contentsno" value="${attachfileVO.contentsno }" />
+          <c:set var="galleryno" value="${attachfileVO.galleryno }" />
           <c:set var="fname" value="${attachfileVO.fname.toLowerCase() }" />
           
           <tr> 

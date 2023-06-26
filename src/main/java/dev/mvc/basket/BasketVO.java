@@ -13,7 +13,7 @@ WHERE c.galleryno = t.galleryno
 ORDER BY basketno ASC;
  */
 public class BasketVO {
-    /** 쇼핑 카트 번호 */
+    /** 장바구니 번호 */
     private int basketno;
     /** 컨텐츠 번호 */
     private int galleryno;

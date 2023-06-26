@@ -1,10 +1,13 @@
 package dev.mvc.reply;
-
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 public class ReplyVO {
   /** 댓글 번호 */
   private int replyno;
   /** 관련 글 번호 */
-  private int contentsno;
+  private int galleryno;
   /** 회원 번호 */
   private int memberno;
   /** 내용 */
@@ -20,11 +23,11 @@ public class ReplyVO {
   public void setReplyno(int replyno) {
     this.replyno = replyno;
   }
-  public int getContentsno() {
-    return contentsno;
+  public int getGalleryno() {
+    return galleryno;
   }
-  public void setContentsno(int contentsno) {
-    this.contentsno = contentsno;
+  public void setGalleryno(int galleryno) {
+    this.galleryno = galleryno;
   }
   public int getMemberno() {
     return memberno;
@@ -51,5 +54,5 @@ public class ReplyVO {
     this.rdate = rdate;
   }
   
-  
+
 }

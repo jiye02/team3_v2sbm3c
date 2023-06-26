@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;         
 
 public interface MemberDAOInter {
+  
   /**
    * 중복 아이디 검사
    * @param id
@@ -82,4 +83,3 @@ public interface MemberDAOInter {
   
 }
  
-

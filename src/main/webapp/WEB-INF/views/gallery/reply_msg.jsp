@@ -23,7 +23,7 @@
   <DIV class='title_line'>알림</DIV>
   
   <ASIDE class='aside_left'>
-    ${categrpVO.name } > ${cateVO.name } > 답변 등록
+    ${exhiVO.name } > 답변 등록
   </ASIDE>
   <ASIDE class='aside_right'>
     <A href='./list.do?exhino=${param.exhino }'>목록</A>

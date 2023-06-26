@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art word</title>
+<title>Art World</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -179,11 +179,11 @@
           <div class='basket_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
         </td>
         <td style='width: 50%;'>
-          <div class='basket_label' style='font-size: 1.5em;'>전체 주문 금액</div>
-          <div class='basket_price'  style='font-size: 1.5em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
+          <div class='basket_label' style='font-size: 1.7em;'>전체 주문 금액</div>
+          <div class='basket_price'  style='font-size: 1.7em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
           <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='get'>
-            <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.2em;'>주문하기</button>
+            <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.0em;'>주문하기</button>
           </form>
         <td>
       </tr>
@@ -196,3 +196,4 @@
 </body>
  
 </html>
+

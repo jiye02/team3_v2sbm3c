@@ -6,7 +6,7 @@
   
   <!-- 생성 -->
   <insert id="create" parameterType="dev.mvc.jjim.JjimVO" >
-    INSERT INTO jjim(jjimno, memberno, galleryno, rdate)
+    INSERT INTO jjim(jjimnum, memberno, galleryno, rdate)
     VALUES(jjim_seq.nextval, #{memberno}, #{galleryno}, sysdate)
   
   </insert>
@@ -24,6 +24,15 @@
     WHERE memberno = #{memberno}
   
   </delete>
+  
+  <select id="list_by_memberno" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
+    SELECT jjimnum, memberno, galleryno, rdate
+    FROM jjim
+    WHERE memberno=#{memberno}
+    ORDER BY memberno DESC
+
+  </select> 
+  
   
   
   

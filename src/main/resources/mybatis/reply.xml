@@ -9,6 +9,70 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     VALUES(reply_seq.nextval, #{galleryno}, #{memberno}, #{content}, #{passwd}, sysdate)
   </insert>
   
+   <select id="list" resultType="dev.mvc.reply.ReplyVO">
+    SELECT replyno, galleryno, memberno, content, passwd, rdate
+    FROM reply
+    ORDER BY replyno DESC
+  </select>
+  
+   <select id="list_member_join" resultType="dev.mvc.reply.ReplyMemberVO">
+    SELECT m.id,
+              r.replyno, r.galleryno, r.memberno, r.content, r.passwd, r.rdate
+    FROM member m,  reply r
+    WHERE m.memberno = r.memberno
+    ORDER BY r.replyno DESC
+  </select>
+  
+  <select id="list_by_galleryno" resultType="dev.mvc.reply.ReplyVO" parameterType="int">
+    SELECT replyno, galleryno, memberno, content, passwd, rdate
+    FROM reply
+    WHERE galleryno=#{galleryno}
+    ORDER BY replyno DESC
+  </select>
+
+  <!-- 특정글에 대한 전체 댓글 목록 -->
+  <select id="list_by_galleryno_join" resultType="dev.mvc.reply.ReplyMemberVO" parameterType="int">
+    SELECT m.id,
+              r.replyno, r.galleryno, r.memberno, r.content, r.passwd, r.rdate
+    FROM member m,  reply r
+    WHERE (m.memberno = r.memberno) AND r.galleryno=#{galleryno}
+    ORDER BY r.replyno DESC
+  </select>
+  
+  <!-- <select id="checkPasswd" parameterType="HashMap" resultType="int"> -->
+  <!-- <select id="checkPasswd" parameterType="ReplyVO" resultType="int"> -->
+  <select id="checkPasswd" parameterType="Map" resultType="int">
+    SELECT COUNT(*) as cnt
+    FROM reply
+    WHERE replyno=#{replyno} AND passwd=#{passwd}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM reply
+    WHERE replyno=#{replyno}
+  </delete>
+
+  <!-- 더보기 버튼 페이징 구현 -->
+  <select id="list_by_galleryno_join_add" resultType="dev.mvc.reply.ReplyMemberVO" 
+             parameterType="HashMap">
+    SELECT id, replyno, galleryno, memberno, content, passwd, rdate, r
+    FROM (
+            SELECT id, replyno, galleryno, memberno, content, passwd, rdate, rownum as r
+            FROM (
+                    SELECT m.id,
+                               r.replyno, r.galleryno, r.memberno, r.content, r.passwd, r.rdate
+                    FROM member m,  reply r
+                    WHERE (m.memberno = r.memberno) AND r.galleryno=#{galleryno}
+                    ORDER BY r.replyno DESC
+            )
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
+  </select>
+        
+</mapper> 
 
   
-</mapper> 
+  
+
+  
+

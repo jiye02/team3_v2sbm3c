@@ -214,12 +214,6 @@
       </label>
     </div>   
 
-    <div class="form-group"> <%-- label의 크기에따라 input 태그의 크기가 지정되는 형태, 줄이 변경되지 않는 패턴 --%>
-      <label>전화번호:
-        <input type='text' class="form-control form-control-sm" name='tel' id='tel' value='010-0000-0000' required="required" placeholder="전화번호">
-      </label>
-      예) 010-0000-0000
-    </div>   
 
     <div class="form_input">
       <button type="button" id='btn_send' onclick="send()" class="btn btn-info btn-sm">가입</button>

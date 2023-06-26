@@ -67,8 +67,14 @@ SELECT COUNT(id) as cnt
 FROM member
 WHERE id='user1';
 
+- 검색을 하지 않는 경우, 전체 목록 출력
+SELECT adminno, id, passwd, mname, mdate, grade
+FROM admin
+ORDER BY grade ASC, id ASC;
+
 -- 삭제
 DELETE FROM admin
 WHERE adminno >= 6;
 
 SELECT * FROM admin;
+>>>>>>> f49bbfc9366e3eecf695b4f2cc0fc5747410489e

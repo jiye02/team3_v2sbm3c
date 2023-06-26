@@ -3,6 +3,7 @@ package dev.mvc.gallery;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -338,6 +339,7 @@ public class GalleryProc implements GalleryProcInter {
       int cnt = this.galleryDAO.jjim_sub(galleryno);
       return cnt;
     }
+
  
 }
 

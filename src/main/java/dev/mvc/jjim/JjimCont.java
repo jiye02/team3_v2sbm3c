@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
+import dev.mvc.exhi.ExhiVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.gallery.GalleryProcInter;
 import dev.mvc.gallery.GalleryVO;
@@ -102,8 +103,9 @@ public class JjimCont {
 
     return mav; // forward
   }
+
   
-  
+ 
   
 
 }

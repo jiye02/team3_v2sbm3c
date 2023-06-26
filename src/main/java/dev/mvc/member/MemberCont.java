@@ -25,31 +25,18 @@ import dev.mvc.admin.AdminProcInter;
 @Controller
 public class MemberCont {
   @Autowired
-  @Qualifier("dev.mvc.admin.AdminProc") 
-  private AdminProcInter adminProc;
-  
-  @Autowired
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc = null;
+  
+  @Autowired
+  @Qualifier("dev.mvc.admin.AdminProc") 
+  private AdminProcInter adminProc;
   
   public MemberCont(){
     System.out.println("-> MemberCont created.");
   }
-
-  /**
-   * 새로고침 방지, EL에서 param으로 접근, POST -> GET -> /member/msg.jsp
-   * @return
-   */
-  @RequestMapping(value="/member/msg.do", method=RequestMethod.GET)
-  public ModelAndView msg(String url){
-    ModelAndView mav = new ModelAndView();
-
-    mav.setViewName(url); // forward
-    
-    return mav; // forward
-  }
   
-  // http://localhost:9093/member/checkID.do?id=user1@gmail.com
+  // http://localhost:9091/member/checkID.do?id=user1
   /**
   * ID 중복 체크, JSON 출력
   * @return
@@ -61,12 +48,12 @@ public class MemberCont {
     int cnt = this.memberProc.checkID(id);
    
     JSONObject json = new JSONObject();
-    json.put("cnt", cnt); 
+    json.put("cnt", cnt);
    
-    return json.toString(); // {"cnt":1} 
+    return json.toString(); 
   }
 
-  // http://localhost:9093/member/create.do
+  // http://localhost:9091/member/create.do
   /**
   * 등록 폼
   * @return
@@ -74,7 +61,7 @@ public class MemberCont {
   @RequestMapping(value="/member/create.do", method=RequestMethod.GET )
   public ModelAndView create() {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/member/create"); // /WEB-INF/views/member/create.jsp
+    mav.setViewName("/member/create"); // webapp/member/create.jsp
    
     return mav; // forward
   }
@@ -92,7 +79,7 @@ public class MemberCont {
     
     memberVO.setGrade(15); // 기본 회원 가입 등록 15 지정
     
-    int cnt= this.memberProc.create(memberVO); // SQL insert
+    int cnt= memberProc.create(memberVO); // SQL insert
     
     if (cnt == 1) { // insert 레코드 개수
       mav.addObject("code", "create_success");
@@ -115,6 +102,19 @@ public class MemberCont {
   }
   
   /**
+   * 새로고침 방지, EL에서 param으로 접근, POST -> GET -> /member/msg.jsp
+   * @return
+   */
+  @RequestMapping(value="/member/msg.do", method=RequestMethod.GET)
+  public ModelAndView msg(String url){
+    ModelAndView mav = new ModelAndView();
+
+    mav.setViewName(url); // forward
+    
+    return mav; // forward
+  }
+  
+  /**
   * 목록 출력 가능
   * @param session
   * @return
@@ -128,17 +128,17 @@ public class MemberCont {
       mav.addObject("list", list);
 
       mav.setViewName("/member/list"); // /webapp/WEB-INF/views/member/list.jsp
-
+      
     } else {
       mav.setViewName("/admin/login_need"); // /WEB-INF/views/admin/login_need.jsp
-    }
-        
+    }    
+    
     return mav;
-  }  
- 
+  }   
+  
   /**
    * 회원 조회
-   * 관리자, 회원 본인만 가능
+   * 관리자, 회원 본인만 가능하게
    * @param memberno
    * @return
    */
@@ -151,7 +151,7 @@ public class MemberCont {
       // 로그인한 경우
 
       if (this.memberProc.isMember(session)) { // 회원으로 로그인
-        memberno = (int)session.getAttribute("memberno"); // 본인의 회원 정보 조회
+        memberno = (int)session.getAttribute("memberno");// 본인의 회원 정보 조회
         
       } else if (this.adminProc.isAdmin(session)) { // 관리자로 로그인
         memberno = Integer.parseInt(request.getParameter("memberno")); // 관리자는 누구나 조회 가능
@@ -181,7 +181,7 @@ public class MemberCont {
     
     // System.out.println("id: " + memberVO.getId());
     
-    int cnt= this.memberProc.update(memberVO);
+    int cnt= memberProc.update(memberVO);
     
     if (cnt == 1) {
       mav.addObject("code", "update_success");
@@ -200,38 +200,90 @@ public class MemberCont {
   }
   
   /**
-   * 회원 삭제
+   * 회원 탈퇴 폼
+   * @param session
    * @param memberno
    * @return
    */
-  @RequestMapping(value="/member/delete.do", method=RequestMethod.GET)
-  public ModelAndView delete(HttpSession session, int memberno){
+  @RequestMapping(value="/member/delete_u.do", method=RequestMethod.GET)
+  public ModelAndView delete_u(HttpSession session, int memberno) {
     ModelAndView mav = new ModelAndView();
     
-    if (this.adminProc.isAdmin(session)) { 
-      MemberVO memberVO = this.memberProc.read(memberno); // 삭제할 레코드를 사용자에게 출력하기위해 읽음.
+    if (this.memberProc.isMember(session)== true) {
+      MemberVO memberVO = this.memberProc.read(memberno);
       mav.addObject("memberVO", memberVO);
-      mav.setViewName("/member/delete"); // /member/delete.jsp      
-      
+      mav.setViewName("/member/delete_u");
     } else {
-      // admin 로그인을 하지 않은 경우
-      mav.setViewName("/admin/login_need"); // /webapp/WEB-INF/views/admin/login_need.jsp
+      // 로그인을 하지 않은 경우
+      mav.setViewName("/member/login_need");
     }
-    
-    return mav; // forward
+
+    return mav;
   }
- 
   /**
-   * 회원 삭제 처리
+   * 회원 탈퇴 처리
    * @param memberVO
    * @return
    */
+  @RequestMapping(value="/member/delete_u.do", method=RequestMethod.POST)
+  public ModelAndView delete_u_proc(int memberno){
+    ModelAndView mav = new ModelAndView();
+    
+    // System.out.println("id: " + memberVO.getId());
+    // 삭제된 정보를 msg.jsp에 출력하기 휘해 삭제전에 회원 정보를 읽음.
+    MemberVO memberVO = this.memberProc.read(memberno); 
+        
+    int cnt= this.memberProc.delete(memberno); // 회원 삭제
+
+    if (cnt == 1) {
+      mav.addObject("code", "delete");
+      mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 정보를 변경했습니다.
+      mav.addObject("id", memberVO.getId());
+    } else {
+      mav.addObject("code", "delete_fail");
+    }
+
+    mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+    mav.addObject("url", "/member/msg");  // /member/msg -> /member/msg.jsp
+    
+    mav.setViewName("redirect:/member/msg.do");
+    
+    return mav;
+  }
+  
+  /**
+   * 회원 삭제 폼 (관리자)
+   * @param memberno
+   * @return
+   */
   @RequestMapping(value="/member/delete.do", method=RequestMethod.POST)
+  public ModelAndView delete(HttpSession session, int memberno){
+    ModelAndView mav = new ModelAndView();
+    
+    if (this.adminProc.isAdmin(session) == true) {
+      MemberVO memberVO = this.memberProc.read(memberno); // 삭제할 레코드를 사용자에게 출력하기위해 읽음.
+      mav.addObject("memberVO", memberVO);
+      mav.setViewName("/member/delete"); // /member/delete.jsp
+      
+    } else {
+      // 로그인을 하지 않은 경우
+      mav.setViewName("/admin/login_need"); // /WEB-INF/views/admin/login_need.jsp
+    }   
+    
+    return mav; // forward
+  }
+  
+  /**
+   * 회원 삭제 처리 (관리자)
+   * @param memberVO
+   * @return
+   */
+  @RequestMapping(value="/member/delete.do", method=RequestMethod.GET)
   public ModelAndView delete_proc(int memberno){
     ModelAndView mav = new ModelAndView();
     
     // System.out.println("id: " + memberVO.getId());
-    // 삭제된 정보를 msg.jsp에 출력하기 위해, 삭제전에 회원 정보를 읽음.
+    // 삭제된 정보를 msg.jsp에 출력하기 휘해 삭제전에 회원 정보를 읽음.
     MemberVO memberVO = this.memberProc.read(memberno); 
     
     
@@ -253,8 +305,9 @@ public class MemberCont {
     return mav;
   }
   
+  
   /**
-   * 패스워드 변경폼
+   * 패스워드를 변경폼.
    * @param memberno
    * @return
    */
@@ -283,7 +336,7 @@ public class MemberCont {
     
     // 현재 패스워드 검사용 데이터
     HashMap<Object, Object> map = new HashMap<Object, Object>();
-    map.put("memberno", memberno);  // 키, 값
+    map.put("memberno", memberno); // 키, 값
     map.put("passwd", current_passwd);
     
     int cnt = memberProc.passwd_check(map); // 현재 패스워드 검사
@@ -312,12 +365,12 @@ public class MemberCont {
     
     return mav;
   }
-  
+
 //  /**
 //   * 로그인 폼
 //   * @return
 //   */
-//  // http://localhost:9093/member/login.do 
+//  // http://localhost:9091/member/login.do 
 //  @RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
 //  public ModelAndView login() {
 //    ModelAndView mav = new ModelAndView();
@@ -330,7 +383,7 @@ public class MemberCont {
 //   * 로그인 처리
 //   * @return
 //   */
-//  // http://localhost:9093/member/login.do 
+//  // http://localhost:9091/member/login.do 
 //  @RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
 //  public ModelAndView login_proc(HttpSession session, String id, String passwd) {
 //    ModelAndView mav = new ModelAndView();
@@ -362,8 +415,7 @@ public class MemberCont {
    * @param session
    * @return
    */
-  @RequestMapping(value="/member/logout.do", 
-                             method=RequestMethod.GET)
+  @RequestMapping(value="/member/logout.do", method=RequestMethod.GET)
   public ModelAndView logout(HttpSession session){
     ModelAndView mav = new ModelAndView();
     session.invalidate(); // 모든 session 변수 삭제
@@ -374,10 +426,10 @@ public class MemberCont {
   }
   
   /**
-   * 로그인 폼
+   * Cookie 로그인 폼
    * @return
    */
-  // http://localhost:9093/member/login.do 
+  // http://localhost:9091/member/login.do 
   @RequestMapping(value = "/member/login.do", 
                              method = RequestMethod.GET)
   public ModelAndView login_cookie(HttpServletRequest request) {
@@ -434,7 +486,7 @@ public class MemberCont {
   * @param passwd_save 패스워드 Cookie에 저장 여부
   * @return
   */
-  // http://localhost:9093/member/login.do 
+  // http://localhost:9091/member/login.do 
   @RequestMapping(value = "/member/login.do", 
                             method = RequestMethod.POST)
   public ModelAndView login_cookie_proc(
@@ -517,7 +569,7 @@ public class MemberCont {
    * {
    * "rname":길동이',
    * "raddress2":"관철동",
-   * "rzipcode":"12345",
+   * "rzipcode":"1234",
    * "raddress1":"서울시 종로구",
    * "rtel":"111-2222-3333'
    * }
@@ -541,10 +593,5 @@ public class MemberCont {
     return json.toString();
   }
   
-}
-
-
-
-
-
-
+} 
+  

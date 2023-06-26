@@ -11,7 +11,7 @@ public interface BasketDAOInter {
   public int create(BasketVO basketVO);
   
   /**
-   * memberno 회원 번호별 쇼핑카트 목록 출력
+   * memberno 회원 번호별 장바구니 목록 출력
    * @return
    */
   public ArrayList<BasketVO> list_by_memberno(int memberno);

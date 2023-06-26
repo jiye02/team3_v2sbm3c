@@ -49,7 +49,6 @@ public interface AdminProcInter {
    * @return 중복 아이디 갯수
    */
   public int checkID(String id);
-  
   /**
    * 관리자 전체 목록
    * @return
