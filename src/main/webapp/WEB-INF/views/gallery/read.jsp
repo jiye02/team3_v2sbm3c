@@ -591,7 +591,7 @@
           <input type='number' name='ordercnt' value='1' required="required" 
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
           <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
-          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
+          <button type='button' onclick="" class="btn btn-info">바로 구매</button>
           <button type='button' onclick="" class="btn btn-info">관심 상품</button>
           <button type='button' id="btn_jjim" class="btn btn-info">♥(${jjim })</button>
           <span id="span_animation"></span>
