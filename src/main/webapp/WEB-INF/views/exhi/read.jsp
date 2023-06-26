@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, minimum-scale=1.0,
                                  maximum-scale=5.0, width=device-width" /> 
-<title>ArtWord</title>
+<title>Art Wave</title>
 <link rel="shortcut icon" href="/images/ex_top.png" />
 <style type="text/css">
   *{ font-family: Malgun Gothic; font-size: 26px;}

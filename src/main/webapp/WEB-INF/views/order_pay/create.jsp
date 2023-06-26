@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art world</title>
+<title>Art Wave</title>
 <link rel="shortcut icon" href="/images/ex_top.png" />
 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">  <!-- /static -->
@@ -132,7 +132,7 @@
     <tbody>
       <c:forEach var="basketVO" items="${list }">
         <c:set var="basketno" value="${basketVO.basketno }" />
-        <c:set var="contentsno" value="${basketVO.contentsno }" />
+        <c:set var="galleryno" value="${basketVO.galleryno }" />
         <c:set var="title" value="${basketVO.title }" />
         <c:set var="thumb1" value="${basketVO.thumb1 }" />
         <c:set var="price" value="${basketVO.price }" />
@@ -148,16 +148,16 @@
           <td style='vertical-align: middle; text-align: center;'>
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-                <%-- /static/contents/storage/ --%>
-                <a href="/contents/read.do?contentsno=${contentsno}"><IMG src="/contents/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
+                <%-- /static/gallery/storage/ --%>
+                <a href="/gallery/read.do?galleryno=${galleryno}"><IMG src="/gallery/storage/${thumb1 }" style="width: 120px; height: 80px;"></a> 
               </c:when>
               <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
-                ${contentsVO.file1}
+                ${galleryVO.file1}
               </c:otherwise>
             </c:choose>
           </td>  
           <td style='vertical-align: middle;'>
-            <a href="/contents/read.do?contentsno=${contentsno}"><strong>${title}</strong></a> 
+            <a href="/gallery/read.do?galleryno=${galleryno}"><strong>${title}</strong></a> 
           </td> 
           <td style='vertical-align: middle; text-align: center;'>
             <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>

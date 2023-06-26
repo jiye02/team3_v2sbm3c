@@ -7,9 +7,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art world</title>
+<title>Art Wave</title>
 <link rel="shortcut icon" href="/images/ex_top.png" /> <%-- /static 기준 --%>
- 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -73,7 +72,7 @@
                 <%-- registry.addResourceHandler("/gallery/storage/**").addResourceLocations("file:///" +  Gallery.getUploadDir()); --%>
                 <img src="/gallery/storage/${thumb1 }" style="width: 120px; height: 90px;">
               </c:when>
-              <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/gallery/images/none1.png -->
+              <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력 : /static/gallery/images/none1.png -->
                 <IMG src="/gallery/images/none1.png" style="width: 120px; height: 90px;">
               </c:otherwise>
             </c:choose>
@@ -111,7 +110,6 @@
   </table>
 </DIV>
 
- 
 <jsp:include page="../menu/bottom.jsp" />
 </body>
  
