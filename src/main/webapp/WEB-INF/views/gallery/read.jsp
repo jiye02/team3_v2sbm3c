@@ -24,6 +24,7 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Art Wave</title>
+<link rel="shortcut icon" href="/images/ex_top.png" />
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -445,8 +446,8 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
         <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
       </div>
       <div class="modal-body">
         <form name='frm_reply_delete' id='frm_reply_delete'>
@@ -470,11 +471,12 @@
 <!-- -------------------- 댓글 삭제폼 종료 -------------------- -->
    
 <DIV class='title_line'>
-  <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }" class='title_link'>${exhiVO.name }</A>
+  <A href="./list_by_exhino.do?exhino=${exhiVO.exhino }" class='title_link'>${exhiVO.name }</A>
 </DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
+<<<<<<< HEAD
      <c:choose>
       <c:when test="${sessionScope.admin_id != null }">
       <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
@@ -504,6 +506,29 @@
               </c:otherwise>
         </c:choose>
    
+=======
+  <c:if test="${sessionScope.admin_id != null }">
+   <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
+    <span class='menu_divide' >│</span>
+    <A href="./update_text.do?galleryno=${galleryno}&now_page=${param.now_page}">수정</A>
+    <span class='menu_divide' >│</span>
+    <A href="./update_file.do?galleryno=${galleryno}&now_page=${param.now_page}">파일 수정</A>  
+    <span class='menu_divide' >│</span>
+    <A href="./delete.do?galleryno=${galleryno}&now_page=${param.now_page}&exhino=${exhino}">삭제</A>
+    <span class='menu_divide' >│</span>
+    </c:if>
+      
+    <A href="javascript:location.reload();">새로고침</A>
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
+    <A href="./list_by_exhino.do?exhino=${exhino} &now_page=1&word=">기본 목록형</A>    
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino_grid.do?exhino=${exhino}&now_page=1&word=">갤러리형</A>
+
+    
+>>>>>>> abecc7cdd0d68edaa64b937984e9fa8e22a07118
   </ASIDE> 
 
   
