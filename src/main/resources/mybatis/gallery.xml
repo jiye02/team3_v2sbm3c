@@ -167,7 +167,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      SET replycnt = replycnt - 1
      WHERE galleryno = #{galleryno}
    </update>
- 
+    <!-- 자료수 증가, cnt 컬럼 1씩 증가, id: update_cnt_add -->
+  <update id="update_cnt_add" parameterType="int">
+    UPDATE gallery 
+    SET recom = recom + 1 
+    WHERE galleryno = #{galleryno}
+  </update>
+
+  <!-- 자료수 감소, cnt 컬럼 1씩 감소, id: update_cnt_add -->
+  <update id="update_cnt_sub" parameterType="int">
+    UPDATE gallery 
+    SET recom = recom - 1 
+    WHERE galleryno = #{galleryno}
+  </update>
   
              
 </mapper> 

@@ -150,6 +150,7 @@ public interface GalleryProcInter {
    */   
   public int decreaseReplycnt(int galleryno);
   
+  
 
     
   
