@@ -23,7 +23,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Art Wave</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -597,8 +597,7 @@
           <form>
           <input type='number' name='ordercnt' value='1' required="required" 
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
-          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
-          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
+          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">주문 담기</button>           
           <button type='button' onclick="jjim_ajax(${galleryno })" class="btn btn-info">♥(${jjim })</button>
           <span id="span_animation"></span>
           </form>
