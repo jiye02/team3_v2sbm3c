@@ -19,9 +19,6 @@
  
 <body>
 <c:import url="/menu/top.do" />
-  <DIV class="title_line">
-    등록된 모든 댓글
-  </DIV>
   <ASIDE class='aside_left'>
     <A href='./list.do'>모든 댓글</A>
   </ASIDE>
