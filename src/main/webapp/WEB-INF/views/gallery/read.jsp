@@ -471,7 +471,7 @@
 <!-- -------------------- 댓글 삭제폼 종료 -------------------- -->
    
 <DIV class='title_line'>
-  <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }" class='title_link'>${exhiVO.name }</A>
+  <A href="./list_by_exhino.do?exhino=${exhino }&now_page=1" class='title_link'>${exhiVO.name }</A>
 </DIV>
 
 <DIV class='content_body'>
@@ -489,9 +489,9 @@
       
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
+    <A href="./list_by_exhino.do?exhino=${exhino} &now_page=1&word=">기본 목록형</A>    
     <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
+    <A href="./list_by_exhino_grid.do?exhino=${exhino}&now_page=1&word=">갤러리형</A>
     
   </ASIDE> 
   
