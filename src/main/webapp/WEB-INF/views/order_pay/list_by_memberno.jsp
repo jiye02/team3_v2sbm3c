@@ -28,7 +28,7 @@
 </head> 
  
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
+<c:import url="/menu/top.do" />
  
   <DIV class='title_line'>
     ${sessionScope.id }님 예약결제 내역
