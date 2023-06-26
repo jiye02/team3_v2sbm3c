@@ -242,15 +242,15 @@ public class GalleryCont {
 
     mav.setViewName("/gallery/read"); // /WEB-INF/views/gallery/read.jsp
         
- // 찜 확인
-    if (memberProc.isMember(session)) {
-      int memberno = (int) (session.getAttribute("memberno"));
-      jjimVO.setMemberno(memberno);
-      
-      int check_cnt = this.jjimProc.check(jjimVO);
-      mav.addObject("check", check_cnt);
-      
-    }
+    /*
+     * // 찜 확인 if (memberProc.isMember(session)) { int memberno = (int)
+     * (session.getAttribute("memberno")); jjimVO.setMemberno(memberno);
+     * 
+     * int check_cnt = this.jjimProc.check(jjimVO); mav.addObject("check",
+     * check_cnt);
+     * 
+     * }
+     */
     
     return mav;
   }

@@ -4,108 +4,153 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.mvc.admin.AdminProcInter;
-import dev.mvc.exhi.ExhiVO;
-import dev.mvc.member.MemberProcInter;
-import dev.mvc.gallery.GalleryProcInter;
-import dev.mvc.gallery.GalleryVO;
 
 @Controller
 public class JjimCont {
-
-  @Autowired
+  @Autowired 
   @Qualifier("dev.mvc.jjim.JjimProc")
   private JjimProcInter jjimProc;
-
-  @Autowired
-  @Qualifier("dev.mvc.gallery.GalleryProc")
-  private GalleryProcInter galleryProc;
-
-  @Autowired
-  @Qualifier("dev.mvc.member.MemberProc")
-  private MemberProcInter memberProc;
-
-  @Autowired
-  @Qualifier("dev.mvc.admin.AdminProc")
-  private AdminProcInter adminProc;
-
+  
   public JjimCont() {
-    System.out.println("-> JjimCont created");
+    System.out.println("-> JjimCont created.");
   }
-
+  
+  // http://localhost:9091/jjim/create.do
   /**
-   * 좋아요 생성 및 삭제
-   * @param session
-   * @param recomVO
-   * @param recipeVO
+   * Ajax 등록 처리
+   * INSERT INTO jjim(jjimno, galleryno, memberno, cnt, rdate)
+   * VALUES(jjim_seq.nextval, #{galleryno}, #{memberno}, #{cnt}, sysdate)
+   * @param categrpVO
    * @return
    */
-  @RequestMapping(value = "/jjim/create.do", method = RequestMethod.POST)
-  public ModelAndView create(HttpSession session, JjimVO jjimVO, GalleryVO galleryVO) {
-    ModelAndView mav = new ModelAndView();
-
-    if (memberProc.isMember(session)) {
-      int memberno = (int) (session.getAttribute("memberno"));
-      jjimVO.setMemberno(memberno);
-
-      int check = this.jjimProc.check(jjimVO);
-
-      if (check != 1) {
-        int cnt = this.jjimProc.create(jjimVO);
-
-        if (cnt == 1) {
-          mav.addObject("galleryVO", galleryVO);
-          this.galleryProc.jjim_add(galleryVO.getGalleryno());
-          mav.setViewName("redirect:/gallery/read.do?galleryno=" + galleryVO.getGalleryno());
-
-        } else {
-          mav.addObject("code", "create_fail");
-
-        }
-      } else {
-        int delete_jjim = this.jjimProc.delete(memberno);
-        
-        mav.addObject("galleryVO", galleryVO);
-        this.galleryProc.jjim_sub(galleryVO.getGalleryno());
-        mav.setViewName("redirect:/gallery/read.do?galleryno=" + galleryVO.getGalleryno());
-        
-      }
-    } else if (adminProc.isAdmin(session)) {
-      mav.addObject("code", "admin_fail");
-      mav.setViewName("redirect:/jjim/msg.do");
+  @RequestMapping(value="/jjim/create.do", method=RequestMethod.POST )
+  @ResponseBody
+  public String create(HttpSession session,
+                            int galleryno) {
+    
+      JjimVO jjimVO = new JjimVO();
+      jjimVO.setGalleryno(galleryno);  // 상품 번호
       
-    } else {
-      mav.addObject("url", "/member/login_need");
-      mav.setViewName("redirect:/jjim/msg.do");
+      int memberno = (Integer)session.getAttribute("memberno");
+      jjimVO.setMemberno(memberno);   // 회원 번호
+      
+      
+      int cnt = this.jjimProc.create(jjimVO); // 등록 처리
+      
+      JSONObject json = new JSONObject();
+      json.put("cnt", cnt); // 1: 정상 등록
+      
+      // System.out.println("-> jjimCont create: " + json.toString());
+  
+      return json.toString();
+  }
+  
+  /**
+   * 회원별 목록
+   * 할인 금액 합계 = 할인 금액 * 수량
+   * 할인 금액 총 합계 = 할인 금액 총 합계 + 할인 금액 합계
+   * 포인트 합계 = 포인트 합계 + (포인트 * 수량)
+   * 배송비 = 3000
+   * 전체 주문 금액 = 할인 금액 총 합계 + 배송비
+   * http://localhost:9091/jjim/list_by_memberno.do
+   * http://localhost:9091/jjim/list_by_memberno.do?cateno=
+   * http://localhost:9091/jjim/list_by_memberno.do?cateno=4
+   * @return
+   */
+  @RequestMapping(value="/jjim/list_by_memberno.do", method=RequestMethod.GET )
+  public ModelAndView list_by_memberno(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    
+    if (session.getAttribute("memberno") != null) { // 회원으로 로그인을 했다면 장바구니로 이동
+      int memberno = (int)session.getAttribute("memberno");
+      
+      // 목록
+      ArrayList<JjimVO> list = this.jjimProc.list_by_memberno(memberno);
+      
+      
+          
+      mav.addObject("list", list); // request.setAttribute("list", list);
+      
+      mav.setViewName("/jjim/list_by_memberno"); // /WEB-INF/views/categrp/list_by_memberno.jsp
+      
+    } else { // 회원으로 로그인하지 않았다면
+      // http://localhost:9091/member/login.do?return_url=/jjim/list_by_memberno.do
+      
+      mav.addObject("return_url", "/jjim/list_by_memberno.do"); // 로그인 후 이동할 주소 ★
+      
+      mav.setViewName("redirect:/member/login.do"); // /WEB-INF/views/member/login_ck_form.jsp
 
     }
-
     return mav;
   }
-
+  
   /**
-   * 오류 메시지
-   * @param url
-   * @return
+   * 수량 변경, http://localhost:9091/jjim/delete.do
+   * @param session
+   * @param jjimno 장바구니 번호
+   * @param cnt 수량
+   * @return 변경된 레코드 갯수
    */
-  @RequestMapping(value = "/jjim/msg.do", method = RequestMethod.GET)
-  public ModelAndView msg(String url) {
+  @RequestMapping(value="/jjim/update_cnt.do", method=RequestMethod.POST )
+  public ModelAndView update_cnt(HttpSession session, JjimVO jjimVO) {
     ModelAndView mav = new ModelAndView();
 
-    mav.setViewName(url); // forward
-
-    return mav; // forward
+    this.jjimProc.update_cnt(jjimVO);      
+    mav.setViewName("redirect:/jjim/list_by_memberno.do");
+    
+    return mav;
   }
-
   
- 
+  /**
+   * 상품 삭제
+   * http://localhost:9091/jjim/delete.do
+   * @return
+   */
+  @RequestMapping(value="/jjim/delete.do", method=RequestMethod.POST )
+  public ModelAndView delete(HttpSession session, @RequestParam(value="jjimno", defaultValue="0") int jjimno ) {
+    ModelAndView mav = new ModelAndView();
+    
+    this.jjimProc.delete(jjimno);      
+    mav.setViewName("redirect:/jjim/list_by_memberno.do");
+    
+    return mav;
+  }
   
+  /**
+   * 찜 체크
+   * http://localhost:9093/jjim/check.do?memberno=6&galleryno=4
+   * @param memberVO 
+   * @param galleryVO 
+   * @return
+   */
+  @RequestMapping(value="/jjim/check.do", method=RequestMethod.GET )
+  public ModelAndView check(int memberno, int galleryno, JjimVO memberVO, JjimVO galleryVO) {
+    ModelAndView mav = new ModelAndView();
+    System.out.println("memberno" + memberVO.getMemberno());
+    System.out.println("galleryno" + galleryVO.getGalleryno());
 
+    int cnt = this.jjimProc.check(memberno, galleryno);
+    System.out.println(cnt);
+    
+    if (cnt == 0) {
+      mav.setViewName("/jjim/create"); // /WEB-INF/views/contents/passwd_check.jsp
+    }
+    else {
+     mav.setViewName("/jjim/delete");
+    }
+        
+    return mav;
+  }
+  
 }
+
