@@ -23,7 +23,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Art Wave</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -488,19 +488,24 @@
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
+      <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
+    <c:if test="${sessionScope.admin_id != null }">
     <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
     <span class='menu_divide' >│</span>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
-    <span class='menu_divide' >│</span>
-    <A href="./update_text.do?galleryno=${galleryno}&now_page=${param.now_page}">수정</A>
+        <A href="./update_text.do?galleryno=${galleryno}&now_page=${param.now_page}">수정</A>
     <span class='menu_divide' >│</span>
     <A href="./update_file.do?galleryno=${galleryno}&now_page=${param.now_page}">파일 수정</A>  
     <span class='menu_divide' >│</span>
     <A href="./delete.do?galleryno=${galleryno}&now_page=${param.now_page}&exhino=${exhino}">삭제</A>  
+    <span class='menu_divide' >│</span>
+    </c:if>
+    <A href="javascript:location.reload();">새로 고침</A>
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino.do?exhino=${exhiVO.exhino }">기본 목록형</A>    
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
+
+
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
@@ -597,8 +602,7 @@
           <form>
           <input type='number' name='ordercnt' value='1' required="required" 
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
-          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
-          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
+          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">주문 담기</button>           
           <button type='button' onclick="jjim_ajax(${galleryno })" class="btn btn-info">♥(${jjim })</button>
           <span id="span_animation"></span>
           </form>
