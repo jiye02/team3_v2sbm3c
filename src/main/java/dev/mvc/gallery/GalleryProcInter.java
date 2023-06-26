@@ -150,19 +150,7 @@ public interface GalleryProcInter {
    */   
   public int decreaseReplycnt(int galleryno);
   
-  /**
-   * 추천 증가
-   * @param 
-   * @return
-   */   
-  public int update_cnt_add(int galleryno);
   
-  /**
-   * 추천 감소
-   * @param 
-   * @return
-   */   
-  public int update_cnt_sub(int galleryno);
 
     
   
