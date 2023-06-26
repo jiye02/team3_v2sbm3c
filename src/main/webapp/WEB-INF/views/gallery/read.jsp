@@ -439,8 +439,8 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
         <h4 class="modal-title" id='modal_title'></h4><!-- 제목 -->
+        <button type="button" class="close" data-dismiss="modal">X</button>
       </div>
       <div class="modal-body">
         <p id='modal_content'></p>  <!-- 내용 -->
@@ -488,19 +488,24 @@
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
+      <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
+    <c:if test="${sessionScope.admin_id != null }">
     <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
     <span class='menu_divide' >│</span>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
-    <span class='menu_divide' >│</span>
-    <A href="./update_text.do?galleryno=${galleryno}&now_page=${param.now_page}">수정</A>
+        <A href="./update_text.do?galleryno=${galleryno}&now_page=${param.now_page}">수정</A>
     <span class='menu_divide' >│</span>
     <A href="./update_file.do?galleryno=${galleryno}&now_page=${param.now_page}">파일 수정</A>  
     <span class='menu_divide' >│</span>
     <A href="./delete.do?galleryno=${galleryno}&now_page=${param.now_page}&exhino=${exhino}">삭제</A>  
+    <span class='menu_divide' >│</span>
+    </c:if>
+    <A href="javascript:location.reload();">새로 고침</A>
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino.do?exhino=${exhiVO.exhino }">기본 목록형</A>    
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
+
+
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
