@@ -468,7 +468,7 @@
     </div>
   </div>
 </div>
-<!-- -------------------- 댓글 삭제폼 종료 -------------------- -->
+<!-- -------------------- 댓글 삭제폼 종료 ------ -------------- -->
    
 <DIV class='title_line'>
   <A href="./list_by_exhino.do?exhino=${exhiVO.exhino }" class='title_link'>${exhiVO.name }</A>
