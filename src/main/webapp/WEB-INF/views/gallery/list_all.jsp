@@ -7,7 +7,12 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
+<<<<<<< HEAD
 <title>Art Wave</title>
+=======
+<title>Art world</title>
+<link rel="shortcut icon" href="/images/ex_top.png" /> <%-- /static 기준 --%>
+>>>>>>> 356f201a38cca5796d91b51e5f4ede86af45d965
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
