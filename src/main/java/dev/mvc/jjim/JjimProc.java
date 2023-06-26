@@ -23,15 +23,20 @@ public class JjimProc implements JjimProcInter {
   }
   
   @Override
-  public int check(JjimVO jjimVO) {
-    int cnt = this.jjimDAO.check(jjimVO);
-    
+  public int update_cnt(JjimVO jjimVO) {
+    int cnt = this.jjimDAO.update_cnt(jjimVO);
     return cnt;
   }
   
   @Override
-  public int delete(int memberno) {
-    int cnt = this.jjimDAO.delete(memberno);
+  public int delete(int jjimno) {
+    int cnt = this.jjimDAO.delete(jjimno);
+    return cnt;
+  }
+  
+  @Override
+  public int check(int memberno, int galleryno) {
+    int cnt = this.jjimDAO.check(memberno, galleryno);
     return cnt;
   }
   

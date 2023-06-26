@@ -6,33 +6,32 @@
   
   <!-- 생성 -->
   <insert id="create" parameterType="dev.mvc.jjim.JjimVO" >
-    INSERT INTO jjim(jjimnum, memberno, galleryno, rdate)
+    INSERT INTO jjim(jjimno, memberno, galleryno, rdate)
     VALUES(jjim_seq.nextval, #{memberno}, #{galleryno}, sysdate)
   
   </insert>
       
-  <!-- 체크 -->
-  <select id="check"  resultType="int" parameterType="dev.mvc.jjim.JjimVO">
-  SELECT COUNT(galleryno) FROM jjim
-  WHERE galleryno = #{galleryno} AND memberno = #{memberno}
-  
-  </select>
+
   
   <!-- 삭제 -->
   <delete id="delete" parameterType="dev.mvc.jjim.JjimVO">
-    DELETE FROM RECOM 
-    WHERE memberno = #{memberno}
+    DELETE FROM jjim
+    WHERE jjimno = #{jjimno}
   
   </delete>
   
-  <select id="list_by_memberno" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
-    SELECT jjimnum, memberno, galleryno, rdate
+  <select id="list_by_memberno" resultType="dev.mvc.jjim.JjimVO" parameterType="int">
+    SELECT jjimno, memberno, galleryno, rdate
     FROM jjim
     WHERE memberno=#{memberno}
     ORDER BY memberno DESC
 
   </select> 
-  
+  <!-- 찜을 했는지 확인후 안했으면 INSERT 실행, 했으면 DELETE 실행 -->
+  <select id="check" resultType="int" parameterType="int">
+  SELECT COUNT(*) as cnt FROM jjim
+  WHERE memberno=#{memberno} AND galleryno=#{galleryno}
+    </select> 
   
   
   

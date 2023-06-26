@@ -23,8 +23,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art Wave</title>
-<link rel="shortcut icon" href="/images/ex_top.png" />
+<title>Resort world</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -35,8 +34,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
 <script type="text/javascript">
-  let reply_list; // 댓글 목록
-  
   $(function(){
       $('#btn_jjim').on("click", function() { update_jjim_ajax(${galleryno}); });
     $('#btn_login').on('click', login_ajax);
@@ -48,8 +45,6 @@
     $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
 
     list_by_galleryno_join(); // 댓글 목록
-
-    $('#btn_add').on('click', list_by_galleryno_join_add);  // [더보기] 버튼
     // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
     
   });
@@ -122,6 +117,8 @@
             // alert('로그인 성공');
             $('#login_yn').val('YES'); // 로그인 성공 기록
             basket_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
+            $('#login_yn').val('YES'); // 로그인 성공 기록
+            jjim_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
             
           } else {
             alert('로그인에 실패했습니다.<br>잠시후 다시 시도해주세요.');
@@ -137,6 +134,65 @@
 
   }
 
+  <%-- 찜 상품 추가 --%>
+  function jjim_ajax(galleryno) {
+    var f = $('#frm_login');
+    $('#galleryno', f).val(galleryno);  // 쇼핑카트 등록시 사용할 상품 번호를 저장.
+    
+    console.log('-> galleryno: ' + $('#galleryno', f).val()); 
+    
+    // console.log('-> id:' + '${sessionScope.id}');
+    if ('${sessionScope.id}' != '' || $('#login_yn').val() == 'YES') {  // 로그인이 되어 있다면
+      jjim_ajax_post();
+    } else { // 로그인 안된 경우
+      $('#div_login').show();
+    }
+
+  }
+
+  <%-- 찜 상품 등록 --%>
+  function jjim_ajax_post() {
+    var f = $('#frm_login');
+    var galleryno = $('#galleryno', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
+    
+    var params = "";
+    // params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+    params += 'galleryno=' + galleryno;
+    params += '&${ _csrf.parameterName }=${ _csrf.token }';
+    console.log('-> jjim_ajax_post: ' + params);
+    // return;
+    
+    $.ajax(
+      {
+        url: '/jjim/create.do',
+        type: 'post',  // get, post
+        cache: false, // 응답 결과 임시 저장 취소
+        async: true,  // true: 비동기 통신
+        dataType: 'json', // 응답 형식: json, html, xml...
+        data: params,      // 데이터
+        success: function(rdata) { // 응답이 온경우
+          var str = '';
+          console.log('-> jjim_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
+          
+          if (rdata.cnt == 1) {
+            var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
+            if (sw == true) {
+              // 쇼핑카트로 이동
+              location.href='/jjim/list_by_memberno.do';
+            }           
+          } else {
+            alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
+          }
+        },
+        // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+        error: function(request, status, error) { // callback 함수
+          console.log(error);
+        }
+      }
+    );  //  $.ajax END
+
+  }
+  
   <%-- 쇼핑 카트에 상품 추가 --%>
   function basket_ajax(galleryno) {
     var f = $('#frm_login');
@@ -274,7 +330,7 @@
     }
   }
 
-  // galleryno 별 소속된 댓글 목록, 2건만 출력
+  // galleryno 별 소속된 댓글 목록
   function list_by_galleryno_join() {
     var params = 'galleryno=' + ${galleryVO.galleryno };
 
@@ -290,20 +346,8 @@
         var msg = '';
         
         $('#reply_list').html(''); // 패널 초기화, val(''): 안됨
-
-        // -------------------- 전역 변수에 댓글 목록 추가 --------------------
-        reply_list = rdata.list;
-        // -------------------- 전역 변수에 댓글 목록 추가 --------------------
-        // alert('rdata.list.length: ' + rdata.list.length);
         
-        var last_index=1; 
-        if (rdata.list.length >= 2 ) { // 글이 2건 이상이라면 2건만 출력
-          last_index = 2
-        }
-
-        for (i=0; i < last_index; i++) {
-          // alert('i: ' + i); 
-          
+        for (i=0; i < rdata.list.length; i++) {
           var row = rdata.list[i];
           
           msg += "<DIV id='"+row.replyno+"' style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
@@ -380,38 +424,6 @@
       }
     });
   }
-
-  // // [더보기] 버튼 처리
-  function list_by_galleryno_join_add() {
-    // alert('list_by_galleryno_join_add called');
-    
-    let cnt_per_page = 2; // 2건씩 추가
-    let replyPage=parseInt($("#reply_list").attr("data-replyPage"))+cnt_per_page; // 2
-    $("#reply_list").attr("data-replyPage", replyPage); // 2
-    
-    var last_index=replyPage + 2; // 4
-    // alert('replyPage: ' + replyPage);
-    
-    var msg = '';
-    for (i=replyPage; i < last_index; i++) {
-      var row = reply_list[i];
-      
-      msg = "<DIV id='"+row.replyno+"' style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
-      msg += "<span style='font-weight: bold;'>" + row.id + "</span>";
-      msg += "  " + row.rdate;
-      
-      if ('${sessionScope.memberno}' == row.memberno) { // 글쓴이 일치여부 확인, 본인의 글만 삭제 가능함 ★
-        msg += " <A href='javascript:reply_delete("+row.replyno+")'><IMG src='/reply/images/delete.png'></A>";
-      }
-      msg += "  " + "<br>";
-      msg += row.content;
-      msg += "</DIV>";
-
-      // alert('msg: ' + msg);
-      $('#reply_list').append(msg);
-    }    
-  }
-  
   // -------------------- 댓글 관련 종료 --------------------
   
 </script>
@@ -446,8 +458,8 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
         <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
       </div>
       <div class="modal-body">
         <form name='frm_reply_delete' id='frm_reply_delete'>
@@ -468,67 +480,29 @@
     </div>
   </div>
 </div>
-<!-- -------------------- 댓글 삭제폼 종료 ------ -------------- -->
+<!-- -------------------- 댓글 삭제폼 종료 -------------------- -->
    
-<DIV class='title_line'>
-  <A href="./list_by_exhino.do?exhino=${exhiVO.exhino }" class='title_link'>${exhiVO.name }</A>
+<DIV class='title_line'> 
+  <A href="../exhi/list_by_exhigrpno.do?exhigrpno=${exhigrpVO.exhigrpno }" class='title_link'>${exhigrpVO.name }</A>
+  <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }" class='title_link'>${exhiVO.name }</A>
 </DIV>
 
 <DIV class='content_body'>
-<<<<<<< HEAD
   <ASIDE class="aside_right">
-
-     <c:choose>
-      <c:when test="${sessionScope.admin_id != null }">
-      <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
-       <span class='menu_divide' >│</span>
-       <A href="javascript:location.reload();">새로고침</A>
-       <span class='menu_divide' >│</span>
-       <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
-       <span class='menu_divide' >│</span>
-       <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
-       <span class='menu_divide' >│</span>
-       <A href="./update_file.do?galleryno=${galleryno}&now_page=${param.now_page}">파일 수정</A>  
-      <span class='menu_divide' >│</span>
-      <A href="./delete.do?galleryno=${galleryno}&now_page=${param.now_page}&exhino=${exhino}">삭제</A> 
-      <span class='menu_divide' >│</span>
-      <A href="./update_text.do?galleryno=${galleryno}&now_page=${param.now_page}">수정</A> 
-    </c:when>
-            <c:otherwise>
-            <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
-             <span class='menu_divide' >│</span>
-             <A href="javascript:location.reload();">새로고침</A>
-              <span class='menu_divide' >│</span>
-              <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
-              <span class='menu_divide' >│</span>
-              <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
-              <span class='menu_divide' >│</span>
-              <A href="./update_file.do?galleryno=${galleryno}&now_page=${param.now_page}">파일 수정</A>
-              </c:otherwise>
-        </c:choose>
-   
-=======
-  <ASIDE class="aside_right">    
-  <c:if test="${sessionScope.admin_id != null }">
-   <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
+    <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
+    <span class='menu_divide' >│</span>
+    <A href="javascript:location.reload();">새로고침</A>
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
+    <span class='menu_divide' >│</span>
+    <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
     <span class='menu_divide' >│</span>
     <A href="./update_text.do?galleryno=${galleryno}&now_page=${param.now_page}">수정</A>
     <span class='menu_divide' >│</span>
     <A href="./update_file.do?galleryno=${galleryno}&now_page=${param.now_page}">파일 수정</A>  
     <span class='menu_divide' >│</span>
-    <A href="./delete.do?galleryno=${galleryno}&now_page=${param.now_page}&exhino=${exhino}">삭제</A>
-    <span class='menu_divide' >│</span>
-    </c:if>
-      
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino.do?exhino=${exhino} &now_page=1&word=">기본 목록형</A>    
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_grid.do?exhino=${exhino}&now_page=1&word=">갤러리형</A>
-
->>>>>>> 895b6a0d279e04b162693d316b748bc29957eb42
+    <A href="./delete.do?galleryno=${galleryno}&now_page=${param.now_page}&exhino=${exhino}">삭제</A>  
   </ASIDE> 
-
   
   <DIV style="text-align: right; clear: both;">  
     <form name='frm' id='frm' method='get' action='./list_by_exhino_search.do'>
@@ -625,9 +599,8 @@
           <input type='number' name='ordercnt' value='1' required="required" 
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
           <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
-          <button type='button' onclick="" class="btn btn-info">바로 구매</button>
-          <button type='button' onclick="" class="btn btn-info">관심 상품</button>
-          <button type='button' id="btn_jjim" class="btn btn-info">♥(${jjim })</button>
+          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
+          <button type='button' onclick="jjim_ajax(${galleryno })" class="btn btn-info">♥(${jjim })</button>
           <span id="span_animation"></span>
           </form>
         </DIV> 
@@ -663,7 +636,7 @@
         <button type='button' id='btn_create'>등록</button>
     </FORM>
     <HR>
-    <DIV id='reply_list' data-replyPage='0'>  <%-- 댓글 목록 --%>
+    <DIV id='reply_list' data-replypage='1'>  <%-- 댓글 목록 --%>
     
     </DIV>
     <DIV id='reply_list_btn' style='border: solid 1px #EEEEEE; margin: 0px auto; width: 100%; background-color: #EEFFFF;'>
