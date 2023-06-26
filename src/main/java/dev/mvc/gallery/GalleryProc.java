@@ -339,6 +339,18 @@ public class GalleryProc implements GalleryProcInter {
       int cnt = this.galleryDAO.jjim_sub(galleryno);
       return cnt;
     }
+    
+    @Override
+    public int update_cnt_add(int galleryno) {
+      int count = galleryDAO.update_cnt_add(galleryno);
+      return count;
+    }
+
+    @Override
+    public int update_cnt_sub(int galleryno) {
+      int count = galleryDAO.update_cnt_sub(galleryno);
+      return count;
+    }
 
  
 }
