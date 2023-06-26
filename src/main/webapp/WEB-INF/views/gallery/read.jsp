@@ -439,8 +439,8 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
         <h4 class="modal-title" id='modal_title'></h4><!-- 제목 -->
+        <button type="button" class="close" data-dismiss="modal">X</button>
       </div>
       <div class="modal-body">
         <p id='modal_content'></p>  <!-- 내용 -->
