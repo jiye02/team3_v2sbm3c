@@ -57,7 +57,7 @@ commit;
 -- 전체 목록
 SELECT order_payno, memberno, rname, rtel, rzipcode, raddress1, raddress2, paytype, amount, rdate
 FROM order_pay
-ORDER BY order_payno DESC;
+ORDER BY order_payno ASC;
 
 --회원별 목록
 SELECT order_payno, memberno, rname, rtel, rzipcode, raddress1, raddress2, paytype, amount, rdate

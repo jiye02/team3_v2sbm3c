@@ -46,11 +46,11 @@ public class BasketVO {
         this.basketno = basketno;
     }
 
-    public int getContentsno() {
+    public int getGalleryno() {
         return galleryno;
     }
 
-    public void setContentsno(int galleryno) {
+    public void setGalleryno(int galleryno) {
         this.galleryno = galleryno;
     }
 
