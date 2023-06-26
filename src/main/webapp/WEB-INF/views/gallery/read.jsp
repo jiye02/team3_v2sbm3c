@@ -488,8 +488,15 @@
 </DIV>
 
 <DIV class='content_body'>
+<<<<<<< HEAD
+   
+  <ASIDE class="aside_right">    
+  <c:if test="${sessionScope.admin_id != null }">
+   <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
+=======
   <ASIDE class="aside_right">
     <A href="./create.do?exhino=${exhiVO.exhino }">등록</A>
+>>>>>>> 722caea5bf06806aeb19f15985e719c01cce9533
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
@@ -501,7 +508,11 @@
     <span class='menu_divide' >│</span>
     <A href="./update_file.do?galleryno=${galleryno}&now_page=${param.now_page}">파일 수정</A>  
     <span class='menu_divide' >│</span>
+<<<<<<< HEAD
+    <A href="./list_by_exhino_grid.do?exhino=${exhino}&now_page=1&word=">갤러리형</A>
+=======
     <A href="./delete.do?galleryno=${galleryno}&now_page=${param.now_page}&exhino=${exhino}">삭제</A>  
+>>>>>>> 722caea5bf06806aeb19f15985e719c01cce9533
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
@@ -597,10 +608,16 @@
           <span style="font-size: 1.0em;">수량</span><br>
           <form>
           <input type='number' name='ordercnt' value='1' required="required" 
+<<<<<<< HEAD
+                     min="1" max="99999" step="1" class="form-control" style='width: 20%;'><br>
+          <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">주문 담기</button>           
+          <button type='button' id="btn_jjim" class="btn btn-info">♥(${jjim })</button>
+=======
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
           <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">장바구니</button>           
           <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">바로 구매</button>
           <button type='button' onclick="jjim_ajax(${galleryno })" class="btn btn-info">♥(${jjim })</button>
+>>>>>>> 722caea5bf06806aeb19f15985e719c01cce9533
           <span id="span_animation"></span>
           </form>
         </DIV> 

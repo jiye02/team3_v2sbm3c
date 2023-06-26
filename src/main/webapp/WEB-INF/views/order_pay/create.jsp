@@ -196,20 +196,20 @@
       <input type='text' class="form-control" name='rname' id='rname' 
                 value='' required="required" style='width: 30%;' placeholder="수취인 성명*">
     </div>   
-
+    <br>
     <div class="form_input">
       <input type='text' class="form-control" name='rtel' id='rtel' value='' required="required" style='width: 30%;' placeholder="수취인 전화번호*"> 예) 010-0000-0000
     </div>   
-
+    <br>
     <div class="form_input">
       <input type='text' class="form-control" name='rzipcode' id='rzipcode' value='' style='width: 30%;' placeholder="우편번호*">
       <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-info btn-sm">
     </div>  
-
+    <br>
     <div class="form_input">
       <input type='text' class="form-control" name='raddress1' id='raddress1' value='' style='width: 80%;' placeholder="주소*">
     </div>   
-
+    <br>
     <div class="form_input">
       <input type='text' class="form-control" name='raddress2' id='raddress2' value='' style='width: 80%;' 
                 placeholder="상세 주소(없을시 수취인 성명 입력)*">
@@ -313,12 +313,13 @@
           <div class='basket_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
         </td>
         <td style='width: 50%;'>
-          <div class='basket_label' style='font-size: 2.0em;'>전체 예약 금액</div>
-          <div class='basket_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
+          <div class='basket_label' style='font-size: 1.5em;'>전체 예약 금액</div>
+          <div class='basket_price'  style='font-size: 1.5em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
-          <button type='button' id='btn_order_pay' class='btn btn-info' style='font-size: 1.5em;'>결제하기</button>
+          <button type='button' id='btn_order_pay' class='btn btn-info' onclick="location.href='/order_pay/create.do'" 
+                      style='font-size: 1.3em;'>결제하기</button>
           <button type='button' id='btn_basket' class='btn btn-info' onclick="location.href='/basket/list_by_memberno.do'" 
-                      style='font-size: 1.5em;'>취소하기(장바구니)</button>
+                      style='font-size: 1.3em;'>취소하기(장바구니)</button>
         <td>
       </tr>
     </tbody>

@@ -58,13 +58,13 @@
       
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='text' class="form-control" name='title' value='겨울' placeholder="제목" required="required" style='width: 80%;'>
+          <input type='text' class="form-control" name='title' value='' placeholder="제목" required="required" style='width: 80%;'>
         </div>
       </div>   
       
       <div class="form-group">   
         <div class="col-md-12">
-          <textarea class="form-control" name='content' id='content' rows='10' placeholder="내용">겨울</textarea>
+          <textarea class="form-control" name='content' id='content' rows='10' placeholder="내용"></textarea>
         </div>
       </div>
 
@@ -78,13 +78,7 @@
       
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='text' class="form-control" name='web' value='http://www.kma.go.kr' placeholder="인터넷 주소" style='width: 80%;'>
-        </div>
-      </div>   
-      
-      <div class="form-group">   
-        <div class="col-md-12">
-          <input type='text' class="form-control" name='word'  value='단풍,전나무,오대산,월정사,숲길' placeholder="검색어" style='width: 90%;'>
+          <input type='text' class="form-control" name='word'  value='' placeholder="검색어" style='width: 90%;'>
         </div>
       </div>
 
