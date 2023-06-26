@@ -6,17 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<<<<<<< HEAD
 <title>Art Wave</title>
-<link rel="shortcut icon" href="/images/ex_top.png" >
-=======
-<title>ART Wave</title>
-<<<<<<< HEAD
-<link rel="shortcut icon" href="/images/ex_top.png" /> <%-- /static 기준 --%>
-=======
 <link rel="shortcut icon" href="/images/ex_top.png" />
->>>>>>> abecc7cdd0d68edaa64b937984e9fa8e22a07118
->>>>>>> 0d6e6bc6e43451cc847513459678670f00e99e5a
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기준 -->
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
