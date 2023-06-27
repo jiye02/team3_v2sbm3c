@@ -205,14 +205,14 @@ public class MemberCont {
    * @param memberno
    * @return
    */
-  @RequestMapping(value="/member/delete_u.do", method=RequestMethod.GET)
-  public ModelAndView delete_u(HttpSession session, int memberno) {
+  @RequestMapping(value="/member/leave.do", method=RequestMethod.GET)
+  public ModelAndView leave(HttpSession session, int memberno) {
     ModelAndView mav = new ModelAndView();
     
     if (this.memberProc.isMember(session)== true) {
       MemberVO memberVO = this.memberProc.read(memberno);
       mav.addObject("memberVO", memberVO);
-      mav.setViewName("/member/delete_u");
+      mav.setViewName("/member/leave");
     } else {
       // 로그인을 하지 않은 경우
       mav.setViewName("/member/login_need");
@@ -225,26 +225,26 @@ public class MemberCont {
    * @param memberVO
    * @return
    */
-  @RequestMapping(value="/member/delete_u.do", method=RequestMethod.POST)
-  public ModelAndView delete_u_proc(int memberno){
+  @RequestMapping(value="/member/leave.do", method=RequestMethod.POST)
+  public ModelAndView leave_proc(int memberno){
     ModelAndView mav = new ModelAndView();
     
     // System.out.println("id: " + memberVO.getId());
-    // 삭제된 정보를 msg.jsp에 출력하기 휘해 삭제전에 회원 정보를 읽음.
+    // 탈퇴된 정보를 msg.jsp에 출력하기 휘해 삭제전에 회원 정보를 읽음.
     MemberVO memberVO = this.memberProc.read(memberno); 
         
-    int cnt= this.memberProc.delete(memberno); // 회원 삭제
+    int cnt= this.memberProc.leave(memberno); // 회원 탈퇴
 
     if (cnt == 1) {
-      mav.addObject("code", "delete");
+      mav.addObject("code", "leave_success");
       mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 정보를 변경했습니다.
       mav.addObject("id", memberVO.getId());
     } else {
-      mav.addObject("code", "delete_fail");
+      mav.addObject("code", "leave_fail");
     }
 
     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
-    mav.addObject("url", "/member/msg");  // /member/msg -> /member/msg.jsp
+    mav.addObject("url", "/member/msg");  
     
     mav.setViewName("redirect:/member/msg.do");
     

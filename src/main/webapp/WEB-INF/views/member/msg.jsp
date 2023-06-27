@@ -42,6 +42,23 @@
             <span class="span_fail">회원 가입에 실패했습니다. 다시 시도해주세요.</span>
           </LI>                                                                      
         </c:when>
+        
+         <c:when test="${param.code == 'leave_success'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_success">${param.mname }님(${param.id }) 회원 탈퇴에 성공했습니다.</span>
+          </LI>   
+          <LI class='li_none'>
+            <button type='button' 
+                         onclick="location.href='../index.do'"
+                         class="btn btn-info btn-sm">홈으로</button>
+          </LI>                                                                     
+        </c:when>    
+            
+        <c:when test="${code == 'leave_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">${param.mname }님(${param.id }) 회원 탈퇴에 실패했습니다.</span>
+          </LI>                                                                      
+        </c:when>  
 
         <c:when test="${param.code == 'update_success'}"> <%-- Java if --%>
           <LI class='li_none'>
@@ -69,7 +86,7 @@
           </LI>   
           <LI class='li_none'>
             <button type='button' 
-                         onclick="location.href='/admin/list.do'"
+                         onclick="location.href='/member/list.do'"
                          class="btn btn-info btn-sm">회원 목록</button>
           </LI>                                                                     
         </c:when>    
@@ -78,7 +95,8 @@
           <LI class='li_none'>
             <span class="span_fail">${param.mname }님(${param.id }) 회원 정보 삭제에 실패했습니다.</span>
           </LI>                                                                      
-        </c:when> 
+        </c:when>
+        
         
         <c:when test="${param.code == 'passwd_update_success'}"> <%-- Java if --%>
           <LI class='li_none'>

@@ -63,7 +63,7 @@
                                 <a class="dropdown-item" href="http://localhost:8000/ais/recommend_form/?memberno=${sessionScope.memberno }">관심분야 등록하고 추천받기</a>
                                 <a class="dropdown-item" href="/member/read.do">회원 정보 수정</a>
                                 <a class="dropdown-item" href="/member/passwd_update.do?memberno=${sessionScope.memberno}">비밀번호 변경</a>
-                               <a class="dropdown-item" href="/member/delete_u.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
+                               <a class="dropdown-item" href="/member/leave.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
                               </c:otherwise>
                           </c:choose>
                
