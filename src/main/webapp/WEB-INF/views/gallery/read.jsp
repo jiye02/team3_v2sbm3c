@@ -45,6 +45,7 @@
     $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
 
     list_by_galleryno_join(); // 댓글 목록
+    $('#btn_add').on('click', list_by_galleryno_join_add);  // [더보기] 버튼
     // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
     
   });
@@ -263,7 +264,7 @@
     }
   }
 
-  // 댓글 등록
+//댓글 등록
   function reply_create() {
     var frm_reply = $('#frm_reply');
     
@@ -330,7 +331,7 @@
     }
   }
 
-  // galleryno 별 소속된 댓글 목록
+  // galleryno 별 소속된 댓글 목록, 2건만 출력
   function list_by_galleryno_join() {
     var params = 'galleryno=' + ${galleryVO.galleryno };
 
@@ -346,8 +347,20 @@
         var msg = '';
         
         $('#reply_list').html(''); // 패널 초기화, val(''): 안됨
+
+        // -------------------- 전역 변수에 댓글 목록 추가 --------------------
+        reply_list = rdata.list;
+        // -------------------- 전역 변수에 댓글 목록 추가 --------------------
+        // alert('rdata.list.length: ' + rdata.list.length);
         
-        for (i=0; i < rdata.list.length; i++) {
+        var last_index=1; 
+        if (rdata.list.length >= 2 ) { // 글이 2건 이상이라면 2건만 출력
+          last_index = 2
+        }
+
+        for (i=0; i < last_index; i++) {
+          // alert('i: ' + i); 
+          
           var row = rdata.list[i];
           
           msg += "<DIV id='"+row.replyno+"' style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
@@ -424,7 +437,40 @@
       }
     });
   }
+
+  // // [더보기] 버튼 처리
+  function list_by_galleryno_join_add() {
+    // alert('list_by_galleryno_join_add called');
+    
+    let cnt_per_page = 2; // 2건씩 추가
+    let replyPage=parseInt($("#reply_list").attr("data-replyPage"))+cnt_per_page; // 2
+    $("#reply_list").attr("data-replyPage", replyPage); // 2
+    
+    var last_index=replyPage + 2; // 4
+    // alert('replyPage: ' + replyPage);
+    
+    var msg = '';
+    for (i=replyPage; i < last_index; i++) {
+      var row = reply_list[i];
+      
+      msg = "<DIV id='"+row.replyno+"' style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
+      msg += "<span style='font-weight: bold;'>" + row.id + "</span>";
+      msg += "  " + row.rdate;
+      
+      if ('${sessionScope.memberno}' == row.memberno) { // 글쓴이 일치여부 확인, 본인의 글만 삭제 가능함 ★
+        msg += " <A href='javascript:reply_delete("+row.replyno+")'><IMG src='/reply/images/delete.png'></A>";
+      }
+      msg += "  " + "<br>";
+      msg += row.content;
+      msg += "</DIV>";
+
+      // alert('msg: ' + msg);
+      $('#reply_list').append(msg);
+    }    
+  }
+  
   // -------------------- 댓글 관련 종료 --------------------
+  
   
 </script>
  
