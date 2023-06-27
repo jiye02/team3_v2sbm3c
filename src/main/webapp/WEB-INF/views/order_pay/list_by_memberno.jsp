@@ -28,10 +28,10 @@
 </head> 
  
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
+<c:import url="/menu/top.do" />
  
   <DIV class='title_line'>
-    ${sessionScope.id }님 예약결제 내역
+    ${sessionScope.id }님 예약 결제 내역
   </DIV>
 
   <DIV class='content_body' style='width: 100%;'>
@@ -53,17 +53,17 @@
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
       <col style='width: 13%;'/>
-      <col style='width: 5%;'/>
+      <col style='width: 7%;'/>
     </colgroup>
     <TR>
-      <TH class='th_bs'>예약<br>번호</TH>
-      <TH class='th_bs'>회원<br>번호</TH>
-      <TH class='th_bs'>수취인<br>성명</TH>
-      <TH class='th_bs'>수취인<br>전화번호</TH>
-      <TH class='th_bs'>수취인<br>주소</TH>
+      <TH class='th_bs'>예약 번호</TH>
+      <TH class='th_bs'>회원 번호</TH>
+      <TH class='th_bs'>성명</TH>
+      <TH class='th_bs'>전화번호</TH>
+      <TH class='th_bs'>주소</TH>
       <TH class='th_bs'>결제 타입</TH>
       <TH class='th_bs'>결제 금액</TH>
-      <TH class='th_bs'>예약일</TH>
+      <TH class='th_bs'>예약일자</TH>
       <TH class='th_bs'>조회</TH>
     </TR>
    

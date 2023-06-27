@@ -139,8 +139,7 @@
             <td style='text-align: center; vertical-align: middle;'>${attachfileVO.thumb}</td>
             <td style='text-align: center; vertical-align: middle;'>${attachfileVO.rdate.substring(0, 10)}</td>
             <td style='text-align: center; vertical-align: middle;'>
-              <%-- <a href="./delete.do?attachfileno=${attachfileVO.attachfileno}"><img src="./images/delete.png" title="삭제"></a> --%>
-              <A href="javascript: delete_form(${attachfileVO.attachfileno})"><img src="./images/delete.png" title="삭제"></A>
+              <A href="javascript: delete_form(${attachfileVO.attachfileno})"><img src="./images/delete1.png" title="삭제"></A>
             </td>
           </tr>
         </c:forEach>

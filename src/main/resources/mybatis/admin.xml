@@ -70,8 +70,6 @@
     SET passwd=#{passwd}
     WHERE adminno=#{adminno}
   </update>  
-   
-
   
-</mapper>
-
+  
+  </mapper> 

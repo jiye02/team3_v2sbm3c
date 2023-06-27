@@ -22,7 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.order_pay.Order_payProcInter;
 import dev.mvc.order_pay.Order_payVO;
-
+import dev.mvc.reply.ReplyMemberVO;
+import dev.mvc.reply.ReplyVO;
 import dev.mvc.basket.BasketProcInter;
 import dev.mvc.basket.BasketVO;
 
@@ -213,6 +214,6 @@ public class Order_payCont {
 
    return mav;
  }
-
+ 
 
 }

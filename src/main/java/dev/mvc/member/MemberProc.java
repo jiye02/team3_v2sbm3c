@@ -99,12 +99,27 @@ public class MemberProc implements MemberProcInter {
     return cnt;
   }
 
-  public boolean isAdmin(HttpSession session) {
-    // TODO Auto-generated method stub
-    return false;
+
+  @Override
+  public int leave(int memberno) {
+    int cnt = this.memberDAO.leave(memberno);
+    return cnt;
+  }
+  @Override
+  public MemberVO id_find(MemberVO memberVO) {
+    MemberVO vo = this.memberDAO.id_find(memberVO);
+    return vo;
   }
   
+<<<<<<< HEAD
   
+=======
+  @Override
+  public MemberVO passwd_find(MemberVO memberVO) {
+    MemberVO vo = this.memberDAO.passwd_find(memberVO);
+    return vo;
+  }
+>>>>>>> 705b0d774e2fe81ec64afd4a91bce4dc79529120
 }
 
 
