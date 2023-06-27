@@ -122,7 +122,7 @@
               <td style='vertical-align: middle; text-align: center;'>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
-                <A href="javascript: delete_func(${jjimno })"><IMG src="/images/delete.png" class="icon"></A>
+                <A href="javascript: delete_func(${jjimno })"><IMG src="/jjim/images/delete.png" class="icon"></A>
               </td>
             </tr>
           </c:forEach>

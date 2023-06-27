@@ -104,10 +104,12 @@ WHERE memberno=1;
 
 COMMIT;
 
- 
+SELECT * FROM member;
 5. 특정 회원 삭제
 DELETE FROM member
 WHERE memberno=4;
+
+
 
 COMMIT;
 
