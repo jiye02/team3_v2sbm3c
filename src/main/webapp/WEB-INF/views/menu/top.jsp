@@ -60,12 +60,14 @@
                                 <a class="dropdown-item" href="#">비밀번호 찾기</a>
                               </c:when>
                               <c:otherwise>
-                                <a class="dropdown-item" href="http://localhost:8000/ais/recommend_form/?memberno=${sessionScope.memberno }">관심분야 등록하고 추천받기</a>
+                                <a class="dropdown-item" href="/order_pay/list_by_memberno.do?memberno=${sessionScope.memberno }">예약 주문 내역</a>
+                                <a class="dropdown-item" href="http://localhost:8000/ais/recommend_form/?memberno=${sessionScope.memberno }">관심 분야 등록</a>
                                 <a class="dropdown-item" href="/member/read.do">회원 정보 수정</a>
                                 <a class="dropdown-item" href="/member/passwd_update.do?memberno=${sessionScope.memberno}">비밀번호 변경</a>
                                <a class="dropdown-item" href="/member/leave.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
                               </c:otherwise>
                           </c:choose>
+                          </div>
                
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
@@ -77,13 +79,13 @@
                       <li class="nav-item dropdown"> <%-- 관리자 서브 메뉴 --%>
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">관리자</a>
                         <div class="dropdown-menu">
+                          <a class="dropdown-item" href='/member/list.do'>회원 목록</a>        
+                          <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>                             
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
-                          <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>
-                          <a class="dropdown-item" href='/member/list.do'>회원 목록</a>
-                           <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
-                            <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
-                          <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                           <a class="dropdown-item" href='/reply/list.do'> 댓글 전체 목록</a>
+                          <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
+                          <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
+                          <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                           
                         </div>
                         
@@ -96,9 +98,9 @@
         </nav>
 
     </div>
+    </DIV>
     <!-- 헤더 end -->
     
     <%-- 내용 --%> 
     <DIV class='content'>
-      <div style='clear: both; height: 50px;'></div>
-      
+      <div style='clear: both; height: 50px;'></div></DIV>

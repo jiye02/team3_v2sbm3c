@@ -99,7 +99,6 @@ public class MemberProc implements MemberProcInter {
     return cnt;
   }
 
-
   @Override
   public int leave(int memberno) {
     int cnt = this.memberDAO.leave(memberno);
@@ -111,15 +110,11 @@ public class MemberProc implements MemberProcInter {
     return vo;
   }
   
-<<<<<<< HEAD
-  
-=======
   @Override
   public MemberVO passwd_find(MemberVO memberVO) {
     MemberVO vo = this.memberDAO.passwd_find(memberVO);
     return vo;
   }
->>>>>>> 705b0d774e2fe81ec64afd4a91bce4dc79529120
 }
 
 
