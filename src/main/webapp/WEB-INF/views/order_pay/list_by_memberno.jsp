@@ -53,11 +53,11 @@
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
       <col style='width: 13%;'/>
-      <col style='width: 5%;'/>
+      <col style='width: 7%;'/>
     </colgroup>
     <TR>
-      <TH class='th_bs'>예약<br>번호</TH>
-      <TH class='th_bs'>회원<br>번호</TH>
+      <TH class='th_bs'>예약 번호</TH>
+      <TH class='th_bs'>회원 번호</TH>
       <TH class='th_bs'>성명</TH>
       <TH class='th_bs'>전화번호</TH>
       <TH class='th_bs'>주소</TH>

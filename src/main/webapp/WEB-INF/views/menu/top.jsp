@@ -67,6 +67,7 @@
                                <a class="dropdown-item" href="/member/delete_u.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
                              </c:otherwise>
                           </c:choose>
+                       </div>
                
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
@@ -97,9 +98,11 @@
         </nav>
 
     </div>
+    </DIV>
     <!-- 헤더 end -->
     
     <%-- 내용 --%> 
     <DIV class='content'>
       <div style='clear: both; height: 50px;'></div>
+      </DIV>
       
