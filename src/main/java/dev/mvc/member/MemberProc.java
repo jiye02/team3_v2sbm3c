@@ -104,6 +104,7 @@ public class MemberProc implements MemberProcInter {
     return false;
   }
   
+  
 }
 
 

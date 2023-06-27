@@ -81,5 +81,6 @@ public interface MemberDAOInter {
    */
   public int login(HashMap<String, Object> map);
   
+  
 }
  

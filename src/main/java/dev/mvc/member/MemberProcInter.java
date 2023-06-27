@@ -82,6 +82,8 @@ public interface MemberProcInter {
    */
   public int login(HashMap<String, Object> map);
   
+
+  
 }
 
 

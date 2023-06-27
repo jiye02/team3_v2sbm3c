@@ -1,6 +1,7 @@
 package dev.mvc.jjim;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface JjimProcInter {
   /**
@@ -35,7 +36,7 @@ public interface JjimProcInter {
    * @param recomVO
    * @return
    */
-  public int check(int memberno, int galleryno);
+  public int check(HashMap<Object, Object> map);
   
 }
 

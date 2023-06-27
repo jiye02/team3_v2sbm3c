@@ -1,6 +1,7 @@
 package dev.mvc.jjim;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface JjimDAOInter {
   /**
@@ -35,6 +36,7 @@ public interface JjimDAOInter {
    * @param jjimVO
    * @return
    */
-  public int check(int memberno, int galleryno);
+  public int check(HashMap<Object, Object> map);
+
   
 }

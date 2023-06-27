@@ -1,6 +1,7 @@
 package dev.mvc.jjim;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,11 +35,31 @@ public class JjimProc implements JjimProcInter {
     return cnt;
   }
   
+  /*
+   * @Override public int check(HashMap<Object, Object> map) { int cnt =
+   * this.jjimDAO.check(map);
+   * 
+   * if (cnt==0) { // 이미 찜한 경우, DELETE 실행 this.jjimDAO.delete(cnt); } else { //
+   * 찜하지 않은 경우, INSERT 실행 this.jjimDAO.check(map); } return cnt; }
+   */
+  
   @Override
-  public int check(int memberno, int galleryno) {
-    int cnt = this.jjimDAO.check(memberno, galleryno);
+  public int check(HashMap<Object, Object> map) {
+    int cnt = this.jjimDAO.check(map);
+
+    if (cnt == 0) {
+      // 찜하지 않은 경우, INSERT 실행
+      this.jjimDAO.create((JjimVO) map.get("jjimVO"));
+    } else {
+      // 이미 찜한 경우, DELETE 실행
+      this.jjimDAO.delete((int) map.get("jjimno"));
+    }
+
+    cnt = this.jjimDAO.check(map); // 다시 확인하여 변경된 cnt 값 가져오기
     return cnt;
   }
+  
+  
   
 }
 

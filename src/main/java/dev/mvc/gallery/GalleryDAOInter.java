@@ -142,6 +142,7 @@ public interface GalleryDAOInter {
    */   
   public int decreaseReplycnt(int galleryno);
   
+
   
 }
 

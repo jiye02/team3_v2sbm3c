@@ -3,36 +3,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.mvc.jjim.JjimDAOInter">
-  
-  <!-- 생성 -->
-  <insert id="create" parameterType="dev.mvc.jjim.JjimVO" >
-    INSERT INTO jjim(jjimno, memberno, galleryno, rdate)
-    VALUES(jjim_seq.nextval, #{memberno}, #{galleryno}, sysdate)
-  
-  </insert>
-      
 
-  
-  <!-- 삭제 -->
-  <delete id="delete" parameterType="dev.mvc.jjim.JjimVO">
-    DELETE FROM jjim
-    WHERE jjimno = #{jjimno}
-  
-  </delete>
-  
+	<!-- 생성 -->
+	<insert id="create" parameterType="dev.mvc.jjim.JjimVO">
+		INSERT INTO jjim(jjimno, memberno, galleryno, rdate)
+		VALUES(jjim_seq.nextval, #{memberno}, #{galleryno}, sysdate)
+	</insert>
+
+
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="dev.mvc.jjim.JjimVO">
+		DELETE FROM jjim
+		WHERE jjimno = #{jjimno}
+	</delete>
+
+	<!-- <select id="list_by_memberno" resultType="dev.mvc.jjim.JjimVO"
+		parameterType="int">
+		SELECT jjimno, memberno, galleryno, rdate
+		FROM jjim
+		WHERE memberno=#{memberno}
+		ORDER BY memberno DESC
+	</select> -->
+	
+	<!-- 찜을 했는지 확인후 안했으면 INSERT 실행, 했으면 DELETE 실행 -->
+	<select id="check" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*) as cnt FROM jjim
+		WHERE memberno=#{memberno} AND galleryno=#{galleryno}
+	</select>
+
+	<!-- 찜을 했는지 확인후 안했으면 INSERT 실행, 했으면 DELETE 실행 <select id="check" resultType="int" 
+		parameterType="int"> SELECT COUNT(*) as cnt FROM jjim WHERE memberno=#{memberno} 
+		AND galleryno=#{galleryno} </select> -->
+		
+		<!-- memberno 회원 번호별 쇼핑카트 목록 출력 -->
   <select id="list_by_memberno" resultType="dev.mvc.jjim.JjimVO" parameterType="int">
-    SELECT jjimno, memberno, galleryno, rdate
-    FROM jjim
-    WHERE memberno=#{memberno}
-    ORDER BY memberno DESC
+    SELECT t.jjimno, c.galleryno, c.title, c.thumb1, t.memberno, t.rdate, t.galleryno  
+    FROM gallery c, jjim t
+    WHERE (c.galleryno = t.galleryno) AND t.memberno = #{memberno}
+    ORDER BY jjimno DESC
+  </select>
 
-  </select> 
-  <!-- 찜을 했는지 확인후 안했으면 INSERT 실행, 했으면 DELETE 실행 -->
-  <select id="check" resultType="int" parameterType="int">
-  SELECT COUNT(*) as cnt FROM jjim
-  WHERE memberno=#{memberno} AND galleryno=#{galleryno}
-    </select> 
-  
-  
-  
+
 </mapper>

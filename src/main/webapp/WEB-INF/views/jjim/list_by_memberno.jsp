@@ -7,7 +7,9 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art word</title>
+<title>Art Wave</title>
+<link rel="shortcut icon" href="/images/ex_top.png" />
+
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -115,8 +117,7 @@
               </td>
               <td style='vertical-align: middle; text-align: center;'>
               <%-- 레코드에 따라 ID를 고유하게 구분할 목적으로 id 값 생성, 예) 1_cnt, 2_cnt, c_cnt... --%>
-                <input type='number' id='${jjimno }_cnt' min='1' max='100' step='1' value="${cnt }" style='width: 52px;'><br>
-                <button type='button' onclick="update_cnt(${jjimno})" class='btn btn-light btn-sm' style='margin-top: 5px;'>변경</button>
+                
               </td>
               <td style='vertical-align: middle; text-align: center;'>
               </td>
