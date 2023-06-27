@@ -43,8 +43,8 @@
    
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
-      <col style='width: 5%;'/>
-      <col style='width: 5%;'/>
+      <col style='width: 7%;'/>
+      <col style='width: 7%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
       <col style='width: 30%;'/>
@@ -56,21 +56,23 @@
      
     </colgroup>
     <TR>
-      <TH class='th_bs'>예약<br>결제</TH>
-      <TH class='th_bs'>예약<br>상세</TH>
-      <TH class='th_bs'>컨텐츠<br>번호</TH>
+      <TH class='th_bs'>예약 결제</TH>
+      <TH class='th_bs'>예약 상세</TH>
+      <TH class='th_bs'>회원 번호</TH>
+      <TH class='th_bs'>전시회 번호</TH>
       <TH class='th_bs'>상품명</TH>
       <TH class='th_bs'>가격</TH>
       <TH class='th_bs'>수량</TH>
       <TH class='th_bs'>금액</TH>
       <TH class='th_bs'>배송상태</TH>
-      <TH class='th_bs'>예약일</TH>
+      <TH class='th_bs'>주문일</TH>
     </TR>
    
     <c:forEach var="order_itemVO" items="${list }">
       <c:set var="order_payno" value ="${order_itemVO.order_payno}" />
       <c:set var="order_itemno" value ="${order_itemVO.order_itemno}" />
-      <c:set var="galleryno" value ="${order_itemVO.galleryno}" />
+      <c:set var="memberno" value ="${order_itemVO.memberno}" />
+      <c:set var="contentsno" value ="${order_itemVO.contentsno}" />
       <c:set var="title" value ="${order_itemVO.title}" />
       <c:set var="saleprice" value ="${order_itemVO.saleprice}" />
       <c:set var="cnt" value ="${order_itemVO.cnt}" />
@@ -82,7 +84,7 @@
       <TD class=td_basic>${order_payno}</TD>
       <TD class=td_basic>${order_itemno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
-      <TD class=td_basic><A href="/gallery/read.do?galleryno=${galleryno}">${galleryno}</A></TD>
+      <TD class=td_basic><A href="/contents/read.do?contentsno=${contentsno}">${contentsno}</A></TD>
       <TD class='td_left'>${title}</TD>
       <TD class='td_left'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
       <TD class='td_basic'>${cnt }</TD>
@@ -109,14 +111,14 @@
     <TR>
       <TD colspan="10"  style="text-align: right; font-size: 1.3em;">
         배송비: <fmt:formatNumber value="${baesong_tot }" pattern="#,###" />  
-        총 예약 금액: <fmt:formatNumber value="${total_order }" pattern="#,###" />  
+        총 주문 금액: <fmt:formatNumber value="${total_order }" pattern="#,###" />  
       </TD>
     </TR>  
   </table>    
    
   <DIV class='bottom_menu'>
-    <button type='button' onclick="location.reload();" class="btn btn-primary">새로고침</button>
-    <button type='button' onclick="location.href='/order_pay/list_by_memberno.do?memberno=${memberno}'" class="btn btn-primary">예약 목록</button>
+    <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
+    <button type='button' onclick="location.href='/order_pay/list_by_memberno.do?memberno=${memberno}'" class="btn btn-primary">결제 목록</button>
   </DIV>
 </DIV>
  
