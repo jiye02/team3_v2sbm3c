@@ -56,8 +56,8 @@
      
     </colgroup>
     <TR>
-      <TH class='th_bs'>예약 결제</TH>
-      <TH class='th_bs'>예약 상세</TH>
+      <TH class='th_bs'>예약 번호</TH>
+      <TH class='th_bs'>상세 번호</TH>
       <TH class='th_bs'>회원 번호</TH>
       <TH class='th_bs'>전시회 번호</TH>
       <TH class='th_bs'>상품명</TH>
@@ -65,14 +65,14 @@
       <TH class='th_bs'>수량</TH>
       <TH class='th_bs'>금액</TH>
       <TH class='th_bs'>배송상태</TH>
-      <TH class='th_bs'>주문일</TH>
+      <TH class='th_bs'>예약일</TH>
     </TR>
    
     <c:forEach var="order_itemVO" items="${list }">
       <c:set var="order_payno" value ="${order_itemVO.order_payno}" />
       <c:set var="order_itemno" value ="${order_itemVO.order_itemno}" />
       <c:set var="memberno" value ="${order_itemVO.memberno}" />
-      <c:set var="contentsno" value ="${order_itemVO.contentsno}" />
+      <c:set var="galleryno" value ="${order_itemVO.galleryno}" />
       <c:set var="title" value ="${order_itemVO.title}" />
       <c:set var="saleprice" value ="${order_itemVO.saleprice}" />
       <c:set var="cnt" value ="${order_itemVO.cnt}" />
@@ -84,7 +84,7 @@
       <TD class=td_basic>${order_payno}</TD>
       <TD class=td_basic>${order_itemno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
-      <TD class=td_basic><A href="/contents/read.do?contentsno=${contentsno}">${contentsno}</A></TD>
+      <TD class=td_basic><A href="/gallery/read.do?galleryno=${galleryno}">${galleryno}</A></TD>
       <TD class='td_left'>${title}</TD>
       <TD class='td_left'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
       <TD class='td_basic'>${cnt }</TD>

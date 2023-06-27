@@ -7,7 +7,7 @@ CREATE TABLE order_item(
         order_itemno                      NUMBER(10)         NOT NULL         PRIMARY KEY,
         memberno                          NUMBER(10)         NULL ,
         order_payno                       NUMBER(10)         NOT NULL,
-        galleryno                        NUMBER(10)         NULL ,
+        galleryno                         NUMBER(10)         NULL ,
         cnt                               NUMBER(5)          DEFAULT 1         NOT NULL,
         tot                               NUMBER(10)         DEFAULT 0         NOT NULL,
         stateno                           NUMBER(1)          DEFAULT 0         NOT NULL,

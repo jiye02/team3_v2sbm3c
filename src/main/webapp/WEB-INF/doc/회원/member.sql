@@ -125,6 +125,7 @@ WHERE memberno=1;
 
 COMMIT;
  
+select * from member;
  
 7. 로그인
 SELECT COUNT(memberno) as cnt

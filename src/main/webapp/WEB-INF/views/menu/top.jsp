@@ -15,8 +15,6 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                   <c:forEach var="exhiVO" items="${list}">
-                    <c:set var="exhino" value="${exhiVO.exhino }" />
-                    <c:set var="name" value="${exhiVO.name }" />
                   
                   </c:forEach>
                   

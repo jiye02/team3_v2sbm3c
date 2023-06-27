@@ -14,7 +14,7 @@ CREATE TABLE order_pay(
     paytype                         NUMBER(1)       DEFAULT 0     NOT NULL,
     amount                          NUMBER(10)      DEFAULT 0     NOT NULL,
     rdate                           DATE            NOT NULL,
-  FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
+    FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
 );
 
 COMMENT ON TABLE order_pay is '주문_결재';

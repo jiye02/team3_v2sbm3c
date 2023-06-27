@@ -2,16 +2,14 @@ package dev.mvc.order_pay;
 
 public class Order_payVO {
 /*
- *  order_payno                       NUMBER(10)     NOT NULL    PRIMARY KEY,
-    MEMBERNO                          NUMBER(10)     NULL ,
-    rname                             VARCHAR2(30)     NOT NULL,
-    rtel                              VARCHAR2(14)     NOT NULL,
-    rzipcode                          VARCHAR2(5)    NULL ,
-    raddress1                         VARCHAR2(80)     NOT NULL,
-    raddress2                         VARCHAR2(50)     NOT NULL,
-    paytype                           NUMBER(1)    DEFAULT 0     NOT NULL,
-    amount                            NUMBER(10)     DEFAULT 0     NOT NULL,
-    rdate                              DATE     NOT NULL,
+COMMENT ON COLUMN order_item.order_itemno is '예약상세번호';
+COMMENT ON COLUMN order_item.MEMBERNO is '회원 번호';
+COMMENT ON COLUMN order_item.order_payno is '예약 번호';
+COMMENT ON COLUMN order_item.GALLERYNO is '컨텐츠 번호';
+COMMENT ON COLUMN order_item.cnt is '수량';
+COMMENT ON COLUMN order_item.tot is '합계';
+COMMENT ON COLUMN order_item.stateno is '예약상태';
+COMMENT ON COLUMN order_item.rdate is '예약날짜';
  * */
   
   /** 주문 번호 */
@@ -28,7 +26,7 @@ public class Order_payVO {
   private String raddress1 = "";
   /** 수취인 주소 2 */
   private String raddress2 = "";
-  /** 결재 타입 1: 신용 카드, 2. 모바일 결재, 3. 포인트 결재 4. 계좌 이체, 5: 직접 입금 */
+  /** 결재 타입 1: 신용 카드, 2. 모바일 결재, 3. 계좌 이체*/
   private int paytype = 1;
   /** 결재 금액 */
   private int amount = 0;
