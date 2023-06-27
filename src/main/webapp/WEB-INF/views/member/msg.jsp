@@ -93,11 +93,8 @@
           <LI class='li_none'>
             <button type='button' 
                          onclick="location.href='/member/list.do'"
-<<<<<<< HEAD
-                         class="btn btn-info btn-sm">회원 목록</button>
-=======
                          class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:130px; height:50px;">회원 목록</button>
->>>>>>> 70e3d0980071ca70f46d7841af0cb41a0a26f9cf
+
           </LI>                                                                     
         </c:when>    
             
