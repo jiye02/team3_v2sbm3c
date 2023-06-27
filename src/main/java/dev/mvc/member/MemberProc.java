@@ -103,7 +103,17 @@ public class MemberProc implements MemberProcInter {
     // TODO Auto-generated method stub
     return false;
   }
+  @Override
+  public MemberVO id_find(MemberVO memberVO) {
+    MemberVO vo = this.memberDAO.id_find(memberVO);
+    return vo;
+  }
   
+  @Override
+  public MemberVO passwd_find(MemberVO memberVO) {
+    MemberVO vo = this.memberDAO.passwd_find(memberVO);
+    return vo;
+  }
 }
 
 

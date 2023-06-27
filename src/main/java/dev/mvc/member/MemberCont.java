@@ -592,6 +592,108 @@ public class MemberCont {
     
     return json.toString();
   }
+  /**
+   * 아이디찾기 폼
+   * @param memberno
+   * @return
+   */
+   //http://localhost:9093/member/id_find.do
+  @RequestMapping(value="/member/id_find.do", method=RequestMethod.GET )
+  public ModelAndView id_find() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/member/id_find"); // /WEB-INF/views/member/create.jsp
+   
+    return mav; // forward
+  }
+  
+
+  /**
+   * 아이디찾기 처리
+   * @param memberVO
+   * @return
+   */
+  //localhost:9093/member/id_find.do?mname=길동무&tel=010-1111-2223
+  @RequestMapping(value="/member/id_find.do", method=RequestMethod.POST)
+  public ModelAndView id_find( MemberVO memberVO) {
+    ModelAndView mav = new ModelAndView();
+    
+    MemberVO memberVO_find = this.memberProc.id_find(memberVO);
+    System.out.println("이름: " + memberVO.getMname());
+    System.out.println("전화번호: " + memberVO.getTel());
+    
+    
+    if (memberVO_find != null && memberVO_find.getMname().equals(memberVO.getMname()) && memberVO_find.getTel().equals(memberVO.getTel())) {
+      mav.addObject("code", "id_find_success"); // 이름과 전화번호가 모두 일치하는 경우
+      mav.addObject("mname", memberVO_find.getMname());
+      mav.addObject("id", memberVO_find.getId());
+      mav.addObject("mdate", memberVO_find.getMdate());
+      mav.setViewName("redirect:/member/msg.do");
+
+  
+    } else {
+      mav.addObject("code", "nonFind_fail"); // 이름과 전화번호가 모두 일치하지 않는 경우
+      mav.setViewName("redirect:/member/msg.do");
+    }
+    
+    return mav;
+  }
+      
+  
+  
+  /**
+   * 비밀번호찾기 폼
+   * @param memberno
+   * @return
+   */
+   //http://localhost:9093/member/id_find.do
+  @RequestMapping(value="/member/passwd_find.do", method=RequestMethod.GET )
+  public ModelAndView passwd_find() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/member/passwd_find"); // /WEB-INF/views/member/passwd_find.jsp
+   
+    return mav; // forward
+  }
+  
+  
+  /**
+   * 비밀번호찾기 처리
+   * @param memberVO
+   * @return
+   */
+  //localhost:9093/member/id_find.do?mname=길동무&tel=010-1111-2223
+  @RequestMapping(value="/member/passwd_find.do", method=RequestMethod.POST)
+  public ModelAndView passwd_find(MemberVO memberVO) {
+    ModelAndView mav = new ModelAndView();
+    
+    MemberVO memberVO_find = this.memberProc.passwd_find(memberVO);
+    System.out.println("아이디: " + memberVO.getId());
+    System.out.println("전화번호: " + memberVO.getTel());
+    
+    
+    if (memberVO_find != null && memberVO_find.getId().equals(memberVO.getId()) && memberVO_find.getTel().equals(memberVO.getTel())) {
+      mav.addObject("code", "passwd_find_success"); // 아이디와 전화번호가 모두 일치하는 경우
+      mav.addObject("mname", memberVO_find.getMname());
+      // 비밀번호 마스킹 로직
+      String password = memberVO_find.getPasswd();
+      int length = password.length();
+      StringBuilder hiddenPw = new StringBuilder();
+      for (int i = length / 2; i < length; i++) {
+          hiddenPw.append('*');
+      }
+      String maskedPw = password.substring(0, length / 2) + hiddenPw.toString();
+      mav.addObject("pw", maskedPw);
+      mav.addObject("mdate", memberVO_find.getMdate());
+      mav.setViewName("redirect:/member/msg.do");
+
+  
+    } else {
+      mav.addObject("code", "nonpasswd_Find_fail"); // 이름과 전화번호가 모두 일치하지 않는 경우
+      mav.setViewName("redirect:/member/msg.do");
+    }
+    
+    return mav;
+  }
+  
   
 } 
   

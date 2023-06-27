@@ -56,8 +56,8 @@
                       <c:choose>
                               <c:when test="${sessionScope.id == null}">
                                 <a class="dropdown-item" href="/member/create.do">회원 가입</a>
-                                <a class="dropdown-item" href="#">아이디 찾기</a>
-                                <a class="dropdown-item" href="#">비밀번호 찾기</a>
+                                <a class="dropdown-item" href="/member/id_find.do">아이디 찾기</a>
+                                <a class="dropdown-item" href="/member/passwd_find.do">비밀번호 찾기</a>
                               </c:when>
                               <c:otherwise>
                                <a class="dropdown-item" href="/order_pay/list_by_memberno.do?memberno=${memberno}">예약 결제 내역</a>   

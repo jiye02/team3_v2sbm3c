@@ -81,7 +81,26 @@ public interface MemberProcInter {
    * 로그인 처리
    */
   public int login(HashMap<String, Object> map);
+
+  /**
+   * 아이디찾기 처리
+   * @param memberVO
+   * @return
+   */
+  public MemberVO id_find(MemberVO memberVO);
+  
+  
+  /**
+   * 비밀번호찾기 처리
+   * @param memberVO
+   * @return
+   */
+  public MemberVO passwd_find(MemberVO memberVO);
   
 }
+
+
+  
+
 
 
