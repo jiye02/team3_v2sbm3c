@@ -105,7 +105,17 @@ public class MemberProc implements MemberProcInter {
     int cnt = this.memberDAO.leave(memberno);
     return cnt;
   }
+  @Override
+  public MemberVO id_find(MemberVO memberVO) {
+    MemberVO vo = this.memberDAO.id_find(memberVO);
+    return vo;
+  }
   
+  @Override
+  public MemberVO passwd_find(MemberVO memberVO) {
+    MemberVO vo = this.memberDAO.passwd_find(memberVO);
+    return vo;
+  }
 }
 
 

@@ -56,16 +56,23 @@
                       <c:choose>
                               <c:when test="${sessionScope.id == null}">
                                 <a class="dropdown-item" href="/member/create.do">회원 가입</a>
-                                <a class="dropdown-item" href="#">아이디 찾기</a>
-                                <a class="dropdown-item" href="#">비밀번호 찾기</a>
+                                <a class="dropdown-item" href="/member/id_find.do">아이디 찾기</a>
+                                <a class="dropdown-item" href="/member/passwd_find.do">비밀번호 찾기</a>
                               </c:when>
                               <c:otherwise>
+                               <a class="dropdown-item" href="/order_pay/list_by_memberno.do?memberno=${memberno}">예약 결제 내역</a>   
                                 <a class="dropdown-item" href="http://localhost:8000/ais/recommend_form/?memberno=${sessionScope.memberno }">관심분야 등록하고 추천받기</a>
                                 <a class="dropdown-item" href="/member/read.do">회원 정보 수정</a>
                                 <a class="dropdown-item" href="/member/passwd_update.do?memberno=${sessionScope.memberno}">비밀번호 변경</a>
+<<<<<<< HEAD
                                <a class="dropdown-item" href="/member/leave.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
                               </c:otherwise>
+=======
+                               <a class="dropdown-item" href="/member/delete_u.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
+                             </c:otherwise>
+>>>>>>> 70e3d0980071ca70f46d7841af0cb41a0a26f9cf
                           </c:choose>
+                       </div>
                
                   <c:choose>
                     <c:when test="${sessionScope.admin_id == null }">
@@ -83,7 +90,7 @@
                            <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
                             <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
-                          <a class="dropdown-item" href='/reply/list.do'> 댓글목록</a>
+                          <a class="dropdown-item" href='/reply/list.do'> 댓글 전체 목록</a>
                           
                         </div>
                         
@@ -96,9 +103,11 @@
         </nav>
 
     </div>
+    </DIV>
     <!-- 헤더 end -->
     
     <%-- 내용 --%> 
     <DIV class='content'>
       <div style='clear: both; height: 50px;'></div>
+      </DIV>
       
