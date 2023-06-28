@@ -8,9 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 등록한 레코드 갯수 1 리턴 -->
   <insert id="create" parameterType="dev.mvc.gallery.GalleryVO">
     INSERT INTO gallery(galleryno, adminno, exhino, title, content, passwd, word,
-                                  file1, file1saved, thumb1, size1, rdate)
+                                  file1, file1saved, thumb1, size1, rdate, price, dc, saleprice, point)
     VALUES(gallery_seq.nextval, #{adminno}, #{exhino}, #{title}, #{content}, #{passwd}, #{word},
-                #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
+                #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate, #{price}, #{dc}, #{saleprice}, #{point})
   </insert>
 
   <!-- 모든 카테고리의 등록된 글목록 -->
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
-              file1, file1saved, thumb1, size1, map, youtube
+              file1, file1saved, thumb1, size1, map, youtube, price, dc, saleprice, point
     FROM gallery
     WHERE galleryno = #{galleryno}
   </select>
