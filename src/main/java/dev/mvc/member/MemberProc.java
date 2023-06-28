@@ -109,11 +109,7 @@ public class MemberProc implements MemberProcInter {
     MemberVO vo = this.memberDAO.id_find(memberVO);
     return vo;
   }
-  
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c000f791890e77004f3ef2d497e85e51dfd5f35
+ 
   @Override
   public MemberVO passwd_find(MemberVO memberVO) {
     MemberVO vo = this.memberDAO.passwd_find(memberVO);

@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- 모든 카테고리의 등록된 글목록 -->
   <select id="list_all" resultType="dev.mvc.gallery.GalleryVO">
-    SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
+    SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
                file1, file1saved, thumb1, size1
     FROM gallery
     ORDER BY galleryno DESC
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- 특정 카테고리의 등록된 글목록 -->
   <select id="list_by_exhino" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
-    SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
+    SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
                file1, file1saved, thumb1, size1, price, dc, saleprice, point, salecnt, map, youtube
     FROM gallery
     WHERE exhino=#{exhino}
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
-    SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
+    SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
               file1, file1saved, thumb1, size1, map, youtube
     FROM gallery
     WHERE galleryno = #{galleryno}
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- 카테고리별 검색 목록 -->
   <select id="list_by_exhino_search" resultType="dev.mvc.gallery.GalleryVO" parameterType="dev.mvc.gallery.GalleryVO">
-    SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, word, rdate,
+    SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, word, rdate,
             file1, file1saved, thumb1, size1, map, youtube
     FROM gallery
     <choose>
@@ -89,11 +89,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 카테고리별 검색 + 페이징 목록 -->
   <select id="list_by_exhino_search_paging" resultType="dev.mvc.gallery.GalleryVO" parameterType="dev.mvc.gallery.GalleryVO">
-   SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, r
+   SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, r
    FROM (
-              SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, rownum as r
+              SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, rownum as r
               FROM (
-                        SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube
+                        SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube
                         FROM gallery
                         <choose>
                           <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
@@ -170,14 +170,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 자료수 증가, cnt 컬럼 1씩 증가, id: update_cnt_add -->
   <update id="update_cnt_add" parameterType="int">
     UPDATE gallery 
-    SET recom = recom + 1 
+    SET jjim = jjim + 1 
     WHERE galleryno = #{galleryno}
   </update>
 
   <!-- 자료수 감소, cnt 컬럼 1씩 감소, id: update_cnt_add -->
   <update id="update_cnt_sub" parameterType="int">
     UPDATE gallery 
-    SET recom = recom - 1 
+    SET jjim = jjim - 1 
     WHERE galleryno = #{galleryno}
   </update>
   
