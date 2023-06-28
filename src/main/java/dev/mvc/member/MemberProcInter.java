@@ -102,6 +102,13 @@ public interface MemberProcInter {
    * @param memberno
    */
   public int leave(int memberno);
+  /**
+   * 로그인이 한게 관리자인지 확인
+   * @param memberno
+   */
+  public boolean isAdmin(HttpSession session);
+
+
   
 
   

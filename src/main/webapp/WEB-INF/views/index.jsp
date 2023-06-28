@@ -19,8 +19,7 @@
 <%-- <jsp:include page="../menu/top.jsp" flush='false' /> --%>
 <c:import url="/menu/top.do" />
 
-  <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
-
+  <DIV style='width: 100%; margin: 30px auto; text-align: center;'> 
     <%-- /static/images/art01.jpg --%>
     <IMG src='/images/art01.jpg' style='width: 60%;'>
 

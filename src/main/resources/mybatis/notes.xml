@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.notes.NotesDAOInter">
+
+    <!-- 등록 -->
+    <insert id="create" parameterType="dev.mvc.notes.NotesVO">
+        INSERT INTO notes (notesno, topview, memberno, title, content, viewcnt, 
+                            word, rdate, file1, file1saved, thumb1, size1)
+        VALUES (notes_seq.nextval, #{topview}, #{memberno}, #{title}, #{content}, #{viewcnt}, 
+                            #{word}, sysdate, #{file1}, #{file1saved}, #{thumb1}, #{size1})
+    </insert>
+    
+    <!-- 목록: CateVO 객체를 생성하여 변수에 컬럼의 값을 저장 후, 
+               ArrayList<CateVO> 객체를 생성한후 add까지 자동 진행하여 ArrayList 객체를 return -->
+    <select id="list_all" resultType="dev.mvc.notes.NotesVO">
+      SELECT notesno, topview, memberno, title, content, viewcnt, 
+             word, rdate, file1, file1saved, thumb1, size1
+      FROM notes 
+      WHERE topview = 'Y'
+      ORDER BY notesno DESC
+    </select>
+    
+    <!-- 카테고리별 검색 레코드 갯수 -->
+    <select id="search_count" resultType="int" parameterType="dev.mvc.notes.NotesVO">
+      SELECT COUNT(*) as cnt
+      FROM notes
+      WHERE (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+            OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+            OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+    </select>
+    
+    <!-- 목록 검색 + 페이징 목록 -->
+  <select id="list_all_search_paging" resultType="dev.mvc.notes.NotesVO" parameterType="dev.mvc.notes.NotesVO">
+   SELECT notesno, topview, memberno, title, content, viewcnt, 
+          word, rdate, file1, file1saved, thumb1, size1, r
+   FROM (
+              SELECT notesno, topview, memberno, title, content, viewcnt, 
+                     word, rdate, file1, file1saved, thumb1, size1, rownum as r
+              FROM (
+                        SELECT notesno, topview, memberno, title, content, viewcnt, 
+                               word, rdate, file1, file1saved, thumb1, size1
+                        FROM notes
+                        WHERE (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                              OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                              OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+                        ORDER BY notesno DESC
+               )
+    )
+    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+     
+    <!-- 1 page: WHERE r >= 1 AND r <= 10; 
+          2 page: WHERE r >= 11 AND r <= 20;
+          3 page: WHERE r >= 21 AND r <= 30; -->
+  </select>
+    
+    <!-- 일반적인 조회 -->
+    <select id="read" resultType="dev.mvc.notes.NotesVO" parameterType="int">
+      SELECT notesno, topview, memberno, title, content, viewcnt, 
+             word, rdate, file1, file1saved, thumb1, size1
+      FROM notes 
+      WHERE notesno = #{notesno}
+    </select>
+    
+    <!-- 글 수정 -->
+    <update id="update_text" parameterType="dev.mvc.notes.NotesVO">
+      UPDATE notes
+      SET topview=#{topview}, title=#{title}, content=#{content},  word=#{word} 
+      WHERE notesno = #{notesno}
+    </update>
+    
+    <!-- 파일 수정 -->
+    <update id="update_file" parameterType="dev.mvc.notes.NotesVO">
+      UPDATE notes
+      SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
+      WHERE notesno = #{notesno}
+    </update>
+    
+    <!-- 글 삭제 -->
+    <delete id="delete" parameterType="int">
+      DELETE FROM notes
+      WHERE notesno=#{notesno}
+    </delete>
+
+    
+</mapper>

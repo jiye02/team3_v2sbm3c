@@ -115,6 +115,23 @@ public class MemberProc implements MemberProcInter {
     MemberVO vo = this.memberDAO.passwd_find(memberVO);
     return vo;
   }
+
+  @Override
+  public boolean isAdmin(HttpSession session) {
+    boolean admin_sw = false;
+    int rankno = 1;
+    if (session != null) {
+      String id = (String)session.getAttribute("id");
+      if (session.getAttribute("rankno") != null) {
+        rankno = (int)session.getAttribute("rankno");
+      }
+      
+      if (id != null && rankno == 1) {
+        admin_sw = true; // 정상적으로 로그인 한 경우
+      }
+    }
+    return admin_sw;
+  }
 }
 
 

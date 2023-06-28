@@ -10,7 +10,9 @@ import java.util.List;
 // Payend pay = new Payend2023();
 // Payend pay = new Payend2024();
 // pay.calc();
-import java.util.Map;         
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;         
 
 public interface MemberDAOInter {
   
@@ -100,6 +102,12 @@ public interface MemberDAOInter {
    * @param memberno
    */
   public int leave(int memberno);
+  /**
+   * 로그인이 한게 관리자인지 확인
+   * @param memberno
+   */
+  public boolean isAdmin(HttpSession session);
+
   
   
 }

@@ -19,6 +19,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+
+function setFocus() {  // focus 이동
+    // console.log('btn_close click!');
+    
+    let tag = $('#btn_close').attr('data-focus'); // data-focus 속성에 선언된 값을 읽음 
+    // alert('tag: ' + tag);
+    
+    $('#' + tag).focus(); // data-focus 속성에 선언된 태그를 찾아서 포커스 이동
+  }
     // jQuery ajax 요청
     function checkID() {
       // $('#btn_close').attr("data-focus", "이동할 태그 지정");
@@ -130,7 +139,14 @@
 
     $('#frm').submit(); // required="required" 작동 안됨.
   }  
+  function RecommendForm(memberno) {
+      var url = "http://43.201.78.137:8000/ais/recommend_form/?memberno=${sessionScope.memberno }";
+      window.location.href = url;
+  }
+  
 </script>
+
+
 </head> 
 
 

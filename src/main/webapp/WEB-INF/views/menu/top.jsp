@@ -3,6 +3,7 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dev.mvc.exhi.ExhiVO" %>
+<%@ page import="dev.mvc.member.MemberVO"%>
 
 <script type="text/javascript">
 function recommend() {
@@ -23,6 +24,7 @@ function recommend() {
 <DIV class='container_main'> 
     <!-- 헤더 start -->
     <div class="header">
+    
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="/">ArtWave</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle Navigation">
@@ -33,7 +35,7 @@ function recommend() {
                   <c:forEach var="exhiVO" items="${list}">
                   
                   </c:forEach>
-                  
+                  <li class="nav-item"><a class="nav-link" href="/notes/list_all_search_paging.do?now_page=1">공지사항</a>
                   <li class="nav-item dropdown"> <%-- 카테고리 서브 메뉴 --%>
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown"  href="#">전시회 둘러보기</a>
                       <div class="dropdown-menu">
@@ -47,7 +49,7 @@ function recommend() {
                    </li>
 
                   <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
-                      <c:choose>
+                      <c:choose>                                                                                      
                           <c:when test="${sessionScope.id == null}">
                               <a class="nav-link" href="/member/login.do">로그인</a>
                           </c:when>
@@ -95,8 +97,9 @@ function recommend() {
                           <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>                             
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
                           <a class="dropdown-item" href='/reply/list.do'> 댓글 전체 목록</a>
-                          <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
+                          <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a> 
                           <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
+                          <a class="dropdown-item" href='/notes/list.do'>공지사항 목록</a>
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                           
                         </div>
