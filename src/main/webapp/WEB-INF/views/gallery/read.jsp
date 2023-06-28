@@ -14,6 +14,8 @@
 <c:set var="file1saved" value="${galleryVO.file1saved }" />
 <c:set var="thumb1" value="${galleryVO.thumb1 }" />
 <c:set var="content" value="${galleryVO.content }" />
+<c:set var="min" value="${galleryVO.min }" />
+<c:set var="max" value="${galleryVO.max }" />
 <c:set var="jjim" value="${galleryVO.jjim }" />
 <c:set var="word" value="${galleryVO.word }" />
 <c:set var="size1_label" value="${galleryVO.size1_label }" />
@@ -646,20 +648,26 @@
           <del><fmt:formatNumber value="${price}" pattern="#,###" /> 원</del><br>
           <span style="font-size: 1.2em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /> 원</span><br>
           <span style="font-size: 1.0em;">(보유수량: <fmt:formatNumber value="${salecnt}" pattern="#,###" /> 개)</span><br>
-          <span style="font-size: 1.0em;">수량</span><br>
+          <span style="font-size: 1.0em; color: #FF0000;">전시 시작일 :  ${min } ~ 전시 종료일 : ${max }</span><br>
+          <span style="font-size: 1.0em;">수량</span>
           <form>
           <input type='number' name='ordercnt' value='1' required="required" 
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
+          <input type="date" name='labeldate' id='labeldate' min='${min}'  max='${max}' value='${min}'><br><br>
           <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">주문 담기</button>           
           <button type='button' onclick="location.href='/jjim/create.do?galleryno=${galleryno }'" class="btn btn-info">♥(${jjim_cnt })</button>
-          <input type="date" name='labeldate' min='${min}'  max='${max}' value="2023-07-01">
           <span id="span_animation"></span>
           </form>
         </DIV> 
-
-        <DIV>${content }</DIV>
+        
+        
+        
       </li>
-      <li class="li_none">
+      
+    </ul>
+  </fieldset>
+  <li class="li_none" style="margin-left:8.2%;">
+        <DIV style="float: middle;">${content }</DIV>
         <DIV style='text-decoration: none;'>
           검색어(키워드): ${word }
         </DIV>
@@ -671,8 +679,6 @@
           </c:if>
         </DIV>
       </li>   
-    </ul>
-  </fieldset>
 
 </DIV>
 

@@ -485,3 +485,6 @@ FROM (
      WHERE exhino=14 AND (title LIKE '%야경%' OR content LIKE '%야경%' OR word LIKE '%야경%')
 )
 WHERE r >= 4 AND r <= 6;
+
+
+SELECT * FROM gallery;

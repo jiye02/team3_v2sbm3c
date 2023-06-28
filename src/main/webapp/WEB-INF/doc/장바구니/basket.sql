@@ -105,3 +105,6 @@ commit;
 -- DELETE
 DELETE FROM basket WHERE basketno=2;
 commit;
+
+
+SELECT * FROM basket;

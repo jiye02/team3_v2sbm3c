@@ -65,3 +65,13 @@ DELETE FROM order_item
 WHERE memberno=1;
 
 commit;
+
+
+
+
+--
+SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
+               g.title, g.saleprice
+    FROM order_item i, gallery g 
+    WHERE (i.galleryno = g.galleryno) AND order_payno=1 AND memberno = 2
+    ORDER BY order_itemno DESC

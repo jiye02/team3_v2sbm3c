@@ -11,7 +11,7 @@
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
+  
 </head> 
  
 <body>
@@ -81,11 +81,11 @@
     </div>
     <div>
        <label>전시 시작일</label>
-       <input type="date" name='min' min='2023-06-01'  max='2023-12-31' value="2023-07-01">
+       <input type="date" name='min' value="defaultValue">
     </div>
     <div>
        <label>전시 종료일</label>
-       <input type="date" name='max' min='2023-06-01'  max='2023-12-31' value="2023-07-01">
+       <input type="date" name='max' value="defaultValue">
     </div>
     <div>
       <label>판매가(100원 단위)</label>
