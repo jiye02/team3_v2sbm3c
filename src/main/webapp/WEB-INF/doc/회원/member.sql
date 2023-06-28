@@ -132,8 +132,11 @@ select * from member;
 7. 로그인
 SELECT COUNT(memberno) as cnt
 FROM member
-WHERE id='user1@gmail.com' AND passwd='1234';
+WHERE id='ddtc123' AND passwd='1111' AND grade != 99;
  cnt
  ---
    0
+   
+   
+SELECT * FROM member;
  

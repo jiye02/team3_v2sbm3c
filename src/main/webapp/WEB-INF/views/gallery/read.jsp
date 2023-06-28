@@ -35,7 +35,7 @@
     
 <script type="text/javascript">
   $(function(){
-      $('#btn_jjim').on("click", function() { update_jjim_ajax(${galleryno}); });
+    $('#btn_jjim').on("click", function() { update_jjim_ajax(${galleryno}); });
     $('#btn_login').on('click', login_ajax);
     $('#btn_loadDefault').on('click', loadDefault);
 
@@ -88,7 +88,7 @@
   }
 
   function loadDefault() {
-    $('#id').val('user1');
+    $('#id').val('user1@gmail.com');
     $('#passwd').val('1234');
   } 
   
@@ -118,8 +118,7 @@
             // alert('로그인 성공');
             $('#login_yn').val('YES'); // 로그인 성공 기록
             basket_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
-            $('#login_yn').val('YES'); // 로그인 성공 기록
-            jjim_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
+      
             
           } else {
             alert('로그인에 실패했습니다.<br>잠시후 다시 시도해주세요.');
@@ -176,7 +175,7 @@
           console.log('-> jjim_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
           
           if (rdata.cnt == 1) {
-            var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
+            var sw = confirm('선택한 상품이 찜목록에 담겼습니다.\n찜 목록으로 이동하시겠습니까?');
             if (sw == true) {
               // 쇼핑카트로 이동
               location.href='/jjim/list_by_memberno.do';
