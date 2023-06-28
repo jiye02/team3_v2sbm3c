@@ -57,10 +57,7 @@ public class NotesCont {
 
     if (this.memberProc.isAdmin(session)) {
       mav.setViewName("/notes/create"); // /webapp/WEB-INF/views/notes/create.jsp
-    } else {
-      mav.setViewName("/member/admin_login_need");
-    }
-    
+    } 
     return mav;
   }
 
@@ -125,9 +122,7 @@ public class NotesCont {
       mav.addObject("now_page", notesVO.getNow_page());
       mav.setViewName("redirect:/notes/list_all_search_paging.do");
       
-    } else {
-      mav.setViewName("/admin/login_need"); // /WEB-INF/views/member/admin_login_need.jsp
-    }
+    } 
 
     return mav;
   }

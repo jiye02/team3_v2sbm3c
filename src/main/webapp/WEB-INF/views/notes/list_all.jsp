@@ -24,7 +24,7 @@
 
 <DIV class='content_body'>
   <ASIDE class="aside_right" style="padding-bottom: 10px;">
-    <c:if test="${sessionScope.id != null}">
+    <c:if test="${sessionScope.admin_id != null }">
      <A href="./create.do">등록</A>
      <span class='menu_divide' >│</span>
     </c:if>

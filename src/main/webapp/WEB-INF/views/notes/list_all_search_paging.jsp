@@ -64,7 +64,7 @@
   
       
       <tbody>
-        <c:forEach var="notesVO" items="${list_t }">
+        <c:forEach var="notesVO" items="${list_all }">
           <c:set var="title" value="${notesVO.title }" />
           <c:set var="content" value="${notesVO.content }" />
           <c:set var="notesno" value="${notesVO.notesno }" />
