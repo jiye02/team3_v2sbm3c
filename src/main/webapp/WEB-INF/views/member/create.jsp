@@ -191,7 +191,7 @@
   
     <div class="form-group"> <%-- 줄이 변경되지 않는 패턴 --%>
       <label>아이디*:
-        <input type='text' class="form-control form-control-sm" name='id' id='id' value='user1@gmail.com' required="required" placeholder="아이디" autofocus="autofocus">
+        <input type='text' class="form-control form-control-sm" name='id' id='id' value='abcd1@email.com' required="required" placeholder="아이디" autofocus="autofocus">
       </label>
       <button type='button' id="btn_checkID" onclick="checkID()" class="btn btn-info btn-sm">중복확인</button>
     </div>   
@@ -210,7 +210,7 @@
     
     <div class="form-group"> <%-- label의 크기에따라 input 태그의 크기가 지정되는 형태 --%>
       <label>성명*:
-        <input type='text' class="form-control form-control-sm" name='mname' id='mname' value='하정우' required="required" placeholder="성명">
+        <input type='text' class="form-control form-control-sm" name='mname' id='mname' value='홍길동' required="required" placeholder="성명">
       </label>
     </div>   
 
