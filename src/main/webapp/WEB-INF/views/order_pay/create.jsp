@@ -313,7 +313,7 @@
           <div class='basket_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
         </td>
         <td style='width: 50%;'>
-          <div class='basket_label' style='font-size: 1.5em;'>전체 예약 금액</div>
+          <div class='basket_label' style='font-size: 1.5em;'>총 결제 금액</div>
           <div class='basket_price'  style='font-size: 1.5em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
           <button type='button' id='btn_order_pay' class='btn btn-info' onclick="location.href='/order_pay/create.do'" 

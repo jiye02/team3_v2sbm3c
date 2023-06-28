@@ -48,10 +48,11 @@
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 7%;'/>
-      <col style='width: 15%;'/>
+      <col style='width: 10%;'/>
       <col style='width: 30%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 10%;'/>
+      <col style='width: 7%;'/>
+      <col style='width: 7%;'/>
       <col style='width: 13%;'/>
       <col style='width: 7%;'/>
     </colgroup>
@@ -63,6 +64,7 @@
       <TH class='th_bs'>주소</TH>
       <TH class='th_bs'>결제 타입</TH>
       <TH class='th_bs'>결제 금액</TH>
+      <TH class='th_bs'>포인트</TH>
       <TH class='th_bs'>주문일</TH>
       <TH class='th_bs'>상세 조회</TH>
     </TR>
@@ -75,6 +77,7 @@
       <c:set var="address" value ="(${order_payVO.rzipcode}) ${order_payVO.raddress1} ${order_payVO.raddress1}" />
       <c:set var="paytype" value ="${order_payVO.paytype}" />
       <c:set var="amount" value ="${order_payVO.amount}" />
+      <c:set var="point" value ="${amount*0.05}" />
       <c:set var="rdate" value ="${order_payVO.rdate}" />
          
        
@@ -92,6 +95,7 @@
         </c:choose>
       </TD>
       <TD class='td_basic'><fmt:formatNumber value="${amount }" pattern="#,###" /></TD>
+      <TD class='td_basic'><fmt:formatNumber value="${point }" pattern="#,###" /></TD>
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
       <TD class='td_basic'>
         <A href="/order_item/list_by_memberno.do?order_payno=${order_payno}"><img src="/order_pay/images/item.png" title="예약 내역 상세 조회"></A>

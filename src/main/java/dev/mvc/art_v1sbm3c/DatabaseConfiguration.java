@@ -28,14 +28,15 @@ import com.zaxxer.hikari.HikariDataSource;
                                          "dev.mvc.jjim",
                                          "dev.mvc.basket",
                                          "dev.mvc.recommend",
-                                         "dev.mvc.notes"})    
+                                         "dev.mvc.notes",    
+                                         "dev.mvc.calendar"})    
 public class DatabaseConfiguration {
     
     @Autowired
     private ApplicationContext applicationContext;
     
     @Bean
-    @ConfigurationProperties(prefix="spring.datasource.hikari")  // 설정 파일의 접두사 선언 spring.datasource.hikari....
+    @ConfigurationProperties(prefix="spring.datasource.hikari")  // 설정 파일의 접두사 선언 spring.datasource.hikari.....
     public HikariConfig hikariConfig() {
         return new HikariConfig();
     }

@@ -8,15 +8,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 등록한 레코드 갯수 1 리턴 -->
   <insert id="create" parameterType="dev.mvc.gallery.GalleryVO">
     INSERT INTO gallery(galleryno, adminno, exhino, title, content, passwd, word,
-                                  file1, file1saved, thumb1, size1, rdate)
+                                  file1, file1saved, thumb1, size1, rdate, price, dc, saleprice, point)
     VALUES(gallery_seq.nextval, #{adminno}, #{exhino}, #{title}, #{content}, #{passwd}, #{word},
-                #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
+                #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate, #{price}, #{dc}, #{saleprice}, #{point})
   </insert>
 
   <!-- 모든 카테고리의 등록된 글목록 -->
   <select id="list_all" resultType="dev.mvc.gallery.GalleryVO">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
-               file1, file1saved, thumb1, size1
+               file1, file1saved, thumb1, size1, saleprice
     FROM gallery
     ORDER BY galleryno DESC
   </select> 
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
-              file1, file1saved, thumb1, size1, map, youtube
+              file1, file1saved, thumb1, size1, map, youtube, price, dc, saleprice, point
     FROM gallery
     WHERE galleryno = #{galleryno}
   </select>
@@ -89,11 +89,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 카테고리별 검색 + 페이징 목록 -->
   <select id="list_by_exhino_search_paging" resultType="dev.mvc.gallery.GalleryVO" parameterType="dev.mvc.gallery.GalleryVO">
-   SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, r
+   SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, r , saleprice
    FROM (
-              SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, rownum as r
+              SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, saleprice, rownum as r
               FROM (
-                        SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube
+                        SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, saleprice
                         FROM gallery
                         <choose>
                           <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->

@@ -39,7 +39,7 @@ function recommend() {
                   <li class="nav-item dropdown"> <%-- 카테고리 서브 메뉴 --%>
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown"  href="#">전시회 둘러보기</a>
                       <div class="dropdown-menu">
-                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=1&now_page=1" >미술전시회</a>
+                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=7&now_page=1" >미술전시회</a>
                           <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=2&now_page=1" >의류전시회</a>
                           <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=3&now_page=1" >이색전시회</a>
                           <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=4&now_page=1" >팝업스토어</a>
@@ -94,7 +94,8 @@ function recommend() {
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">관리자</a>
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href='/member/list.do'>회원 목록</a>        
-                          <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>                             
+                          <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>
+                          <a class="dropdown-item" href='/admin/create.do'>관리자 등록</a>
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
                           <a class="dropdown-item" href='/reply/list.do'> 댓글 전체 목록</a>
                           <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a> 
