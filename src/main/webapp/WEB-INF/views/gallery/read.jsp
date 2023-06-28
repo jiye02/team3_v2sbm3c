@@ -35,7 +35,7 @@
     
 <script type="text/javascript">
   $(function(){
-      $('#btn_jjim').on("click", function() { update_jjim_ajax(${galleryno}); });
+    $('#btn_jjim').on("click", function() { update_jjim_ajax(${galleryno}); });
     $('#btn_login').on('click', login_ajax);
     $('#btn_loadDefault').on('click', loadDefault);
 
@@ -95,10 +95,7 @@
 	  function create() {
 	    location.href="/member/create.do";
 	  }
-  function loadDefault() {
-	  $('#id').val('user1@gmail.com');
-    $('#passwd2').val('1234');
-  } 
+
   
   <%-- 로그인 --%>
   function login_ajax() {
@@ -126,8 +123,6 @@
             // alert('로그인 성공');
             $('#login_yn').val('YES'); // 로그인 성공 기록
             basket_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
-            $('#login_yn').val('YES'); // 로그인 성공 기록
-            jjim_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
             
           } else {
             alert('로그인에 실패했습니다.<br>잠시후 다시 시도해주세요.');
@@ -184,7 +179,7 @@
           console.log('-> jjim_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
           
           if (rdata.cnt == 1) {
-            var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
+            var sw = confirm('선택한 상품이 찜목록에 담겼습니다.\n찜 목록으로 이동하시겠습니까?');
             if (sw == true) {
               // 쇼핑카트로 이동
               location.href='/jjim/list_by_memberno.do';
@@ -603,7 +598,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" style='font-size: 0.8em;'>패스워드</label>    
       <div class="col-md-8">
-        <input type='password' class="form-control" name='passwd2' id='passwd2' 
+        <input type='password' class="form-control" name='passwd' id='passwd' 
                   value='${ck_passwd }' required="required" style='width: 30%;' placeholder="패스워드">
 
       </div>
@@ -613,7 +608,6 @@
       <div class="col-md-offset-4 col-md-8">
           <button type="submit" class="btn btn-info btn-sm">로그인</button>
           <button type='button' id='btn_create' class="btn btn-info btn-sm">회원가입</button>
-          <button type='button' id='btn_loadDefault' class="btn btn-info btn-sm">테스트 계정</button>
 
       </div>
     </div>   
