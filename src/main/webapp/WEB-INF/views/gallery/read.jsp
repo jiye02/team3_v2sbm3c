@@ -24,7 +24,7 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Art Wave</title>
- 
+<link rel="shortcut icon" href="/images/ex_top.png" />
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
