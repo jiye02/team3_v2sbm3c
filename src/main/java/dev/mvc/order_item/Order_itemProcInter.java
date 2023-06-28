@@ -18,4 +18,5 @@ public interface Order_itemProcInter{
    */
   public List<Order_itemVO> list_by_memberno(HashMap<String, Object> map);
   
+  public List<Order_itemVO> list();
 }

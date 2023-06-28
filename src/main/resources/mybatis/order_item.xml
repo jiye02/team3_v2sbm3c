@@ -19,5 +19,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE (i.galleryno = g.galleryno) AND order_payno=#{order_payno} AND memberno = #{memberno}
     ORDER BY order_itemno DESC
   </select>
+  
+    <!-- 특정글에 대한 전체 댓글 목록 -->
+  <select id="list" resultType="dev.mvc.order_item.Order_itemVO" parameterType="HashMap">
+    SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
+               g.title, g.saleprice
+    FROM order_item i, gallery g 
+    WHERE (i.galleryno = g.galleryno) AND order_payno=#{order_payno} AND memberno = #{memberno}
+    ORDER BY order_itemno DESC
+  </select>
 
 </mapper>
