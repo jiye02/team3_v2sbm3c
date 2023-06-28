@@ -1,5 +1,6 @@
 package dev.mvc.order_item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,11 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.admin.AdminProcInter;
+import dev.mvc.admin.AdminVO;
+import dev.mvc.member.MemberProcInter;
+import dev.mvc.member.MemberVO;
+
 @Controller
 public class Order_itemCont {
   @Autowired 
   @Qualifier("dev.mvc.order_item.Order_itemProc")
   private Order_itemProcInter order_itemProc;
+  
+  @Autowired 
+  @Qualifier("dev.mvc.admin.AdminProc")
+  private AdminProcInter adminProc;
+  
+  @Autowired 
+  @Qualifier("dev.mvc.member.MemberProc")
+  private MemberProcInter memberProc;
   
   public Order_itemCont() {
     System.out.println("-> Order_itemCont created.");
@@ -68,5 +82,6 @@ public class Order_itemCont {
     
     return mav;
   }
+
   
 }
