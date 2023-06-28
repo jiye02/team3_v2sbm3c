@@ -4,44 +4,30 @@
 
 <mapper namespace="dev.mvc.jjim.JjimDAOInter">
 
-	<!-- 생성 -->
-	<insert id="create" parameterType="dev.mvc.jjim.JjimVO">
-		INSERT INTO jjim(jjimno, memberno, galleryno, rdate)
-		VALUES(jjim_seq.nextval, #{memberno}, #{galleryno}, sysdate)
-	</insert>
-
-
-	<!-- 삭제 -->
-	<delete id="delete" parameterType="dev.mvc.jjim.JjimVO">
-		DELETE FROM jjim
-		WHERE jjimno = #{jjimno}
-	</delete>
-
-	<!-- <select id="list_by_memberno" resultType="dev.mvc.jjim.JjimVO"
-		parameterType="int">
-		SELECT jjimno, memberno, galleryno, rdate
-		FROM jjim
-		WHERE memberno=#{memberno}
-		ORDER BY memberno DESC
-	</select> -->
-	
-	<!-- 찜을 했는지 확인후 안했으면 INSERT 실행, 했으면 DELETE 실행 -->
-	<select id="check" resultType="int" parameterType="HashMap">
-		SELECT COUNT(*) as cnt FROM jjim
-		WHERE memberno=#{memberno} AND galleryno=#{galleryno}
-	</select>
-
-	<!-- 찜을 했는지 확인후 안했으면 INSERT 실행, 했으면 DELETE 실행 <select id="check" resultType="int" 
-		parameterType="int"> SELECT COUNT(*) as cnt FROM jjim WHERE memberno=#{memberno} 
-		AND galleryno=#{galleryno} </select> -->
-		
-		<!-- memberno 회원 번호별 쇼핑카트 목록 출력 -->
+  <!-- 생성 -->
+  <insert id="create" parameterType="dev.mvc.jjim.JjimVO">
+    INSERT INTO jjim(jjimno, memberno, galleryno, rdate)
+    VALUES(jjim_seq.nextval, #{memberno}, #{galleryno}, sysdate)
+  </insert>
+  
+  <!-- jjim 테이블에서 galleryno가 같은 레코드의 갯수를 산출하는 기능 -->
+  <select id="count" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt 
+    FROM jjim 
+    WHERE galleryno =#{galleryno}
+  </select>
+  
   <select id="list_by_memberno" resultType="dev.mvc.jjim.JjimVO" parameterType="int">
-    SELECT t.jjimno, c.galleryno, c.title, c.thumb1, t.memberno, t.rdate, t.galleryno  
+    SELECT t.jjimno, c.galleryno, c.title, c.thumb1, t.memberno, t.rdate 
     FROM gallery c, jjim t
     WHERE (c.galleryno = t.galleryno) AND t.memberno = #{memberno}
     ORDER BY jjimno DESC
   </select>
-
-
+  
+  <!-- 삭제 처리, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM jjim
+    WHERE jjimno=#{jjimno}
+  </delete>
+  
 </mapper>

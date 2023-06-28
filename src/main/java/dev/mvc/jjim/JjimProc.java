@@ -6,6 +6,8 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import dev.mvc.basket.BasketVO;
+
 @Component("dev.mvc.jjim.JjimProc")
 public class JjimProc implements JjimProcInter {
   @Autowired
@@ -18,15 +20,15 @@ public class JjimProc implements JjimProcInter {
   }
   
   @Override
-  public ArrayList<JjimVO> list_by_memberno(int memberno) {
-    ArrayList<JjimVO> list = this.jjimDAO.list_by_memberno(memberno);
-    return list;
+  public int count(int galleryno) {
+    int cnt = this.jjimDAO.count(galleryno);
+    return cnt;
   }
   
   @Override
-  public int update_cnt(JjimVO jjimVO) {
-    int cnt = this.jjimDAO.update_cnt(jjimVO);
-    return cnt;
+  public ArrayList<JjimVO> list_by_memberno(int memberno) {
+    ArrayList<JjimVO> list = this.jjimDAO.list_by_memberno(memberno);
+    return list;
   }
   
   @Override
@@ -35,31 +37,8 @@ public class JjimProc implements JjimProcInter {
     return cnt;
   }
   
-  /*
-   * @Override public int check(HashMap<Object, Object> map) { int cnt =
-   * this.jjimDAO.check(map);
-   * 
-   * if (cnt==0) { // 이미 찜한 경우, DELETE 실행 this.jjimDAO.delete(cnt); } else { //
-   * 찜하지 않은 경우, INSERT 실행 this.jjimDAO.check(map); } return cnt; }
-   */
   
-  @Override
-  public int check(HashMap<Object, Object> map) {
-    int cnt = this.jjimDAO.check(map);
-
-    if (cnt == 0) {
-      // 찜하지 않은 경우, INSERT 실행
-      this.jjimDAO.create((JjimVO) map.get("jjimVO"));
-    } else {
-      // 이미 찜한 경우, DELETE 실행
-      this.jjimDAO.delete((int) map.get("jjimno"));
-    }
-
-    cnt = this.jjimDAO.check(map); // 다시 확인하여 변경된 cnt 값 가져오기
-    return cnt;
-  }
   
   
   
 }
-

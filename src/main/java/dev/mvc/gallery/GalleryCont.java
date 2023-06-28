@@ -222,6 +222,9 @@ public class GalleryCont {
 
     GalleryVO galleryVO = this.galleryProc.read(galleryno);
     
+    int jjim_cnt = this.jjimProc.count(galleryno);
+    mav.addObject("jjim_cnt",jjim_cnt);
+    
     String title = galleryVO.getTitle();
     String content = galleryVO.getContent();
     

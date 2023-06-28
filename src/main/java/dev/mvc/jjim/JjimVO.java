@@ -27,6 +27,8 @@ public class JjimVO {
     private int tot;
     /** 확인 */
     private int check;
+    /** 확인 */
+    private int count;
     /** 등록일 */
     private String rdate;
 
@@ -85,6 +87,15 @@ public class JjimVO {
     public void setCheck(int check) {
       this.check = check;
     }
+    
+    public int getCount() {
+      return count;
+    }
+
+    public void setCount(int count) {
+      this.count = count;
+    }
+
 
     public String getRdate() {
         return rdate;
