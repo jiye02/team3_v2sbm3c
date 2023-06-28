@@ -35,7 +35,7 @@ function recommend() {
                   <c:forEach var="exhiVO" items="${list}">
                   
                   </c:forEach>
-                  <li class="nav-item"><a class="nav-link" href="/notes/list_all_search_paging.do?now_page=1">공지사항</a>
+                  <li class="nav-item"><a class="nav-link" href="/notes/list_all.do">공지사항</a>
                   <li class="nav-item dropdown"> <%-- 카테고리 서브 메뉴 --%>
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown"  href="#">전시회 둘러보기</a>
                       <div class="dropdown-menu">

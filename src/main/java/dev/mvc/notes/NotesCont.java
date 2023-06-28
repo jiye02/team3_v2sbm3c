@@ -100,7 +100,7 @@ public class NotesCont {
       }    
       
       notesVO.setFile1(file1);   // 순수 원본 파일명
-      notesVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
+      notesVO.setFile1saved(file1saved ); // 저장된 파일명(파일명 중복 처리)
       notesVO.setThumb1(thumb1);      // 원본이미지 축소판
       notesVO.setSize1(size1);  // 파일 크기
       // ------------------------------------------------------------------------------
@@ -120,7 +120,7 @@ public class NotesCont {
       // ------------------------------------------------------------------------------
 
       mav.addObject("now_page", notesVO.getNow_page());
-      mav.setViewName("redirect:/notes/list_all_search_paging.do");
+      mav.setViewName("redirect:/notes/list_all.do");
       
     } 
 
