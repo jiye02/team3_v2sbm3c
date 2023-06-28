@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.calendar.CalendarDAOInter">
+  <!-- 등록: 추가한 레코드 갯수를 리턴 -->
+  <insert id="create" parameterType="dev.mvc.calendar.CalendarVO">
+    INSERT INTO calendar(calendarno, labeldate, title, content, rdate, passwd, memberno)
+    VALUES(calendar_seq.nextval, #{labeldate}, #{title}, #{content}, sysdate, #{passwd}, #{memberno})
+  </insert>
+  
+  <select id="list_all" resultType="dev.mvc.calendar.CalendarVO">
+    SELECT calendarno, labeldate, title, content, rdate, memberno
+    FROM calendar
+    ORDER BY calendarno DESC
+  </select>
+  
+</mapper>
+  

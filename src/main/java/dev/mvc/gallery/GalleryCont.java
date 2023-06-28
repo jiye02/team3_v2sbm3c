@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
+import dev.mvc.exhi.ExhiVO;
+import dev.mvc.gallery.GalleryVO;
 import dev.mvc.member.MemberProc;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
@@ -67,7 +69,7 @@ public class GalleryCont {
     mav.addObject("exhiVO", exhiVO);
 //    request.setAttribute("exhiVO", exhiVO);
     
-    mav.setViewName("/gallery/create"); // /webapp/WEB-INF/views/gallery/create.jsp
+    mav.setViewName("/gallery/create_product"); // /webapp/WEB-INF/views/gallery/create.jsp
     
     return mav;
   }
@@ -117,6 +119,7 @@ public class GalleryCont {
       galleryVO.setFile1saved(file1saved); // 저장된 파일명(파일명 중복 처리)
       galleryVO.setThumb1(thumb1);      // 원본이미지 축소판
       galleryVO.setSize1(size1);  // 파일 크기
+      
       // ------------------------------------------------------------------------------
       // 파일 전송 코드 종료
       // ------------------------------------------------------------------------------
@@ -242,16 +245,6 @@ public class GalleryCont {
 
     mav.setViewName("/gallery/read"); // /WEB-INF/views/gallery/read.jsp
         
-    /*
-     * // 찜 확인 if (memberProc.isMember(session)) { int memberno = (int)
-     * (session.getAttribute("memberno")); jjimVO.setMemberno(memberno);
-     * 
-     * int check_cnt = this.jjimProc.check(jjimVO); mav.addObject("check",
-     * check_cnt);
-     * 
-     * }
-     */
-    
     return mav;
   }
   

@@ -637,7 +637,6 @@
           <span style="font-size: 1.5em; font-weight: bold;"><fmt:formatNumber value="${saleprice}" pattern="#,###" /> 원</span>
           <del><fmt:formatNumber value="${price}" pattern="#,###" /> 원</del><br>
           <span style="font-size: 1.2em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /> 원</span><br>
-          <span style="font-size: 1.0em;">(보유수량: <fmt:formatNumber value="${salecnt}" pattern="#,###" /> 개)</span><br>
           <span style="font-size: 1.0em;">수량</span><br>
           <form>
           <input type='number' name='ordercnt' value='1' required="required" 

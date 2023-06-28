@@ -27,7 +27,8 @@ import com.zaxxer.hikari.HikariDataSource;
                                          "dev.mvc.reply",
                                          "dev.mvc.jjim",
                                          "dev.mvc.basket",
-                                         "dev.mvc.recommend"})    
+                                         "dev.mvc.recommend",
+                                         "dev.mvc.calendar"})    
 public class DatabaseConfiguration {
     
     @Autowired
