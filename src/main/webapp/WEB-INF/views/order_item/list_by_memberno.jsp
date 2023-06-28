@@ -43,11 +43,12 @@
    
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
-      <col style='width: 7%;'/>
-      <col style='width: 7%;'/>
+      <col style='width: 5%;'/>
+      <col style='width: 5%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
       <col style='width: 30%;'/>
+      <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
@@ -64,6 +65,7 @@
       <TH class='th_bs'>가격</TH>
       <TH class='th_bs'>수량</TH>
       <TH class='th_bs'>금액</TH>
+      <TH class='th_bs'>포인트</TH>
       <TH class='th_bs'>배송상태</TH>
       <TH class='th_bs'>주문일</TH>
     </TR>
@@ -77,6 +79,7 @@
       <c:set var="saleprice" value ="${order_itemVO.saleprice}" />
       <c:set var="cnt" value ="${order_itemVO.cnt}" />
       <c:set var="tot" value ="${order_itemVO.tot}" />
+      <c:set var="point" value ="${tot*0.05}" />
       <c:set var="stateno" value ="${order_itemVO.stateno}" />
       <c:set var="rdate" value ="${order_itemVO.rdate}" />
          
@@ -89,6 +92,7 @@
       <TD class='td_left'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
       <TD class='td_basic'>${cnt }</TD>
       <TD class='td_basic'><fmt:formatNumber value="${tot }" pattern="#,###" /></TD>
+      <TD class='td_basic'><fmt:formatNumber value="${point }" pattern="#,###" /></TD>
       <TD class='td_basic'>
         <c:choose>
           <c:when test="${stateno == 1}">결제 완료</c:when>
