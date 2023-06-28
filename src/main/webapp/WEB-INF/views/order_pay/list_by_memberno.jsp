@@ -63,8 +63,8 @@
       <TH class='th_bs'>주소</TH>
       <TH class='th_bs'>결제 타입</TH>
       <TH class='th_bs'>결제 금액</TH>
-      <TH class='th_bs'>예약일자</TH>
-      <TH class='th_bs'>조회</TH>
+      <TH class='th_bs'>주문일</TH>
+      <TH class='th_bs'>상세 조회</TH>
     </TR>
    
     <c:forEach var="order_payVO" items="${list }">
@@ -94,7 +94,7 @@
       <TD class='td_basic'><fmt:formatNumber value="${amount }" pattern="#,###" /></TD>
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
       <TD class='td_basic'>
-        <A href="/order_item/list_by_memberno.do?order_payno=${order_payno}"><img src="/order_pay/images/bu6.png" title="예약 내역 상세 조회"></A>
+        <A href="/order_item/list_by_memberno.do?order_payno=${order_payno}"><img src="/order_pay/images/item.png" title="예약 내역 상세 조회"></A>
       </TD>
       
     </TR>
