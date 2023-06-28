@@ -95,10 +95,7 @@
 	  function create() {
 	    location.href="/member/create.do";
 	  }
-  function loadDefault() {
-    $('#id').val('user1@gmail.com');
-    $('#passwd').val('1234');
-  } 
+
   
   <%-- 로그인 --%>
   function login_ajax() {
@@ -611,7 +608,6 @@
       <div class="col-md-offset-4 col-md-8">
           <button type="submit" class="btn btn-info btn-sm">로그인</button>
           <button type='button' id='btn_create' class="btn btn-info btn-sm">회원가입</button>
-          <button type='button' id='btn_loadDefault' class="btn btn-info btn-sm">테스트 계정</button>
 
       </div>
     </div>   
