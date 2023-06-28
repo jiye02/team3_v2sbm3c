@@ -39,7 +39,7 @@ function recommend() {
                   <li class="nav-item dropdown"> <%-- 카테고리 서브 메뉴 --%>
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown"  href="#">전시회 둘러보기</a>
                       <div class="dropdown-menu">
-                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=7&now_page=1" >미술전시회</a>
+                          <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=1&now_page=1" >미술전시회</a>
                           <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=2&now_page=1" >의류전시회</a>
                           <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=3&now_page=1" >이색전시회</a>
                           <a class="dropdown-item" href="/gallery/list_by_exhino.do?exhino=4&now_page=1" >팝업스토어</a>
