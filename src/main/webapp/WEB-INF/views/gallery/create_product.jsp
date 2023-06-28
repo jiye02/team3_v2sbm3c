@@ -80,6 +80,14 @@
                 min="0" max="100" step="1" class="form-control" style="width: 100%;">
     </div>
     <div>
+       <label>전시 시작일</label>
+       <input type="date" name='min' min='2023-06-01'  max='2023-12-31' value="2023-07-01">
+    </div>
+    <div>
+       <label>전시 종료일</label>
+       <input type="date" name='max' min='2023-06-01'  max='2023-12-31' value="2023-07-01">
+    </div>
+    <div>
       <label>판매가(100원 단위)</label>
       <input type="number" name="saleprice" value="5700" required="required" 
                 min="0" max="100000000" step="100" class="form-control" style="width: 100%;">

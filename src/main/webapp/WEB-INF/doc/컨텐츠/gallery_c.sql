@@ -7,7 +7,7 @@ CREATE TABLE gallery(
         exhino                                NUMBER(10)         NOT NULL , -- FK
         title                                 VARCHAR2(200)         NOT NULL,
         content                               CLOB                  NOT NULL,
-        recom                                 NUMBER(7)         DEFAULT 0         NOT NULL,
+        jjim                                 NUMBER(7)         DEFAULT 0         NOT NULL,
         cnt                                   NUMBER(7)         DEFAULT 0         NOT NULL,
         replycnt                              NUMBER(7)         DEFAULT 0         NOT NULL,
         passwd                                VARCHAR2(15)         NOT NULL,
@@ -22,10 +22,10 @@ CREATE TABLE gallery(
         saleprice                            NUMBER(10)      DEFAULT 0 NULL,  
         point                                 NUMBER(10)      DEFAULT 0 NULL,  
         salecnt                               NUMBER(10)      DEFAULT 0 NULL,
-        min                                   NUMBER(10)      NULL,
-        max                                   NUMBER(10)      NULL,
-        map                                   VARCHAR2(1000)            NULL,
-        youtube                               VARCHAR2(1000)            NULL,
+        min                                   VARCHAR2(10)      NULL,
+        max                                   VARCHAR2(10)      NULL,
+        map                                   VARCHAR2(1000)  NULL,
+        youtube                               VARCHAR2(1000)  NULL,
         FOREIGN KEY (adminno) REFERENCES admin (adminno),
         FOREIGN KEY (exhino) REFERENCES exhi (exhino)
 );
@@ -36,7 +36,7 @@ COMMENT ON COLUMN gallery.adminno is '관리자 번호';
 COMMENT ON COLUMN gallery.exhino is '카테고리 번호';
 COMMENT ON COLUMN gallery.title is '제목';
 COMMENT ON COLUMN gallery.content is '내용';
-COMMENT ON COLUMN gallery.recom is '추천수';
+COMMENT ON COLUMN gallery.jjim is '추천수';
 COMMENT ON COLUMN gallery.cnt is '조회수';
 COMMENT ON COLUMN gallery.replycnt is '댓글수';
 COMMENT ON COLUMN gallery.passwd is '패스워드';
