@@ -111,8 +111,8 @@
             <c:set var="thumb1" value="${basketVO.thumb1 }" />
             <c:set var="price" value="${basketVO.price }" />
             <c:set var="dc" value="${basketVO.dc }" />
-            <c:set var="saleprice" value="${basketVO.saleprice }" />
-            <c:set var="point" value="${basketVO.point }" />
+            <c:set var="saleprice" value="${price - price * (dc/100) }" />
+            <c:set var="point" value="${saleprice *0.05 }" />
             <c:set var="memberno" value="${basketVO.memberno }" />
             <c:set var="cnt" value="${basketVO.cnt }" />
             <c:set var="tot" value="${basketVO.tot }" />

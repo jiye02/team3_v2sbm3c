@@ -79,7 +79,7 @@
       <input type="number" name="dc" value="5" required="required" 
                 min="0" max="100" step="1" class="form-control" style="width: 100%;">
     </div>
- <!--    <div>
+    <div>
       <label>판매가(100원 단위)</label>
       <input type="number" name="saleprice" value="5700" required="required" 
                 min="0" max="100000000" step="100" class="form-control" style="width: 100%;">
@@ -88,7 +88,7 @@
       <label>포인트(10원 단위)</label>
       <input type="number" name="point" value="300" required="required" 
                 min="0" max="100000000" step="10" class="form-control" style="width: 100%;">
-    </div> -->
+    </div>
     <div>
        <label>검색어</label>
        <input type='text' name='word' value='' required="required" 
