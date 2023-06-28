@@ -57,7 +57,7 @@
                               </c:when>
                               <c:otherwise>
                                 <a class="dropdown-item" href="/order_pay/list_by_memberno.do?memberno=${sessionScope.memberno }">예약 주문 내역</a>
-                                <a class="dropdown-item" href="http://localhost:8000/ais/recommend_form/?memberno=${sessionScope.memberno }">관심 분야 등록</a>
+                                <a class="dropdown-item" href="http://43.201.78.137:8000/ais/recommend_form/?memberno=${sessionScope.memberno }">관심 분야 등록</a>
                                 <a class="dropdown-item" href="/member/read.do">회원 정보 수정</a>
                                 <a class="dropdown-item" href="/member/passwd_update.do?memberno=${sessionScope.memberno}">비밀번호 변경</a>
                                <a class="dropdown-item" href="/member/leave.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
