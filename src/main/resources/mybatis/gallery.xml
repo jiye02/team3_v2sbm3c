@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 모든 카테고리의 등록된 글목록 -->
   <select id="list_all" resultType="dev.mvc.gallery.GalleryVO">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
-               file1, file1saved, thumb1, size1
+               file1, file1saved, thumb1, size1, saleprice
     FROM gallery
     ORDER BY galleryno DESC
   </select> 

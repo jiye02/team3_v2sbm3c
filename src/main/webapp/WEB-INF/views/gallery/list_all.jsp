@@ -61,6 +61,7 @@
       <c:forEach var="galleryVO" items="${list}">
         <c:set var="title" value="${galleryVO.title }" />
         <c:set var="content" value="${galleryVO.content }" />
+        <c:set var="saleprice" value="${galleryVO.saleprice }" />
         <c:set var="exhino" value="${galleryVO.exhino }" />
         <c:set var="galleryno" value="${galleryVO.galleryno }" />
         <c:set var="thumb1" value="${galleryVO.thumb1 }" />
@@ -78,15 +79,9 @@
             </c:choose>
           </td>  
           <td style='vertical-align: middle;'>
-            <div style='font-weight: bold;'>${title }</div>
-            <c:choose> 
-              <c:when test="${content.length() > 160 }"> <%-- 160자 이상이면 160자만 출력 --%>
-                  ${content.substring(0, 160)}.....
-              </c:when>
-              <c:when test="${content.length() <= 160 }">
-                  ${content}
-              </c:when>
-            </c:choose>
+            <div style='font-weight: bold;'><a href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }">${title }</a></div>
+            <div style='font-size: 1.0em;float: left;'>판매가 : &nbsp;</div> 
+            <div style='font-size: 1.0em;'><a style='color: #ff0000;' href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }"><fmt:formatNumber value="${saleprice}" pattern="#,###" /> </a></div>
           </td>
           
           <c:choose>

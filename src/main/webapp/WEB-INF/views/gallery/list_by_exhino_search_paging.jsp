@@ -117,7 +117,7 @@
           <td style='vertical-align: middle;'>
             <div style='font-weight: bold;'><a href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }">${title }</a></div>
             <div style='font-size: 1.0em;float: left;'>판매가 : &nbsp;</div> 
-            <div style='font-size: 1.0em;'><a style='color: #ff0000;' href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }">${saleprice }</a></div>
+            <div style='font-size: 1.0em;'><a style='color: #ff0000;' href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }"><fmt:formatNumber value="${saleprice}" pattern="#,###" /> </a></div>
             <div style='font-size: 0.95em;'>${rdate }</div>
           </td> 
           
