@@ -6,8 +6,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
- 
+<title>Art Wave</title>
+<link rel="shortcut icon" href="/images/ex_top.png" /> 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -62,12 +62,12 @@
     
     <div>
        <label>상품명</label>
-       <input type='text' name='title' value='환상의 단풍 여행' required="required" 
+       <input type='text' name='title' value='' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     <div>
        <label>상품 설명</label>
-       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>가을 단풍보며 짜장면 먹기</textarea>
+       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'></textarea>
     </div>
     <div>
       <label>정가(100원 단위)</label>
@@ -79,7 +79,7 @@
       <input type="number" name="dc" value="5" required="required" 
                 min="0" max="100" step="1" class="form-control" style="width: 100%;">
     </div>
-    <div>
+ <!--    <div>
       <label>판매가(100원 단위)</label>
       <input type="number" name="saleprice" value="5700" required="required" 
                 min="0" max="100000000" step="100" class="form-control" style="width: 100%;">
@@ -88,10 +88,10 @@
       <label>포인트(10원 단위)</label>
       <input type="number" name="point" value="300" required="required" 
                 min="0" max="100000000" step="10" class="form-control" style="width: 100%;">
-    </div>
+    </div> -->
     <div>
        <label>검색어</label>
-       <input type='text' name='word' value='월터,벤 스틸러,크리스튼위그,휴먼,도전' required="required" 
+       <input type='text' name='word' value='' required="required" 
                  class="form-control" style='width: 100%;'>
     </div>   
     <div>

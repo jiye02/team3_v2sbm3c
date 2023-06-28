@@ -7,8 +7,8 @@
 <c:set var="title" value="${galleryVO.title }" />        
 <c:set var="price" value="${galleryVO.price }" />
 <c:set var="dc" value="${galleryVO.dc }" />
-<c:set var="saleprice" value="${galleryVO.saleprice }" />
-<c:set var="point" value="${galleryVO.point }" />
+<c:set var="saleprice" value="${galleryVO.price - galleryVO.price * (galleryVO.dc/100) }" /><!-- price - price * (dc/100) -->
+<c:set var="point" value="${saleprice * 0.05 }" />
 <c:set var="salecnt" value="${galleryVO.salecnt }" />
 <c:set var="file1" value="${galleryVO.file1 }" />
 <c:set var="file1saved" value="${galleryVO.file1saved }" />
