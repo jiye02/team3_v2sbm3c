@@ -22,6 +22,8 @@ CREATE TABLE gallery(
         saleprice                            NUMBER(10)      DEFAULT 0 NULL,  
         point                                 NUMBER(10)      DEFAULT 0 NULL,  
         salecnt                               NUMBER(10)      DEFAULT 0 NULL,
+        min                                   NUMBER(10)      NULL,
+        max                                   NUMBER(10)      NULL,
         map                                   VARCHAR2(1000)            NULL,
         youtube                               VARCHAR2(1000)            NULL,
         FOREIGN KEY (adminno) REFERENCES admin (adminno),
@@ -49,6 +51,8 @@ COMMENT ON COLUMN gallery.dc is '할인률';
 COMMENT ON COLUMN gallery.saleprice is '판매가';
 COMMENT ON COLUMN gallery.point is '포인트';
 COMMENT ON COLUMN gallery.salecnt is '수량';
+COMMENT ON COLUMN gallery.min is '전시 시작일';
+COMMENT ON COLUMN gallery.max is '전시 종료일';
 COMMENT ON COLUMN gallery.map is '지도';
 COMMENT ON COLUMN gallery.youtube is 'Youtube 영상';
 

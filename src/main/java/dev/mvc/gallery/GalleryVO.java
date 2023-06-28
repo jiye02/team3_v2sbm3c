@@ -53,7 +53,12 @@ public class GalleryVO {
   private String word = "";
   /** 등록 날짜 */
   private String rdate = "";
-
+  
+  /** 전시 시작일 */
+  private String min = "";
+  /** 전시 종료일 */
+  private String max = "";
+ 
   /** 메인 이미지 */
   private String file1 = "";
   /** 실제 저장된 메인 이미지 */
@@ -348,5 +353,21 @@ public class GalleryVO {
   public void setNow_page(int now_page) {
     this.now_page = now_page;
   }
- 
+  
+  public String getMin() {
+    return min;
+  }
+
+  public void setMin(String min) {
+    this.min = min;
+  }
+
+  public String getMax() {
+    return max;
+  }
+
+  public void setMax(String max) {
+    this.max = max;
+  }
+
 }

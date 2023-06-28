@@ -17,6 +17,8 @@
 <c:set var="jjim" value="${galleryVO.jjim }" />
 <c:set var="word" value="${galleryVO.word }" />
 <c:set var="size1_label" value="${galleryVO.size1_label }" />
+<c:set var="min" value="${galleryVO.min }" />
+<c:set var="max" value="${galleryVO.max }" />
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -650,6 +652,7 @@
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
           <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">주문 담기</button>           
           <button type='button' onclick="jjim_ajax(${galleryno })" class="btn btn-info">♥(${jjim })</button>
+          <input type="date" name='labeldate' min='${min}'  max='${max}' value="2023-07-01">
           <span id="span_animation"></span>
           </form>
         </DIV> 
