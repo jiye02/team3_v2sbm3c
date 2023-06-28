@@ -24,7 +24,7 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Art Wave</title>
- 
+<link rel="shortcut icon" href="/images/ex_top.png" />
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -86,7 +86,15 @@
     $('#span_animation').html("<img src='/gallery/images/ani04.gif' style='width: 8%;'>");
     $('#span_animation').show(); // 숨겨진 태그의 출력
   }
+  $(function() { // click 이벤트 핸들러 등록
+	    $('#btn_create').on('click', create); // 회원 가입
+	    $('#btn_loadDefault').on('click', loadDefault); // 기본 로그인 정보 설정
+	  });
 
+	  // 회원 가입  
+	  function create() {
+	    location.href="/member/create.do";
+	  }
   function loadDefault() {
     $('#id').val('user1@gmail.com');
     $('#passwd').val('1234');
@@ -118,7 +126,6 @@
             // alert('로그인 성공');
             $('#login_yn').val('YES'); // 로그인 성공 기록
             basket_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
-      
             
           } else {
             alert('로그인에 실패했습니다.<br>잠시후 다시 시도해주세요.');
@@ -576,7 +583,7 @@
   
   <%-- ******************** Ajax 기반 로그인 폼 시작 ******************** --%>
   <DIV id='div_login' style='width: 80%; margin: 0px auto; display: none;'>
-  <FORM name='frm_login' id='frm_login' method='POST' action='/member/login_ajax.do' class="form-horizontal">
+  <FORM name='frm_login' id='frm_login' method='POST' action='/member/login.do' class="form-horizontal">
     <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
     <input type="hidden" name="galleryno" id="galleryno" value="galleryno">
     <input type="hidden" name="login_yn" id="login_yn" value="NO">
@@ -586,11 +593,7 @@
       <div class="col-md-8">
         <input type='text' class="form-control" name='id' id='id' 
                    value='${ck_id }' required="required" 
-                   style='width: 30%;' placeholder="아이디" autofocus="autofocus">
-        <Label>   
-          <input type='checkbox' name='id_save' value='Y' 
-                    ${ck_id_save == 'Y' ? "checked='checked'" : "" }> 저장
-        </Label>                   
+                   style='width: 30%;' placeholder="아이디" autofocus="autofocus">                   
       </div>
  
     </div>   
@@ -600,20 +603,16 @@
       <div class="col-md-8">
         <input type='password' class="form-control" name='passwd' id='passwd' 
                   value='${ck_passwd }' required="required" style='width: 30%;' placeholder="패스워드">
-        <Label>
-          <input type='checkbox' name='passwd_save' value='Y' 
-                    ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
-        </Label>
+
       </div>
     </div>   
  
     <div class="form-group">
       <div class="col-md-offset-4 col-md-8">
-        <button type="button" id='btn_login' class="btn btn-primary btn-md">로그인</button>
-        <button type='button' onclick="location.href='./create.do'" class="btn btn-primary btn-md">회원가입</button>
-        <button type='button' id='btn_loadDefault' class="btn btn-primary btn-md">테스트 계정</button>
-        <button type='button' id='btn_cancel' class="btn btn-primary btn-md"
-                    onclick="$('#div_login').hide();">취소</button>
+          <button type="submit" class="btn btn-info btn-sm">로그인</button>
+          <button type='button' id='btn_create' class="btn btn-info btn-sm">회원가입</button>
+          <button type='button' id='btn_loadDefault' class="btn btn-info btn-sm">테스트 계정</button>
+
       </div>
     </div>   
     

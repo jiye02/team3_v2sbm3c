@@ -65,7 +65,7 @@
       <TH class='th_bs'>수량</TH>
       <TH class='th_bs'>금액</TH>
       <TH class='th_bs'>배송상태</TH>
-      <TH class='th_bs'>예약일</TH>
+      <TH class='th_bs'>주문일</TH>
     </TR>
    
     <c:forEach var="order_itemVO" items="${list }">

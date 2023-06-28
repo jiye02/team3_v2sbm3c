@@ -4,6 +4,19 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dev.mvc.exhi.ExhiVO" %>
 
+<script type="text/javascript">
+function recommend() {
+      var url = 'http://43.201.78.137:8000/ais/recommend_form/?memberno=${sessionScope.memberno }';
+      var win = window.open(url, '공지 사항', 'width=1300px, height=850px');
+      
+      var x = (screen.width - 1300) / 2;
+      var y = (screen.height - 850) / 2;
+      
+      win.moveTo(x, y); // 화면 중앙으로 이동
+}
+</script>
+
+
 <DIV class='container_main'> 
     <!-- 헤더 start -->
     <div class="header">
@@ -57,7 +70,7 @@
                               </c:when>
                               <c:otherwise>
                                 <a class="dropdown-item" href="/order_pay/list_by_memberno.do?memberno=${sessionScope.memberno }">예약 주문 내역</a>
-                                <a class="dropdown-item" href="http://localhost:8000/ais/recommend_form/?memberno=${sessionScope.memberno }">관심 분야 등록</a>
+                                <a class="dropdown-item" href="javascript: recommend();">관심분야 등록하고 추천받기</a>
                                 <a class="dropdown-item" href="/member/read.do">회원 정보 수정</a>
                                 <a class="dropdown-item" href="/member/passwd_update.do?memberno=${sessionScope.memberno}">비밀번호 변경</a>
                                <a class="dropdown-item" href="/member/leave.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
