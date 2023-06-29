@@ -35,5 +35,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE memberno=#{memberno}
     ORDER BY order_payno DESC
   </select>
+  
+    <!-- 회원별 예약 결제 목록 -->
+  <select id="list" resultType="dev.mvc.order_pay.Order_payVO" parameterType="int">
+    SELECT order_payno, memberno, rname, rtel, rzipcode, raddress1, raddress2, paytype, amount, rdate
+    FROM order_pay
+    WHERE memberno=#{memberno}
+    ORDER BY order_payno DESC
+  </select>
 
 </mapper>
