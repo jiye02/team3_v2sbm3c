@@ -108,6 +108,8 @@ public interface MemberProcInter {
    */
   public boolean isAdmin(HttpSession session);
 
+  public MemberVO readByMemberno(int Memberno);
+
 
   
 

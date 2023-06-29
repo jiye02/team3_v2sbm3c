@@ -1,65 +1,84 @@
 package dev.mvc.notes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-import dev.mvc.gallery.GalleryVO;
+import dev.mvc.notes.NotesVO;
 
 public interface NotesDAOInter {
   
   /**
-   * 공지사항 등록
-   * @param NotesVO
+   * 등록
+   * @param notesVO
    * @return
    */
   public int create(NotesVO notesVO);
   
-  /**
-   * 공지사항 전체 목록
-   * @param 
-   * @return 전체목록을 ArrayList<NotesVO>로 리턴
-   */
   public ArrayList<NotesVO> list_all();
   
-  /**
-   * 검색된 레코드 갯수 리턴
-   * @param notesVO
-   * @return
-   */
-  public int search_count(NotesVO notesVO);
   
   /**
-   *  검색 + 페이징된 글목록
-   *  spring framework이 JDBC 관련 코드를 모두 생성해줌
-   * @return
-   */
-  public ArrayList<NotesVO> list_all_search_paging(NotesVO notesVO);
-  
-  /**
-   * 공지사항 조회
+   * 조회
+   * @param notesno
    * @return
    */
   public NotesVO read(int notesno);
   
   /**
-   * 공지사항 글 수정
+   * 특정 카테고리의 검색된 글목록
    * @return
+   */
+  public ArrayList<NotesVO> list_by_search(NotesVO NotesVO);
+  
+  /**
+   * 검색 수
+   * @return
+   */
+  public int search_count(NotesVO notesVO);
+  
+  /**
+   * 특정 카테고리의 검색된 페이지 목록
+   * @return
+   */
+  public ArrayList<NotesVO> list_by_search_paging(NotesVO notesVO);
+  
+
+  /**
+   * 패스워드 확인
+   * @param notesVO
+   * @return 처리된 레코드 갯수
+   */
+  public int password_check(NotesVO notesVO);
+  
+  /**
+   * 글 정보 수정
+   * @param notesVO
+   * @return 처리된 레코드 갯수
    */
   public int update_text(NotesVO notesVO);
   
   /**
-   * 공지사항 파일 수정
-   * @return
+   * 파일 정보 수정
+   * @param notesVO
+   * @return 처리된 레코드 갯수
    */
   public int update_file(NotesVO notesVO);
-  
+ 
   /**
-   * 공지사항 삭제
-   * @return
+   * 삭제
+   * @param notesno
+   * @return 삭제된 레코드 갯수
    */
   public int delete(int notesno);
   
-  public String pagingBox(int now_page, String word, String list_file);
   
-  
+  /**
+   * 조회수
+   * @param itemno
+   * @return
+   */
+  public int cnt_add (int notesno);
+
 
 }

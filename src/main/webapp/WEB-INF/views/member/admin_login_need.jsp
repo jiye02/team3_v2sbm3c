@@ -27,9 +27,7 @@
  
   <DIV class='message'>
     <H3>관리자 로그인이 필요한 페이지입니다.</H3>
-    <BR><BR>
-    <button type='button' onclick="location.href='/member/login.do'" class="btn btn-info">로그인</button>       
-    <button type='button' onclick="location.href='/member/create.do'" class="btn btn-info">회원 가입</button>       
+    <BR><BR>      
   </DIV>
  
 <jsp:include page="../menu/bottom.jsp" flush='false' />

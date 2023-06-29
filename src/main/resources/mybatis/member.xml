@@ -20,12 +20,13 @@
     ORDER BY grade ASC, id ASC
   </select>
   
-  <!-- memberno로 회원 정보 조회 -->
-  <select id="read" resultType="dev.mvc.member.MemberVO" parameterType="int">
-    SELECT memberno, id, passwd, mname, tel, zipcode, address1, address2, mdate, grade
+    <!-- memberno로 회원 정보 조회 -->
+  <select id="readByMemberno" resultType="dev.mvc.member.MemberVO" parameterType="int">
+    SELECT memberno, id, passwd, name, tel, rdate, rankno
     FROM member
     WHERE memberno = #{memberno}
-  </select>  
+  </select>
+
 
   <!-- id(이메일)로 회원 정보 조회 -->
   <select id="readById" resultType="dev.mvc.member.MemberVO" parameterType="String">

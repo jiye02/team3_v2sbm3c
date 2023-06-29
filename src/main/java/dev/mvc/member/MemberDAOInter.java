@@ -108,6 +108,7 @@ public interface MemberDAOInter {
    */
   public boolean isAdmin(HttpSession session);
 
+  public MemberVO readByMemberno(int Memberno);
   
   
 }

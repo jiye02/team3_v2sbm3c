@@ -1,68 +1,113 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ 
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Art Wave</title>
-<link rel="shortcut icon" href="/images/ex_top.png" />
-
-<%-- /static/css/style.css --%> 
+<title>ART wave</title>
+ 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
-
+ 
+<script type="text/JavaScript"
+          src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
+<script type="text/javascript">
+  $(function(){
+ 
+  });
+</script>
 </head> 
+ 
 <body>
 <c:import url="/menu/top.do" />
 
 <DIV class='title_line'>알림</DIV>
 
-<c:set var="code" value="${param.code }" /> <%--mav.addObject("code", "create_success"); --%>
-<c:set var="cnt" value="${param.cnt }" />     <%-- mav.addObject("cnt", cnt); --%>
-<c:set var="exhino" value="${param.exhino }" /> <%-- mav.addObject("exhino", galleryVO.getExhino()); // redirect parameter 적용 --%>
-
 <DIV class='message'>
   <fieldset class='fieldset_basic'>
     <UL>
       <c:choose>
-        <c:when test="${code == 'passwd_fail'}">
+        <c:when test="${param.code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">패스워드가 일치하지 않습니다.</span>
+            <span class="span_success">공지사항 등록을 완료했습니다.</span>
+          </LI>  
+          <LI class='li_none'>
+            <button type='button' 
+                         onclick="location.href='./list_all.do'"
+                         class="btn btn-info btn-sm">메인으로</button>
           </LI> 
         </c:when>
         
-        <c:when test="${code == 'create_success'}"> <%-- Java if --%>
+        <c:when test="${param.code == 'create_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">새로운 컨텐츠를 등록했습니다.</span>
-          </LI> 
+            <span class="span_fail">글 등록에 실패했습니다.</span>
+          </LI>         
+          <LI class='li_none'>
+            <button type='button' 
+                         onclick="location.href='./list_all.do'"
+                         class="btn btn-info btn-sm">메인으로</button>
+          </LI>                                                              
         </c:when>
-        
-        <c:when test="${code == 'create_fail'}"> <%-- Java if --%>
+
+        <c:when test="${param.code == 'update_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">새로운 컨텐츠 등록에 실패했습니다.</span>
+            <span class="span_success">${param.name }님(아이디: ${param.id }) 회원 정보를 변경했습니다.</span>
+          </LI>
+          <LI class='li_none'>
+            <button type='button' 
+                         onclick="location.href='/'"
+                         class="btn btn-info btn-sm">시작 화면</button>
+            <button type='button' 
+                         onclick="location.href='/member/list.do'"
+                         class="btn btn-info btn-sm">회원 목록</button>                   
+          </LI>                                                                       
+        </c:when>
+                
+        <c:when test="${param.code == 'update_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">${param.name }님(${param.id }) 회원 정보 수정에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
-        <c:when test="${code == 'update_fail'}"> <%-- Java if --%>
+        <c:when test="${param.code == 'delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">컨텐츠 수정에 실패했습니다.</span>
-          </LI>                                                                      
-        </c:when>
-        
-        <c:when test="${code == 'delete_success'}"> <%-- Java if --%>
+            <span class="span_success">${param.name }님(${param.id }) 회원 정보 삭제에 성공했습니다.</span>
+          </LI>   
           <LI class='li_none'>
-            <span class="span_success">컨텐츠 삭제에 성공했습니다.</span>
-          </LI>                                                                      
-        </c:when>        
-        
+            <button type='button' 
+                         onclick="location.href='/member/list.do'"
+                         class="btn btn-info btn-sm">회원 목록</button>
+          </LI>                                                                     
+        </c:when>    
+            
         <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">컨텐츠 삭제에 실패했습니다.</span>
+            <span class="span_fail">${param.name }님(${param.id }) 회원 정보 삭제에 실패했습니다.</span>
           </LI>                                                                      
         </c:when> 
+        
+        <c:when test="${param.code == 'passwd_update_success'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_success">${param.name }님(${param.id }) 패스워드를 변경했습니다.</span>
+          </LI>   
+          <LI class='li_none'>
+            <button type='button' 
+                         onclick="location.href='/'"
+                         class="btn btn-info btn-sm">확인</button>
+          </LI>                                                                     
+        </c:when>   
+        
+        <c:when test="${code == 'passwd_update_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">${param.name }님(${param.id }) 패스워드 변경에 실패했습니다.</span>
+          </LI>                                                                      
+        </c:when>  
         
         <c:otherwise>
           <LI class='li_none_left'>
@@ -72,18 +117,20 @@
             <span class="span_fail">다시 시도해주세요.</span>
           </LI>
         </c:otherwise>
+        
       </c:choose>
       <LI class='li_none'>
         <br>
         <c:choose>
-            <c:when test="${cnt == 0 }">
-                <button type='button' onclick="history.back()" class="btn btn-primary">다시 시도</button>    
+            <c:when test="${param.cnt == 0 }">
+                <button type='button' onclick="history.back()" class="btn btn-info btn-sm">다시 시도</button>    
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./create.do?exhino=${exhino}'" class="btn btn-info btn-sm">새로운 컨텐츠 등록</button>
-        <button type='button' onclick="location.href='./list_by_exhino.do?exhino=${exhino}'" class="btn btn-info btn-sm">목록</button>
-        <button type='button' onclick="location.href='./list_by_exhino_grid.do?exhino=${exhino}'" class="btn btn-info btn-sm">갤러리 목록</button>
+        <%-- <a href="./list_by_cateno.do?cateno=${param.cateno}" class="btn btn-primary">목록</a> --%>
+        <%-- <button type='button' onclick="location.href='./list_by_cateno_search.do?cateno=${param.cateno}'" class="btn btn-primary">목록</button> --%>
+        <%-- <button type='button' onclick="location.href='./list_by_cateno_search_paging.do?cateno=${param.cateno}'" class="btn btn-primary">목록</button> --%>
+
       </LI>
     </UL>
   </fieldset>
@@ -94,4 +141,3 @@
 </body>
 
 </html>
-
