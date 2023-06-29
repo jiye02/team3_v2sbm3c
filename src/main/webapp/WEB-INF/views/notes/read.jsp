@@ -35,15 +35,14 @@
  
 <body>
 <c:import url="/menu/top.do" />
- 
-<DIV style='background-color:#FFFFFF; margin-right: 60%; font-size: 30px;'><img src="/menu/images/pin.png" class="icon1"> 공지사항</DIV>
 
+<DIV class='title_line'> 
+<img src="/menu/images/pin.png" class="icon1"><A href="./list_all.do"> 공지사항</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
     <%-- 관리자로 로그인해야 메뉴가 출력됨 --%>
     <c:if test="${sessionScope.admin_id != null }">
-
       <A href="./create.do">등록</A>
       <span class='menu_divide' >│</span>
       <A href="./update_text.do?notesno=${notesno}&now_page=${param.now_page}&word=${param.word}">글 수정</A>
@@ -82,13 +81,13 @@
      <li class="li_none" style="clear: both;">
         <DIV style='text-decoration: none;'>
         <br>
-          <img src="/menu/images/words.png" class="icon0"> :  ${word }
+          <img src="/menu/images/hash.png" class="icon0">: ${word }
         </DIV>
       </li>
       <li class="li_none">
         <DIV>
           <c:if test="${file1.trim().length() > 0 }">
-            첨부 파일: <A href='/download?dir=/gallery/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
+              첨부 파일: <A href='/download?dir=/gallery/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
           </c:if>
          
         </DIV>
