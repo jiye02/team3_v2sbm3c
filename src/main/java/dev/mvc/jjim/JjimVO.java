@@ -25,8 +25,10 @@ public class JjimVO {
     private int memberno;
     /** 수량 */
     private int tot;
+    /** 삭제 */
+    private int delete;
     /** 확인 */
-    private int check;
+    private int jjim_check;
     /** 확인 */
     private int count;
     /** 등록일 */
@@ -80,14 +82,24 @@ public class JjimVO {
         this.tot = tot;
     }
     
-    public int getCheck() {
-      return check;
+    
+    public int getJjim_check() {
+      return jjim_check;
     }
 
-    public void setCheck(int check) {
-      this.check = check;
+    public void setJjim_check(int jjim_check) {
+      this.jjim_check = jjim_check;
     }
     
+
+    public int getDelete() {
+      return delete;
+    }
+
+    public void setDelete(int delete) {
+      this.delete = delete;
+    }
+
     public int getCount() {
       return count;
     }

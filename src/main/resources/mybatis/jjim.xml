@@ -5,7 +5,7 @@
 <mapper namespace="dev.mvc.jjim.JjimDAOInter">
 
   <!-- 생성 -->
-  <insert id="create" parameterType="dev.mvc.jjim.JjimVO">
+  <insert id="create" parameterType="HashMap">
     INSERT INTO jjim(jjimno, memberno, galleryno, rdate)
     VALUES(jjim_seq.nextval, #{memberno}, #{galleryno}, sysdate)
   </insert>
@@ -25,9 +25,16 @@
   </select>
   
   <!-- 삭제 처리, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="HashMap">
     DELETE FROM jjim
-    WHERE jjimno=#{jjimno}
+    WHERE memberno=#{memberno} AND galleryno=#{galleryno}
   </delete>
+  
+  <!-- 찜을 했는지 확인후 안했으면 INSERT 실행, 했으면 DELETE 실행 -->
+  <select id="jjim_check" parameterType="HashMap" resultType="int">
+  SELECT COUNT(*) as cnt 
+  FROM jjim 
+  WHERE memberno=#{memberno} AND galleryno=#{galleryno}
+  </select>
   
 </mapper>

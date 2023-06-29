@@ -11,7 +11,7 @@ public interface JjimDAOInter {
    * @param jjimVO
    * @return
    */
-  public int create(JjimVO jjimVO);
+  public int create(HashMap<Object, Object> map);
   
   /**
    *  jjim 테이블에서 galleryno가 같은 레코드의 갯수를 산출하는 기능
@@ -30,7 +30,13 @@ public interface JjimDAOInter {
    * jjim 테이블 jjimno 삭제
    * @return
    */
-  public int delete(int jjimno);
+  public int delete(HashMap<Object, Object> map);
+  
+  /**
+   * jjim 체크
+   * @return
+   */
+  public int jjim_check(HashMap<Object, Object> map);
   
   
   

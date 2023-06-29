@@ -139,64 +139,6 @@
 
   }
 
-  <%-- 찜 상품 추가 --%>
-  function jjim_ajax(galleryno) {
-    var f = $('#frm_login');
-    $('#galleryno', f).val(galleryno);  // 쇼핑카트 등록시 사용할 상품 번호를 저장.
-    
-    console.log('-> galleryno: ' + $('#galleryno', f).val()); 
-    
-    // console.log('-> id:' + '${sessionScope.id}');
-    if ('${sessionScope.id}' != '' || $('#login_yn').val() == 'YES') {  // 로그인이 되어 있다면
-      jjim_ajax_post();
-    } else { // 로그인 안된 경우
-      $('#div_login').show();
-    }
-
-  }
-
-  <%-- 찜 상품 등록 --%>
-  function jjim_ajax_post() {
-    var f = $('#frm_login');
-    var galleryno = $('#galleryno', f).val();  // 쇼핑카트 등록시 사용할 상품 번호.
-    
-    var params = "";
-    // params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-    params += 'galleryno=' + galleryno;
-    params += '&${ _csrf.parameterName }=${ _csrf.token }';
-    console.log('-> jjim_ajax_post: ' + params);
-    // return;
-    
-    $.ajax(
-      {
-        url: '/jjim/create.do',
-        type: 'post',  // get, post
-        cache: false, // 응답 결과 임시 저장 취소
-        async: true,  // true: 비동기 통신
-        dataType: 'json', // 응답 형식: json, html, xml...
-        data: params,      // 데이터
-        success: function(rdata) { // 응답이 온경우
-          var str = '';
-          console.log('-> jjim_ajax_post cnt: ' + rdata.cnt);  // 1: 쇼핑카트 등록 성공
-          
-          if (rdata.cnt == 1) {
-            var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
-            if (sw == true) {
-              // 쇼핑카트로 이동
-              location.href='/jjim/list_by_memberno.do';
-            }           
-          } else {
-            alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
-          }
-        },
-        // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-        error: function(request, status, error) { // callback 함수
-          console.log(error);
-        }
-      }
-    );  //  $.ajax END
-
-  }
   
   <%-- 쇼핑 카트에 상품 추가 --%>
   function basket_ajax(galleryno) {

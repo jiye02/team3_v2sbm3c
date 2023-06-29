@@ -1,6 +1,7 @@
 package dev.mvc.gallery;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -216,14 +217,29 @@ public class GalleryCont {
    * 조회
    * @return
    */
-  @RequestMapping(value="/gallery/read.do", method=RequestMethod.GET )
-  public ModelAndView read(int galleryno, JjimVO jjimVO, HttpSession session) {
-    ModelAndView mav = new ModelAndView();
+  @RequestMapping(value="/gallery/read.do", method=RequestMethod.GET)
+  public ModelAndView read(int galleryno, JjimVO jjimVO, HttpSession session/* , int memberno, int jjimno */) {
+      ModelAndView mav = new ModelAndView();
+      
+      /*
+       * HashMap<Object, Object> map = new HashMap<Object, Object>();
+       * map.put("memberno", memberno); // 키, 값 map.put("galleryno", galleryno);
+       * 
+       * int cnt = jjimProc.jjim_check(map); // 찜 검사
+       * 
+       * if (cnt == 1) { // 현재 찜 목록이 있는 경우 int jjim_delete =
+       * this.jjimProc.delete(jjimno); // 찜 삭제 mav.addObject("jjim_delete",
+       * jjim_delete); } else { int jjim_cnt = this.jjimProc.count(galleryno); // 찜 추가
+       * mav.addObject("jjim_cnt", jjim_cnt); }
+       */
+      int jjim_cnt = this.jjimProc.count(galleryno);
+      mav.addObject("jjim_cnt", jjim_cnt);
+
+   
 
     GalleryVO galleryVO = this.galleryProc.read(galleryno);
     
-    int jjim_cnt = this.jjimProc.count(galleryno);
-    mav.addObject("jjim_cnt",jjim_cnt);
+    
     
     String title = galleryVO.getTitle();
     String content = galleryVO.getContent();
