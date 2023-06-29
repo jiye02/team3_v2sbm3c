@@ -97,6 +97,7 @@ function recommend() {
                           <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>
                           <a class="dropdown-item" href='/admin/create.do'>관리자 등록</a>
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
+                          <a class="dropdown-item" href='/order_pay/list.do'>전체 주문 관리</a>
                           <a class="dropdown-item" href='/reply/list.do'> 댓글 전체 목록</a>
                           <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a> 
                           <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>

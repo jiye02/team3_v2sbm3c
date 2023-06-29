@@ -109,21 +109,7 @@
     </TR>
     </c:forEach>
     
-  </TABLE>
-  
-  <table class="table table-striped" style='width: 100%;'>
-    <TR>
-      <TD colspan="10"  style="text-align: right; font-size: 1.3em;">
-        배송비: <fmt:formatNumber value="${baesong_tot }" pattern="#,###" />  
-        총 주문 금액: <fmt:formatNumber value="${total_order }" pattern="#,###" />  
-      </TD>
-    </TR>  
-  </table>    
-   
-  <DIV class='bottom_menu'>
-    <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
-    <button type='button' onclick="location.href='/order_pay/list_by_memberno.do?memberno=${memberno}'" class="btn btn-primary">결제 목록</button>
-  </DIV>
+  </TABLE>   
 </DIV>
  
 <jsp:include page="../menu/bottom.jsp" flush='false' />
