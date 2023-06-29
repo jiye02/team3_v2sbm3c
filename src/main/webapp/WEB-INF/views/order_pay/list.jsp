@@ -45,66 +45,59 @@
     <colgroup>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
-      <col style='width: 10%;'/>
+      <col style='width: 7%;'/>
       <col style='width: 10%;'/>
       <col style='width: 30%;'/>
-      <col style='width: 5%;'/>
-      <col style='width: 5%;'/>
-      <col style='width: 5%;'/>
-      <col style='width: 5%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 15%;'/>
-     
+      <col style='width: 7%;'/>
+      <col style='width: 7%;'/>
+      <col style='width: 13%;'/>
+      <col style='width: 7%;'/>
     </colgroup>
     <TR>
       <TH class='th_bs'>예약 번호</TH>
-      <TH class='th_bs'>상세 번호</TH>
       <TH class='th_bs'>회원 번호</TH>
-      <TH class='th_bs'>전시회 번호</TH>
-      <TH class='th_bs'>상품명</TH>
-      <TH class='th_bs'>가격</TH>
-      <TH class='th_bs'>수량</TH>
-      <TH class='th_bs'>금액</TH>
+      <TH class='th_bs'>성명</TH>
+      <TH class='th_bs'>전화번호</TH>
+      <TH class='th_bs'>주소</TH>
+      <TH class='th_bs'>결제 타입</TH>
+      <TH class='th_bs'>결제 금액</TH>
       <TH class='th_bs'>포인트</TH>
-      <TH class='th_bs'>배송상태</TH>
       <TH class='th_bs'>주문일</TH>
+      <TH class='th_bs'>삭제</TH>
     </TR>
    
-    <c:forEach var="order_itemVO" items="${list }">
-      <c:set var="order_payno" value ="${order_itemVO.order_payno}" />
-      <c:set var="order_itemno" value ="${order_itemVO.order_itemno}" />
-      <c:set var="memberno" value ="${order_itemVO.memberno}" />
-      <c:set var="galleryno" value ="${order_itemVO.galleryno}" />
-      <c:set var="title" value ="${order_itemVO.title}" />
-      <c:set var="saleprice" value ="${order_itemVO.saleprice}" />
-      <c:set var="cnt" value ="${order_itemVO.cnt}" />
-      <c:set var="tot" value ="${order_itemVO.tot}" />
-      <c:set var="point" value ="${tot*0.05}" />
-      <c:set var="stateno" value ="${order_itemVO.stateno}" />
-      <c:set var="rdate" value ="${order_itemVO.rdate}" />
+    <c:forEach var="order_payVO" items="${list }">
+      <c:set var="order_payno" value ="${order_payVO.order_payno}" />
+      <c:set var="memberno" value ="${order_payVO.memberno}" />
+      <c:set var="rtel" value ="${order_payVO.rtel}" />
+      <c:set var="address" value ="(${order_payVO.rzipcode}) ${order_payVO.raddress1} ${order_payVO.raddress1}" />
+      <c:set var="paytype" value ="${order_payVO.paytype}" />
+      <c:set var="amount" value ="${order_payVO.amount}" />
+      <c:set var="point" value ="${amount*0.05}" />
+      <c:set var="vday" value ="" />
+      <c:set var="rdate" value ="${order_payVO.rdate}" />
          
-    <TR>
+       
+     <TR>
       <TD class=td_basic>${order_payno}</TD>
-      <TD class=td_basic>${order_itemno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
-      <TD class=td_basic><A href="/gallery/read.do?galleryno=${galleryno}">${galleryno}</A></TD>
-      <TD class='td_left'>${title}</TD>
-      <TD class='td_left'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
-      <TD class='td_basic'>${cnt }</TD>
-      <TD class='td_basic'><fmt:formatNumber value="${tot }" pattern="#,###" /></TD>
-      <TD class='td_basic'><fmt:formatNumber value="${point }" pattern="#,###" /></TD>
+      <TD class='td_left'>${rtel}</TD>
+      <TD class='td_basic'>${address}</TD>
       <TD class='td_basic'>
         <c:choose>
-          <c:when test="${stateno == 1}">결제 완료</c:when>
-          <c:when test="${stateno == 2}">상품 준비중</c:when>
-          <c:when test="${stateno == 3}">배송 시작</c:when>
-          <c:when test="${stateno == 4}">배달중</c:when>
-          <c:when test="${stateno == 5}">오늘 도착</c:when>
-          <c:when test="${stateno == 6}">배달 완료</c:when>
+          <c:when test="${paytype == 1}">신용 카드</c:when>
+          <c:when test="${paytype == 2}">모바일</c:when>
+          <c:when test="${paytype == 3}">계좌 이체</c:when>
         </c:choose>
       </TD>
-      
+      <TD class='td_basic'><fmt:formatNumber value="${amount }" pattern="#,###" /></TD>
+      <TD class='td_basic'><fmt:formatNumber value="${point }" pattern="#,###" /></TD>
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
+      <TD class='td_basic'></TD>
+      <TD class='td_basic'>
+        <A href=""><img src="/order_pay/images/delete1.png" title="주문 삭제"></A>
+      </TD>
       
     </TR>
     </c:forEach>
