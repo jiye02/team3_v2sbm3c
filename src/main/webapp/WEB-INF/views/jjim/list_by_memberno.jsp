@@ -122,7 +122,9 @@
               <td style='vertical-align: middle; text-align: center;'>
               </td>
               <td style='vertical-align: middle; text-align: center;'>
-                <A href="javascript: delete_func(${jjimno })"><IMG src="/jjim/images/delete.png" class="icon"></A>
+                
+                <button type='button' onclick="location.href='/jjim/create.do?galleryno=${galleryno }'" class="btn btn-info">♥</button>
+                <button type='button' onclick="location.href='/jjim/create.do?'" class="btn btn-info">♥</button>
               </td>
             </tr>
           </c:forEach>

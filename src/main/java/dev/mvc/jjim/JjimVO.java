@@ -33,6 +33,8 @@ public class JjimVO {
     private int count;
     /** 등록일 */
     private String rdate;
+    /** 생성 */
+    private int create;
 
     public int getJjimno() {
         return jjimno;
@@ -116,5 +118,14 @@ public class JjimVO {
     public void setRdate(String rdate) {
         this.rdate = rdate;
     }
+
+    public int getCreate() {
+      return create;
+    }
+
+    public void setCreate(int create) {
+      this.create = create;
+    }
+    
 
 }

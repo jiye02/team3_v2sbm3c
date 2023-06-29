@@ -73,6 +73,7 @@ public class JjimCont {
 //    // System.out.println("-> jjimCont create: " + json.toString());
 
     mav.setViewName("redirect:/gallery/read.do?galleryno=" + galleryno);
+    mav.setViewName("redirect:/jjim/list_by_memberno.do");
 
     return mav;
   }
@@ -108,19 +109,19 @@ public class JjimCont {
     return mav;
   }
 
-  /*  *//**
-         * 상품 삭제 http://localhost:9091/basket/delete.do
-         * 
-         * @return
-         *//*
-            * @RequestMapping(value="/jjim/delete.do", method=RequestMethod.POST ) public
-            * ModelAndView delete(HttpSession session, @RequestParam(value="jjimno",
-            * defaultValue="0") int jjimno ) { ModelAndView mav = new ModelAndView();
-            * 
-            * this.jjimProc.delete(jjimno);
-            * mav.setViewName("redirect:/jjim/list_by_memberno.do");
-            * 
-            * return mav; }
-            */
-
+  /*    *//**
+           * 상품 삭제 http://localhost:9091/basket/delete.do
+           * 
+           * @return
+           *//*
+              * @RequestMapping(value="/jjim/delete.do", method=RequestMethod.POST ) public
+              * ModelAndView delete(HttpSession session, @RequestParam(value="jjimno",
+              * defaultValue="0") int jjimno ) { ModelAndView mav = new ModelAndView();
+              * 
+              * this.jjimProc.delete(jjimno);
+              * mav.setViewName("redirect:/jjim/list_by_memberno.do");
+              * 
+              * return mav; }
+              * 
+              */
 }
