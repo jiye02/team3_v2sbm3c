@@ -54,8 +54,8 @@ public class JjimCont {
       int delete_cnt = this.jjimProc.delete(map); //
       System.out.println("-> delete_cnt: " + delete_cnt);
     } else { // 새로운 찜의 처리 // 레코드 추가
-      int delete_cnt = this.jjimProc.create(map);
-      System.out.println("-> delete_cnt: " + delete_cnt);
+      int crate_cnt = this.jjimProc.create(map);
+      System.out.println("-> crate_cnt: " + crate_cnt);
 
     }
 
