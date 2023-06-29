@@ -57,13 +57,13 @@
     <TR>
       <TH class='th_bs'>예약 번호</TH>
       <TH class='th_bs'>회원 번호</TH>
-      <TH class='th_bs'>성명</TH>
       <TH class='th_bs'>전화번호</TH>
       <TH class='th_bs'>주소</TH>
       <TH class='th_bs'>결제 타입</TH>
       <TH class='th_bs'>결제 금액</TH>
       <TH class='th_bs'>포인트</TH>
       <TH class='th_bs'>주문일</TH>
+      <TH class='th_bs'>예약일</TH>
       <TH class='th_bs'>삭제</TH>
     </TR>
    
