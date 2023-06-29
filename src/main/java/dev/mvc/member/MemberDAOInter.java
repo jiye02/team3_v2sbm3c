@@ -106,10 +106,6 @@ public interface MemberDAOInter {
    * 로그인이 한게 관리자인지 확인
    * @param memberno
    */
-  public boolean isAdmin(HttpSession session);
-
-  public MemberVO readByMemberno(int Memberno);
-  
-  
+  public boolean isAdmin(HttpSession session); 
 }
 
