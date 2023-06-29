@@ -14,8 +14,8 @@ public class JjimProc implements JjimProcInter {
   private JjimDAOInter jjimDAO;
   
   @Override
-  public int create(JjimVO jjimVO) {
-    int cnt = this.jjimDAO.create(jjimVO);
+  public int create(HashMap<Object, Object> map) {
+    int cnt = this.jjimDAO.create(map);
     return cnt;
   }
   
@@ -32,8 +32,14 @@ public class JjimProc implements JjimProcInter {
   }
   
   @Override
-  public int delete(int jjimno) {
-    int cnt = this.jjimDAO.delete(jjimno);
+  public int delete(HashMap<Object, Object> map) {
+    int cnt = this.jjimDAO.delete(map);
+    return cnt;
+  }
+  
+  @Override
+  public int jjim_check(HashMap<Object, Object> map) {
+    int cnt = this.jjimDAO.jjim_check(map);
     return cnt;
   }
   
