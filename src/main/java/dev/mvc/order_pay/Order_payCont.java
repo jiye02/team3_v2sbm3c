@@ -24,6 +24,7 @@ import dev.mvc.order_pay.Order_payProcInter;
 import dev.mvc.order_pay.Order_payVO;
 import dev.mvc.reply.ReplyMemberVO;
 import dev.mvc.reply.ReplyVO;
+import dev.mvc.admin.AdminProcInter;
 import dev.mvc.basket.BasketProcInter;
 import dev.mvc.basket.BasketVO;
 
@@ -53,6 +54,10 @@ public class Order_payCont {
   @Autowired 
   @Qualifier("dev.mvc.basket.BasketProc")
   private BasketProcInter basketProc;
+  
+  @Autowired 
+  @Qualifier("dev.mvc.admin.AdminProc")
+  private AdminProcInter adminProc;
   
   public Order_payCont() {
     System.out.println("-> Order_payCont created.");
@@ -212,6 +217,47 @@ public class Order_payCont {
      mav.setViewName("redirect:/member/login.do"); // /WEB-INF/views/member/login_ck_form.jsp
    }
 
+   return mav;
+ }
+ 
+ /**
+  * 전체 목록, 로그인이 안되어 있으면 로그인 후 목록 출력
+  * http://localhost:9093/order_pay/list.do 
+  * @return
+  */
+ @RequestMapping(value="/order_pay/list.do", method=RequestMethod.GET )
+ public ModelAndView list(HttpSession session) {
+   ModelAndView mav = new ModelAndView();
+   
+   if (session.getAttribute("adminno") != null) { // 회원으로 로그인을 했다면 쇼핑카트로 이동
+     int adminno = (int)session.getAttribute("adminno");
+     
+     ArrayList<Order_payVO> list = this.order_payProc.list(adminno);
+     mav.addObject("list", list); // request.setAttribute("list", list);
+
+     mav.setViewName("/order_pay/list"); // /views/order_pay/list_by_memberno.jsp   
+     
+   } else { // 회원으로 로그인하지 않았다면
+     mav.addObject("return_url", "/order_pay/list.do"); // 로그인 후 이동할 주소 ★
+     
+     mav.setViewName("redirect:/admin/login.do"); // /WEB-INF/views/member/login_ck_form.jsp
+   }
+
+   return mav;
+ }
+ 
+ /**
+  * 상품 삭제
+  * http://localhost:9091/order_pay/delete.do
+  * @return
+  */
+ @RequestMapping(value="/order_pay/delete.do", method=RequestMethod.POST )
+ public ModelAndView delete(HttpSession session, @RequestParam(value="order_payno", defaultValue="0") int order_payno ) {
+   ModelAndView mav = new ModelAndView();
+   
+   this.order_payProc.delete(order_payno);      
+   mav.setViewName("redirect:/order_pay/list.do");
+   
    return mav;
  }
  

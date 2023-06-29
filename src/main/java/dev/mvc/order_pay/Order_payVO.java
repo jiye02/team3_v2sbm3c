@@ -11,11 +11,13 @@ COMMENT ON COLUMN order_item.tot is '합계';
 COMMENT ON COLUMN order_item.stateno is '예약상태';
 COMMENT ON COLUMN order_item.rdate is '예약날짜';
  * */
-  
+
   /** 주문 번호 */
   private int order_payno;
   /** 회원 번호 */
   private int memberno;
+  /** 갤러리 번호 */
+  private int galleryno;
   /** 수취인 성명 */
   private String rname = "";
   /** 수취인 전화 번호 */
@@ -93,6 +95,11 @@ COMMENT ON COLUMN order_item.rdate is '예약날짜';
   public void setRdate(String rdate) {
     this.rdate = rdate;
   }
-  
+  public int getGalleryno() {
+    return galleryno;
+  }
+  public void setGalleryno(int galleryno) {
+    this.galleryno = galleryno;
+  }
   
 }

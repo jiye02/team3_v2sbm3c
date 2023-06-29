@@ -107,11 +107,7 @@ public interface MemberProcInter {
    * @param memberno
    */
   public boolean isAdmin(HttpSession session);
-
-
-  
-
-  
+ 
 }
 
 

@@ -28,5 +28,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE (i.galleryno = g.galleryno) AND order_payno=#{order_payno} AND memberno = #{memberno}
     ORDER BY order_itemno DESC
   </select>
+  
+  <!-- 전체 예약 결제 상세 목록 -->
+ <!--  <select id="list" resultType="dev.mvc.order_item.Order_itemVO" parameterType="int">
+    SELECT order_itemno, memberno, order_payno, galleryno, cnt, tot, stateno, rdate
+    FROM order_item
+    ORDER BY order_itemno DESC
+  </select> -->
 
 </mapper>

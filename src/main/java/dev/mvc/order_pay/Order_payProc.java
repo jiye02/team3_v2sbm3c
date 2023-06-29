@@ -1,12 +1,16 @@
 package dev.mvc.order_pay;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 @Component("dev.mvc.order_pay.Order_payProc")
 public class Order_payProc implements Order_payProcInter {
+
+
   @Autowired
   private Order_payDAOInter order_payDAO;
   
@@ -21,6 +25,18 @@ public class Order_payProc implements Order_payProcInter {
     List<Order_payVO> list = this.order_payDAO.list_by_memberno(memberno);
     return list;
   }
+  
+  @Override
+  public ArrayList<Order_payVO> list(int adminno) {
+    ArrayList<Order_payVO> list = this.order_payDAO.list(adminno);
+    return list;
+  }
 
+  @Override
+  public int delete(int order_payno) {
+    int cnt = this.order_payDAO.delete(order_payno);
+    return cnt;
+  }
+  
 }
  
