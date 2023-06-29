@@ -19,14 +19,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-  $(function(){
- 
-  });
+function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
+    var frm = $('#frm_post');
+    frm.attr('action', './delete.do');
+    $('#order_payno',  frm).val(order_payno);
+    
+    frm.submit();
+}
 </script>
 </head> 
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
+
+<form name='frm_post' id='frm_post' action='' method='post'>
+  <input type='hidden' name='order_payno' id='order_payno'>
+</form>
  
   <DIV class='title_line'>
     전체 주문 내역
@@ -46,13 +54,13 @@
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 7%;'/>
+      <col style='width: 15%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 30%;'/>
       <col style='width: 10%;'/>
       <col style='width: 7%;'/>
-      <col style='width: 7%;'/>
-      <col style='width: 13%;'/>
-      <col style='width: 7%;'/>
+      <col style='width: 10%;'/>
+      <col style='width: 10%;'/>
+      <col style='width: 10%;'/>
     </colgroup>
     <TR>
       <TH class='th_bs'>예약 번호</TH>
@@ -64,7 +72,7 @@
       <TH class='th_bs'>포인트</TH>
       <TH class='th_bs'>주문일</TH>
       <TH class='th_bs'>예약일</TH>
-      <TH class='th_bs'>삭제</TH>
+      <TH class='th_bs'>기타</TH>
     </TR>
    
     <c:forEach var="order_payVO" items="${list }">
@@ -96,7 +104,8 @@
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
       <TD class='td_basic'></TD>
       <TD class='td_basic'>
-        <A href=""><img src="/order_pay/images/delete1.png" title="주문 삭제"></A>
+        <A href="/order_item/list_by_memberno.do?order_payno=${order_payno}"><img src="/order_pay/images/item.png" title="예약 내역 상세 조회"></A>
+        <A href="javascript: delete_func(${order_payno })"><img src="/order_pay/images/delete1.png" title="주문 삭제"></A>
       </TD>
       
     </TR>

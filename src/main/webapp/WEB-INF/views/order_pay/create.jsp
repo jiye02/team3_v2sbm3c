@@ -316,8 +316,7 @@
           <div class='basket_label' style='font-size: 1.5em;'>총 결제 금액</div>
           <div class='basket_price'  style='font-size: 1.5em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
           
-          <button type='button' id='btn_order_pay' class='btn btn-info' onclick="location.href='/order_pay/create.do'" 
-                      style='font-size: 1.3em;'>결제하기</button>
+          <button type='button' id='btn_order_pay' class='btn btn-info' onclick="location.href='/order_pay/create.do'" style='font-size: 1.3em;'>결제하기</button>
           <button type='button' id='btn_basket' class='btn btn-info' onclick="location.href='/basket/list_by_memberno.do'" 
                       style='font-size: 1.3em;'>취소하기(장바구니)</button>
         <td>

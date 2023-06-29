@@ -246,5 +246,20 @@ public class Order_payCont {
    return mav;
  }
  
+ /**
+  * 상품 삭제
+  * http://localhost:9091/order_pay/delete.do
+  * @return
+  */
+ @RequestMapping(value="/order_pay/delete.do", method=RequestMethod.POST )
+ public ModelAndView delete(HttpSession session, @RequestParam(value="order_payno", defaultValue="0") int order_payno ) {
+   ModelAndView mav = new ModelAndView();
+   
+   this.order_payProc.delete(order_payno);      
+   mav.setViewName("redirect:/order_pay/list.do");
+   
+   return mav;
+ }
+ 
 
 }
