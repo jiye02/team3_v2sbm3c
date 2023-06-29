@@ -17,27 +17,8 @@ CREATE TABLE order_pay(
     FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
 );
 
-COMMENT ON TABLE order_pay is '주문_결재';
-COMMENT ON COLUMN order_pay.order_payno is '주문 번호';
-COMMENT ON COLUMN order_pay.MEMBERNO is '회원 번호';
-COMMENT ON COLUMN order_pay.rname is '수취인성명';
-COMMENT ON COLUMN order_pay.rtel is '수취인 전화번호';
-COMMENT ON COLUMN order_pay.rzipcode is '수취인 우편번호';
-COMMENT ON COLUMN order_pay.raddress1 is '수취인 주소1';
-COMMENT ON COLUMN order_pay.raddress2 is '수취인 주소2';
-COMMENT ON COLUMN order_pay.paytype is '결재 종류';
-COMMENT ON COLUMN order_pay.amount is '결재금액';
-COMMENT ON COLUMN order_pay.rdate is '주문날짜';
 
-
-DROP SEQUENCE order_pay_seq;
-CREATE SEQUENCE order_pay_seq
-  START WITH 1              -- 시작 번호
-  INCREMENT BY 1          -- 증가값
-  MAXVALUE 9999999999 -- 최대값: 9999999999
-  CACHE 2                     -- 2번은 메모리에서만 계산
-  NOCYCLE;                   -- 다시 1부터 생성되는 것을 방지
-
+commit;
 -- 등록  
 -- 결재 종류(paytype):  1: 신용 카드, 2: 모바일, 3: 포인트, 4: 계좌 이체, 5: 직접 입금  
 INSERT INTO order_pay(order_payno, memberno, rname, rtel, rzipcode,

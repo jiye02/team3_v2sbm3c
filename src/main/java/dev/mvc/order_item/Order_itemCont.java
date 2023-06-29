@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
@@ -79,6 +80,61 @@ public class Order_itemCont {
       
       mav.setViewName("redirect:/member/login.do"); // /WEB-INF/views/member/login_ck_form.jsp
     }
+    
+    return mav;
+  }
+  
+  /**
+   * 예약 상세 전체 목록
+   * http://localhost:9093/order_item/list.do 
+   * @return
+   */
+  @RequestMapping(value="/order_item/list.do", method=RequestMethod.GET )
+  public ModelAndView list(HttpSession session, int order_payno) {
+    ModelAndView mav = new ModelAndView();
+    
+    int baesong_tot = 0;   // 배송비 합계
+    int tot_sum = 0;        // 할인 금액 총 합계(금액)
+    int total_order = 0;     // 전체 주문 금액
+    
+    if (session.getAttribute("adminno") != null) { // 회원으로 로그인을 했다면 쇼핑카트로 이동
+      List<Order_itemVO> list = this.order_itemProc.list(order_payno);
+      
+      for (Order_itemVO order_itemVO: list) {
+        tot_sum += order_itemVO.getTot();
+      }
+      
+      if (tot_sum < 30000) { // 상품 주문 금액이 30,000 원 이하이면 배송비 3,000 원 부여
+        baesong_tot = 3000;
+      }
+      
+      total_order = tot_sum + baesong_tot; // 전체 주문 금액
+      
+      mav.addObject("baesong_tot", baesong_tot); // 배송비
+      mav.addObject("total_order", total_order);     // 할인 금액 총 합계(금액)
+      mav.addObject("list", list); // request.setAttribute("list", list);
+
+      mav.setViewName("/order_item/list"); // /views/order_item/list_by_memberno.jsp
+    } else { // 회원으로 로그인하지 않았다면
+      mav.addObject("return_url", "/order_item/list.do"); // 로그인 후 이동할 주소 ★
+      
+      mav.setViewName("redirect:/admin/login.do"); // /WEB-INF/views/admin/login_ck_form.jsp
+    }
+    
+    return mav;
+  }
+  
+  /**
+   * 상품 삭제
+   * http://localhost:9093/order_item/delete.do
+   * @return
+   */
+  @RequestMapping(value="/order_item/delete.do", method=RequestMethod.POST )
+  public ModelAndView delete(HttpSession session, @RequestParam(value="order_itemno", defaultValue="0") int order_itemno ) {
+    ModelAndView mav = new ModelAndView();
+    
+    this.order_itemProc.delete(order_itemno);      
+    mav.setViewName("redirect:/order_item/list.do");
     
     return mav;
   }

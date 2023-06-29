@@ -54,7 +54,7 @@ function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 7%;'/>
-      <col style='width: 15%;'/>
+      <col style='width: 20%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
       <col style='width: 7%;'/>
@@ -79,7 +79,7 @@ function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
       <c:set var="order_payno" value ="${order_payVO.order_payno}" />
       <c:set var="memberno" value ="${order_payVO.memberno}" />
       <c:set var="rtel" value ="${order_payVO.rtel}" />
-      <c:set var="address" value ="(${order_payVO.rzipcode}) ${order_payVO.raddress1} ${order_payVO.raddress1}" />
+      <c:set var="address" value ="(${order_payVO.rzipcode}) ${order_payVO.raddress1}" />
       <c:set var="paytype" value ="${order_payVO.paytype}" />
       <c:set var="amount" value ="${order_payVO.amount}" />
       <c:set var="point" value ="${amount*0.05}" />
@@ -104,10 +104,9 @@ function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
       <TD class='td_basic'></TD>
       <TD class='td_basic'>
-        <A href="/order_item/list_by_memberno.do?order_payno=${order_payno}"><img src="/order_pay/images/item.png" title="예약 내역 상세 조회"></A>
+        <A href="/order_item/list.do?order_payno=${order_payno }"><img src="/order_pay/images/item.png" title="예약 내역 상세 조회"></A>
         <A href="javascript: delete_func(${order_payno })"><img src="/order_pay/images/delete1.png" title="주문 삭제"></A>
       </TD>
-      
     </TR>
     </c:forEach>
     

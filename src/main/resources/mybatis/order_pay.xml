@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 삭제 처리, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
   <delete id="delete" parameterType="int">
     DELETE FROM order_pay 
-    WHERE order_payno=#{order_pay}
+    WHERE order_payno=#{order_payno}
   </delete>
 
 </mapper>

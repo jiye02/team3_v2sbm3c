@@ -74,7 +74,7 @@
       <c:set var="memberno" value ="${order_payVO.memberno}" />
       <c:set var="rname" value ="${order_payVO.rname}" />
       <c:set var="rtel" value ="${order_payVO.rtel}" />
-      <c:set var="address" value ="(${order_payVO.rzipcode}) ${order_payVO.raddress1} ${order_payVO.raddress1}" />
+      <c:set var="address" value ="(${order_payVO.rzipcode}) ${order_payVO.raddress1}" />
       <c:set var="paytype" value ="${order_payVO.paytype}" />
       <c:set var="amount" value ="${order_payVO.amount}" />
       <c:set var="point" value ="${amount*0.05}" />

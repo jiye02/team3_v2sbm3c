@@ -1,5 +1,6 @@
 package dev.mvc.order_item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,5 +19,16 @@ public interface Order_itemProcInter{
    */
   public List<Order_itemVO> list_by_memberno(HashMap<String, Object> map);
   
-  public List<Order_itemVO> list();
+  /**
+   * 주문 전체 목록
+   * @return
+   */
+  public ArrayList<Order_itemVO> list(int adminno);
+  
+  /**
+   * 주문 삭제 처리
+   * @param order_itemno
+   * @return
+   */
+  public int delete(int order_itemno);
 }

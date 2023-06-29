@@ -20,20 +20,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY order_itemno DESC
   </select>
   
-    <!-- 특정글에 대한 전체 댓글 목록 -->
-  <select id="list" resultType="dev.mvc.order_item.Order_itemVO" parameterType="HashMap">
+  <!-- 회원별 결제 상세 목록(관리자) -->
+  <select id="list" resultType="dev.mvc.order_item.Order_itemVO" parameterType="int">
     SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
                g.title, g.saleprice
     FROM order_item i, gallery g 
-    WHERE (i.galleryno = g.galleryno) AND order_payno=#{order_payno} AND memberno = #{memberno}
+    WHERE (i.galleryno = g.galleryno) AND order_payno=#{order_payno} 
     ORDER BY order_itemno DESC
   </select>
   
-  <!-- 전체 예약 결제 상세 목록 -->
- <!--  <select id="list" resultType="dev.mvc.order_item.Order_itemVO" parameterType="int">
-    SELECT order_itemno, memberno, order_payno, galleryno, cnt, tot, stateno, rdate
-    FROM order_item
-    ORDER BY order_itemno DESC
-  </select> -->
+<!-- 삭제 처리, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM order_item 
+    WHERE order_itemno=#{order_itemno}
+  </delete>
 
 </mapper>

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import dev.mvc.order_pay.Order_payVO;
+
 public interface Order_itemDAOInter {
   /**
    * 등록
@@ -19,6 +21,17 @@ public interface Order_itemDAOInter {
    */
   public List<Order_itemVO> list_by_memberno(HashMap<String, Object> map);
   
-  public List<Order_itemVO> list();
+  /**
+   * 주문 전체 목록
+   * @return
+   */
+  public ArrayList<Order_itemVO> list(int adminno);
+  
+  /**
+   * 주문 삭제 처리
+   * @param order_itemno
+   * @return
+   */
+  public int delete(int order_itemno);
   
 } 

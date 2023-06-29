@@ -1,10 +1,13 @@
 package dev.mvc.order_item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import dev.mvc.order_pay.Order_payVO;
 
 
 @Component("dev.mvc.order_item.Order_itemProc")
@@ -27,9 +30,15 @@ public class Order_itemProc implements Order_itemProcInter {
   } 
   
   @Override
-  public List<Order_itemVO> list() {
-    List<Order_itemVO> list = order_itemDAO.list();
+  public ArrayList<Order_itemVO> list(int adminno) {
+    ArrayList<Order_itemVO> list = this.order_itemDAO.list(adminno);
     return list;
+  }
+
+  @Override
+  public int delete(int order_itemno) {
+    int cnt = this.order_itemDAO.delete(order_itemno);
+    return cnt;
   }
 
 }

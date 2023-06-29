@@ -2,6 +2,7 @@
 /* Table Name: 예약상세 */
 /**********************************/
 DROP TABLE order_item CASCADE CONSTRAINTS;
+DROP TABLE order_item;
 
 CREATE TABLE order_item(
         order_itemno                      NUMBER(10)         NOT NULL         PRIMARY KEY,
@@ -33,8 +34,9 @@ CREATE SEQUENCE order_item_seq
   INCREMENT BY 1          -- 증가값
   MAXVALUE 9999999999 -- 최대값: 9999999999
   CACHE 2                     -- 2번은 메모리에서만 계산
-  NOCYCLE;                   -- 다시 1부터 생성되는 것을 방지
-
+  NOCYCLE;-- 다시 1부터 생성되는 것을 방지
+  
+commit;
 -- 등록  
 -- 배송 상태(stateno):  1: 결재 완료, 2: 상품 준비중, 3: 배송 시작, 4: 배달중, 5: 오늘 도착, 6: 배달 완료
 -- FK(사전에 레코드가 등록되어 있어야함): memberno, order_payno, galleryno
@@ -53,7 +55,7 @@ ORDER BY order_itemno DESC;
 --회원별 목록
 SELECT order_itemno, memberno, order_payno, galleryno, cnt, tot, stateno, rdate
 FROM order_item
-WHERE memberno=1
+WHERE memberno=2
 ORDER BY order_itemno DESC;
 
 
@@ -62,10 +64,15 @@ ORDER BY order_itemno DESC;
 
 -- 삭제
 DELETE FROM order_item
-WHERE memberno=1;
+WHERE order_itemno=1;
 
 commit;
 
+
+DELETE FROM order_item
+WHERE memberno=32;
+
+commit;
 
 
 
