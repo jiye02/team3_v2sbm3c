@@ -73,7 +73,7 @@ public class JjimCont {
 //    // System.out.println("-> jjimCont create: " + json.toString());
 
     mav.setViewName("redirect:/gallery/read.do?galleryno=" + galleryno);
-    mav.setViewName("redirect:/jjim/list_by_memberno.do");
+    
 
     return mav;
   }
@@ -109,19 +109,35 @@ public class JjimCont {
     return mav;
   }
 
-  /*    *//**
+/**
            * 상품 삭제 http://localhost:9091/basket/delete.do
            * 
            * @return
-           *//*
-              * @RequestMapping(value="/jjim/delete.do", method=RequestMethod.POST ) public
-              * ModelAndView delete(HttpSession session, @RequestParam(value="jjimno",
-              * defaultValue="0") int jjimno ) { ModelAndView mav = new ModelAndView();
-              * 
-              * this.jjimProc.delete(jjimno);
-              * mav.setViewName("redirect:/jjim/list_by_memberno.do");
-              * 
-              * return mav; }
-              * 
-              */
+           */
+  @RequestMapping(value = "/jjim/delete.do", method = RequestMethod.GET)
+  @ResponseBody
+  public ModelAndView delete(HttpSession session, int galleryno) {
+    ModelAndView mav = new ModelAndView();
+
+    int memberno = (Integer) session.getAttribute("memberno");
+
+    HashMap<Object, Object> map = new HashMap<Object, Object>();
+    map.put("galleryno", galleryno);
+    map.put("memberno", memberno);
+
+    int duplicate_cnt = this.jjimProc.jjim_check(map);
+    if (duplicate_cnt > 0) {
+      // 이미 찜이 되어 있는 경우 // 기존에 찜되어 있는 레코드 삭제 //
+      int delete_cnt = this.jjimProc.delete(map); //
+      System.out.println("-> delete_cnt: " + delete_cnt);
+      mav.setViewName("redirect:/jjim/list_by_memberno.do?");
+    } else { // 새로운 찜의 처리 // 레코드 추가
+      int crate_cnt = this.jjimProc.create(map);
+      System.out.println("-> crate_cnt: " + crate_cnt);
+
+    }
+
+    return mav;
+  }
+              
 }

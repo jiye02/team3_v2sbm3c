@@ -123,8 +123,8 @@
               </td>
               <td style='vertical-align: middle; text-align: center;'>
                 
-                <button type='button' onclick="location.href='/jjim/create.do?galleryno=${galleryno }'" class="btn btn-info">♥</button>
-                <button type='button' onclick="location.href='/jjim/create.do?'" class="btn btn-info">♥</button>
+                <A type='button' onclick="location.href='/jjim/delete.do?memberno=${memberno}&galleryno=${galleryno }'"><IMG src="/jjim/images/delete.png" class="icon"></A>
+                
               </td>
             </tr>
           </c:forEach>
