@@ -1,13 +1,33 @@
   /* ver 2.1 */
   /* 모든 태그에 적용 */
   *{
-     font-family: Malgun Gothic; 
+     font-family: "Malgun Gothic"; 
      font-size: 16px; 
      margin: 0px;  /* top right bottom left */
      padding: 0px;
      color: #555555;
   }  
   
+ 
+  .navbar-brand{
+  font-family: 'OKGUNG',navbar-brand ;
+  }
+  .nav-link{
+  font-family: 'KCCChassam', nav-link;
+  }
+
+ @font-face {
+    font-family: 'KCCChassam';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'OKGUNG';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKGUNG.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
   .container_main {
     width: 96%; 
     margin: 10px auto;
@@ -191,7 +211,7 @@
   
   .title_line {
     text-align: left;
-    border-bottom: solid 3px #555555;
+    border-bottom: solid 3px #777777;
     width: 100%;
     margin: 20px auto;
     font-size: 20px;    
