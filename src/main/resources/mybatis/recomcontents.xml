@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.recomcontents.RecomcontentsDAOInter">
+  <!-- 등록한 레코드 갯수 1 리턴 -->
+  <insert id="create" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+    INSERT INTO recomcontents(recontno, adminno, recno, title, content, passwd, word,
+                                  file1, file1saved, thumb1, size1, rdate)
+    VALUES(recomcontents_seq.nextval, #{adminno}, #{recno}, #{title}, #{content}, #{passwd}, #{word},
+                #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
+  </insert>
+
+  <!-- 모든 카테고리의 등록된 글목록 -->
+  <select id="list_all" resultType="dev.mvc.recomcontents.RecomcontentsVO">
+    SELECT recontno, adminno, recno, title, content, recom, cnt, passwd, word, rdate,
+               file1, file1saved, thumb1, size1
+    FROM recomcontents
+    ORDER BY recontno DESC
+  </select> 
+  
+
+
+  <!-- 특정 카테고리의 등록된 글목록 -->
+  <select id="list_by_recno" resultType="dev.mvc.recomcontents.RecomcontentsVO" parameterType="int">
+    SELECT recontno, adminno, recno, title, content, recom, cnt,passwd, word, rdate,
+               file1, file1saved, thumb1, size1, map, youtube
+    FROM recomcontents
+    WHERE recno=#{recno}
+    ORDER BY recontno DESC
+
+  </select> 
+
+  <!-- 일반적인 조회 -->
+  <select id="read" resultType="dev.mvc.recomcontents.RecomcontentsVO" parameterType="int">
+    SELECT recontno, adminno, recno, title, content, recom, cnt, passwd, word, rdate,
+              file1, file1saved, thumb1, size1, map, youtube
+    FROM recomcontents
+    WHERE recontno = #{recontno}
+  </select>
+  
+  <!-- Map 등록, 수정, 삭제 -->
+  <update id="map" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+    UPDATE recomcontents 
+    SET map=#{map} 
+    WHERE recontno=#{recontno}
+  </update>
+
+  <!-- Youtube 등록, 수정, 삭제 -->
+  <update id="youtube" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+    UPDATE recomcontents 
+    SET youtube=#{youtube} 
+    WHERE recontno=#{recontno}
+  </update>
+
+  <!-- 카테고리별 검색 목록 -->
+  <select id="list_by_recno_search" resultType="dev.mvc.recomcontents.RecomcontentsVO" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+    SELECT recontno, adminno, recno, title, content, recom, cnt, word, rdate,
+            file1, file1saved, thumb1, size1, map, youtube
+    FROM recomcontents
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우, 모든 레코드 -->
+        WHERE recno=#{recno}
+      </when>
+      <otherwise> <!-- 검색하는 경우, 검색된 레코드 -->
+        WHERE recno=#{recno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+      </otherwise>
+    </choose>
+    ORDER BY recontno DESC   
+  </select>
+   
+  <!-- 카테고리별 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+    SELECT COUNT(*) as cnt
+    FROM recomcontents
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+        WHERE recno=#{recno}
+      </when>
+      <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+        WHERE recno=#{recno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                  OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+      </otherwise>
+    </choose>
+  </select>
+  
+  <!-- 카테고리별 검색 + 페이징 목록 -->
+  <select id="list_by_recno_search_paging" resultType="dev.mvc.recomcontents.RecomcontentsVO" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+   SELECT recontno, adminno, recno, title, content, recom, cnt, rdate, file1, file1saved, thumb1, size1, map, youtube, r
+   FROM (
+              SELECT recontno, adminno, recno, title, content, recom, cnt, rdate, file1, file1saved, thumb1, size1, map, youtube, rownum as r
+              FROM (
+                        SELECT recontno, adminno, recno, title, content, recom, cnt, rdate, file1, file1saved, thumb1, size1, map, youtube
+                        FROM recomcontents
+                        <choose>
+                          <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
+                            WHERE recno=#{recno}
+                          </when>
+                          <otherwise>
+                            WHERE recno=#{recno} AND (UPPER(title) LIKE '%' || UPPER(#{word}) || '%' 
+                                                              OR UPPER(content) LIKE '%' || UPPER(#{word}) || '%' 
+                                                              OR UPPER(word) LIKE '%' || UPPER(#{word}) || '%')
+                          </otherwise>
+                        </choose>
+                        ORDER BY recontno DESC
+               )
+    )
+    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+     
+    <!-- 1 page: WHERE r >= 1 AND r <= 10; 
+          2 page: WHERE r >= 11 AND r <= 20;
+          3 page: WHERE r >= 21 AND r <= 30; -->
+  </select>
+
+  <!-- 글 수정 -->
+  <update id="update_text" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+    UPDATE recomcontents
+    SET title=#{title}, content=#{content},  word=#{word} 
+    WHERE recontno = #{recontno}
+  </update>
+  
+  <!-- 패스워드 검사 -->
+  <select id="password_check" resultType="int" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+    SELECT COUNT(*) as cnt 
+    FROM recomcontents
+    WHERE recontno = #{recontno} AND passwd=#{passwd}
+  </select>
+  
+  <!-- 파일 수정 -->
+  <update id="update_file" parameterType="dev.mvc.recomcontents.RecomcontentsVO">
+    UPDATE recomcontents
+    SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
+    WHERE recontno = #{recontno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM recomcontents
+    WHERE recontno=#{recontno}
+  </delete>
+ 
+  <!-- 특정 카테고리에 속한 레코드 갯수를 리턴 -->
+  <select id="count_by_recno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt 
+    FROM recomcontents 
+    WHERE recno=#{recno}
+  </select>
+  
+  <!-- 특정 카테고리에 속한 모든 레코드 삭제 -->
+  <delete id="delete_by_recno" parameterType="int">
+    DELETE FROM recomcontents
+    WHERE recno=#{recno}
+  </delete>
+</mapper>

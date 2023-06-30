@@ -28,6 +28,8 @@ import com.zaxxer.hikari.HikariDataSource;
                                          "dev.mvc.jjim",
                                          "dev.mvc.basket",
                                          "dev.mvc.recommend",
+                                         "dev.mvc.recomplace",
+                                         "dev.mvc.recomcontents",
                                          "dev.mvc.notes",
                                          "dev.mvc.time",
                                          "dev.mvc.calendar,"})    

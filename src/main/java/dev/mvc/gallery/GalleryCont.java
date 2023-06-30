@@ -1,7 +1,6 @@
 package dev.mvc.gallery;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +80,7 @@ public class GalleryCont {
    * @return
    */
   @RequestMapping(value = "/gallery/create.do", method = RequestMethod.POST)
-  public ModelAndView create(HttpServletRequest request, HttpSession session, GalleryVO galleryVO, int galleryno) {
+  public ModelAndView create(HttpServletRequest request, HttpSession session, GalleryVO galleryVO) {
     ModelAndView mav = new ModelAndView();
     
     if (adminProc.isAdmin(session)) { // 관리자로 로그인한경우
@@ -157,38 +156,6 @@ public class GalleryCont {
       mav.addObject("url", "/admin/login_need"); // /WEB-INF/views/admin/login_need.jsp
       mav.setViewName("redirect:/gallery/msg.do"); 
     }
-
-    int memberno = (Integer) session.getAttribute("memberno");
-
-    HashMap<Object, Object> map = new HashMap<Object, Object>();
-    map.put("galleryno", galleryno);
-    map.put("memberno", memberno);
-
-    int duplicate_cnt = this.jjimProc.jjim_check(map);
-    if (duplicate_cnt > 0) {
-      // 이미 찜이 되어 있는 경우 // 기존에 찜되어 있는 레코드 삭제 //
-      int delete_cnt = this.jjimProc.delete(map); //
-      System.out.println("-> delete_cnt: " + delete_cnt);
-    } else { // 새로운 찜의 처리 // 레코드 추가
-      int crate_cnt = this.jjimProc.create(map);
-      System.out.println("-> crate_cnt: " + crate_cnt);
-
-    }
-
-//    JjimVO jjimVO = new JjimVO();
-//    jjimVO.setGalleryno(galleryno); // 상품 번호
-//
-//    
-//    jjimVO.setMemberno(memberno); // 회원 번호
-//
-//    int cnt = this.jjimProc.create(jjimVO); // 등록 처리
-//
-//    JSONObject json = new JSONObject();
-//    json.put("cnt", cnt); // 1: 정상 등록
-//
-//    // System.out.println("-> jjimCont create: " + json.toString());
-
-    mav.setViewName("redirect:/gallery/read.do?galleryno=" + galleryno);
     
     return mav; // forward
   }
@@ -249,29 +216,14 @@ public class GalleryCont {
    * 조회
    * @return
    */
-  @RequestMapping(value="/gallery/read.do", method=RequestMethod.GET)
-  public ModelAndView read(int galleryno, JjimVO jjimVO, HttpSession session/* , int memberno, int jjimno */) {
-      ModelAndView mav = new ModelAndView();
-      
-      /*
-       * HashMap<Object, Object> map = new HashMap<Object, Object>();
-       * map.put("memberno", memberno); // 키, 값 map.put("galleryno", galleryno);
-       * 
-       * int cnt = jjimProc.jjim_check(map); // 찜 검사
-       * 
-       * if (cnt == 1) { // 현재 찜 목록이 있는 경우 int jjim_delete =
-       * this.jjimProc.delete(jjimno); // 찜 삭제 mav.addObject("jjim_delete",
-       * jjim_delete); } else { int jjim_cnt = this.jjimProc.count(galleryno); // 찜 추가
-       * mav.addObject("jjim_cnt", jjim_cnt); }
-       */
-      int jjim_cnt = this.jjimProc.count(galleryno);
-      mav.addObject("jjim_cnt", jjim_cnt);
-
-   
+  @RequestMapping(value="/gallery/read.do", method=RequestMethod.GET )
+  public ModelAndView read(int galleryno, JjimVO jjimVO, HttpSession session) {
+    ModelAndView mav = new ModelAndView();
 
     GalleryVO galleryVO = this.galleryProc.read(galleryno);
     
-    
+    int jjim_cnt = this.jjimProc.count(galleryno);
+    mav.addObject("jjim_cnt",jjim_cnt);
     
     String title = galleryVO.getTitle();
     String content = galleryVO.getContent();
@@ -849,7 +801,6 @@ public class GalleryCont {
   
   
 }
-
 
 
 

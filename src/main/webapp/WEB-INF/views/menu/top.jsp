@@ -95,6 +95,7 @@ function recommend() {
                           <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>
                           <a class="dropdown-item" href='/admin/create.do'>관리자 등록</a>
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
+                          <a class="dropdown-item" href='/recomplace/list_all.do'>전시회 주변 카테고리</a>
                           <a class="dropdown-item" href='/reply/list.do'> 댓글 전체 목록</a>
                           <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a> 
                           <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
@@ -107,7 +108,19 @@ function recommend() {
                         <a class="nav-link" href="/order_pay/list.do">주문 관리</a>
                       </li>
                     </c:otherwise>
-                  </c:choose>     
+                  </c:choose>
+                  <li class="nav-item dropdown"> 
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">전시회 주변</a>
+                      <div class="dropdown-menu">
+                        <c:forEach var="recomplaceVO" items="${reclist}" varStatus="status">
+                          <c:set var="recno" value="${recomplaceVO.recno}" />
+                          <c:set var="recname" value="${recomplaceVO.recname}" />
+                          <c:if test="${status.index == 0 || recno != reclist[status.index - 1].recno}">
+                            <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=${recno}&now_page=1">${recname}</a>
+                          </c:if>
+                        </c:forEach>
+                      </div>
+                   </li>     
                 </ul>
             </div>    
         </nav>

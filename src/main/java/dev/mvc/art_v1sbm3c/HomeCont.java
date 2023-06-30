@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.exhi.ExhiProcInter;
 import dev.mvc.exhi.ExhiVO;
+import dev.mvc.recomplace.RecomplaceProcInter;
+import dev.mvc.recomplace.RecomplaceVO;
 
 // Setvlet으로 작동함, GET/POST등의 요청을 처리함.
 @Controller
@@ -18,6 +20,10 @@ public class HomeCont {
   @Autowired
   @Qualifier("dev.mvc.exhi.ExhiProc")  // @Component("dev.mvc.exhi.ExhiProc")
   private ExhiProcInter exhiProc; // ExhiProc 객체가 자동 생성되어 할당됨.
+  
+  @Autowired
+  @Qualifier("dev.mvc.recomplace.RecomplaceProc")  // @Component("dev.mvc.exhi.ExhiProc")
+  private RecomplaceProcInter recomplaceProc; // ExhiProc 객체가 자동 생성되어 할당됨
   
   public HomeCont() {
     System.out.println("-> HomeCont created.");
@@ -42,6 +48,9 @@ public class HomeCont {
 
     ArrayList<ExhiVO> list = this.exhiProc.list_all_y();
     mav.addObject("list", list);
+    
+    ArrayList<RecomplaceVO> reclist = this.recomplaceProc.list_all_y();
+    mav.addObject("reclist", reclist);
     
     mav.setViewName("/menu/top"); // /WEB-INF/views/menu/top.jsp
     

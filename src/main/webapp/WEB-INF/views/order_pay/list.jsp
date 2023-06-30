@@ -30,7 +30,7 @@ function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
 </head> 
  
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
+<c:import url="/menu/top.do" />
 
 <form name='frm_post' id='frm_post' action='' method='post'>
   <input type='hidden' name='order_payno' id='order_payno'>
