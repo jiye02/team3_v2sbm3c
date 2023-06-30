@@ -34,6 +34,7 @@ function delete_func(order_itemno) {  // GET -> POST 전송, 상품 삭제
  
  <form name='frm_post' id='frm_post' action='' method='post'>
   <input type='hidden' name='order_itemno' id='order_itemno'>
+  <input type='hidden' name='order_payno' id='order_Payno' value="${param.order_payno }">
 </form>
 
   <DIV class='title_line'>

@@ -256,6 +256,7 @@ public class Order_payCont {
    ModelAndView mav = new ModelAndView();
    
    this.order_payProc.delete(order_payno);      
+   
    mav.setViewName("redirect:/order_pay/list.do");
    
    return mav;

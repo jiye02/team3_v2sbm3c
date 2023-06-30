@@ -15,14 +15,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
 import dev.mvc.basket.BasketVO;
+import dev.mvc.member.MemberProc;
 
 @Controller
 public class JjimCont {
   @Autowired
   @Qualifier("dev.mvc.jjim.JjimProc")
   private JjimProcInter jjimProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.admin.AdminProc") 
+  private AdminProcInter adminProc;
 
   public JjimCont() {
     System.out.println("-> JjimCont created.");
@@ -41,42 +47,36 @@ public class JjimCont {
   @ResponseBody
   public ModelAndView create(HttpSession session, int galleryno) {
     ModelAndView mav = new ModelAndView();
-
-    int memberno = (Integer) session.getAttribute("memberno");
-
-    HashMap<Object, Object> map = new HashMap<Object, Object>();
-    map.put("galleryno", galleryno);
-    map.put("memberno", memberno);
-
-    int duplicate_cnt = this.jjimProc.jjim_check(map);
-    if (duplicate_cnt > 0) {
-      // 이미 찜이 되어 있는 경우 // 기존에 찜되어 있는 레코드 삭제 //
-      int delete_cnt = this.jjimProc.delete(map); //
-      System.out.println("-> delete_cnt: " + delete_cnt);
-    } else { // 새로운 찜의 처리 // 레코드 추가
-      int crate_cnt = this.jjimProc.create(map);
-      System.out.println("-> crate_cnt: " + crate_cnt);
-
-    }
-
-//    JjimVO jjimVO = new JjimVO();
-//    jjimVO.setGalleryno(galleryno); // 상품 번호
-//
-//    
-//    jjimVO.setMemberno(memberno); // 회원 번호
-//
-//    int cnt = this.jjimProc.create(jjimVO); // 등록 처리
-//
-//    JSONObject json = new JSONObject();
-//    json.put("cnt", cnt); // 1: 정상 등록
-//
-//    // System.out.println("-> jjimCont create: " + json.toString());
-
-    mav.setViewName("redirect:/gallery/read.do?galleryno=" + galleryno);
+    
+    if (adminProc.isAdmin(session) || session.getAttribute("memberno") != null) { 
+      int memberno = (Integer) session.getAttribute("memberno");
+      
+      HashMap<Object, Object> map = new HashMap<Object, Object>();
+      map.put("galleryno", galleryno);
+      map.put("memberno", memberno);
     
 
-    return mav;
-  }
+      int duplicate_cnt = this.jjimProc.jjim_check(map);
+      if (duplicate_cnt > 0) {
+        // 이미 찜이 되어 있는 경우 // 기존에 찜되어 있는 레코드 삭제 //
+        int delete_cnt = this.jjimProc.delete(map); //
+        System.out.println("-> delete_cnt: " + delete_cnt);
+      } else { // 새로운 찜의 처리 // 레코드 추가
+        int crate_cnt = this.jjimProc.create(map);
+        System.out.println("-> crate_cnt: " + crate_cnt);
+  
+      }
+      
+  
+      mav.setViewName("redirect:/gallery/read.do?galleryno=" + galleryno);
+      }
+      else {
+        mav.addObject("return_url", "/gallery/read.do?galleryno=" + galleryno);
+        mav.setViewName("redirect:/member/login.do");
+      }
+  
+      return mav;
+    }
 
   /**
    * 회원별 목록 http://localhost:9093/jjim/list_by_memberno.do
@@ -85,6 +85,7 @@ public class JjimCont {
    * 
    * @return
    */
+  
   @RequestMapping(value = "/jjim/list_by_memberno.do", method = RequestMethod.GET)
   public ModelAndView list_by_memberno(HttpSession session) {
     ModelAndView mav = new ModelAndView();
