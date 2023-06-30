@@ -3,11 +3,12 @@
 /**********************************/
 DROP TABLE basket CASCADE CONSTRAINTS;
 CREATE TABLE basket (
-  basketno                        NUMBER(10) NOT NULL PRIMARY KEY,
-  galleryno                    NUMBER(10) NOT NULL ,
-  memberno                      NUMBER(10) NOT NULL,
-  cnt                           NUMBER(10) DEFAULT 0 NOT NULL,
-  rdate                         DATE NOT NULL,
+  basketno                      NUMBER(10)    NOT NULL    PRIMARY KEY,
+  galleryno                     NUMBER(10)    NOT NULL,
+  memberno                      NUMBER(10)    NOT NULL,
+  cnt                           NUMBER(10)    DEFAULT 0   NOT NULL,
+  rdate                         DATE          NOT NULL,
+  labeldate                     VARCHAR2(10)  NULL,
   FOREIGN KEY (galleryno) REFERENCES gallery (galleryno),
   FOREIGN KEY (memberno) REFERENCES member (memberno)
 );
@@ -18,6 +19,7 @@ COMMENT ON COLUMN basket.galleryno is '갤러리 번호';
 COMMENT ON COLUMN basket.memberno is '회원 번호';
 COMMENT ON COLUMN basket.cnt is '수량';
 COMMENT ON COLUMN basket.rdate is '날짜';
+COMMENT ON COLUMN basket.labeldate is '전시 예약일';
 
 DROP SEQUENCE basket_seq;
 CREATE SEQUENCE basket_seq
@@ -52,6 +54,10 @@ INSERT INTO basket(basketno, galleryno, memberno, cnt, rdate)
 VALUES(basket_seq.nextval, 5, 3, 1, sysdate);
 commit;
 
+SELECT * FROM basket;
+
+
+
 -- ERROR
 -- ORA-02291: integrity constraint (KD.SYS_C007449) violated - parent key not found
 INSERT INTO basket(basketno, galleryno, memberno, cnt, rdate)
@@ -66,10 +72,10 @@ SELECT basketno, galleryno, memberno, cnt, rdate FROM basket ORDER BY basketno A
          2          5          3          1 2022-10-11 10:13:42
          
 -- LIST gallery join
-SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate 
+SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate , c.labeldate
 FROM gallery c, basket t
 WHERE c.galleryno = t.galleryno
-ORDER BY basketno ASC;
+ORDER BY t.basketno ASC;
 
 -- 3번 회원의 장바구니 목록
 SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate 
@@ -106,5 +112,10 @@ commit;
 DELETE FROM basket WHERE basketno=2;
 commit;
 
+-- basketno별 labeldate UPDATE
+UPDATE basket
+SET labeldate = '2021-02-17'
+WHERE basketno = 16;
+commit;
 
 SELECT * FROM basket;

@@ -143,6 +143,7 @@
         <c:set var="cnt" value="${basketVO.cnt }" />
         <c:set var="tot" value="${basketVO.tot }" />
         <c:set var="rdate" value="${basketVO.rdate }" />
+        <c:set var="labeldate" value="${basketVO.labeldate }" />
         
         <tr> 
           <td style='vertical-align: middle; text-align: center;'>
@@ -157,8 +158,11 @@
             </c:choose>
           </td>  
           <td style='vertical-align: middle;'>
-            <a href="/gallery/read.do?galleryno=${galleryno}"><strong>${title}</strong></a> 
-          </td> 
+            <a href="/gallery/read.do?galleryno=${galleryno}"><strong>${title} </strong></a> 
+          <td style='vertical-align: middle;'>
+            <span>${labeldate}</span> 
+          </td>
+           
           <td style='vertical-align: middle; text-align: center;'>
             <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
             <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>

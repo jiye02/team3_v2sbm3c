@@ -37,7 +37,13 @@ public class BasketVO {
     private int tot;
     /** 등록일 */
     private String rdate;
-
+    /** 예약일 */
+    private String labeldate;
+    /** 전시 시작일 */
+    private String min;
+    /** 전시 종료일 */
+    private String max;
+    
     public int getBasketno() {
         return basketno;
     }
@@ -133,5 +139,31 @@ public class BasketVO {
     public void setRdate(String rdate) {
         this.rdate = rdate;
     }
+
+    public String getLabeldate() {
+      return labeldate;
+    }
+
+    public void setLabeldate(String labeldate) {
+      this.labeldate = labeldate;
+    }
+
+    public String getMin() {
+      return min;
+    }
+
+    public void setMin(String min) {
+      this.min = min;
+    }
+
+    public String getMax() {
+      return max;
+    }
+
+    public void setMax(String max) {
+      this.max = max;
+    }
+    
+    
 
 }

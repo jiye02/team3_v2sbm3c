@@ -124,7 +124,31 @@ public class BasketCont {
   }
   
   /**
-   * 수량 변경, http://localhost:9091/basket/delete.do
+   * 예약일 변경, http://localhost:9093/basket/update_labeldate.do
+   * @param session
+   * @param basketno 장바구니 번호
+   * @param cnt 수량
+   * @return 변경된 레코드 갯수
+   */
+  @RequestMapping(value="/basket/update_labeldate.do", method=RequestMethod.GET )
+  public ModelAndView update_labeldate(HttpSession session, BasketVO basketVO) {
+    ModelAndView mav = new ModelAndView();
+   
+    System.out.println("Call");
+    
+    this.basketProc.update_labeldate(basketVO);
+    mav.addObject("basketno",basketVO.getBasketno());
+    mav.addObject("labeldate",basketVO.getLabeldate());
+    System.out.println(" ->labeldate: " + basketVO.getLabeldate());
+    System.out.println(" ->basketno: " + basketVO.getBasketno());
+    
+    mav.setViewName("redirect:/basket/list_by_memberno.do");
+    
+    return mav;
+  }
+  
+  /**
+   * 수량 변경, http://localhost:9091/basket/update_cnt.do
    * @param session
    * @param basketno 장바구니 번호
    * @param cnt 수량

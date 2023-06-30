@@ -42,6 +42,15 @@
     frm.submit();
   }   
 
+  function update_labeldate(basketno, labeldate) {
+    console.log('-> basketno: ' + basketno);
+    console.log('-> labeldate: ' + labeldate); 
+
+    let url = "http://localhost:9093/basket/update_labeldate.do?basketno=" + basketno + "&labeldate=" + labeldate;
+    location.href=url;
+    // 최종으로 이동할 주소: http://localhost:9093/basket/list_by_memberno.do
+  }
+
 
 </script>
 
@@ -84,8 +93,8 @@
     <colgroup>
       <col style="width: 10%;"></col>
       <col style="width: 40%;"></col>
-      <col style="width: 20%;"></col>
-      <col style="width: 10%;"></col> <%-- 수량 --%>
+      <col style="width: 10%;"></col>
+      <col style="width: 20%;"></col> <%-- 수량 --%>
       <col style="width: 10%;"></col> <%-- 합계 --%>
       <col style="width: 10%;"></col>
     </colgroup>
@@ -116,6 +125,9 @@
             <c:set var="memberno" value="${basketVO.memberno }" />
             <c:set var="cnt" value="${basketVO.cnt }" />
             <c:set var="tot" value="${basketVO.tot }" />
+            <c:set var="min" value="${basketVO.min }" />
+            <c:set var="max" value="${basketVO.max }" />
+            <c:set var="labeldate" value="${basketVO.labeldate }" />
             <c:set var="rdate" value="${basketVO.rdate }" />
             
             <tr> 
@@ -133,7 +145,11 @@
               <td style='vertical-align: middle;'>
                 <a href="/gallery/read.do?galleryno=${galleryno}"><strong>${title}</strong></a> 
               </td> 
+              <td style='vertical-align: middle;'>
+              </td> 
               <td style='vertical-align: middle; text-align: center;'>
+              <span style="font-size: 1.0em;">예약일 선택 ${labeldate }<br></span>
+                <input type="date" name='labeldate' id='labeldate' min=${min } max=${max } value='' onchange="update_labeldate(${basketno},this.value);"><br><br>
                 <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
                 <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
                 <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
@@ -181,7 +197,6 @@
         <td style='width: 50%;'>
           <div class='basket_label' style='font-size: 1.5em;'>전체 주문 금액</div>
           <div class='basket_price'  style='font-size: 1.5em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
-          
           <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='get'>
             <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.2em;'>주문하기</button>
           </form>

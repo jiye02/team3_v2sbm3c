@@ -33,6 +33,14 @@ public class BasketProc implements BasketProcInter {
     int cnt = this.basketDAO.delete(basketno);
     return cnt;
   }
-  
+
+  @Override
+  public int update_labeldate(BasketVO basketVO) {
+    int cnt = this.basketDAO.update_labeldate(basketVO);
+    return cnt;
+  }
+
+
+
 }
 

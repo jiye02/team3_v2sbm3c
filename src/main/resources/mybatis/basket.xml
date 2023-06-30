@@ -19,6 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY basketno ASC
   </select>
   
+  <!-- 예약일 변경, id: labeldate, 입력: BasketVO, 리턴: string -->
+  <update id="update_labeldate" parameterType="dev.mvc.basket.BasketVO">
+    UPDATE basket
+    SET labeldate=#{labeldate}
+    WHERE basketno=#{basketno}
+  </update>
+  
   <!-- 수량 수정, id: update, 입력: BasketVO, 리턴: int -->
   <update id="update_cnt" parameterType="dev.mvc.basket.BasketVO">
     UPDATE basket

@@ -17,6 +17,13 @@ public interface BasketProcInter {
   public ArrayList<BasketVO> list_by_memberno(int memberno);
   
   /**
+   * 예약일 변경
+   * @param basketno
+   * @return
+   */
+  public int update_labeldate(BasketVO basketVO);
+  
+  /**
    * 수량 변경
    * @param basketno
    * @return

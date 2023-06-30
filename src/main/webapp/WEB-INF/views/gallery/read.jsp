@@ -584,7 +584,6 @@ function list_by_galleryno_join_add() {
           <form>
           <input type='number' name='ordercnt' value='1' required="required" 
                      min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
-          <input type="date" name='labeldate' id='labeldate' min='${min}'  max='${max}' value='${min}'><br><br>
           <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">주문 담기</button>           
           <button type='button' onclick="location.href='/jjim/create.do?galleryno=${galleryno }'" class="btn btn-info">♥(${jjim_cnt })</button>
           <span id="span_animation"></span>
