@@ -68,13 +68,14 @@ WHERE order_itemno=1;
 
 commit;
 
-
 DELETE FROM order_item
 WHERE memberno=2;
 
 commit;
 
-
+-- 전체 삭제
+DELETE FORM order_item
+WHERE ORDER_PAYNO = 1;
 
 --
 SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
