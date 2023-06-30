@@ -1,42 +1,83 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
+<meta name="viewport"
+	content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" />
 <title>Art Wave</title>
 <link rel="shortcut icon" href="/images/ex_top.png" />
-<link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기 준 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
+<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<!-- /static 기 준 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-<%-- <jsp:include page="../menu/top.jsp" flush='false' /> --%>
-<c:import url="/menu/top.do" />
+<style>
+.carousel-item img {
+  max-width: 50%; /* 이미지의 최대 너비를 50%로 설정 */
+  max-height: 50%; /* 이미지의 최대 높이를 50%로 설정 */
+  display: block; /* 이미지를 블록 요소로 설정하여 가로 중앙 정렬을 적용합니다. */
+  margin: 0 auto; /* 좌우 여백을 auto로 설정하여 가로 중앙 정렬을 적용합니다. */
+}
+</style>
 
-  <DIV style='width: 100%; margin: 30px auto; text-align: center;'> 
-    <%-- /static/images/art01.jpg --%>
-    <IMG src='/images/art01.jpg' style='width: 60%;'>
 
-  </DIV>
-  
-  <DIV style='margin: 0px auto; width: 90%;'>
-    <DIV style='float: left; width: 50%;'>
-     </DIV>
-     <DIV style='float: left; width: 50%;'>
-    </DIV>  
-  </DIV>
- 
-  <DIV style='width: 94.8%; margin: 0px auto;'>
-  </DIV>  
- 
-<jsp:include page="./menu/bottom.jsp" flush='false' />
- 
+	<c:import url="/menu/top.do" />
+	<%-- <jsp:include page="../menu/top.jsp" flush='false' /> --%>
+
+	<div id="carouselExampleCaptions" class="carousel slide"
+data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleCaptions" data-slide-to="0"
+				class="active"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="./images/미술-001.jpg" class="d-block w-100" alt="...">
+				<div class="carousel-caption d-none d-md-block"></div>
+			</div>
+			<div class="carousel-item">
+				<IMG src="./images/의류-001.jpg" class="d-block w-100">
+				<div class="carousel-caption d-none d-md-block"></div>
+			</div>
+			<div class="carousel-item">
+				<IMG src="./images/플리마켓11.jpg" class="d-block w-100">
+			</div>
+			<div class="carousel-item">
+				<IMG src="./images/이색-001.jpg" class="d-block w-100">
+			</div>
+			<div class="carousel-item">
+				<IMG src="./images/지역-001.jpg" class="d-block w-100">
+			</div>
+
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleCaptions"
+			role="button" data-slide="prev"> <span
+			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			class="sr-only">Previous</span>
+		</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Next</span>
+		</a>
+	</div>
+
+
+	<jsp:include page="./menu/bottom.jsp" flush='false' />
+
 </body>
 </html>
 
