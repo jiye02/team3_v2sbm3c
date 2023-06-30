@@ -30,7 +30,7 @@ function delete_func(order_itemno) {  // GET -> POST 전송, 상품 삭제
 </head> 
  
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
+<c:import url="/menu/top.do" />
  
  <form name='frm_post' id='frm_post' action='' method='post'>
   <input type='hidden' name='order_itemno' id='order_itemno'>
@@ -101,7 +101,7 @@ function delete_func(order_itemno) {  // GET -> POST 전송, 상품 삭제
       <TD class=td_basic>${order_itemno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
       <TD class=td_basic><A href="/gallery/read.do?galleryno=${galleryno}">${galleryno}</A></TD>
-      <TD class='td_left'>${title}</TD>
+      <TD class='td_left'><A href="/gallery/read.do?galleryno=${galleryno}">${title}</A></TD>
       <TD class='td_left'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
       <TD class='td_basic'>${cnt }</TD>
       <TD class='td_basic'><fmt:formatNumber value="${tot }" pattern="#,###" /></TD>
@@ -130,7 +130,7 @@ function delete_func(order_itemno) {  // GET -> POST 전송, 상품 삭제
     <button type='button' onclick="location.href='/order_pay/list.do'" class="btn btn-primary">전체 주문 목록</button>
   </DIV>
   
-</DIV>
+</DIV>                        
 
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>

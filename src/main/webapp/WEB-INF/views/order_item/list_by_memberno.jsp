@@ -47,13 +47,14 @@
       <col style='width: 5%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 30%;'/>
+      <col style='width: 20%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
       <col style='width: 5%;'/>
+      <col style='width: 7%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 15%;'/>
+      <col style='width: 10%;'/>
      
     </colgroup>
     <TR>
@@ -68,6 +69,7 @@
       <TH class='th_bs'>포인트</TH>
       <TH class='th_bs'>배송상태</TH>
       <TH class='th_bs'>주문일</TH>
+      <TH class='th_bs'>예약일</TH>
     </TR>
    
     <c:forEach var="order_itemVO" items="${list }">
@@ -82,13 +84,14 @@
       <c:set var="point" value ="${tot*0.05}" />
       <c:set var="stateno" value ="${order_itemVO.stateno}" />
       <c:set var="rdate" value ="${order_itemVO.rdate}" />
+      <c:set var="vday"  />
          
     <TR>
       <TD class=td_basic>${order_payno}</TD>
       <TD class=td_basic>${order_itemno}</TD>
       <TD class=td_basic><A href="/member/read.do?memberno=${memberno}">${memberno}</A></TD>
       <TD class=td_basic><A href="/gallery/read.do?galleryno=${galleryno}">${galleryno}</A></TD>
-      <TD class='td_left'>${title}</TD>
+      <TD class='td_left'><A href="/gallery/read.do?galleryno=${galleryno}">${title}</A></TD>
       <TD class='td_left'><fmt:formatNumber value="${saleprice }" pattern="#,###" /></TD>
       <TD class='td_basic'>${cnt }</TD>
       <TD class='td_basic'><fmt:formatNumber value="${tot }" pattern="#,###" /></TD>
@@ -105,7 +108,7 @@
       </TD>
       
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
-      
+      <TD class='td_basic'></TD><!-- 예약일 -->
     </TR>
     </c:forEach>
     

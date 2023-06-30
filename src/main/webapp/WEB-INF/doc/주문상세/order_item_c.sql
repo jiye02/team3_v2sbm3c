@@ -70,7 +70,7 @@ commit;
 
 
 DELETE FROM order_item
-WHERE memberno=32;
+WHERE memberno=2;
 
 commit;
 
