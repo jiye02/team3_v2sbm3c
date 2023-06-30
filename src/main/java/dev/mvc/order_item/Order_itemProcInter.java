@@ -32,7 +32,6 @@ public interface Order_itemProcInter{
    */
   public int delete(int order_itemno);
 
-  public int deleteByOrderpayNo(int order_payno);
 
 ;
 }
