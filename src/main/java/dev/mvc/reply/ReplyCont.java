@@ -94,21 +94,25 @@ public class ReplyCont {
     
     return mav;
   }
-  
+  /**
+   * 내가 쓴 댓글 목록 확인 가능
+   * @param session
+   * @return
+   */
   @RequestMapping(value = "/reply/member_list.do", method = RequestMethod.GET)
   public ModelAndView member_list(HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    
-    if (session.getAttribute("memberno") != null) {
-      List<ReplyMemberVO> list = replyProc.list_member_join((int)session.getAttribute("memberno"));
-      
-      mav.addObject("list", list);
-      mav.setViewName("/reply/member_list_join"); // /WEB-INF/views/reply/list_join.jsp
 
+    if (session.getAttribute("memberno") != null) {
+      int memberno = (int) session.getAttribute("memberno");
+      List<ReplyMemberVO> list = replyProc.list_member_join(memberno);
+
+      mav.addObject("list", list);
+      mav.setViewName("/reply/member_list_join"); // /WEB-INF/views/reply/member_list_join.jsp
     } else {
       mav.setViewName("redirect:/member/login_need.jsp"); // Redirect to the appropriate login page
     }
-    
+
     return mav;
   }
 
@@ -201,26 +205,24 @@ public class ReplyCont {
    */
   @ResponseBody
   @RequestMapping(value = "/reply/delete.do", 
-                              method = RequestMethod.POST,
-                              produces = "text/plain;charset=UTF-8")
+                          method = RequestMethod.POST,
+                          produces = "text/plain;charset=UTF-8")
   public String delete(int replyno, String passwd) {
-//    System.out.println("-> replyno: " + replyno);
-//    System.out.println("-> passwd:" + passwd); 
-    Map<String, Object> map = new HashMap<String, Object>();
-    map.put("replyno", replyno);
-    map.put("passwd", passwd);
-    
-    int passwd_cnt = replyProc.checkPasswd(map); // 패스워드 일치 여부, 1: 일치, 0: 불일치
-    int delete_cnt = 0;                                    // 삭제된 댓글
-    if (passwd_cnt == 1) { // 패스워드가 일치할 경우
-      delete_cnt = replyProc.delete(replyno); // 댓글 삭제
-    }
-    
-    JSONObject obj = new JSONObject();
-    obj.put("passwd_cnt", passwd_cnt); // 패스워드 일치 여부, 1: 일치, 0: 불일치
-    obj.put("delete_cnt", delete_cnt); // 삭제된 댓글
-    
-    return obj.toString();
+      Map<String, Object> map = new HashMap<String, Object>();
+      map.put("replyno", replyno);
+      map.put("passwd", passwd);
+
+      int passwd_cnt = replyProc.checkPasswd(map); // 패스워드 일치 여부, 1: 일치, 0: 불일치
+      int delete_cnt = 0;                                    // 삭제된 댓글
+      if (passwd_cnt == 1) { // 패스워드가 일치할 경우
+          delete_cnt = replyProc.delete(replyno); // 댓글 삭제
+      }
+
+      JSONObject obj = new JSONObject();
+      obj.put("passwd_cnt", passwd_cnt); // 패스워드 일치 여부, 1: 일치, 0: 불일치
+      obj.put("delete_cnt", delete_cnt); // 삭제된 댓글
+
+      return obj.toString();
   }
   
   /**
@@ -245,12 +247,7 @@ public class ReplyCont {
       mav.setViewName("redirect:/reply/list.do");
       
       return mav;
-  }
-  
-  
-  
-  
-  
+  }  
   /**
    * 더보기 버튼 페이징 목록
    * http://localhost:9090/resort/reply/list_by_galleryno_join_add.do?galleryno=53&replyPage=1
@@ -277,6 +274,31 @@ public class ReplyCont {
  
     return obj.toString();     
   }
+  
+  
+  @RequestMapping(value = "/reply/member_delete.do", 
+                              method = RequestMethod.GET,
+                              produces = "text/plain;charset=UTF-8")
+   public ModelAndView member_delete(HttpSession session,int replyno) {
+      ModelAndView mav = new ModelAndView();
+//    System.out.println("-> replyno: " + replyno);
+//    System.out.println("-> passwd:" + passwd);    
+      
+      if (session.getAttribute("memberno") != null) {
+      int delete_cnt = 0;                                    // 삭제된 댓글      
+      delete_cnt = replyProc.delete(replyno); // 댓글 삭제      
+      mav.setViewName("redirect:/reply/member_list.do");
+      } else {
+        mav.setViewName("redirect:/member/login.do");
+      }
+      
+      return mav;
+  }  
+  
+   
+  
+  
+
   
 }
 
