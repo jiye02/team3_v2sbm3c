@@ -36,70 +36,72 @@ public class MemberCont {
     System.out.println("-> MemberCont created.");
   }
   
-  // http://localhost:9091/member/checkID.do?id=user1
-  /**
-  * ID 중복 체크, JSON 출력
-  * @return
-  */
-  @ResponseBody
-  @RequestMapping(value="/member/checkID.do", method=RequestMethod.GET ,
-                         produces = "text/plain;charset=UTF-8" )
-  public String checkID(String id) {
-    int cnt = this.memberProc.checkID(id);
-   
-    JSONObject json = new JSONObject();
-    json.put("cnt", cnt);
-   
-    return json.toString(); 
-  }
+//http://localhost:9091/member/checkID.do?id=user1
+/**
+* ID 중복 체크, JSON 출력
+* @return
+*/
+@ResponseBody
+@RequestMapping(value="/member/checkID.do", method=RequestMethod.GET , produces = "text/plain;charset=UTF-8" )
+public String checkID(String id) {
+ int cnt = this.memberProc.checkID(id);
 
-  // http://localhost:9091/member/create.do
-  /**
-  * 등록 폼
-  * @return
-  */
-  @RequestMapping(value="/member/create.do", method=RequestMethod.GET )
-  public ModelAndView create() {
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/member/create"); // webapp/member/create.jsp
-   
-    return mav; // forward
-  }
+ JSONObject json = new JSONObject();
+ json.put("cnt", cnt);
 
-  /**
-   * 등록 처리
-   * @param memberVO
-   * @return
-   */
-  @RequestMapping(value="/member/create.do", method=RequestMethod.POST)
-  public ModelAndView create(MemberVO memberVO){
-    ModelAndView mav = new ModelAndView();
-    
-    // System.out.println("id: " + memberVO.getId());
-    
-    memberVO.setGrade(15); // 기본 회원 가입 등록 15 지정
-    
-    int cnt= memberProc.create(memberVO); // SQL insert
-    
-    if (cnt == 1) { // insert 레코드 개수
-      mav.addObject("code", "create_success");
-      mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 가입을 축하합니다.
-      mav.addObject("id", memberVO.getId());
-    } else {
-      mav.addObject("code", "create_fail");
-    }
-    
-    mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
-    
-    mav.addObject("url", "/member/msg");  // /member/msg -> /member/msg.jsp
-    
-    mav.setViewName("redirect:/member/msg.do"); // POST -> GET -> /member/msg.jsp
+ return json.toString(); 
+}
 
-//    mav.addObject("code", "create_fail"); // 가입 실패 test용
-//    mav.addObject("cnt", 0);                 // 가입 실패 test용
-    
-    return mav;
-  }
+//http://localhost:9091/member/create.do
+/**
+* 등록 폼
+* @return
+*/
+@RequestMapping(value="/member/create.do", method=RequestMethod.GET )
+public ModelAndView create() {
+ ModelAndView mav = new ModelAndView();
+ mav.setViewName("/member/create"); // webapp/member/create.jsp
+
+ return mav; // forward
+}
+
+/**
+* 등록 처리
+* @param memberVO
+* @return
+*/
+@RequestMapping(value="/member/create.do", method=RequestMethod.POST)
+public ModelAndView create(MemberVO memberVO){
+ ModelAndView mav = new ModelAndView();
+ 
+ int cnt = memberProc.checkID(memberVO.getId()); // 아이디 중복 체크
+ 
+ if (cnt > 0) { // 아이디 중복 시
+   mav.addObject("code", "duplicate_id");
+   mav.addObject("id", memberVO.getId());
+   mav.setViewName("/member/create");
+   return mav;
+ }
+ 
+ memberVO.setGrade(15); // 기본 회원 가입 등록 15 지정
+ 
+ cnt = memberProc.create(memberVO); // SQL insert
+
+ if (cnt == 1) { // insert 레코드 개수
+   mav.addObject("code", "create_success");
+   mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 가입을 축하합니다.
+   mav.addObject("id", memberVO.getId());
+   mav.setViewName("redirect:/member/msg.do"); // POST -> GET -> /member/msg.jsp
+ } else {
+   mav.addObject("code", "create_fail");
+   mav.addObject("cnt", 0);
+   mav.addObject("url", "/member/msg");
+   mav.setViewName("redirect:/member/msg.do"); // POST -> GET -> /member/msg.jsp
+ }
+
+ return mav;
+}
+
   
   /**
    * 새로고침 방지, EL에서 param으로 접근, POST -> GET -> /member/msg.jsp
