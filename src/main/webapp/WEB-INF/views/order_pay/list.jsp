@@ -60,7 +60,6 @@ function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
       <col style='width: 7%;'/>
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 10%;'/>
     </colgroup>
     <TR>
       <TH class='th_bs'>예약 번호</TH>
@@ -71,7 +70,6 @@ function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
       <TH class='th_bs'>결제 금액</TH>
       <TH class='th_bs'>포인트</TH>
       <TH class='th_bs'>주문일</TH>
-      <TH class='th_bs'>예약일</TH>
       <TH class='th_bs'>기타</TH>
     </TR>
    
@@ -83,7 +81,6 @@ function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
       <c:set var="paytype" value ="${order_payVO.paytype}" />
       <c:set var="amount" value ="${order_payVO.amount}" />
       <c:set var="point" value ="${amount*0.05}" />
-      <c:set var="vday" value ="" />
       <c:set var="rdate" value ="${order_payVO.rdate}" />
          
        
@@ -102,7 +99,6 @@ function delete_func(order_payno) {  // GET -> POST 전송, 상품 삭제
       <TD class='td_basic'><fmt:formatNumber value="${amount }" pattern="#,###" /></TD>
       <TD class='td_basic'><fmt:formatNumber value="${point }" pattern="#,###" /></TD>
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
-      <TD class='td_basic'></TD>
       <TD class='td_basic'>
         <A href="/order_item/list.do?order_payno=${order_payno }"><img src="/order_pay/images/item.png" title="예약 내역 상세 조회"></A>
         <A href="javascript: delete_func(${order_payno })"><img src="/order_pay/images/delete1.png" title="주문 삭제"></A>

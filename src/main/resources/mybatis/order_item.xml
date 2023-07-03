@@ -14,19 +14,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <!-- 회원별 주문 결재 목록 -->
   <select id="list_by_memberno" resultType="dev.mvc.order_item.Order_itemVO" parameterType="HashMap">
     SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
-               g.title, g.saleprice
-    FROM order_item i, gallery g 
-    WHERE (i.galleryno = g.galleryno) AND order_payno=#{order_payno} AND memberno = #{memberno}
-    ORDER BY order_itemno DESC
+       g.title, g.saleprice, b.labeldate
+    FROM order_item i
+    JOIN gallery g ON i.galleryno = g.galleryno
+    JOIN basket b ON g.galleryno = b.galleryno
+    WHERE i.order_payno = #{order_payno} AND i.memberno = #{memberno}
+    ORDER BY i.order_itemno DESC
   </select>
   
   <!-- 회원별 결제 상세 목록(관리자) -->
   <select id="list" resultType="dev.mvc.order_item.Order_itemVO" parameterType="int">
     SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
-               g.title, g.saleprice
-    FROM order_item i, gallery g 
-    WHERE (i.galleryno = g.galleryno) AND order_payno=#{order_payno} 
-    ORDER BY order_itemno DESC
+       g.title, g.saleprice, b.labeldate
+    FROM order_item i
+    JOIN gallery g ON i.galleryno = g.galleryno
+    JOIN basket b ON g.galleryno = b.galleryno
+    WHERE i.order_payno = #{order_payno}
+    ORDER BY i.order_itemno DESC
   </select>
   
 <!-- 삭제 처리, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
