@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
 import dev.mvc.basket.BasketVO;
+import dev.mvc.gallery.Gallery;
 import dev.mvc.member.MemberProc;
+import dev.mvc.tool.Tool;
+import dev.mvc.tool.Upload;
 
 @Controller
 public class JjimCont {
@@ -48,7 +52,7 @@ public class JjimCont {
   public ModelAndView create(HttpSession session, int galleryno) {
     ModelAndView mav = new ModelAndView();
     
-    if (adminProc.isAdmin(session) || session.getAttribute("memberno") != null) { 
+    if (session.getAttribute("memberno") != null) { 
       int memberno = (Integer) session.getAttribute("memberno");
       
       HashMap<Object, Object> map = new HashMap<Object, Object>();
@@ -74,6 +78,7 @@ public class JjimCont {
         mav.addObject("return_url", "/gallery/read.do?galleryno=" + galleryno);
         mav.setViewName("redirect:/member/login.do");
       }
+      
   
       return mav;
     }
