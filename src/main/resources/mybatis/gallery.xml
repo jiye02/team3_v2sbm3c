@@ -118,7 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 글 수정 -->
   <update id="update_text" parameterType="dev.mvc.gallery.GalleryVO">
     UPDATE gallery
-    SET title=#{title}, content=#{content},  word=#{word} 
+    SET title=#{title}, content=#{content},  word=#{word}, min=#{min}, max=#{max}, price=#{price}, dc=#{dc}, saleprice=#{saleprice} 
     WHERE galleryno = #{galleryno}
   </update>
   
