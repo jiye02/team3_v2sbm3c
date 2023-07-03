@@ -79,7 +79,7 @@ public ModelAndView create(MemberVO memberVO){
  if (cnt > 0) { // 아이디 중복 시
    mav.addObject("code", "duplicate_id");
    mav.addObject("id", memberVO.getId());
-   mav.setViewName("/member/create");
+   mav.setViewName("redirect:/member/msg.do");
    return mav;
  }
  
