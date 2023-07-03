@@ -20,6 +20,7 @@ import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
 import dev.mvc.order_pay.Order_payProcInter;
 import dev.mvc.order_pay.Order_payVO;
+import dev.mvc.order_item.Order_itemVO;
 
 @Controller
 public class Order_itemCont {
@@ -38,6 +39,8 @@ public class Order_itemCont {
   @Autowired
   @Qualifier("dev.mvc.order_pay.Order_payProc")
   private Order_payProcInter order_payProc;
+
+  private Order_itemVO order_itemVO;
 
   public Order_itemCont() {
     System.out.println("-> Order_itemCont created.");
@@ -126,6 +129,7 @@ public class Order_itemCont {
       mav.addObject("baesong_tot", baesong_tot);
       mav.addObject("total_order", total_order);
       mav.addObject("list", list);
+//      System.out.println("-> labeldate:"+ order_itemVO.getLabeldate());
 
       mav.setViewName("/order_item/list");
     } else {

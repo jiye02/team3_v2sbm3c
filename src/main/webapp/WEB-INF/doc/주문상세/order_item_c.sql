@@ -81,17 +81,24 @@ WHERE ORDER_PAYNO = 1;
 SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
                g.title, g.saleprice
     FROM order_item i, gallery g 
-    WHERE (i.galleryno = g.galleryno) AND order_payno=43 AND memberno = 2
+    WHERE (i.galleryno = g.galleryno) AND order_payno=50 AND memberno = 2
     ORDER BY order_itemno DESC;
        
-    SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot,
-    i.stateno, i.rdate, g.title, g.saleprice, b.labeldate
-    FROM order_item i
-    INNER JOIN gallery g ON i.galleryno = g.galleryno
-    INNER JOIN basket b ON g.galleryno = b.galleryno
-    WHERE i.order_payno = 43 AND i.memberno = 2
-    ORDER BY i.order_itemno DESC;
-    
+SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
+       g.title, g.saleprice, b.labeldate
+FROM order_item i
+JOIN gallery g ON i.galleryno = g.galleryno
+JOIN basket b ON g.galleryno = b.galleryno
+WHERE i.order_payno = 47 AND i.memberno = 2
+ORDER BY i.order_itemno DESC;
+
+SELECT  i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate, 
+        g.title, g.saleprice, b.labeldate
+FROM cate c, contents t, admin a
+WHERE c.cateno = t.cateno AND t.adminno = a.adminno
+ORDER BY t.contentsno ASC;
+
+
        
     
        
