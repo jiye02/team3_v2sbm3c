@@ -30,5 +30,7 @@ public interface ReplyProcInter {
    * @return
    */
   public List<ReplyMemberVO> list_by_galleryno_join_add(HashMap<String, Object> map);
+
+  public List<ReplyMemberVO> list_member_join_byUserId(String userId);
   
 }

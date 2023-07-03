@@ -31,4 +31,9 @@ public interface ReplyDAOInter {
    */
   public List<ReplyMemberVO> list_by_galleryno_join_add(HashMap<String, Object> map);
   
+  public List<ReplyMemberVO> list_member_join_byUserId(String userId);
+
+  public List<ReplyMemberVO> getRepliesByUserId(String userId);
+
+  
 }
