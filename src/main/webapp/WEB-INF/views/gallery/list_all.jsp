@@ -65,6 +65,9 @@
         <c:set var="exhino" value="${galleryVO.exhino }" />
         <c:set var="galleryno" value="${galleryVO.galleryno }" />
         <c:set var="thumb1" value="${galleryVO.thumb1 }" />
+        <c:set var="min" value="${galleryVO.min }" />
+        <c:set var="max" value="${galleryVO.max }" />
+        
         
         <tr style="height: 112px;" onclick="location.href='./read.do?galleryno=${galleryno }&now_page=${param.now_page == null ? 1 : param.now_page}'" class='hover'>
           <td style='vertical-align: middle; text-align: center; '>
@@ -80,6 +83,7 @@
           </td>  
           <td style='vertical-align: middle;'>
             <div style='font-weight: bold;'><a href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }">${title }</a></div>
+            <div>전시 기간 : ${min } ~ ${max }</div>
             <div style='font-size: 1.0em;float: left;'>판매가 : &nbsp;</div> 
             <div style='font-size: 1.0em;'><a style='color: #ff0000;' href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }"><fmt:formatNumber value="${saleprice}" pattern="#,###" /> </a></div>
           </td>

@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 모든 카테고리의 등록된 글목록 -->
   <select id="list_all" resultType="dev.mvc.gallery.GalleryVO">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate
-               file1, file1saved, thumb1, size1, saleprice
+               file1, file1saved, thumb1, size1, saleprice, min, max
     FROM gallery
     ORDER BY galleryno DESC
   </select> 
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 특정 카테고리의 등록된 글목록 -->
   <select id="list_by_exhino" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
-               file1, file1saved, thumb1, size1, price, dc, saleprice, point, salecnt, map, youtube
+               file1, file1saved, thumb1, size1, price, dc, saleprice, point, salecnt, map, youtube, min, max
     FROM gallery
     WHERE exhino=#{exhino}
     ORDER BY galleryno DESC
@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 카테고리별 검색 목록 -->
   <select id="list_by_exhino_search" resultType="dev.mvc.gallery.GalleryVO" parameterType="dev.mvc.gallery.GalleryVO">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, word, rdate,
-            file1, file1saved, thumb1, size1, map, youtube
+            file1, file1saved, thumb1, size1, map, youtube, min, max
     FROM gallery
     <choose>
       <when test="word == null or word == ''"> <!-- 검색하지 않는 경우, 모든 레코드 -->
@@ -89,11 +89,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 카테고리별 검색 + 페이징 목록 -->
   <select id="list_by_exhino_search_paging" resultType="dev.mvc.gallery.GalleryVO" parameterType="dev.mvc.gallery.GalleryVO">
-   SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, r , saleprice
+   SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, r , saleprice, min, max
    FROM (
-              SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, saleprice, rownum as r
+              SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, min, max, saleprice, rownum as r
               FROM (
-                        SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, saleprice
+                        SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, file1, file1saved, thumb1, size1, map, youtube, saleprice, min, max
                         FROM gallery
                         <choose>
                           <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->

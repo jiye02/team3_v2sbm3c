@@ -64,6 +64,8 @@
         <c:set var="exhino" value="${galleryVO.exhino }" />
         <c:set var="galleryno" value="${galleryVO.galleryno }" />
         <c:set var="thumb1" value="${galleryVO.thumb1 }" />
+        <c:set var="min" value="${galleryVO.min }" />
+        <c:set var="max" value="${galleryVO.max }" />
         
          <tr style="height: 112px;" onclick="location.href='./read.do?galleryno=${galleryno }'" class='hover'>
           <td style='vertical-align: middle; text-align: center; '>
