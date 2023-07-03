@@ -62,7 +62,7 @@ data-ride="carousel">
       </div>
       <div class="carousel-item">
       <A href="/gallery/list_by_exhino.do?exhino=3&now_page=1">
-        <IMG src="./images/플리마켓11.jpg" class="d-block w-100">
+        <IMG src="./images/팝업-001.jpg" class="d-block w-100">
         </A>
       </div>
       <div class="carousel-item">
