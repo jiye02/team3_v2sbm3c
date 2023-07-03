@@ -79,6 +79,30 @@
        <input type='text' name='word' value="${word }" required="required" 
                  class="form-control" style='width: 100%;'>
     </div>   
+    <div>
+      <label>정가(100원 단위)</label>
+      <input type="number" name="price" value="6000" required="required" 
+                min="0" max="100000000" step="100" class="form-control" style="width: 100%;">
+    </div>
+    <div>
+      <label>할인률(%)</label>
+      <input type="number" name="dc" value="5" required="required" 
+                min="0" max="100" step="1" class="form-control" style="width: 100%;">
+    </div>
+    
+    <div>
+      <label>판매가(100원 단위)</label>
+      <input type="number" name="saleprice" value="5700" required="required" 
+                min="0" max="100000000" step="100" class="form-control" style="width: 100%;">
+    </div>
+    <div>
+       <label>전시 시작일</label>
+       <input type="date" name='min' value="defaultValue">
+    </div>
+    <div>
+       <label>전시 종료일</label>
+       <input type="date" name='max' value="defaultValue">
+    </div>
     
     <c:choose>
       <c:when test="${sessionScope.admin_id == null }">
