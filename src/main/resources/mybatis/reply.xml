@@ -9,19 +9,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     VALUES(reply_seq.nextval, #{galleryno}, #{memberno}, #{content}, #{passwd}, sysdate)
   </insert>
   
-   <select id="list" resultType="dev.mvc.reply.ReplyVO">
-    SELECT replyno, galleryno, memberno, content, passwd, rdate
-    FROM reply
-    ORDER BY replyno DESC
+   <select id="list" resultType="dev.mvc.reply.ReplyMemberVO">
+     SELECT m.id,
+              r.replyno, r.galleryno, r.memberno, r.content, r.passwd, r.rdate
+    FROM member m,  reply r
+    WHERE (m.memberno = r.memberno)
+    ORDER BY r.replyno DESC
   </select>
   
-   <select id="list_member_join" resultType="dev.mvc.reply.ReplyMemberVO">
+   <select id="list_member_join" resultType="dev.mvc.reply.ReplyMemberVO" parameterType="int">
     SELECT m.id,
               r.replyno, r.galleryno, r.memberno, r.content, r.passwd, r.rdate
     FROM member m,  reply r
-    WHERE m.memberno = r.memberno
+    WHERE (m.memberno = r.memberno) AND m.memberno=#{memberno}
     ORDER BY r.replyno DESC
   </select>
+  
+  
   
   <select id="list_by_galleryno" resultType="dev.mvc.reply.ReplyVO" parameterType="int">
     SELECT replyno, galleryno, memberno, content, passwd, rdate

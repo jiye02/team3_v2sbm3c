@@ -7,9 +7,9 @@ import java.util.Map;
 public interface ReplyProcInter {
   public int create(ReplyVO replyVO);
   
-  public List<ReplyVO> list();
+  public List<ReplyMemberVO> list();
 
-  public List<ReplyMemberVO> list_member_join();
+  public List<ReplyMemberVO> list_member_join(int memberno);
   
   public List<ReplyVO> list_by_galleryno(int galleryno);
   
