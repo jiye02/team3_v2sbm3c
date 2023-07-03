@@ -78,6 +78,7 @@ public class Order_payCont {
     int baesong_tot = 0;   // 배송비 합계
     int total_order = 0;     // 전체 주문 금액
     
+    
     int memberno = (int)session.getAttribute("memberno");
     
     // 쇼핑카트에 등록된 상품 목록을 가져옴
@@ -92,6 +93,8 @@ public class Order_payCont {
       
       // 포인트 합계 = 포인트 합계 + (포인트 * 수량)
       point_tot = point_tot + (basketVO.getPoint() * basketVO.getCnt());
+      
+      
       
     }
     
@@ -108,6 +111,7 @@ public class Order_payCont {
     mav.addObject("point_tot", point_tot);  // 포인트 합계
     mav.addObject("baesong_tot", baesong_tot);   // 배송비
     mav.addObject("total_order", total_order);  // 전체 주문 금액 
+    
     
     mav.setViewName("/order_pay/create"); // webapp/WEB-INF/views/order_pay/create.jsp
       
@@ -158,7 +162,10 @@ public class Order_payCont {
        int galleryno = basketVO.getGalleryno();
        int basketno = basketVO.getBasketno();
        
+      
+       
        // 2. order_item INSERT
+      
       order_itemVO.setMemberno(memberno);
       order_itemVO.setOrder_payno(order_payno);
       order_itemVO.setGalleryno(galleryno);

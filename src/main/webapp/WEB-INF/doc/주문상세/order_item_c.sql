@@ -85,12 +85,14 @@ SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.s
     ORDER BY order_itemno DESC;
        
 SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
-       g.title, g.saleprice, b.labeldate
+       g.title, g.saleprice,p.labeldate
 FROM order_item i
 JOIN gallery g ON i.galleryno = g.galleryno
-JOIN basket b ON g.galleryno = b.galleryno
-WHERE i.order_payno = 70
+JOIN order_pay p ON i.order_payno = p.order_payno
+WHERE i.order_payno = 81 
 ORDER BY i.order_itemno DESC;
+
+SELECT * FROM order_item;
 
 SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
        g.title, g.saleprice

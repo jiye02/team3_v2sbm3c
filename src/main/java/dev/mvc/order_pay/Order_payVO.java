@@ -12,6 +12,12 @@ COMMENT ON COLUMN order_item.stateno is '예약상태';
 COMMENT ON COLUMN order_item.rdate is '예약날짜';
  * */
 
+  public String getLabeldate() {
+    return labeldate;
+  }
+  public void setLabeldate(String labeldate) {
+    this.labeldate = labeldate;
+  }
   /** 주문 번호 */
   private int order_payno;
   /** 회원 번호 */
@@ -34,6 +40,10 @@ COMMENT ON COLUMN order_item.rdate is '예약날짜';
   private int amount = 0;
   /** 주문일 */
   private String rdate = "";
+  /** 예약일 */
+  private String labeldate = "";
+ 
+  
   
   public int getOrder_payno() {
     return order_payno;

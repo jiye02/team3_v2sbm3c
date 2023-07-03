@@ -186,7 +186,7 @@
   
   <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='post'>
     <input type="hidden" name="amount" value=" ${total_order }">   <%-- 전체 예약 금액 --%>
-    
+    <input type="hidden" name="labeldate" id="labeldate"  value=" ${labeldate }">
     
     <ASIDE class="aside_left">
       배송 정보<span style="font-size: 0.7em;">(*: 필수 입력)</span>
