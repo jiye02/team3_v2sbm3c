@@ -210,6 +210,19 @@
           </LI>                                                                       
         </c:when>
         
+        <c:when test="${param.code == 'duplicate_id'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <img src="/member/images/x.png" class="icon" style="width:30px">
+            <span   style="margin-right:80px;">(${param.id }) 이미 존재하는 id 입니다 중복 검사 바랍니다.</span>
+          </LI>   
+          <LI class='li_none'>
+            <button type='button' 
+                         onclick="location.href='/member/create.do'"
+                         class="btn btn-dark" style="margin-right:80px; margin-top:30px; width:130px; height:50px;">다시 가입</button>
+
+          </LI>                                                                     
+        </c:when>    
+        
         
         
         <c:otherwise>

@@ -110,12 +110,12 @@ public class BasketCont {
       mav.addObject("baesong_tot", baesong_tot);   // 배송비
       mav.addObject("total_order", total_order);  // 전체 주문 금액 
       
-      mav.setViewName("/basket/list_by_memberno"); // /WEB-INF/views/categrp/list_by_memberno.jsp
+      mav.setViewName("/basket/list_by_memberno"); // /WEB-INF/views/basket/list_by_memberno.jsp
       
     } else { // 회원으로 로그인하지 않았다면
       // http://localhost:9091/member/login.do?return_url=/basket/list_by_memberno.do
       
-      mav.addObject("return_url", "/basket/list_by_memberno.do"); // 로그인 후 이동할 주소 ★
+      // mav.addObject("return_url", "/basket/list_by_memberno.do"); // 로그인 후 이동할 주소 ★
       
       mav.setViewName("redirect:/member/login.do"); // /WEB-INF/views/member/login_ck_form.jsp
 

@@ -7,9 +7,9 @@ import java.util.Map;
 public interface ReplyDAOInter {
   public int create(ReplyVO replyVO);
   
-  public List<ReplyVO> list();
+  public List<ReplyMemberVO> list();
 
-  public List<ReplyMemberVO> list_member_join();
+  public List<ReplyMemberVO> list_member_join(int memberno);
   
   public List<ReplyVO> list_by_galleryno(int galleryno);
   
@@ -30,5 +30,10 @@ public interface ReplyDAOInter {
    * @return
    */
   public List<ReplyMemberVO> list_by_galleryno_join_add(HashMap<String, Object> map);
+  
+  public List<ReplyMemberVO> list_member_join_byUserId(String userId);
+
+  public List<ReplyMemberVO> getRepliesByUserId(String userId);
+
   
 }

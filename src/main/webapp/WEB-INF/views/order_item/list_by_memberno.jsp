@@ -26,7 +26,7 @@
 </head> 
  
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
+<c:import url="/menu/top.do" />
  
   <DIV class='title_line'>
     ${sessionScope.id }님 예약 상세 내역
@@ -84,7 +84,7 @@
       <c:set var="point" value ="${tot*0.05}" />
       <c:set var="stateno" value ="${order_itemVO.stateno}" />
       <c:set var="rdate" value ="${order_itemVO.rdate}" />
-      <c:set var="vday"  />
+      <c:set var="labeldate" value ="${order_itemVO.labeldate}"/>
          
     <TR>
       <TD class=td_basic>${order_payno}</TD>
@@ -108,7 +108,7 @@
       </TD>
       
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
-      <TD class='td_basic'></TD><!-- 예약일 -->
+      <TD class='td_basic'>${labeldate }</TD><!-- 예약일 -->
     </TR>
     </c:forEach>
     

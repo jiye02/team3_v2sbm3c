@@ -2,7 +2,9 @@
 package dev.mvc.order_item;
 
 public class Order_itemVO {
-/*
+
+
+  /*
 COMMENT ON COLUMN order_item.order_payno is '주문 번호';
 COMMENT ON COLUMN order_item.CONTENTSNO is '컨텐츠 번호';
 COMMENT ON COLUMN order_item.cnt is '수량';
@@ -39,6 +41,8 @@ COMMENT ON COLUMN order_item.rdate is '주문날짜';
   
   /** 주문날짜 */
   private String rdate = ""; // 초기값: null
+  
+  private String labeldate = "";
 
   public int getOrder_itemno() {
     return order_itemno;
@@ -120,5 +124,11 @@ COMMENT ON COLUMN order_item.rdate is '주문날짜';
     this.rdate = rdate;
   }
   
-  
+  public String getLabeldate() {
+    return labeldate;
+  }
+
+  public void setLabeldate(String labeldate) {
+    this.labeldate = labeldate;
+  }
 }

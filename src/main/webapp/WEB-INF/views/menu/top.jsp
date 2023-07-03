@@ -87,6 +87,7 @@ function recommend() {
                                 <a class="dropdown-item" href="/order_pay/list_by_memberno.do?memberno=${sessionScope.memberno }">예약 주문 내역</a>
                                 <a class="dropdown-item" href="javascript: recommend();">관심분야 등록하고 추천받기</a>
                                 <a class="dropdown-item" href="/member/read.do">회원 정보 수정</a>
+                                <a class="dropdown-item" href="/reply/member_list.do">내가 쓴 댓글</a>
                                 <a class="dropdown-item" href="/member/passwd_update.do?memberno=${sessionScope.memberno}">비밀번호 변경</a>
                                <a class="dropdown-item" href="/member/leave.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
                               </c:otherwise>

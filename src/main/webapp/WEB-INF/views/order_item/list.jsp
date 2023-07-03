@@ -95,7 +95,7 @@ function delete_func(order_itemno) {  // GET -> POST 전송, 상품 삭제
       <c:set var="point" value ="${tot*0.05}" />
       <c:set var="stateno" value ="${order_itemVO.stateno}" />
       <c:set var="rdate" value ="${order_itemVO.rdate}" />
-      <c:set var="vday" value ="" />
+      <c:set var="labeldate" value ="${order_itemVO.labeldate}" />
          
     <TR>
       <TD class=td_basic>${order_payno}</TD>
@@ -119,7 +119,7 @@ function delete_func(order_itemno) {  // GET -> POST 전송, 상품 삭제
       </TD>
       
       <TD class='td_basic'>${rdate.substring(1,16) }</TD>
-      <TD class='td_basic'></TD>
+      <TD class='td_basic'>${labeldate}</TD>
       <TD class='td_basic'>
         <A href="javascript: delete_func(${order_itemno })"><img src="/order_pay/images/delete1.png" title="주문 삭제"></A>
       </TD>
