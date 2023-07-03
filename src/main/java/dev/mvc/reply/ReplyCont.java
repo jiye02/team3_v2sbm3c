@@ -83,7 +83,7 @@ public class ReplyCont {
     ModelAndView mav = new ModelAndView();
     
     if (adminProc.isAdmin(session)) {
-      List<ReplyMemberVO> list = replyProc.list_member_join();
+      List<ReplyMemberVO> list = this.replyProc.list();
       
       mav.addObject("list", list);
       mav.setViewName("/reply/list_join"); // /WEB-INF/views/reply/list_join.jsp
@@ -100,13 +100,13 @@ public class ReplyCont {
     ModelAndView mav = new ModelAndView();
     
     if (session.getAttribute("memberno") != null) {
-      List<ReplyMemberVO> list = replyProc.list_member_join();
+      List<ReplyMemberVO> list = replyProc.list_member_join((int)session.getAttribute("memberno"));
       
       mav.addObject("list", list);
       mav.setViewName("/reply/member_list_join"); // /WEB-INF/views/reply/list_join.jsp
 
     } else {
-      mav.setViewName("redirect:/admin/login_need.jsp"); // Redirect to the appropriate login page
+      mav.setViewName("redirect:/member/login_need.jsp"); // Redirect to the appropriate login page
     }
     
     return mav;

@@ -25,8 +25,8 @@ public class ReplyProc implements ReplyProcInter {
   }
 
   @Override
-  public List<ReplyVO> list() {
-    List<ReplyVO> list = replyDAO.list();
+  public List<ReplyMemberVO> list() {
+    List<ReplyMemberVO> list = replyDAO.list();
     return list;
   }
   @Override
@@ -38,8 +38,8 @@ public class ReplyProc implements ReplyProcInter {
 
 
   @Override
-  public List<ReplyMemberVO> list_member_join() {
-    List<ReplyMemberVO> list = replyDAO.list_member_join();
+  public List<ReplyMemberVO> list_member_join(int memberno) {
+    List<ReplyMemberVO> list = replyDAO.list_member_join(memberno);
     
     // 특수 문자 변경
     for (ReplyMemberVO replyMemberVO:list) {
