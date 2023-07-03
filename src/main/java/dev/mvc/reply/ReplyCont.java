@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
+import dev.mvc.member.*;
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.member.MemberVO;
 
@@ -94,6 +94,24 @@ public class ReplyCont {
     
     return mav;
   }
+  
+  @RequestMapping(value = "/reply/member_list.do", method = RequestMethod.GET)
+  public ModelAndView member_list(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    
+    if (session.getAttribute("memberno") != null) {
+      List<ReplyMemberVO> list = replyProc.list_member_join();
+      
+      mav.addObject("list", list);
+      mav.setViewName("/reply/member_list_join"); // /WEB-INF/views/reply/list_join.jsp
+
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // Redirect to the appropriate login page
+    }
+    
+    return mav;
+  }
+
 
   
   /**

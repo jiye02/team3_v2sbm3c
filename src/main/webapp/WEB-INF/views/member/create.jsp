@@ -27,6 +27,7 @@
       let id = $('#id', frm).val(); // frm 폼에서 id가 'id'인 태그 검색
       let params = '';
       let msg = '';
+      
     
       if ($.trim(id).length == 0) { // $.trim(id): 문자열 좌우의 공백 제거, length: 문자열 길이, id를 입력받지 않은 경우
         $('#modal_title').html('ID(이메일) 중복 확인'); // 제목 
@@ -62,12 +63,16 @@
               msg = msg + "다른 ID(이메일)을 지정해주세요.";
               $('#btn_close').attr("data-focus", "id");  // id 입력으로 focus 이동
               
+              
             } else { // 아이디 중복 안됨.
               $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
               msg = "사용 가능한 ID(이메일) 입니다.";
               $('#btn_close').attr("data-focus", "passwd");  // passwd 입력으로 focus 이동
               // $.cookie('checkId', 'TRUE'); // Cookie 기록
+          
             }
+
+
             
             $('#modal_title').html('ID(이메일) 중복 확인'); // 제목 
             $('#modal_content').html(msg);        // 내용
@@ -141,6 +146,7 @@
       $('#modal_panel').modal();               // 다이얼로그 출력
       return false;
    } 
+    
 
     $('#frm').submit(); // required="required" 작동 안됨.
   }  

@@ -29,6 +29,13 @@ public class ReplyProc implements ReplyProcInter {
     List<ReplyVO> list = replyDAO.list();
     return list;
   }
+  @Override
+  public List<ReplyMemberVO> list_member_join_byUserId(String userId) {
+    List<ReplyMemberVO> list = replyDAO.getRepliesByUserId(userId);
+      
+    return list;
+  }
+
 
   @Override
   public List<ReplyMemberVO> list_member_join() {
