@@ -70,7 +70,7 @@
         
         
         <tr style="height: 112px;" onclick="location.href='./read.do?galleryno=${galleryno }&now_page=${param.now_page == null ? 1 : param.now_page}'" class='hover'>
-          <td style='vertical-align: middle; text-align: center; background-color: #000000;'>
+          <td style='vertical-align: middle; text-align: center; '>
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
                 <%-- registry.addResourceHandler("/gallery/storage/**").addResourceLocations("file:///" +  Gallery.getUploadDir()); --%>

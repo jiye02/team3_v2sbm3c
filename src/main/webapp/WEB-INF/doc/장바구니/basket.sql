@@ -8,7 +8,7 @@ CREATE TABLE basket (
   memberno                      NUMBER(10)    NOT NULL,
   cnt                           NUMBER(10)    DEFAULT 0   NOT NULL,
   rdate                         DATE          NOT NULL,
-  labeldate                     VARCHAR2(10)  NULL,
+  labeldate                     VARCHAR2(10)  NOT NULL,
   FOREIGN KEY (galleryno) REFERENCES gallery (galleryno),
   FOREIGN KEY (memberno) REFERENCES member (memberno)
 );

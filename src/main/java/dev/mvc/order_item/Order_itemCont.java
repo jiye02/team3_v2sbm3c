@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
 import dev.mvc.admin.AdminVO;
+import dev.mvc.basket.BasketProcInter;
+import dev.mvc.basket.BasketVO;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
 import dev.mvc.order_pay.Order_payProcInter;
@@ -35,12 +37,15 @@ public class Order_itemCont {
   @Autowired
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.basket.BasketProc")
+  private BasketProcInter basketProc;
 
   @Autowired
   @Qualifier("dev.mvc.order_pay.Order_payProc")
   private Order_payProcInter order_payProc;
 
-  private Order_itemVO order_itemVO;
 
   public Order_itemCont() {
     System.out.println("-> Order_itemCont created.");
@@ -52,7 +57,7 @@ public class Order_itemCont {
    * @return
    */
   @RequestMapping(value = "/order_item/list_by_memberno.do", method = RequestMethod.GET)
-  public ModelAndView list_by_memberno(HttpSession session, int order_payno) {
+  public ModelAndView list_by_memberno(HttpSession session, int order_payno, BasketVO basketVO) {
     ModelAndView mav = new ModelAndView();
 
     int baesong_tot = 0; // 배송비 합계
@@ -129,7 +134,6 @@ public class Order_itemCont {
       mav.addObject("baesong_tot", baesong_tot);
       mav.addObject("total_order", total_order);
       mav.addObject("list", list);
-//      System.out.println("-> labeldate:"+ order_itemVO.getLabeldate());
 
       mav.setViewName("/order_item/list");
     } else {
