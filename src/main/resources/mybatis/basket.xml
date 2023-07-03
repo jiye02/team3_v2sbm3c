@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- memberno 회원 번호별 쇼핑카트 목록 출력 -->
   <select id="list_by_memberno" resultType="dev.mvc.basket.BasketVO" parameterType="int">
-    SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate 
+    SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate, t.labeldate
     FROM gallery c, basket t
     WHERE (c.galleryno = t.galleryno) AND t.memberno = #{memberno}
     ORDER BY basketno ASC
