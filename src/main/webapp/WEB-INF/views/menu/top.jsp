@@ -45,6 +45,18 @@ function recommend() {
                           <a class="dropdown-item" href="/gallery/list_all.do">전체 목록</a>
                       </div>
                    </li>
+                   <li class="nav-item dropdown"> 
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: #5E5E5E;" href="#">전시회 주변</a>
+                      <div class="dropdown-menu">
+                        <c:forEach var="recomplaceVO" items="${reclist}" varStatus="status">
+                          <c:set var="recno" value="${recomplaceVO.recno}" />
+                          <c:set var="recname" value="${recomplaceVO.recname}" />
+                          <c:if test="${status.index == 0 || recno != reclist[status.index - 1].recno}">
+                            <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=${recno}&now_page=1">${recname}</a>
+                          </c:if>
+                        </c:forEach>
+                      </div>
+                   </li>
 
                   <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
                       <c:choose>                                                                                      
@@ -89,7 +101,7 @@ function recommend() {
                     </c:when>
                     <c:otherwise>
                       <li class="nav-item dropdown"> <%-- 관리자 서브 메뉴 --%>
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">관리자</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: #5E5E5E;" href="#">관리자</a>
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href='/member/list.do'>회원 목록</a>        
                           <a class="dropdown-item" href='/admin/list.do'>관리자 목록</a>
@@ -107,19 +119,7 @@ function recommend() {
                         <a class="nav-link" style="color: #5E5E5E;" href="/order_pay/list.do">주문 관리</a>
                       </li>
                     </c:otherwise>
-                  </c:choose>
-                  <li class="nav-item dropdown"> 
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: #5E5E5E;" href="#">전시회 주변</a>
-                      <div class="dropdown-menu">
-                        <c:forEach var="recomplaceVO" items="${reclist}" varStatus="status">
-                          <c:set var="recno" value="${recomplaceVO.recno}" />
-                          <c:set var="recname" value="${recomplaceVO.recname}" />
-                          <c:if test="${status.index == 0 || recno != reclist[status.index - 1].recno}">
-                            <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=${recno}&now_page=1">${recname}</a>
-                          </c:if>
-                        </c:forEach>
-                      </div>
-                   </li>     
+                  </c:choose>     
                 </ul>
             </div>    
         </nav>
