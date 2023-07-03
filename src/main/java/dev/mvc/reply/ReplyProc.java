@@ -91,6 +91,7 @@ public class ReplyProc implements ReplyProcInter {
     return count;
   }
 
+
   @Override
   public List<ReplyMemberVO> list_by_galleryno_join_add(HashMap<String, Object> map) {
     int record_per_page = 2; // 한페이지당 2건

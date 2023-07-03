@@ -53,8 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <delete id="delete" parameterType="int">
     DELETE FROM reply
-    WHERE replyno=#{replyno}
+    WHERE replyno=#{replyno}        
   </delete>
+
 
   <!-- 더보기 버튼 페이징 구현 -->
   <select id="list_by_galleryno_join_add" resultType="dev.mvc.reply.ReplyMemberVO" 
@@ -72,6 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     )
     WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
   </select>
+  
         
 </mapper> 
 

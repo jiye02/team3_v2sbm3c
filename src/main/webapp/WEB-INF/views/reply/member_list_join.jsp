@@ -20,7 +20,7 @@
 <body>
 <c:import url="/menu/top.do" />
   <ASIDE class='aside_left'>
-    <A href='./list.do'>모든 댓글</A>
+    <A href='./list.do'>내가 작성한 댓글</A>
   </ASIDE>
   <ASIDE class='aside_right'>
     <A href="javascript:location.reload();">새로고침</A>
@@ -79,7 +79,7 @@
               ${rdate.substring(0, 10)}
             </td>
             <td style='text-align: center; vertical-align: middle;'>
-              <a href="./delete.do?replyno=${replyno}"><img src="./images/delete.png" title="삭제"  border='0' /></a>
+              <a href="./member_delete.do?replyno=${replyno}"><img src="./images/delete.png" title="삭제"  border='0' /></a>
             </td>
           </tr>
         </c:forEach>

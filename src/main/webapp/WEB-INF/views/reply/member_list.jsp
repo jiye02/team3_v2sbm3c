@@ -78,8 +78,8 @@
             <td style='text-align: center; vertical-align: middle;'>
               ${rdate.substring(0, 10)}
             </td>
-            <td style='text-align: center; vertical-align: middle;'>
-              <a href="./delete.do?replyno=${replyno}"><img src="./images/delete.png" title="삭제"  border='0' /></a>
+           <td style='text-align: center; vertical-align: middle;'>
+            <a href="#" onclick="deleteReply(${replyno});"><img src="./images/delete.png" title="삭제" border='0' /></a>
             </td>
           </tr>
         </c:forEach>

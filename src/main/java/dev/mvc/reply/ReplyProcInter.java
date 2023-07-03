@@ -23,7 +23,7 @@ public interface ReplyProcInter {
   public int checkPasswd(Map<String, Object> map);
 
   public int delete(int replyno);
-
+  
   /**
    * 더보기 버튼
    * @param map

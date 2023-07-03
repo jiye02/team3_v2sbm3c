@@ -273,7 +273,7 @@
       });
     }
   }
-  // galleryno 별 소속된 댓글 목록, 2건만 출력
+  // galleryno 별 소속된 댓글 목록, 10건만 출력
   function list_by_galleryno_join() {
   var params = 'galleryno=' + ${galleryVO.galleryno};
 

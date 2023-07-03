@@ -23,6 +23,7 @@ public interface ReplyDAOInter {
   public int checkPasswd(Map<String, Object> map);
 
   public int delete(int replyno);
+  
 
   /**
    * 더보기 버튼
@@ -34,6 +35,7 @@ public interface ReplyDAOInter {
   public List<ReplyMemberVO> list_member_join_byUserId(String userId);
 
   public List<ReplyMemberVO> getRepliesByUserId(String userId);
-
+  
+  
   
 }
