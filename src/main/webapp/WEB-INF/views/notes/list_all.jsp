@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>ART wave</title>
+<title>Art Wave</title>
  <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
  
  
@@ -24,7 +24,8 @@
 
 <DIV class='content_body'>
 <DIV>
-    <img src="/menu/images/bell.png" class="icon1" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'> <span style='font-size: 30px;'>전체 공지사항</span>
+    <img src="/menu/images/bell.png" class="icon1" style='margin-left:10px; margin-right:10px; margin-bottom: 7px;'>
+     <span style='font-size: 30px;'>전체 공지사항</span>
 </DIV> 
 
   <ASIDE class="aside_right">

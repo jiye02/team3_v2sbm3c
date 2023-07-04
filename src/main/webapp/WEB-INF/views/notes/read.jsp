@@ -19,25 +19,24 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Art Wave</title>
- <link rel="shortcut icon" href="/images/ee.png" /> <%-- /static 기준 --%>
- 
- 
+ <link rel="shortcut icon" href="/images/ex_top.png" />
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
-    
-    
-
-
-
+  
 </head>
  
 <body>
 <c:import url="/menu/top.do" />
 
 <DIV class='title_line'> 
-<img src="/menu/images/pin.png" class="icon1"><A href="./list_all.do"> 공지사항</DIV>
+  <img src="/menu/images/pin.png" class="icon1" style='margin-left:5px; margin-right:4px; margin-bottom: 2px; height: 30px;'>
+  <span><a href="./list_all.do" style='font-size: 20px;'>공지사항</a></span>
+</DIV>
+
+
+
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
