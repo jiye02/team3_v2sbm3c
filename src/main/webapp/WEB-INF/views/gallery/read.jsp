@@ -463,7 +463,8 @@ function list_by_galleryno_join_add() {
 </div>
 <!-- -------------------- 댓글 삭제폼 종료 -------------------- -->
    
-<DIV class='title_line'> 
+<DIV class='title_line'>
+  <img src="/gallery/images/상단.png" class="icon1" style='margin-left:5px; margin-right:4px; margin-bottom: 2px; height: 30px;'> 
   <A href="./list_by_exhino.do?exhino=${exhino }&now_page=1" class='title_link'>${exhiVO.name }</A>
 </DIV>
 

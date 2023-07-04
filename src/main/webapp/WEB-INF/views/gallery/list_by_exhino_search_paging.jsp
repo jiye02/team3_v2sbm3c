@@ -22,8 +22,11 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-  ${exhiVO.name }(${search_count })  
+  <img src="/gallery/images/상단.png" class="icon1" style='margin-left:5px; margin-right:4px; margin-bottom: 2px; height: 30px;'> 
+<span style='font-size: 20px; vertical-align: middle; line-height: 20px;'>${exhiVO.name}(${search_count})</span>
 </DIV>
+
+
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">

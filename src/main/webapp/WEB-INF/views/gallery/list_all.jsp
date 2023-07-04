@@ -23,7 +23,8 @@
 <c:import url="/menu/top.do" />
  
 <DIV class='title_line'>
-  전체 글 목록
+  <img src="/gallery/images/상단.png" class="icon1" style='margin-left:5px; margin-right:4px; margin-bottom: 2px; height: 30px;'> 
+<span style='font-size: 20px; vertical-align: middle; line-height: 20px;'>전체 글 목록</span>
 </DIV>
 
 <DIV class='content_body'>
