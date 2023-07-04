@@ -579,12 +579,8 @@ function list_by_galleryno_join_add() {
           <span style="font-size: 1.5em; font-weight: bold;"><fmt:formatNumber value="${saleprice}" pattern="#,###" /> 원</span>
           <del><fmt:formatNumber value="${price}" pattern="#,###" /> 원</del><br>
           <span style="font-size: 1.2em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /> 원</span><br>
-          <span style="font-size: 1.0em;">(보유수량: <fmt:formatNumber value="${salecnt}" pattern="#,###" /> 개)</span><br>
           <span style="font-size: 1.0em; color: #FF0000;">전시 시작일 :  ${min } ~ 전시 종료일 : ${max }</span><br>
-          <span style="font-size: 1.0em;">수량</span>
-          <form>
-          <input type='number' name='ordercnt' value='1' required="required" 
-                     min="1" max="99999" step="1" class="form-control" style='width: 30%;'><br>
+          <form>   <br>
           <button type='button' onclick="basket_ajax(${galleryno })" class="btn btn-info">주문 담기</button>           
           <button type='button' onclick="location.href='/jjim/create.do?galleryno=${galleryno }'" class="btn btn-info">♥(${jjim_cnt })</button>
           <span id="span_animation"></span>
