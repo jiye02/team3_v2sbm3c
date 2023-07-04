@@ -62,7 +62,7 @@
     <ul>
       <li class="li_none">
       <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-      <div style="font-size: 0.7em;">${mname}${rdate }</div><br>
+      <div style="font-size: 1em;">${mname}${rdate }</div><br>
       
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
@@ -74,7 +74,7 @@
               </c:otherwise>
             </c:choose><br>
          
-        <div style="float: left;">${content }</div>
+        <div style="float: left; font-size: 18px;">${content }</div>
       </li>
   
      <li class="li_none" style="clear: both;">

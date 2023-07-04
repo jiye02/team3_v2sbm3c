@@ -412,7 +412,7 @@ function list_by_galleryno_join_add() {
 </head> 
  
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
+<c:import url="/menu/top.do" />
 
 <!-- Modal 알림창 시작 -->
 <div class="modal fade" id="modal_panel" role="dialog">
