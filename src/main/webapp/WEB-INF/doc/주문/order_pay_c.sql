@@ -17,6 +17,10 @@ CREATE TABLE order_pay(
     FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
 );
 
+ALTER TABLE order_pay
+MODIFY (labeldate VARCHAR2(20));
+
+SELECT * FROM order_pay;
 
 commit;
 -- 등록  

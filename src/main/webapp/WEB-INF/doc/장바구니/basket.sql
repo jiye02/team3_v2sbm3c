@@ -77,6 +77,8 @@ FROM gallery c, basket t
 WHERE c.galleryno = t.galleryno
 ORDER BY t.basketno ASC;
 
+SELECT * FROM basket;
+
 -- 3번 회원의 장바구니 목록
 SELECT t.basketno, c.galleryno, c.title, c.thumb1, c.price, c.dc, c.saleprice, c.point, t.memberno, t.cnt, t.rdate 
 FROM gallery c, basket t
