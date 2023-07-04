@@ -36,86 +36,86 @@ public class MemberCont {
     System.out.println("-> MemberCont created.");
   }
   
-//http://localhost:9091/member/checkID.do?id=user1
-/**
-* ID 중복 체크, JSON 출력
-* @return
-*/
-@ResponseBody
-@RequestMapping(value="/member/checkID.do", method=RequestMethod.GET , produces = "text/plain;charset=UTF-8" )
-public String checkID(String id) {
- int cnt = this.memberProc.checkID(id);
-
- JSONObject json = new JSONObject();
- json.put("cnt", cnt);
-
- return json.toString(); 
-}
-
-//http://localhost:9091/member/create.do
-/**
-* 등록 폼
-* @return
-*/
-@RequestMapping(value="/member/create.do", method=RequestMethod.GET )
-public ModelAndView create() {
- ModelAndView mav = new ModelAndView();
- mav.setViewName("/member/create"); // webapp/member/create.jsp
-
- return mav; // forward
-}
-
-/**
-* 등록 처리
-* @param memberVO
-* @return
-*/
-@RequestMapping(value="/member/create.do", method=RequestMethod.POST)
-public ModelAndView create(MemberVO memberVO){
- ModelAndView mav = new ModelAndView();
- 
- int cnt = memberProc.checkID(memberVO.getId()); // 아이디 중복 체크
- 
- if (cnt > 0) { // 아이디 중복 시
-   mav.addObject("code", "duplicate_id");
-   mav.addObject("id", memberVO.getId());
-   mav.setViewName("redirect:/member/msg.do");
-   return mav;
- }
- 
- memberVO.setGrade(15); // 기본 회원 가입 등록 15 지정
- 
- cnt = memberProc.create(memberVO); // SQL insert
-
- if (cnt == 1) { // insert 레코드 개수
-   mav.addObject("code", "create_success");
-   mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 가입을 축하합니다.
-   mav.addObject("id", memberVO.getId());
-   mav.setViewName("redirect:/member/msg.do"); // POST -> GET -> /member/msg.jsp
- } else {
-   mav.addObject("code", "create_fail");
-   mav.addObject("cnt", 0);
-   mav.addObject("url", "/member/msg");
-   mav.setViewName("redirect:/member/msg.do"); // POST -> GET -> /member/msg.jsp
- }
-
- return mav;
-}
-
-  
+  //http://localhost:9091/member/checkID.do?id=user1
   /**
-   * 새로고침 방지, EL에서 param으로 접근, POST -> GET -> /member/msg.jsp
-   * @return
-   */
-  @RequestMapping(value="/member/msg.do", method=RequestMethod.GET)
-  public ModelAndView msg(String url){
-    ModelAndView mav = new ModelAndView();
-
-    mav.setViewName(url); // forward
-    
-    return mav; // forward
+  * ID 중복 체크, JSON 출력
+  * @return
+  */
+  @ResponseBody
+  @RequestMapping(value="/member/checkID.do", method=RequestMethod.GET , produces = "text/plain;charset=UTF-8" )
+  public String checkID(String id) {
+   int cnt = this.memberProc.checkID(id);
+  
+   JSONObject json = new JSONObject();
+   json.put("cnt", cnt);
+  
+   return json.toString(); 
   }
   
+  //http://localhost:9091/member/create.do
+  /**
+  * 등록 폼
+  * @return
+  */
+  @RequestMapping(value="/member/create.do", method=RequestMethod.GET )
+  public ModelAndView create() {
+   ModelAndView mav = new ModelAndView();
+   mav.setViewName("/member/create"); // webapp/member/create.jsp
+  
+   return mav; // forward
+  }
+  
+  /**
+  * 등록 처리
+  * @param memberVO
+  * @return
+  */
+  @RequestMapping(value="/member/create.do", method=RequestMethod.POST)
+  public ModelAndView create(MemberVO memberVO){
+   ModelAndView mav = new ModelAndView();
+   
+   int cnt = memberProc.checkID(memberVO.getId()); // 아이디 중복 체크
+   
+   if (cnt > 0) { // 아이디 중복 시
+     mav.addObject("code", "duplicate_id");
+     mav.addObject("id", memberVO.getId());
+     mav.setViewName("redirect:/member/msg.do");
+     return mav;
+   }
+   
+   memberVO.setGrade(15); // 기본 회원 가입 등록 15 지정
+   
+   cnt = memberProc.create(memberVO); // SQL insert
+  
+   if (cnt == 1) { // insert 레코드 개수
+     mav.addObject("code", "create_success");
+     mav.addObject("mname", memberVO.getMname());  // 홍길동님(user4) 회원 가입을 축하합니다.
+     mav.addObject("id", memberVO.getId());
+     mav.setViewName("redirect:/member/msg.do"); // POST -> GET -> /member/msg.jsp
+   } else {
+     mav.addObject("code", "create_fail");
+     mav.addObject("cnt", 0);
+     mav.addObject("url", "/member/msg");
+     mav.setViewName("redirect:/member/msg.do"); // POST -> GET -> /member/msg.jsp
+   }
+  
+   return mav;
+  }
+  
+    
+   /**
+    * 새로고침 방지, EL에서 param으로 접근, POST -> GET -> /member/msg.jsp
+    * @return
+    */
+   @RequestMapping(value="/member/msg.do", method=RequestMethod.GET)
+    public ModelAndView msg(String url){
+      ModelAndView mav = new ModelAndView();
+  
+      mav.setViewName(url); // forward
+      
+      return mav; // forward
+   }
+    
   /**
   * 목록 출력 가능
   * @param session
@@ -479,92 +479,100 @@ public ModelAndView create(MemberVO memberVO){
   }
    
   /**
-  * Cookie 기반 로그인 처리
-  * @param request Cookie를 읽기위해 필요
-  * @param response Cookie를 쓰기위해 필요
-  * @param session 로그인 정보를 메모리에 기록
-  * @param id  회원 아이디
-  * @param passwd 회원 패스워드
-  * @param id_save 회원 아이디 Cookie에 저장 여부
-  * @param passwd_save 패스워드 Cookie에 저장 여부
-  * @return
-  */
-  // http://localhost:9091/member/login.do 
-  @RequestMapping(value = "/member/login.do", 
-                            method = RequestMethod.POST)
-  public ModelAndView login_cookie_proc(
-                            HttpServletRequest request,
-                            HttpServletResponse response,
-                            HttpSession session,
-                            String id,
-                            String passwd,
-                            @RequestParam(value="id_save", defaultValue="") String id_save,
-                            @RequestParam(value="passwd_save", defaultValue="") String passwd_save) {
-    ModelAndView mav = new ModelAndView();
-    HashMap<String, Object> map = new HashMap<String, Object>();
-    map.put("id", id);
-    map.put("passwd", passwd);
-   
-    int cnt = memberProc.login(map);
-    if (cnt == 1) { // 로그인 성공
-      // System.out.println(id + " 로그인 성공");
-      MemberVO memberVO = memberProc.readById(id);
-      session.setAttribute("memberno", memberVO.getMemberno()); // 서버의 메모리에 기록
-      session.setAttribute("id", id);
-      session.setAttribute("mname", memberVO.getMname());
-      session.setAttribute("grade", memberVO.getGrade());
-   
-      // -------------------------------------------------------------------
-      // id 관련 쿠기 저장
-      // -------------------------------------------------------------------
-      if (id_save.equals("Y")) { // id를 저장할 경우, Checkbox를 체크한 경우
-        Cookie ck_id = new Cookie("ck_id", id);
-        ck_id.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
-        ck_id.setMaxAge(60 * 60 * 24 * 30); // 30 day, 초단위
-        response.addCookie(ck_id); // id 저장
-      } else { // N, id를 저장하지 않는 경우, Checkbox를 체크 해제한 경우
-        Cookie ck_id = new Cookie("ck_id", "");
-        ck_id.setPath("/");
-        ck_id.setMaxAge(0);
-        response.addCookie(ck_id); // id 저장
-      }
-      
-      // id를 저장할지 선택하는  CheckBox 체크 여부
-      Cookie ck_id_save = new Cookie("ck_id_save", id_save);
-      ck_id_save.setPath("/");
-      ck_id_save.setMaxAge(60 * 60 * 24 * 30); // 30 day
-      response.addCookie(ck_id_save);
-      // -------------------------------------------------------------------
-  
-      // -------------------------------------------------------------------
-      // Password 관련 쿠기 저장
-      // -------------------------------------------------------------------
-      if (passwd_save.equals("Y")) { // 패스워드 저장할 경우
-        Cookie ck_passwd = new Cookie("ck_passwd", passwd);
-        ck_passwd.setPath("/");
-        ck_passwd.setMaxAge(60 * 60 * 24 * 30); // 30 day
-        response.addCookie(ck_passwd);
-      } else { // N, 패스워드를 저장하지 않을 경우
-        Cookie ck_passwd = new Cookie("ck_passwd", "");
-        ck_passwd.setPath("/");
-        ck_passwd.setMaxAge(0);
-        response.addCookie(ck_passwd);
-      }
-      // passwd를 저장할지 선택하는  CheckBox 체크 여부
-      Cookie ck_passwd_save = new Cookie("ck_passwd_save", passwd_save);
-      ck_passwd_save.setPath("/");
-      ck_passwd_save.setMaxAge(60 * 60 * 24 * 30); // 30 day
-      response.addCookie(ck_passwd_save);
-      // -------------------------------------------------------------------
-   
-      mav.setViewName("redirect:/index.do");  
-    } else {
-      mav.addObject("url", "/member/login_fail_msg");
-      mav.setViewName("redirect:/member/msg.do"); 
-    }
+   * Cookie 기반 로그인 처리
+   * @param request Cookie를 읽기위해 필요
+   * @param response Cookie를 쓰기위해 필요
+   * @param session 로그인 정보를 메모리에 기록
+   * @param id  회원 아이디
+   * @param passwd 회원 패스워드
+   * @param id_save 회원 아이디 Cookie에 저장 여부
+   * @param passwd_save 패스워드 Cookie에 저장 여부
+   * @return
+   */
+   // http://localhost:9091/member/login.do 
+   @RequestMapping(value = "/member/login.do", 
+                             method = RequestMethod.POST)
+   public ModelAndView login_cookie_proc(
+                             HttpServletRequest request,
+                             HttpServletResponse response,
+                             HttpSession session,
+                             String id,
+                             String passwd,
+                             @RequestParam(value="id_save", defaultValue="") String id_save,
+                             @RequestParam(value="passwd_save", defaultValue="") String passwd_save) {
+     ModelAndView mav = new ModelAndView();
+     HashMap<String, Object> map = new HashMap<String, Object>();
+     map.put("id", id);
+     map.put("passwd", passwd);
+    
+     int cnt = memberProc.login(map);
+     if (cnt == 1) { // 로그인 성공
+       // System.out.println(id + " 로그인 성공");
+       MemberVO memberVO = memberProc.readById(id);
        
-    return mav;
-  }
+       if(memberVO.getGrade() == 99) {
+         mav.addObject("code", "leave_id");
+         mav.setViewName("redirect:/member/msg.do");
+       } else {
+           session.setAttribute("memberno", memberVO.getMemberno()); // 서버의 메모리에 기록
+           session.setAttribute("id", id);
+           session.setAttribute("mname", memberVO.getMname());
+           session.setAttribute("grade", memberVO.getGrade());
+           
+           
+                
+           // -------------------------------------------------------------------
+           // id 관련 쿠기 저장
+           // -------------------------------------------------------------------
+           if (id_save.equals("Y")) { // id를 저장할 경우, Checkbox를 체크한 경우
+             Cookie ck_id = new Cookie("ck_id", id);
+             ck_id.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
+             ck_id.setMaxAge(60 * 60 * 24 * 30); // 30 day, 초단위
+             response.addCookie(ck_id); // id 저장
+           } else { // N, id를 저장하지 않는 경우, Checkbox를 체크 해제한 경우
+             Cookie ck_id = new Cookie("ck_id", "");
+             ck_id.setPath("/");
+             ck_id.setMaxAge(0);
+             response.addCookie(ck_id); // id 저장
+           }
+           
+           // id를 저장할지 선택하는  CheckBox 체크 여부
+           Cookie ck_id_save = new Cookie("ck_id_save", id_save);
+           ck_id_save.setPath("/");
+           ck_id_save.setMaxAge(60 * 60 * 24 * 30); // 30 day
+           response.addCookie(ck_id_save);
+           // -------------------------------------------------------------------
+       
+           // -------------------------------------------------------------------
+           // Password 관련 쿠기 저장
+           // -------------------------------------------------------------------
+           if (passwd_save.equals("Y")) { // 패스워드 저장할 경우
+             Cookie ck_passwd = new Cookie("ck_passwd", passwd);
+             ck_passwd.setPath("/");
+             ck_passwd.setMaxAge(60 * 60 * 24 * 30); // 30 day
+             response.addCookie(ck_passwd);
+           } else { // N, 패스워드를 저장하지 않을 경우
+             Cookie ck_passwd = new Cookie("ck_passwd", "");
+             ck_passwd.setPath("/");
+             ck_passwd.setMaxAge(0);
+             response.addCookie(ck_passwd);
+           }
+           // passwd를 저장할지 선택하는  CheckBox 체크 여부
+           Cookie ck_passwd_save = new Cookie("ck_passwd_save", passwd_save);
+           ck_passwd_save.setPath("/");
+           ck_passwd_save.setMaxAge(60 * 60 * 24 * 30); // 30 day
+           response.addCookie(ck_passwd_save);
+           // -------------------------------------------------------------------
+        
+           mav.setViewName("redirect:/index.do");
+           }
+         } else {
+           mav.addObject("url", "/member/login_fail_msg");
+           mav.setViewName("redirect:/member/msg.do"); 
+         }
+        
+     return mav;
+   }
   
   /**
    * Ajax 기반 회원 조회
@@ -697,93 +705,7 @@ public ModelAndView create(MemberVO memberVO){
     return mav;
   }
   
-  /**
-   * Cookie + Ajax 기반 로그인 처리
-   * @param request Cookie를 읽기위해 필요
-   * @param response Cookie를 쓰기위해 필요
-   * @param session 로그인 정보를 메모리에 기록
-   * @param id  회원 아이디
-   * @param passwd 회원 패스워드
-   * @param id_save 회원 아이디 Cookie에 저장 여부
-   * @param passwd_save 패스워드 Cookie에 저장 여부
-   * @return
-   */
-  // http://localhost:9091/member/login_ajax.do 
-  @RequestMapping(value = "/member/login_ajax.do", 
-                             method = RequestMethod.POST)
-  @ResponseBody
-  public String login_cookie_proc_ajax (
-                             HttpServletRequest request,
-                             HttpServletResponse response,
-                             HttpSession session,
-                             String id, String passwd,
-                             @RequestParam(value="id_save", defaultValue="") String id_save,
-                             @RequestParam(value="passwd_save", defaultValue="") String passwd_save) {
-
-    HashMap<String, Object> map = new HashMap<String, Object>();
-    map.put("id", id);
-    map.put("passwd", passwd);
-    
-    int cnt = memberProc.login(map);
-    if (cnt == 1) { // 로그인 성공
-      // System.out.println(id + " 로그인 성공");
-      MemberVO memberVO = memberProc.readById(id);
-      session.setAttribute("memberno", memberVO.getMemberno()); // 서버의 메모리에 기록
-      session.setAttribute("id", id);
-      session.setAttribute("mname", memberVO.getMname());
-      session.setAttribute("grade", memberVO.getGrade());
-      
-      // -------------------------------------------------------------------
-      // id 관련 쿠기 저장
-      // -------------------------------------------------------------------
-      if (id_save.equals("Y")) { // id를 저장할 경우, Checkbox를 체크한 경우
-        Cookie ck_id = new Cookie("ck_id", id);
-        ck_id.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
-        ck_id.setMaxAge(60 * 60 * 24 * 30); // 30 day, 초단위
-        response.addCookie(ck_id); // id 저장
-      } else { // N, id를 저장하지 않는 경우, Checkbox를 체크 해제한 경우
-        Cookie ck_id = new Cookie("ck_id", "");
-        ck_id.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
-        ck_id.setMaxAge(0);
-        response.addCookie(ck_id); // id 저장
-      }
-      // id를 저장할지 선택하는  CheckBox 체크 여부
-      Cookie ck_id_save = new Cookie("ck_id_save", id_save);
-      ck_id_save.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
-      ck_id_save.setMaxAge(60 * 60 * 24 * 30); // 30 day
-      response.addCookie(ck_id_save);
-      // -------------------------------------------------------------------
-
-      // -------------------------------------------------------------------
-      // Password 관련 쿠기 저장
-      // -------------------------------------------------------------------
-      if (passwd_save.equals("Y")) { // 패스워드 저장할 경우
-        Cookie ck_passwd = new Cookie("ck_passwd", passwd);
-        ck_passwd.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
-        ck_passwd.setMaxAge(60 * 60 * 24 * 30); // 30 day
-        response.addCookie(ck_passwd);
-      } else { // N, 패스워드를 저장하지 않을 경우
-        Cookie ck_passwd = new Cookie("ck_passwd", "");
-        ck_passwd.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
-        ck_passwd.setMaxAge(0);
-        response.addCookie(ck_passwd);
-      }
-      // passwd를 저장할지 선택하는  CheckBox 체크 여부
-      Cookie ck_passwd_save = new Cookie("ck_passwd_save", passwd_save);
-      ck_passwd_save.setPath("/");  // root 폴더에 쿠키를 기록함으로 모든 경로에서 쿠기 접근 가능
-      ck_passwd_save.setMaxAge(60 * 60 * 24 * 30); // 30 day
-      response.addCookie(ck_passwd_save);
-      // -------------------------------------------------------------------
-      
-    }
-     
-    JSONObject json = new JSONObject();
-    json.put("cnt", cnt);
-   
-    return json.toString(); 
-  }
-  
-} 
+}
 
 
   

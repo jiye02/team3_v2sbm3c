@@ -64,7 +64,7 @@
   <select id="login" resultType="int" parameterType="HashMap">
     SELECT COUNT(memberno) as cnt
     FROM member
-    WHERE id=#{id} AND passwd=#{passwd} AND grade != 99
+    WHERE id=#{id} AND passwd=#{passwd} 
   </select>
   
   <!-- 탈퇴 처리 -->
