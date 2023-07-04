@@ -126,7 +126,7 @@
             jjim_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
             
           } else {
-            alert('로그인에 실패했습니다.<br>잠시후 다시 시도해주세요.');
+            alert('로그인에 실패했습니다. 아이디와 비밀번호를 다시 확인해주세요.');
             
           }
         },
@@ -547,7 +547,7 @@ function list_by_galleryno_join_add() {
     <div class="form-group">
       <div class="col-md-offset-4 col-md-8">
         <button type="button" id='btn_login' class="btn btn-primary btn-md">로그인</button>
-        <button type='button' onclick="location.href='./create.do'" class="btn btn-primary btn-md">회원가입</button>
+        <button type='button' onclick="location.href='/member/create.do'" class="btn btn-primary btn-md">회원가입</button>
         <button type='button' id='btn_loadDefault' class="btn btn-primary btn-md">테스트 계정</button>
         <button type='button' id='btn_cancel' class="btn btn-primary btn-md"
                     onclick="$('#div_login').hide();">취소</button>
@@ -593,20 +593,17 @@ function list_by_galleryno_join_add() {
       
     </ul>
   </fieldset>
-  <li class="li_none" style="margin-left:8.2%;">
+    <li class="li_none" style="margin-left:8.2%;">
         <DIV style="float: middle;">${content }</DIV>
         <DIV style='text-decoration: none;'>
           검색어(키워드): ${word }
         </DIV>
-      </li>
-      <li class="li_none">
         <DIV>
           <c:if test="${file1.trim().length() > 0 }">
             첨부 파일: <A href='/download?dir=/gallery/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
           </c:if>
         </DIV>
-      </li>   
-
+      </li>
 </DIV>
 
 <!-- ------------------------------ 댓글 영역 시작 ------------------------------ -->
