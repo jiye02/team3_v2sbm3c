@@ -369,13 +369,13 @@ public class Tool {
           // path="C:\\kd\\ws_java\\resort_v2sbm3c_blog\\src\\main\\resources\\static";
           
           // Windows 배포, 폴더 생성
-          path = "C:\\kd\\deploy\\dogproject\\storage\\";
+          path = "C:/kd/deploy/art_v2sbm3c";
 
       } else {
           // Linux 배포
           // 기본 명령어
           // pwd: 현재 경로 확인, mkdir deploy: 폴더 생성, cd deploy: 폴더 이동, rmdir resort_v2sbm3c: 폴더 삭제, cd ..: 상위 폴더로 이동 
-          path = "/home/ubuntu/deploy/dogproject";
+          path = "/home/ubuntu/deploy/art_v2sbm3c";
       }
       // System.out.println("path: " + path);
       
