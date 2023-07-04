@@ -439,8 +439,8 @@ function list_by_galleryno_join_add() {
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
         <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
       </div>
       <div class="modal-body">
         <form name='frm_reply_delete' id='frm_reply_delete'>
