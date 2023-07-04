@@ -110,8 +110,6 @@ function recommend() {
                           <a class="dropdown-item" href='/exhi/list_all.do'>카테고리 전체 목록</a>
                           <a class="dropdown-item" href='/recomplace/list_all.do'>전시회 주변 카테고리</a>
                           <a class="dropdown-item" href='/reply/list.do'> 댓글 전체 목록</a>
-                          <a class="dropdown-item" href='/jjim/list_by_jjim'>찜 목록</a>
-                          <a class="dropdown-item" href='/notes/list_all.do'>공지사항 목록</a>
                           <a class="dropdown-item" href='/admin/logout.do'>관리자 ${sessionScope.admin_id } 로그아웃</a>
                           
                         </div>

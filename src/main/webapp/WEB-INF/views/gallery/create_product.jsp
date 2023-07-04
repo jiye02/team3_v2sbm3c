@@ -10,7 +10,12 @@
 <link rel="shortcut icon" href="/images/ex_top.png" /> 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  
   
 </head> 
  
@@ -28,7 +33,7 @@
     
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_exhino_search_paging.do?exhino=${exhiVO.exhino }">기본 목록형</A>    
+    <A href="./list_by_exhino.do?exhino=${exhiVO.exhino }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
     <A href="./list_by_exhino_grid.do?exhino=${exhiVO.exhino }">갤러리형</A>
   </ASIDE> 
