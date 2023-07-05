@@ -14,6 +14,7 @@ CREATE TABLE order_pay(
     paytype                         NUMBER(1)       DEFAULT 0     NOT NULL,
     amount                          NUMBER(10)      DEFAULT 0     NOT NULL,
     rdate                           DATE            NOT NULL,
+    labeldate                       VARCHAR2(20)     NOT NULL,
     FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
 );
 
