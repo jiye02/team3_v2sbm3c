@@ -23,9 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </selectKey>
     
     INSERT INTO order_pay(order_payno, memberno, rname, rtel, rzipcode,
-                                     raddress1, raddress2, paytype, amount, rdate, labeldate)
+                                     raddress1, raddress2, paytype, amount, rdate)
     VALUES (#{order_payno}, #{memberno}, #{rname}, #{rtel}, #{rzipcode},
-                                     #{raddress1}, #{raddress2}, #{paytype}, #{amount}, sysdate, #{labeldate})
+                                     #{raddress1}, #{raddress2}, #{paytype}, #{amount}, sysdate)
   </insert> 
   
   <!-- 회원별 예약 결제 목록 -->

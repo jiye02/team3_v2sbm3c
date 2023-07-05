@@ -46,6 +46,7 @@ VALUES (order_item_seq.nextval, 3, 1, 1, 1, 10000, 1, sysdate);
 
 commit; 
 
+ALTER TABLE order_item ADD (labeldate VARCHAR2(20));
 
 -- 전체 목록
 SELECT order_itemno, memberno, order_payno, galleryno, cnt, tot, stateno, rdate
@@ -89,7 +90,7 @@ SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.s
 FROM order_item i
 JOIN gallery g ON i.galleryno = g.galleryno
 JOIN order_pay p ON i.order_payno = p.order_payno
-WHERE i.order_payno = 81 
+WHERE i.order_payno = 92 
 ORDER BY i.order_itemno DESC;
 
 SELECT * FROM order_item;

@@ -19,7 +19,7 @@ CREATE TABLE order_pay(
 );
 
 ALTER TABLE order_pay
-MODIFY (labeldate VARCHAR2(20));
+DROP (labeldate);
 
 SELECT * FROM order_pay;
 

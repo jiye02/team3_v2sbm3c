@@ -161,8 +161,8 @@ public class Order_payCont {
      for (BasketVO basketVO : list) {
        int galleryno = basketVO.getGalleryno();
        int basketno = basketVO.getBasketno();
-       
-      
+       String labeldate = basketVO.getLabeldate();
+       System.out.println("labeldate ->"+labeldate);
        
        // 2. order_item INSERT
       
@@ -170,6 +170,7 @@ public class Order_payCont {
       order_itemVO.setOrder_payno(order_payno);
       order_itemVO.setGalleryno(galleryno);
       order_itemVO.setCnt(basketVO.getCnt());
+      order_itemVO.setLabeldate(labeldate);
       
       GalleryVO galleryVO = this.galleryProc.read(galleryno); // 할인 금액 읽기용 VO
       int tot = galleryVO.getSaleprice() * basketVO.getCnt();  // 할인 금액 합계 = 할인 금액 * 수량

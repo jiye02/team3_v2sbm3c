@@ -7,17 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.order_item.Order_itemDAOInter">
 
   <insert id="create" parameterType="dev.mvc.order_item.Order_itemVO">
-    INSERT INTO order_item(order_itemno, memberno, order_payno, galleryno, cnt, tot, stateno, rdate)
-    VALUES (order_item_seq.nextval, #{memberno}, #{order_payno}, #{galleryno}, #{cnt}, #{tot}, #{stateno}, sysdate)
+    INSERT INTO order_item(order_itemno, memberno, order_payno, galleryno, cnt, tot, stateno, rdate, labeldate)
+    VALUES (order_item_seq.nextval, #{memberno}, #{order_payno}, #{galleryno}, #{cnt}, #{tot}, #{stateno}, sysdate, #{labeldate})
   </insert> 
   
    <!-- 회원별 주문 결재 목록 -->
   <select id="list_by_memberno" resultType="dev.mvc.order_item.Order_itemVO" parameterType="HashMap">
     SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
-       g.title, g.saleprice,p.labeldate
+       i.labeldate,g.title, g.saleprice
     FROM order_item i
     JOIN gallery g ON i.galleryno = g.galleryno
-    JOIN order_pay p ON i.order_payno = p.order_payno
     WHERE i.order_payno = #{order_payno} AND i.memberno = #{memberno} 
     ORDER BY i.order_itemno DESC
   </select>
@@ -25,10 +24,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 회원별 결제 상세 목록(관리자) -->
   <select id="list" resultType="dev.mvc.order_item.Order_itemVO" parameterType="int">
     SELECT i.order_itemno, i.memberno, i.order_payno, i.galleryno, i.cnt, i.tot, i.stateno, i.rdate,
-       g.title, g.saleprice,p.labeldate
+       i.labeldate,g.title, g.saleprice
     FROM order_item i
     JOIN gallery g ON i.galleryno = g.galleryno
-    JOIN order_pay p ON i.order_payno = p.order_payno
     WHERE i.order_payno = #{order_payno}
     ORDER BY i.order_itemno DESC
   </select>
