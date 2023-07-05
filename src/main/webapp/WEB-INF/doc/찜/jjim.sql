@@ -54,6 +54,7 @@ commit;
 -- 찜을 했는지 확인후 안했으면 INSERT 실행, 했으면 DELETE 실행
 SELECT COUNT(*) as cnt FROM jjim WHERE memberno=2 AND galleryno=11;
 
+-- 찜 삭제
 DELETE FROM jjim WHERE memberno=2 AND galleryno=1;
 
 -- 관심 상품의 중복 제거
