@@ -80,7 +80,7 @@
     
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-primary">저장</button>
-      <button type="button" onclick="location.href='./read.do?'" class="btn btn-primary">취소</button>
+     <button type="button" onclick="history.back();" class="btn btn-primary">취소</button>
     </div>
   
   </FORM>

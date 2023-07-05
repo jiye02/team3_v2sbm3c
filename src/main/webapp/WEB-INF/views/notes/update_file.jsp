@@ -45,7 +45,7 @@
         <DIV style='text-align: center; width: 50%; float: left;'>
           <c:choose>
             <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
-              <IMG src="/notes/storage/${file1saved }" style='width: 90%;'> 
+              <IMG src="/gallery/notes/${file1saved }" style='width: 90%;'> 
             </c:when>
             <c:otherwise> <!-- 이미지가 없음 -->
                <IMG src="/notes/images/none1.png" style="width: 90%;"> 
@@ -57,20 +57,20 @@
         <DIV style='text-align: left; width: 47%; float: left;'>
           <span style='font-size: 1.5em;'>${title}</span>
           <br>
-          <FORM name='frm' method='POST' action='./update_file.do' enctype="multipart/form-data">
+        <FORM name='frm' method='POST' action='./update_file.do' enctype="multipart/form-data">
             <input type="hidden" name="notesno" value="${notesno }">
-            <!-- <input type="hidden" name="now_page" value="${param.now_page }">  -->
+              <!-- <input type="hidden" name="now_page" value="${param.now_page }">  -->
                 
-            <br><br> 
-            변경 이미지 선택<br>  
-            <input type='file' name='file1MF' id='file1MF' value='' placeholder="파일 선택"><br>
-            <br>
-            <div style='margin-top: 20px; clear: both;'>  
-              <button type="submit" class="btn btn-primary">파일 변경 처리</button>
-              <button type="submit" class="btn btn-primary">파일 삭제</button>
-              <button type="button" onclick="history.back();" class="btn btn-primary">취소</button>
-            </div>  
-          </FORM>
+          <br><br> 
+          변경 이미지 선택<br>  
+          <input type='file' name='file1MF' id='file1MF' value='' accept=".jpg, .jpeg, .png, .gif" placeholder="파일 선택"><br>
+          <br>
+          <div style='margin-top: 20px; clear: both;'>  
+            <button type="submit" class="btn btn-primary">파일 변경 처리</button>
+           <button type="button" class="btn btn-primary">파일 삭제</button>
+            <button type="button" onclick="history.back();" class="btn btn-primary">취소</button>
+    </div>  
+</FORM>
         </DIV>
       </li>
     </ul>
