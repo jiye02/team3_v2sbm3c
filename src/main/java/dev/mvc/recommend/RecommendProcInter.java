@@ -9,12 +9,13 @@ public interface RecommendProcInter {
      * @param memberno
      * @return
      */
-    public int recommend_read(int memberno);
+    public RecommendVO read(int memberno);
     /**
      * 추천하는 카테고리 출력
      * @param exhino
      * @return
      */
     public ArrayList<RecommendVO> recommend(int exhino);
+  
 
 }

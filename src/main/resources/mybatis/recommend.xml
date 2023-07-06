@@ -3,9 +3,12 @@
 
 <mapper namespace="dev.mvc.recommend.RecommendDAOInter">
 
-<select id="recommend_read"  parameterType="int" resultType="int">
-  SELECT exhino FROM recommend WHERE memberno=#{memberno}
-</select>
+<!-- 읽기 -->
+  <select id="read" resultType="dev.mvc.recommend.RecommendVO" parameterType="int">
+    SELECT recommendno, memberno, exhino, seq, rdate 
+    FROM recommend 
+    WHERE memberno = #{memberno}
+  </select>
 
 <select id="recommend_read_list" resultType="dev.mvc.recommend.RecommendVO">
   SELECT recommendno, memberno, exhino, seq, rdate 

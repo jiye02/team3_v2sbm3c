@@ -13,17 +13,15 @@ public class RecommendProc implements RecommendProcInter {
     private RecommendDAOInter recommendDAO;
 
     @Override
+    public RecommendVO read(int memberno) {
+        RecommendVO recommendVO = this.recommendDAO.read(memberno);
+        return recommendVO;
+    }
+    @Override
     public ArrayList<RecommendVO> recommend(int exhino) {
         ArrayList<RecommendVO> list = this.recommendDAO.recommend(exhino);
         return list;
     }
-
-    @Override
-    public int recommend_read(int memberno) {
-        int recommendVO = this.recommendDAO.recommend_read(memberno);
-        return recommendVO;
-    }
-
 
 
 }

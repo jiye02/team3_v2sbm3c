@@ -339,7 +339,12 @@ public class GalleryProc implements GalleryProcInter {
       int cnt = this.galleryDAO.jjim_sub(galleryno);
       return cnt;
     }
-    
+@Override
+public ArrayList<GalleryVO> recommend_jjim(int exhino) {
+  ArrayList<GalleryVO> list_jjim = this.galleryDAO.recommend_jjim(exhino);
+  return list_jjim;
+}
+
 
     
     

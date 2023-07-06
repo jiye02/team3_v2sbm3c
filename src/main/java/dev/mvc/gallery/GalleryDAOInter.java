@@ -142,7 +142,12 @@ public interface GalleryDAOInter {
    */   
   public int decreaseReplycnt(int galleryno);
   
-
+  /**
+   *  특정 카테고리의 등록된 추천 목록 7건
+   *  spring framework이 JDBC 관련 코드를 모두 생성해줌
+   * @return
+   */
+  public ArrayList<GalleryVO> recommend_jjim(int exhino);
   
 }
 

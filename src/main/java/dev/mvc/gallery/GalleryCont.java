@@ -22,6 +22,8 @@ import dev.mvc.gallery.GalleryVO;
 import dev.mvc.member.MemberProc;
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.member.MemberVO;
+import dev.mvc.recommend.RecommendProcInter;
+import dev.mvc.recommend.RecommendVO;
 import dev.mvc.jjim.JjimProcInter;
 import dev.mvc.jjim.JjimVO;
 import dev.mvc.exhi.ExhiProcInter;
@@ -50,6 +52,10 @@ public class GalleryCont {
   @Autowired
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.recommend.RecommendProc") 
+  private RecommendProcInter recommendProc;
   
   public GalleryCont () {
     System.out.println("-> GalleryCont created.");
@@ -799,8 +805,33 @@ public class GalleryCont {
     return mav;
   }
   
+  /**
+   * 관심 카테고리의 좋아요(recom) 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우
+   * http://localhost:9093/gallery/recommend_jjim.do
+   * @return
+   */
+  @RequestMapping(value="/gallery/recommend_jjim.do", method=RequestMethod.GET)
+  public ModelAndView recommend_jjim(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    
+    int memberno = (int)(session.getAttribute("memberno"));
+    System.out.println(" -> memberno: " +memberno);
+    
+    RecommendVO recommendVO = this.recommendProc.read(memberno); // 관심 카테고리 읽기
+    System.out.println(" -> exhino: " +recommendVO.getExhino());
+    // 관심 분야의 목록 읽기
+    
+    ArrayList<GalleryVO> list_jjim = this.galleryProc.recommend_jjim(recommendVO.getExhino());
+    mav.addObject("list_jjim", list_jjim);
+    
+    mav.setViewName("/gallery/recommend_jjim"); // /webapp/WEB-INF/views/contents/recommend_recom.jsp
+    
+    return mav;
+  }
   
 }
+
+
 
 
 

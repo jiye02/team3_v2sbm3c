@@ -6,18 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-	content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" />
+  content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" />
+  
 <title>Art Wave</title>
 <link rel="shortcut icon" href="/images/ex_top.png" />
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 <!-- /static 기 준 -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -34,9 +35,10 @@
 </style>
 
 
-	<c:import url="/menu/top.do" />
-	<%-- <jsp:include page="../menu/top.jsp" flush='false' /> --%>
-
+  <c:import url="/menu/top.do" />
+  <%-- <jsp:include page="../menu/top.jsp" flush='false' /> --%>
+  <c:choose>
+      <c:when test="${sessionScope.id == null}"> <%-- 로그인 안된 경우 기본 이미지만 출력 --%>
 <div id="carouselExampleCaptions" class="carousel slide"
 data-ride="carousel">
     <ol class="carousel-indicators">
@@ -87,9 +89,21 @@ data-ride="carousel">
       class="sr-only">Next</span>
     </a>
   </div>
+      </c:when>
+      <c:otherwise>
+        <DIV style='width: 100%; margin: 30px auto; text-align: center;'> <%-- 로그인된 경우 추천 --%>
+          <c:if test="${sessionScope.id != null}">
+            <DIV style='width: 70%; margin: 10px auto;'>
+              <h2>${sessionScope.mname} 님을 위한 추천 상품</h2>
+              <c:import url="/gallery/recommend_jjim.do" />
+            </DIV>                                 
+          </c:if>
+        </DIV>
+      </c:otherwise>
+  </c:choose>
 
 
-	<jsp:include page="./menu/bottom.jsp" flush='false' />
+  <jsp:include page="./menu/bottom.jsp" flush='false' />
 
 </body>
 </html>
