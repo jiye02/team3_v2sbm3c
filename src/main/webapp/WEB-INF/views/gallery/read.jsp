@@ -595,6 +595,7 @@ function list_by_galleryno_join_add() {
   </fieldset>
     <li class="li_none" style="margin-left:8.2%;">
         <DIV style="float: middle;">${content }</DIV>
+        <br><br>
         <DIV style='text-decoration: none;'>
           검색어(키워드): ${word }
         </DIV>

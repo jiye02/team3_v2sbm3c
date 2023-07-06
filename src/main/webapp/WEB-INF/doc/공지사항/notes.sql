@@ -18,6 +18,10 @@ CREATE TABLE notes(
         thumb1              VARCHAR(100)    NULL,   -- preview image
         size1               NUMBER(10)      DEFAULT 0 NULL  -- 파일 사이즈
 );
+
+ALTER TABLE notes
+MODIFY (title   VARCHAR2(70));
+
 COMMENT ON TABLE notes is '공지사항';
 COMMENT ON COLUMN notes.notesno is '공지사항 번호';
 COMMENT ON COLUMN notes.adminno is '관리자 번호';

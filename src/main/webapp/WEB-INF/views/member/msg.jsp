@@ -34,7 +34,7 @@
       <c:choose>
         <c:when test="${param.code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-          <img src="/member/images/mem.png" class="icon" style="width:30px">
+          <img src="/css/images/url5.png" class="icon" style="width:15px">
             <span  style="margin-right:80px;">${param.mname }님(${param.id }) 회원 가입을 축하합니다.</span>
           </LI>  
           <LI class='li_none'>
