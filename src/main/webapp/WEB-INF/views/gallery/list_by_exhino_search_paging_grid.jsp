@@ -112,10 +112,10 @@
         
         <div style='font-size: 0.95em; word-break: break-all;'>
           <c:choose>         
-            <c:when test="${content.length() > 55 }"> <%-- 55 이상이면 55자만 출력 --%>
-              ${content.substring(0, 55)}.....
+            <c:when test="${content.length() > 20 }">
+              ${content.substring(0, 20)}.....
             </c:when>
-            <c:when test="${content.length() <= 55 }">
+            <c:when test="${content.length() <= 20}">
               ${content}
             </c:when>
           </c:choose>

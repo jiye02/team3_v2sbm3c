@@ -19,7 +19,7 @@
         
       <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
       <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
-      <div onclick="location.href='./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'  
+      <div onclick="location.href='/gallery/read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'  
              style='width: 19%; height: 216px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left;'>
         
         <c:choose> 
@@ -46,10 +46,10 @@
         
         <div style='font-size: 0.95em; word-break: break-all;'>
           <c:choose>         
-            <c:when test="${content.length() > 55 }"> <%-- 55 이상이면 55자만 출력 --%>
-              ${content.substring(0, 55)}.....
+            <c:when test="${content.length() > 20 }"> <%-- 55 이상이면 55자만 출력 --%>
+              ${content.substring(0, 20)}.....
             </c:when>
-            <c:when test="${content.length() <= 55 }">
+            <c:when test="${content.length() <= 20 }">
               ${content}
             </c:when>
           </c:choose>
