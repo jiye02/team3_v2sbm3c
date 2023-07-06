@@ -18,6 +18,8 @@ CREATE TABLE order_item(
         FOREIGN KEY (galleryno) REFERENCES gallery (galleryno)
 );
 
+ALTER TABLE order_item ADD (labeldate VARCHAR2(20));
+
 COMMENT ON TABLE order_item is '예약 상세';
 COMMENT ON COLUMN order_item.order_itemno is '예약상세번호';
 COMMENT ON COLUMN order_item.MEMBERNO is '회원 번호';

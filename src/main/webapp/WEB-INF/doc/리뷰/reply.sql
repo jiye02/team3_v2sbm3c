@@ -2,6 +2,7 @@
 /* Table Name: 댓글 */
 /**********************************/
 DROP TABLE reply;
+DROP TABLE reply CASCADE CONSTRAINTS;
 
 CREATE TABLE reply(
         replyno                                NUMBER(10)         NOT NULL         PRIMARY KEY,
@@ -30,6 +31,7 @@ COMMENT ON COLUMN reply.content is '내용';
 COMMENT ON COLUMN reply.passwd is '비밀번호';
 COMMENT ON COLUMN reply.rdate is '등록일';
 
+commit;
 1) 등록
 INSERT INTO reply(replyno, galleryno, memberno, content, passwd, rdate)
 VALUES((SELECT NVL(MAX(replyno), 0) + 1 as replyno FROM reply),

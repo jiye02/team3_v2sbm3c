@@ -18,10 +18,9 @@ CREATE TABLE order_pay(
     FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
 );
 
-ALTER TABLE order_pay
-DROP (labeldate);
-
 SELECT * FROM order_pay;
+
+ALTER TABLE order_pay DROP (labeldate);
 
 commit;
 -- 등록  
@@ -55,6 +54,6 @@ ORDER BY order_payno DESC;
 
 -- 삭제
 DELETE FROM order_pay
-WHERE order_payno=1;
+WHERE order_payno <=110;
 
 commit;
