@@ -828,6 +828,76 @@ public class GalleryCont {
     
     return mav;
   }
+  /**
+   * 관심 카테고리의 조회수(cnt) 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우
+   * http://localhost:9093/gallery/recommend_jjim.do
+   * @return
+   */
+  @RequestMapping(value="/gallery/recommend_cnt.do", method=RequestMethod.GET)
+  public ModelAndView recommend_cnt(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    
+    int memberno = (int)(session.getAttribute("memberno"));
+    System.out.println(" -> memberno: " +memberno);
+    
+    RecommendVO recommendVO = this.recommendProc.read(memberno); // 관심 카테고리 읽기
+    System.out.println(" -> exhino: " +recommendVO.getExhino());
+    // 관심 분야의 목록 읽기
+    
+    ArrayList<GalleryVO> list_cnt = this.galleryProc.recommend_cnt(recommendVO.getExhino());
+    mav.addObject("list_cnt", list_cnt);
+    
+    mav.setViewName("/gallery/recommend_cnt"); // /webapp/WEB-INF/views/contents/recommend_recom.jsp
+    
+    return mav;
+  }
+  
+  /**
+   * 관심 카테고리의 최신순(rdate) 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우
+   * http://localhost:9093/gallery/recommend_jjim.do
+   * @return
+   */
+  @RequestMapping(value="/gallery/recommend_rdate.do", method=RequestMethod.GET)
+  public ModelAndView recommend_rdate(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    
+    int memberno = (int)(session.getAttribute("memberno"));
+    System.out.println(" -> memberno: " +memberno);
+    
+    RecommendVO recommendVO = this.recommendProc.read(memberno); // 관심 카테고리 읽기
+    System.out.println(" -> exhino: " +recommendVO.getExhino());
+    // 관심 분야의 목록 읽기
+    
+    ArrayList<GalleryVO> list_rdate = this.galleryProc.recommend_rdate(recommendVO.getExhino());
+    mav.addObject("list_rdate", list_rdate);
+    
+    mav.setViewName("/gallery/recommend_rdate"); // /webapp/WEB-INF/views/contents/recommend_recom.jsp
+    
+    return mav;
+  }
+  
+  @RequestMapping(value = "/gallery/cnt_add.do", method = RequestMethod.GET)
+  public ModelAndView cnt_add(int galleryno) {
+ 
+    ModelAndView mav = new ModelAndView();
+ 
+    int cnt = this.galleryProc.cnt_add(galleryno);
+ 
+    if (cnt == 1) {
+ 
+      mav.setViewName("redirect:/index.do");
+    } else {
+ 
+      mav.addObject("code", "cnt_add_fail");
+      mav.setViewName("/gallery/msg");
+    }
+ 
+    mav.addObject("cnt", cnt);
+ 
+    return mav;
+}
+  
+  
   
 }
 

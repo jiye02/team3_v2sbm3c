@@ -66,29 +66,29 @@ CREATE SEQUENCE gallery_seq
   NOCYCLE;                      -- 다시 1부터 생성되는 것을 방지
 
 -- 등록 화면 유형 1: 커뮤니티(공지사항, 게시판, 자료실, 갤러리,  Q/A...)글 등록
-INSERT INTO gallery(galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, 
+INSERT INTO gallery(galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, 
                      word, rdate, file1, file1saved, thumb1, size1)
 VALUES(gallery_seq.nextval, 1, 1, '청계천 매화 거리', '제기동역에서 가까움 명품 산책로', 0, 0, 0, '123',
        '산책', sysdate, 'space.jpg', 'space_1.jpg', 'space_t.jpg', 1000);
 
 -- 유형 1 전체 목록
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
            file1, file1saved, thumb1, size1
 FROM gallery
 ORDER BY galleryno DESC;
 
 -- 유형 2 카테고리별 목록
-INSERT INTO gallery(galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, 
+INSERT INTO gallery(galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, 
                      word, rdate, file1, file1saved, thumb1, size1)
 VALUES(gallery_seq.nextval, 1, 2, '대행사', '흙수저와 금수저의 성공 스토리', 0, 0, 0, '123',
        '드라마,K드라마,넷플릭스', sysdate, 'space.jpg', 'space_1.jpg', 'space_t.jpg', 1000);
             
-INSERT INTO gallery(galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, 
+INSERT INTO gallery(galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, 
                      word, rdate, file1, file1saved, thumb1, size1)
 VALUES(gallery_seq.nextval, 1, 2, '더글로리', '학폭의 결말', 0, 0, 0, '123',
        '드라마,K드라마,넷플릭스', sysdate, 'space.jpg', 'space_1.jpg', 'space_t.jpg', 1000);
 
-INSERT INTO gallery(galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, 
+INSERT INTO gallery(galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, 
                      word, rdate, file1, file1saved, thumb1, size1)
 VALUES(gallery_seq.nextval, 1, 2, '더글로리', '학폭의 결말', 0, 0, 0, '123',
        '드라마,K드라마,넷플릭스', sysdate, 'space.jpg', 'space_1.jpg', 'space_t.jpg', 1000);
@@ -96,21 +96,21 @@ VALUES(gallery_seq.nextval, 1, 2, '더글로리', '학폭의 결말', 0, 0, 0, '
 COMMIT;
 select * from gallery;
 -- 1번 exhino 만 출력
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
            file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 WHERE exhino=1
 ORDER BY galleryno DESC;
 
 -- 2번 exhino 만 출력
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
            file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 WHERE exhino=2
 ORDER BY galleryno ASC;
 
 -- 3번 exhino 만 출력
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
            file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 WHERE exhino=3
@@ -137,13 +137,13 @@ SELECT * FROM gallery;
 -- 검색, exhino별 검색 목록
 -- ----------------------------------------------------------------------------------------------------
 -- 모든글
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, word, rdate,
        file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 ORDER BY galleryno ASC;
 
 -- 카테고리별 목록
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, word, rdate,
        file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 WHERE exhino=2
@@ -154,14 +154,14 @@ ORDER BY galleryno ASC;
 -- word 컬럼의 존재 이유: 검색 정확도를 높이기 위하여 중요 단어를 명시
 -- 글에 'swiss'라는 단어만 등장하면 한글로 '스위스'는 검색 안됨.
 -- 이런 문제를 방지하기위해 'swiss,스위스,스의스,수의스,유럽' 검색어가 들어간 word 컬럼을 추가함.
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, word, rdate,
            file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 WHERE exhino=8 AND word LIKE '%부대찌게%'
 ORDER BY galleryno DESC;
 
 -- title, content, word column search
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, word, rdate,
            file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 WHERE exhino=8 AND (title LIKE '%부대찌게%' OR content LIKE '%부대찌게%' OR word LIKE '%부대찌게%')
@@ -231,17 +231,17 @@ SELECT UPPER('한글') FROM dual; -- dual: 오라클에서 SQL 형식을 맞추�
 -- 검색 + 페이징 + 메인 이미지
 -- ----------------------------------------------------------------------------------------------------
 -- step 1
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
            file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 WHERE exhino=1 AND (title LIKE '%단풍%' OR content LIKE '%단풍%' OR word LIKE '%단풍%')
 ORDER BY galleryno DESC;
 
 -- step 2
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
            file1, file1saved, thumb1, size1, map, youtube, rownum as r
 FROM (
-          SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+          SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
                      file1, file1saved, thumb1, size1, map, youtube
           FROM gallery
           WHERE exhino=1 AND (title LIKE '%단풍%' OR content LIKE '%단풍%' OR word LIKE '%단풍%')
@@ -249,13 +249,13 @@ FROM (
 );
 
 -- step 3, 1 page
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
            file1, file1saved, thumb1, size1, map, youtube, r
 FROM (
-           SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+           SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
                       file1, file1saved, thumb1, size1, map, youtube, rownum as r
            FROM (
-                     SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+                     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
                                 file1, file1saved, thumb1, size1, map, youtube
                      FROM gallery
                      WHERE exhino=1 AND (title LIKE '%단풍%' OR content LIKE '%단풍%' OR word LIKE '%단풍%')
@@ -265,13 +265,13 @@ FROM (
 WHERE r >= 1 AND r <= 3;
 
 -- step 3, 2 page
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
            file1, file1saved, thumb1, size1, map, youtube, r
 FROM (
-           SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+           SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
                       file1, file1saved, thumb1, size1, map, youtube, rownum as r
            FROM (
-                     SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+                     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
                                 file1, file1saved, thumb1, size1, map, youtube
                      FROM gallery
                      WHERE exhino=1 AND (title LIKE '%단풍%' OR content LIKE '%단풍%' OR word LIKE '%단풍%')
@@ -281,13 +281,13 @@ FROM (
 WHERE r >= 4 AND r <= 6;
 
 -- 대소문자를 처리하는 페이징 쿼리
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
            file1, file1saved, thumb1, size1, map, youtube, r
 FROM (
-           SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+           SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
                       file1, file1saved, thumb1, size1, map, youtube, rownum as r
            FROM (
-                     SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+                     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
                                 file1, file1saved, thumb1, size1, map, youtube
                      FROM gallery
                      WHERE exhino=1 AND (UPPER(title) LIKE '%' || UPPER('단풍') || '%' 
@@ -301,7 +301,7 @@ WHERE r >= 1 AND r <= 3;
 -- ----------------------------------------------------------------------------
 -- 조회
 -- ----------------------------------------------------------------------------
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, passwd, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, passwd, word, rdate,
            file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 WHERE galleryno = 1;
@@ -380,7 +380,7 @@ commit;
 
 -- 추천
 UPDATE gallery
-SET recom = recom + 1
+SET jjim = jjim + 1
 WHERE galleryno = 1;
 
 -- exhino FK 특정 그룹에 속한 레코드 갯수 산출
@@ -413,7 +413,7 @@ SELECT galleryno, adminno, exhino, title
 FROM gallery
 WHERE exhino IN(1,2,3);
 
-CONTENTSNO    ADMINNO     EXHINO TITLE                                                                                                                                                                                                                                                                                                       
+galleryNO    ADMINNO     EXHINO TITLE                                                                                                                                                                                                                                                                                                       
 ---------- ---------- ---------- ------------------------
          3             1                   1           인터스텔라                                                                                                                                                                                                                                                                                                  
          4             1                   2           드라마                                                                                                                                                                                                                                                                                                      
@@ -424,7 +424,7 @@ SELECT galleryno, adminno, exhino, title
 FROM gallery
 WHERE exhino IN('1','2','3');
 
-CONTENTSNO    ADMINNO     EXHINO TITLE                                                                                                                                                                                                                                                                                                       
+galleryNO    ADMINNO     EXHINO TITLE                                                                                                                                                                                                                                                                                                       
 ---------- ---------- ---------- ------------------------
          3             1                   1           인터스텔라                                                                                                                                                                                                                                                                                                  
          4             1                   2           드라마                                                                                                                                                                                                                                                                                                      
@@ -436,21 +436,21 @@ CONTENTSNO    ADMINNO     EXHINO TITLE
 -- ----------------------------------------------------------------------------------------------------
 -- 모든글
 SELECT c.name,
-       t.galleryno, t.adminno, t.exhino, t.title, t.content, t.recom, t.cnt, t.replycnt, t.word, t.rdate,
+       t.galleryno, t.adminno, t.exhino, t.title, t.content, t.jjim, t.cnt, t.replycnt, t.word, t.rdate,
        t.file1, t.file1saved, t.thumb1, t.size1, t.map, t.youtube
 FROM exhi c, gallery t
 WHERE c.exhino = t.exhino
 ORDER BY t.galleryno DESC;
 
 -- gallery, admin INNER JOIN
-SELECT t.galleryno, t.adminno, t.exhino, t.title, t.content, t.recom, t.cnt, t.replycnt, t.word, t.rdate,
+SELECT t.galleryno, t.adminno, t.exhino, t.title, t.content, t.jjim, t.cnt, t.replycnt, t.word, t.rdate,
        t.file1, t.file1saved, t.thumb1, t.size1, t.map, t.youtube,
        a.mname
 FROM admin a, gallery t
 WHERE a.adminno = t.adminno
 ORDER BY t.galleryno DESC;
 
-SELECT t.galleryno, t.adminno, t.exhino, t.title, t.content, t.recom, t.cnt, t.replycnt, t.word, t.rdate,
+SELECT t.galleryno, t.adminno, t.exhino, t.title, t.content, t.jjim, t.cnt, t.replycnt, t.word, t.rdate,
        t.file1, t.file1saved, t.thumb1, t.size1, t.map, t.youtube,
        a.mname
 FROM admin a INNER JOIN gallery t ON a.adminno = t.adminno
@@ -461,16 +461,16 @@ ORDER BY t.galleryno DESC;
 -- ----------------------------------------------------------------------------------------------------
 CREATE OR REPLACE VIEW vgallery
 AS
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, word, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, word, rdate,
         file1, file1saved, thumb1, size1, map, youtube
 FROM gallery
 ORDER BY galleryno DESC;
                      
 -- 1 page
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
        file1, file1saved, thumb1, size1, map, youtube, r
 FROM (
-     SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
             file1, file1saved, thumb1, size1, map, youtube, rownum as r
      FROM vgallery -- View
      WHERE exhino=14 AND (title LIKE '%야경%' OR content LIKE '%야경%' OR word LIKE '%야경%')
@@ -478,15 +478,65 @@ FROM (
 WHERE r >= 1 AND r <= 3;
 
 -- 2 page
-SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
        file1, file1saved, thumb1, size1, map, youtube, r
 FROM (
-     SELECT galleryno, adminno, exhino, title, content, recom, cnt, replycnt, rdate,
+     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
             file1, file1saved, thumb1, size1, map, youtube, rownum as r
      FROM vgallery -- View
      WHERE exhino=14 AND (title LIKE '%야경%' OR content LIKE '%야경%' OR word LIKE '%야경%')
 )
 WHERE r >= 4 AND r <= 6;
+
+
+
+---- 찜수-----
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+           file1, file1saved, thumb1, size1, map, youtube, r
+FROM (
+           SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+                      file1, file1saved, thumb1, size1, map, youtube, rownum as r
+           FROM (
+                     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+                                file1, file1saved, thumb1, size1, map, youtube
+                     FROM gallery
+                     WHERE exhino=1
+                     ORDER BY jjim DESC
+           )          
+)
+WHERE r >= 1 AND r <= 7;
+
+---- 최신순-------
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+           file1, file1saved, thumb1, size1, map, youtube, r
+FROM (
+           SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+                      file1, file1saved, thumb1, size1, map, youtube, rownum as r
+           FROM (
+                     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+                                file1, file1saved, thumb1, size1, map, youtube
+                     FROM gallery
+                     WHERE exhino=1
+                     ORDER BY rdate DESC
+           )          
+)
+WHERE r >= 1 AND r <= 7;
+
+---- 조회순-------
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+           file1, file1saved, thumb1, size1, map, youtube, r
+FROM (
+           SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+                      file1, file1saved, thumb1, size1, map, youtube, rownum as r
+           FROM (
+                     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+                                file1, file1saved, thumb1, size1, map, youtube
+                     FROM gallery
+                     WHERE exhino=1
+                     ORDER BY cnt DESC
+           )          
+)
+WHERE r >= 1 AND r <= 7;
 
 
 SELECT * FROM gallery;

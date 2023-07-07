@@ -181,6 +181,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE galleryno = #{galleryno}
   </update>
   
+  <!-- 조회수 -->
+  <update id="cnt_add" parameterType="int">
+    UPDATE gallery
+    set cnt = cnt + 1
+    WHERE galleryno = #{galleryno}
+  </update>
 
  <!-- 관심 카테고리의 좋아요(jjim) 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우 -->
   <select id="recommend_jjim" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
@@ -220,8 +226,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   
-    <!-- 관심 카테고리의 댓글 수 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우 -->
-  <select id="recommend_reply" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
+    <!-- 관심 카테고리의 조회 수 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우 -->
+  <select id="recommend_cnt" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
                file1, file1saved, thumb1, size1, map, youtube, r
     FROM (
@@ -232,7 +238,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                     file1, file1saved, thumb1, size1, map, youtube
                          FROM gallery
                          WHERE exhino=#{exhino}
-                         ORDER BY replycnt DESC
+                         ORDER BY cnt DESC
                )          
     )
     WHERE <![CDATA[ r >= 1 AND r <= 7]]>

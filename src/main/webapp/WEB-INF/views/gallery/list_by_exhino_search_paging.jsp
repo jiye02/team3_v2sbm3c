@@ -106,6 +106,7 @@
         <c:set var="min" value="${galleryVO.min }" />
         <c:set var="max" value="${galleryVO.max }" />
         <c:set var="rdate" value="${galleryVO.rdate.substring(0, 16) }" />
+        <c:set var="cnt" value="${galleryVO.cnt }" /> 
         
          <tr style="height: 112px;" onclick="location.href='./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'>
           <td style='vertical-align: middle; text-align: center; '>
@@ -125,6 +126,7 @@
             <div style='font-size: 1.0em;float: left;'>판매가 : &nbsp;</div>
             <div style='font-size: 1.0em;'><a style='color: #ff0000;' href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }"><fmt:formatNumber value="${saleprice}" pattern="#,###" /> </a></div>
             <div style='font-size: 0.95em;'>${rdate }</div>
+            <div style='font-size: 0.95em;'>조회수 : ${cnt }</div>
           </td> 
           
           <c:choose>

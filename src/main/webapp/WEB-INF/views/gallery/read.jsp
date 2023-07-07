@@ -21,6 +21,7 @@
 <c:set var="size1_label" value="${galleryVO.size1_label }" />
 <c:set var="min" value="${galleryVO.min }" />
 <c:set var="max" value="${galleryVO.max }" />
+<c:set var="cnt" value="${galleryVO.cnt }" /> 
  
 <!DOCTYPE html> 
 <html lang="ko"> 

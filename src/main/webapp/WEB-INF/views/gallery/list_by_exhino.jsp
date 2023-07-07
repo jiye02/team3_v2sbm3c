@@ -62,7 +62,7 @@
         <c:set var="title" value="${galleryVO.title }" />
         <c:set var="content" value="${galleryVO.content }" />
         <c:set var="exhino" value="${galleryVO.exhino }" />
-        <c:set var="galleryno" value="${galleryVO.galleryno }" />
+        <c:set var="galleryno" value="${galleryVO.galleryno }" /> 
         <c:set var="thumb1" value="${galleryVO.thumb1 }" />
         <c:set var="min" value="${galleryVO.min }" />
         <c:set var="max" value="${galleryVO.max }" />

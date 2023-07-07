@@ -156,6 +156,27 @@ public interface GalleryProcInter {
    * @return
    */
   public ArrayList<GalleryVO> recommend_jjim(int exhino);
+  /**
+   *  특정 카테고리의 등록된 추천 목록 7건
+   *  spring framework이 JDBC 관련 코드를 모두 생성해줌
+   * @return
+   */
+  public ArrayList<GalleryVO> recommend_cnt(int exhino);
+  
+  /**
+   *  특정 카테고리의 등록된 추천 목록 7건
+   *  spring framework이 JDBC 관련 코드를 모두 생성해줌
+   * @return
+   */
+  public ArrayList<GalleryVO> recommend_rdate(int exhino);
+  
+  /**
+   * 조회수
+   * @param galleryno
+   * @return
+   */
+  public int cnt_add (int galleryno);
+  
   
   
 
