@@ -26,12 +26,6 @@
 }
 </style>
 
-
-  <c:import url="/menu/top.do" />
-  <%-- <jsp:include page="../menu/top.jsp" flush='false' /> --%>
-
-  <c:import url="/menu/top.do" />
-  <%-- <jsp:include page="../menu/top.jsp" flush='false' /> --%>
 <div id="carouselExampleCaptions" class="carousel slide"
 data-ride="carousel">
     <ol class="carousel-indicators">
