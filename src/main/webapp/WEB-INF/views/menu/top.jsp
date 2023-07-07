@@ -48,13 +48,8 @@ function recommend() {
                    <li class="nav-item dropdown"> 
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: #5E5E5E;" href="#">전시회 주변</a>
                       <div class="dropdown-menu">
-                        <c:forEach var="recomplaceVO" items="${reclist}" varStatus="status">
-                          <c:set var="recno" value="${recomplaceVO.recno}" />
-                          <c:set var="recname" value="${recomplaceVO.recname}" />
-                          <c:if test="${status.index == 0 || recno != reclist[status.index - 1].recno}">
-                            <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=${recno}&now_page=1">${recname}</a>
-                          </c:if>
-                        </c:forEach>
+                         <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=1" >카페</a>
+                          <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=2" >맛집</a>
                       </div>
                    </li>
 
