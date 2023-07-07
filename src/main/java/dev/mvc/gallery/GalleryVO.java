@@ -194,6 +194,7 @@ public class GalleryVO {
     this.cnt = cnt;
   }
 
+
   public int getReplycnt() {
     return replycnt;
   }

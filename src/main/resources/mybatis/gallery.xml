@@ -184,7 +184,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 조회수 -->
   <update id="cnt_add" parameterType="int">
     UPDATE gallery
-    set cnt = cnt + 1
+    SET cnt = cnt + 1
     WHERE galleryno = #{galleryno}
   </update>
 

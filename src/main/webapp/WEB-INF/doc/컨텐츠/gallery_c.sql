@@ -539,4 +539,9 @@ FROM (
 WHERE r >= 1 AND r <= 7;
 
 
+UPDATE gallery
+set cnt = cnt + 19
+WHERE galleryno = 7;
+
+
 SELECT * FROM gallery;
