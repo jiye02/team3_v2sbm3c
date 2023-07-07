@@ -162,21 +162,17 @@
                 <c:import url="/gallery/recommend_jjim.do" />
                 <%-- 좋아요가 높은 상품 --%>
               </DIV>
-
               <DIV style="clear: both; height: 20px;"></DIV>
-
               <DIV
                 style='width: 70%; margin: 10px auto; text-align: left;'>
-                <h4>조회수가 높은 상품</h4>
-                <c:import url="/gallery/recommend_cnt.do" />
-              </DIV>
-
-              <DIV style="clear: both; height: 20px;"></DIV>
-
-              <DIV
-                style='width: 70%; margin: 10px auto; text-align: left;'>
-                <h4>최신 순 우선 상품</h4>
+                <h4>최신 상품 </h4>
                 <c:import url="/gallery/recommend_rdate.do" />
+              </DIV>
+              <DIV style="clear: both; height: 20px;"></DIV>
+              <DIV
+                style='width: 70%; margin: 10px auto; text-align: left;'>
+                <h4>조회수 우선 순 추천 상품</h4>
+                <c:import url="/gallery/recommend_cnt.do" />
               </DIV>
             </c:if>
           </DIV>
