@@ -199,6 +199,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     )
     WHERE <![CDATA[ r >= 1 AND r <= 7]]>
   </select>
+  
+  
   <!-- 관심 카테고리의 최신 상품 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우 -->
   <select id="recommend_rdate" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
@@ -216,6 +218,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     )
     WHERE <![CDATA[ r >= 1 AND r <= 7]]>
   </select>
+  
+  
+    <!-- 관심 카테고리의 댓글 수 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우 -->
+  <select id="recommend_reply" resultType="dev.mvc.gallery.GalleryVO" parameterType="int">
+    SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+               file1, file1saved, thumb1, size1, map, youtube, r
+    FROM (
+               SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+                          file1, file1saved, thumb1, size1, map, youtube, rownum as r
+               FROM (
+                         SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,
+                                    file1, file1saved, thumb1, size1, map, youtube
+                         FROM gallery
+                         WHERE exhino=#{exhino}
+                         ORDER BY replycnt DESC
+               )          
+    )
+    WHERE <![CDATA[ r >= 1 AND r <= 7]]>
+  </select>
+ 
  
 </mapper> 
 

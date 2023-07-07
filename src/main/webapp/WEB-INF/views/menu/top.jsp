@@ -48,13 +48,8 @@ function recommend() {
                    <li class="nav-item dropdown"> 
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: #5E5E5E;" href="#">전시회 주변</a>
                       <div class="dropdown-menu">
-                        <c:forEach var="recomplaceVO" items="${reclist}" varStatus="status">
-                          <c:set var="recno" value="${recomplaceVO.recno}" />
-                          <c:set var="recname" value="${recomplaceVO.recname}" />
-                          <c:if test="${status.index == 0 || recno != reclist[status.index - 1].recno}">
-                            <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=${recno}&now_page=1">${recname}</a>
-                          </c:if>
-                        </c:forEach>
+                        <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=1" >카페</a>
+                         <a class="dropdown-item" href="/recomcontents/list_by_recno.do?recno=2" >맛집</a>
                       </div>
                    </li>
 
@@ -87,7 +82,8 @@ function recommend() {
                                 <a class="dropdown-item" href="/order_pay/list_by_memberno.do?memberno=${sessionScope.memberno }">예약 주문 내역</a>
                                 <a class="dropdown-item" href="javascript: recommend();">관심분야 등록하고 추천받기</a>
                                 <a class="dropdown-item" href="/member/read.do">회원 정보 수정</a>
-                                <a class="dropdown-item" href="/reply/member_list.do">내가 쓴 댓글</a>          
+                                <a class="dropdown-item" href="/reply/member_list.do">내가 쓴 댓글</a>
+                                <a class="dropdown-item" href="/gallery/recommend_jjim.do">나를 위한 추천 목록</a>               
                                 <a class="dropdown-item" href="/member/passwd_update.do?memberno=${sessionScope.memberno}">비밀번호 변경</a>
                                <a class="dropdown-item" href="/member/leave.do?memberno=${sessionScope.memberno}">회원 탈퇴</a>
                               </c:otherwise>
