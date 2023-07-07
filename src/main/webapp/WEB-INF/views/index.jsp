@@ -37,8 +37,6 @@
 
   <c:import url="/menu/top.do" />
   <%-- <jsp:include page="../menu/top.jsp" flush='false' /> --%>
-  <c:choose>
-      <c:when test="${sessionScope.id == null}"> <%-- 로그인 안된 경우 기본 이미지만 출력 --%>
 <div id="carouselExampleCaptions" class="carousel slide"
 data-ride="carousel">
     <ol class="carousel-indicators">
@@ -89,18 +87,6 @@ data-ride="carousel">
       class="sr-only">Next</span>
     </a>
   </div>
-      </c:when>
-      <c:otherwise>
-        <DIV style='width: 100%; margin: 30px auto; text-align: center;'> <%-- 로그인된 경우 추천 --%>
-          <c:if test="${sessionScope.id != null}">
-            <DIV style='width: 70%; margin: 10px auto;'>
-              <h2>${sessionScope.mname} 님을 위한 추천 상품</h2>
-              <c:import url="/gallery/recommend_jjim.do" />
-            </DIV>                                 
-          </c:if>
-        </DIV>
-      </c:otherwise>
-  </c:choose>
 
 
   <jsp:include page="./menu/bottom.jsp" flush='false' />

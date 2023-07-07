@@ -126,7 +126,7 @@ WHERE galleryno = 25;
 commit;
 
 DELETE FROM gallery
-WHERE exhino=12 AND galleryno <= 41;
+WHERE galleryno = 63;
 
 commit;
 

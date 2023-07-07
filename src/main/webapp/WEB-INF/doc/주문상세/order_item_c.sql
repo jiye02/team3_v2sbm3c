@@ -13,6 +13,7 @@ CREATE TABLE order_item(
         tot                               NUMBER(10)         DEFAULT 0         NOT NULL,
         stateno                           NUMBER(1)          DEFAULT 0         NOT NULL,
         rdate                             DATE               NOT NULL,
+        labeldate                         VARCHAR(20),
         FOREIGN KEY (order_payno) REFERENCES order_pay (order_payno),
         FOREIGN KEY (memberno) REFERENCES MEMBER (memberno),
         FOREIGN KEY (galleryno) REFERENCES gallery (galleryno)
@@ -107,8 +108,7 @@ ORDER BY i.order_itemno DESC;
 
 
        
-    
-       
+SELECT * FROM order_item;  
 
 
     

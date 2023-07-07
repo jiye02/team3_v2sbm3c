@@ -137,6 +137,9 @@ WHERE id='ddtc123' AND passwd='1111' AND grade != 99;
  ---
    0
    
+UPDATE member
+SET grade = 15
+WHERE memberno=1;
    
 SELECT * FROM member;
  
