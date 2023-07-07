@@ -47,7 +47,7 @@
   <input type='hidden' name='cnt' id='cnt'>
 </form>
  
-<DIV class='title_line'>찜목록</DIV>
+<DIV class='title_line'>♥ 찜 목록 ♥</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">

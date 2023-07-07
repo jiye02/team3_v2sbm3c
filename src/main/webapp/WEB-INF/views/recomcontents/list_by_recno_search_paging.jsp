@@ -22,8 +22,9 @@
 <body>
 <c:import url="/menu/top.do" />
  
-<DIV class='title_line'>
-  ${recomplaceVO.recname }(${search_count })  
+ <DIV class='title_line'>
+  <img src="/recomcontents/images/mapp.png" class="icon1" style='margin-left:5px; margin-right:4px; margin-bottom: 2px; height: 30px;'> 
+<span style='font-size: 20px; vertical-align: middle; line-height: 20px;'>${recomplaceVO.recname }(${search_count }) </span>
 </DIV>
 
 <DIV class='content_body'>

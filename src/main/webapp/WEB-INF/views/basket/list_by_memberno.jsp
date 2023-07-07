@@ -70,7 +70,10 @@
   <input type='hidden' name='cnt' id='cnt'>
 </form>
  
-<DIV class='title_line'>장바구니</DIV>
+<DIV class='title_line'>
+  <img src="/basket/images/cart.png" class="icon1" style='margin-left:5px; margin-right:4px; margin-bottom: 2px; height: 30px;'> 
+<span style='font-size: 20px; vertical-align: middle; line-height: 20px;'>장바구니</span>
+</DIV>
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
@@ -189,7 +192,7 @@
           <div class='basket_price'><fmt:formatNumber value="${tot_sum }" pattern="#,###" /> 원</div>
           
           <div class='basket_label'>포인트</div>
-          <div class='basket_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
+          <div class='basket_price'><fmt:formatNumber value="${point_tot * cnt }" pattern="#,###" /> 원 </div>
           
           <div class='basket_label'>배송비</div>
           <div class='basket_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>

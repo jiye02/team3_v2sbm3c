@@ -167,7 +167,7 @@
             <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
             <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
             <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-            <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
+            <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point }" pattern="#,###" /></span>
           </td>
           <td style='vertical-align: middle; text-align: center;'>
             수량: ${cnt }
@@ -311,7 +311,7 @@
           <div class='basket_price'><fmt:formatNumber value="${tot_sum }" pattern="#,###" /> 원</div>
           
           <div class='basket_label'>포인트</div>
-          <div class='basket_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
+          <div class='basket_price'><fmt:formatNumber value="${point_tot *cnt }" pattern="#,###" /> 원 </div>
           
           <div class='basket_label'>배송비</div>
           <div class='basket_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
