@@ -810,7 +810,7 @@ public class GalleryCont {
    * http://localhost:9093/gallery/recommend_jjim.do
    * @return
    */
-  @RequestMapping(value="/gallery/recommend_jjim.do", method=RequestMethod.GET)
+  @RequestMapping(value="/gallery/recommend_jjim_home.do", method=RequestMethod.GET)
   public ModelAndView recommend_jjim(HttpSession session) {
     ModelAndView mav = new ModelAndView();
     
@@ -824,7 +824,7 @@ public class GalleryCont {
     ArrayList<GalleryVO> list_jjim = this.galleryProc.recommend_jjim(recommendVO.getExhino());
     mav.addObject("list_jjim", list_jjim);
     
-    mav.setViewName("/gallery/recommend_jjim"); // /webapp/WEB-INF/views/contents/recommend_recom.jsp
+    mav.setViewName("/gallery/recommend_jjim_home"); // /webapp/WEB-INF/views/contents/recommend_recom.jsp
     
     return mav;
   }

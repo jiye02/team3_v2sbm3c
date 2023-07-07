@@ -152,26 +152,22 @@
           </div>
         </c:when>
         <c:otherwise>
-          <DIV
-            style='width: 100%; margin: 30px auto; text-align: center;'>
+          <DIV>
             <%-- 로그인된 경우 추천 --%>
             <c:if test="${sessionScope.id != null}">
               <DIV
                 style='width: 70%; margin: 10px auto; text-align: left;'>
-                <h4>${sessionScope.mname}님을 위한 추천 상품</h4>
-                <c:import url="/gallery/recommend_jjim.do" />
+                <c:import url="/gallery/recommend_jjim_home.do" />
                 <%-- 좋아요가 높은 상품 --%>
               </DIV>
               <DIV style="clear: both; height: 20px;"></DIV>
               <DIV
                 style='width: 70%; margin: 10px auto; text-align: left;'>
-                <h4>최신 상품 </h4>
                 <c:import url="/gallery/recommend_rdate.do" />
               </DIV>
               <DIV style="clear: both; height: 20px;"></DIV>
               <DIV
                 style='width: 70%; margin: 10px auto; text-align: left;'>
-                <h4>조회수 우선 순 추천 상품</h4>
                 <c:import url="/gallery/recommend_cnt.do" />
               </DIV>
             </c:if>

@@ -11,26 +11,19 @@
 <link rel="shortcut icon" href="/images/ex_top.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
 
 </head> 
  
 <body>
-<c:import url="/menu/top.do" />
- 
+ <br>
 <DIV class='title_line'>
   <img src="/gallery/images/recom.png" class="icon1" style='margin-left:5px; margin-right:4px; margin-bottom: 2px; height: 30px;'> 
-<span style='font-size: 20px; vertical-align: middle; line-height: 20px;'>나를 위한 추천 목록</span>
+<span style='font-size: 20px; vertical-align: middle; line-height: 20px;'>${sessionScope.mname}님을 위한 추천 상품</span>
 </DIV>
 
 <DIV class='content_body'>
-  <ASIDE class="aside_right">
-    <A href="javascript:location.reload();">새로고침</A>
-  </ASIDE>
     <DIV class='menu_line'></DIV>
   
   <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
@@ -93,9 +86,7 @@
   <!-- 페이지 목록 출력 부분 시작 -->
   <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
   <!-- 페이지 목록 출력 부분 종료 -->
-  
-  
-<jsp:include page="../menu/bottom.jsp" />
+  <DIV class='menu_line'></DIV>
 </body>
  
 </html>
