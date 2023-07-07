@@ -10,9 +10,6 @@
 <title>Art Wave</title>
 <link rel="shortcut icon" href="/images/ex_top.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
- 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head> 
  
@@ -20,7 +17,7 @@
  <br>
 <DIV class='title_line'>
   <img src="/gallery/images/recom.png" class="icon1" style='margin-left:5px; margin-right:4px; margin-bottom: 2px; height: 30px;'> 
-<span style='font-size: 20px; vertical-align: middle; line-height: 20px;'>${sessionScope.mname}님을 위한 추천 상품</span>
+<span style='font-size: 20px; vertical-align: middle; line-height: 20px;'>좋아요가 높은 상품</span>
 </DIV>
 
 <DIV class='content_body'>
