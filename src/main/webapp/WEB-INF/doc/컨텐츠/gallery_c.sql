@@ -538,6 +538,22 @@ FROM (
 )
 WHERE r >= 1 AND r <= 7;
 
+-----------할인율----------------
+SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, dc
+           ,file1, file1saved, thumb1, size1, map, youtube, r
+FROM (
+           SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate,dc
+                      ,file1, file1saved, thumb1, size1, map, youtube, rownum as r
+           FROM (
+                     SELECT galleryno, adminno, exhino, title, content, jjim, cnt, replycnt, rdate, dc
+                                file1, file1saved, thumb1, size1, map, youtube
+                     FROM gallery
+                     WHERE exhino=1
+                     ORDER BY dc DESC
+           )          
+)
+WHERE r >= 1 AND r <= 7;
+
 
 UPDATE gallery
 set cnt = cnt + 19

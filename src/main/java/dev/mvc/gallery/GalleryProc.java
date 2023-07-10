@@ -359,6 +359,11 @@ public class GalleryProc implements GalleryProcInter {
         int cnt = this.galleryDAO.cnt_add(galleryno);
         return cnt;
       }
+      @Override
+      public ArrayList<GalleryVO> recommend_dc(int exhino) {
+        ArrayList<GalleryVO> list_dc = this.galleryDAO.recommend_dc(exhino);
+        return list_dc;
+      }
 
     
     

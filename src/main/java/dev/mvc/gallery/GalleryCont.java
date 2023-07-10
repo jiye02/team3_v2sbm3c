@@ -881,7 +881,26 @@ public class GalleryCont {
     
     return mav;
   }
-
+  
+  @RequestMapping(value="/gallery/recommend_dc.do", method=RequestMethod.GET)
+  public ModelAndView recommend_dc(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    
+    int memberno = (int)(session.getAttribute("memberno"));
+    System.out.println(" -> memberno: " +memberno);
+    
+    RecommendVO recommendVO = this.recommendProc.read(memberno); // 관심 카테고리 읽기
+    System.out.println(" -> exhino: " +recommendVO.getExhino());
+    // 관심 분야의 목록 읽기
+    
+    ArrayList<GalleryVO> list_dc = this.galleryProc.recommend_dc(recommendVO.getExhino());
+    mav.addObject("list_dc", list_dc);
+    
+    mav.setViewName("/gallery/recommend_dc"); // /webapp/WEB-INF/views/contents/recommend_recom.jsp
+    
+    return mav;
+  }
+  
   
   
   

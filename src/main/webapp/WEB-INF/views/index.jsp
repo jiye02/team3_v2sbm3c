@@ -229,6 +229,11 @@
                 <c:import url="/gallery/recommend_cnt.do" />
                 <!-- 조회수가 높은 상품 -->
                 </DIV>
+                <DIV
+                style='width: 1050px; margin: 10px auto; text-align: left;'>
+                <c:import url="/gallery/recommend_dc.do" />
+                <!-- 할인율이 높은 상품 -->
+                </DIV>
             </c:if>
           </DIV>
         </c:otherwise>
