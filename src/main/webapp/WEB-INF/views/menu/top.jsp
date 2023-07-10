@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
 function recommend() {
-      var url = 'http://localhost:8000/ais/recommend_form/?memberno=${sessionScope.memberno }';
+      var url = 'http://43.201.78.137:8000/ais/recommend_form/?memberno=${sessionScope.memberno }';
       var win = window.open(url, '공지 사항', 'width=1300px, height=850px');
       
       var x = (screen.width - 1300) / 2;

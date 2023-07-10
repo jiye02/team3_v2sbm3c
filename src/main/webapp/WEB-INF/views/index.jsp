@@ -212,14 +212,20 @@
               style="filter: invert(10%);"></span> <span class="sr-only">Next</span>
             </a>
           </div>
-          <br><br>
+          <br><br><br><br>
               <DIV
-                style='width: 70%; margin: 10px auto; text-align: left;'>
+                style='width: 1050px; margin: 10px auto; text-align: left;'>
                 <h4>★ ${sessionScope.mname}님을 위한 추천 상품 ★</h4>
-                <c:import url="/gallery/recommend_jjim_home.do" />
-                <%-- 좋아요가 높은 상품 --%>
                 <c:import url="/gallery/recommend_rdate.do" />
                 <!-- 최신 등록 상품 -->
+                </DIV>
+                <DIV
+                style='width: 1050px; margin: 10px auto; text-align: left;'>
+                <c:import url="/gallery/recommend_jjim_home.do" />
+                <%-- 좋아요가 높은 상품 --%>
+                </DIV>
+                <DIV
+                style='width: 1050px; margin: 10px auto; text-align: left;'>
                 <c:import url="/gallery/recommend_cnt.do" />
                 <!-- 조회수가 높은 상품 -->
                 </DIV>
