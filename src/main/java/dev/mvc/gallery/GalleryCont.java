@@ -227,6 +227,9 @@ public class GalleryCont {
     ModelAndView mav = new ModelAndView();
 
     GalleryVO galleryVO = this.galleryProc.read(galleryno);
+    this.galleryProc.cnt_add(galleryno);
+    this.galleryProc.jjim_add(galleryno);
+    this.galleryProc.jjim_sub(galleryno);
     
     int jjim_cnt = this.jjimProc.count(galleryno);
     mav.addObject("jjim_cnt",jjim_cnt);
@@ -751,6 +754,9 @@ public class GalleryCont {
     ModelAndView mav = new ModelAndView();
 
     GalleryVO galleryVO = this.galleryProc.read(galleryno);
+    this.galleryProc.cnt_add(galleryno);
+    this.galleryProc.jjim_add(galleryno);
+    this.galleryProc.jjim_sub(galleryno);
     mav.addObject("galleryVO", galleryVO); // request.setAttribute("galleryVO", galleryVO);
 
     ExhiVO exhiVO = this.exhiProc.read(galleryVO.getExhino());
@@ -806,7 +812,7 @@ public class GalleryCont {
   }
   
   /**
-   * 관심 카테고리의 좋아요(recom) 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우
+   * 관심 카테고리의 좋아요(jjim) 기준, 1번 회원이 1번 카테고리를 추천 받는 경우, 추천 상품이 7건일 경우
    * http://localhost:9093/gallery/recommend_jjim.do
    * @return
    */
@@ -875,27 +881,7 @@ public class GalleryCont {
     
     return mav;
   }
-  
-  @RequestMapping(value = "/gallery/cnt_add.do", method = RequestMethod.GET)
-  public ModelAndView cnt_add(int galleryno) {
- 
-    ModelAndView mav = new ModelAndView();
- 
-    int cnt = this.galleryProc.cnt_add(galleryno);
- 
-    if (cnt == 1) {
- 
-      mav.setViewName("redirect:/index.do");
-    } else {
- 
-      mav.addObject("code", "cnt_add_fail");
-      mav.setViewName("/gallery/msg");
-    }
- 
-    mav.addObject("cnt", cnt);
- 
-    return mav;
-}
+
   
   
   
