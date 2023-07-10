@@ -221,11 +221,6 @@
                 </DIV>
                 <DIV
                 style='width: 1050px; margin: 10px auto; text-align: left;'>
-                <c:import url="/gallery/recommend_jjim_home.do" />
-                <%-- 좋아요가 높은 상품 --%>
-                </DIV>
-                <DIV
-                style='width: 1050px; margin: 10px auto; text-align: left;'>
                 <c:import url="/gallery/recommend_cnt.do" />
                 <!-- 조회수가 높은 상품 -->
                 </DIV>
