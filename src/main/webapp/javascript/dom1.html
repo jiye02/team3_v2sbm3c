@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, width=device-width" /> 
+<title>http://localhost:9091/javascript/dom1.html</title>
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script type="text/javascript">
+  window.onload = function() { // 페이징 로딩시 자동 실행
+    create();
+  }
+
+  function create() {
+    let tags='<img src="./images/sw09.jpg" style="width: 180px; height: 130px; margin: 2px;">';
+    tags=tags+'<img src="./images/sw19.jpg" style="width: 180px; height: 130px; margin: 2px;">';
+    tags=tags+'<img src="./images/sw23.jpg" style="width: 180px; height: 130px; margin: 2px;">';
+
+    let panel1 = document.getElementById("panel1"); // <DIV id='panel1'
+    panel1.innerHTML = tags; // 문자열 -> html tag로 변경되어 적용
+    
+    document.getElementById("panel2").innerHTML = tags;
+  }
+  
+  // 태그 삭제
+  function remove_panel1() {
+	  let panel1 = document.getElementById('panel1');
+      panel1.innerHTML=""; 
+  }
+
+  // 이미지 교체
+  function replace_panel2() {
+    let tags='<img src="./images/sw27.jpg" style="width: 180px; height: 130px; margin: 2px;">';
+    tags=tags+'<img src="./images/sw28.jpg" style="width: 180px; height: 130px; margin: 2px;">';
+    tags=tags+'<img src="./images/sw29.jpg" style="width: 180px; height: 130px; margin: 2px;">';
+
+    let panel2 = document.getElementById("panel2"); // <DIV id='panel2'
+    panel2.innerHTML = tags; // 문자열 -> html tag로 변경되어 적용
+  }
+  
+  function remove() {
+	  document.getElementById("panel1").innerHTML="";
+    document.getElementById("panel2").innerHTML="";
+  }
+
+</script>
+</head> 
+<body>
+
+<DIV id="container">
+  <DIV id="panel1" style="margin: 0px auto; text-align: center;"></DIV>
+  <DIV id="panel2" style="margin: 0px auto; text-align: center;"></DIV>
+  <DIV id="panel3" style="margin: 0px auto; text-align: center;"></DIV>
+  <DIV style="text-align: center; margin-top: 10px;">
+    <button type="button" onclick="remove_panel1();" class="btn btn-info btn-sm">Panel1 삭제</button>
+    <button type="button" onclick="replace_panel2();" class="btn btn-info btn-sm">Panel2 이미지 교체</button>
+    <button type="button" onclick="location.reload();" class="btn btn-info btn-sm">초기화</button>
+    <button type="button" onclick="remove();" class="btn btn-info btn-sm">모두 삭제</button>
+    <button type="button" onclick="location.href='http://www.kma.go.kr';" class="btn btn-info btn-sm">기상청</button>
+    <button type="button" class="btn btn-info btn-sm">기능없음</button>
+  </DIV>
+</DIV>
+</body>
+ 
+</html>

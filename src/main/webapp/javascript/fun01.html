@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, width=device-width" />
+<title>http://localhost:9091/javascript/js01.html</title>
+<link href="../../css/style.css" rel="Stylesheet" type="text/css">
+<script type="text/javascript">
+   function add(su1, su2) {
+    // return parseInt(su1) + parseInt(su2);
+    // return parseFloat(su1) + parseFloat(su2);
+    return Number(su1) + Number(su2);
+   }
+   
+   function comma(su) {
+     // 정수가 4자리이상인 경우 오른쪽기준 숫자 3자리식 분리하여 ','를
+     // 포함하는 정규 표현식
+     return su.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+   }
+</script>
+</head>
+<body>
+<script type="text/javascript">
+  console.log('-> ' + (parseInt("2023") + parseInt("10")));
+
+  let su1 = window.prompt('수를 입력하세요.', 100); // 웹브러우저의 window 객체의 prompt 함수 호출, 기본값 100
+  let su2 = window.prompt('수를 입력하세요.', 200);
+  
+  console.log('-> add: ' + add(su1, su2));
+  console.log(comma(35000));
+  console.log(comma(12345.12345));  
+</script>
+   
+</body>
+ 
+</html>
