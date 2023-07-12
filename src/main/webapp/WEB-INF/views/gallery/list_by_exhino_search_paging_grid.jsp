@@ -76,15 +76,20 @@
       <c:set var="exhino" value="${galleryVO.exhino }" />
       <c:set var="galleryno" value="${galleryVO.galleryno }" />
       <c:set var="thumb1" value="${galleryVO.thumb1 }" />
+      <c:set var="min" value="${galleryVO.min }" />
+      <c:set var="max" value="${galleryVO.max }" />
       <c:set var="size1" value="${galleryVO.size1 }" />
+      <c:set var="saleprice" value="${galleryVO.saleprice }" />
         
       <%-- 하나의 행에 이미지를 6개씩 출력후 행 변경, index는 0부터 시작 --%>
       <c:if test="${status.index % 6 == 0 && status.index != 0 }"> 
         <HR class='menu_line'> <%-- 줄바꿈 --%>
+        <c:if test="${status.index % 6 == 0 && status.index != 0 }"> 
+      </c:if>
       </c:if>
         
       <div onclick="location.href='./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'  
-             style='width: 15%; height: 300px; float: left; margin: 0.5%; padding: 0.1%; background-color: #ebebeb; text-align: left;'>
+             style='width: 15%; height: 310px; float: left; margin: 0.5%; padding: 0.1%; background-color: #ebebeb; text-align: left;'>
         
         <c:choose> 
           <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
@@ -99,7 +104,7 @@
         <strong>
           <c:choose> 
             <c:when test="${title.length() > 25 }"> <%-- 25 이상이면 25자만 출력, 공백:&nbsp; 6자 --%>
-              ${title.substring(0, 25)}.....
+              ${title.substring(0, 25)}...
             </c:when>
             <c:when test="${title.length() <= 25 }">
               ${title}
@@ -108,16 +113,11 @@
         </strong>
         <br>
         
-        <div style='font-size: 0.95em; word-break: break-all;'>
-          <c:choose>         
-            <c:when test="${content.length() > 20 }">
-              ${content.substring(0, 20)}.....
-            </c:when>
-            <c:when test="${content.length() <= 20}">
-              ${content}
-            </c:when>
-          </c:choose>
-        </div>
+        <td style='vertical-align: middle;'>
+            <div style='font-size: 1..em;float: left;'>기간 : ${min } ~ ${max }</div><br>
+            <div style='font-size: 1.0em;float: left;'>판매가 : &nbsp;</div>
+            <div style='font-size: 1.0em;'><a style='color: #ff0000;' href="./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }"><fmt:formatNumber value="${saleprice}" pattern="#,###" /> </a></div>
+          </td> 
         
       </div>
       
