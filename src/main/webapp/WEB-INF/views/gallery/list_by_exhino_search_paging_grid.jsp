@@ -78,23 +78,21 @@
       <c:set var="thumb1" value="${galleryVO.thumb1 }" />
       <c:set var="size1" value="${galleryVO.size1 }" />
         
-      <%-- 하나의 행에 이미지를 5개씩 출력후 행 변경, index는 0부터 시작 --%>
-      <c:if test="${status.index % 5 == 0 && status.index != 0 }"> 
+      <%-- 하나의 행에 이미지를 6개씩 출력후 행 변경, index는 0부터 시작 --%>
+      <c:if test="${status.index % 6 == 0 && status.index != 0 }"> 
         <HR class='menu_line'> <%-- 줄바꿈 --%>
       </c:if>
         
-      <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
-      <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
       <div onclick="location.href='./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'  
-             style='width: 19%; height: 216px; float: left; margin: 0.5%; padding: 0.1%; background-color: #ebebeb; text-align: left;'>
+             style='width: 15%; height: 300px; float: left; margin: 0.5%; padding: 0.1%; background-color: #ebebeb; text-align: left;'>
         
         <c:choose> 
           <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
             <%-- registry.addResourceHandler("/gallery/storage/**").addResourceLocations("file:///" +  Gallery.getUploadDir()); --%>
-            <img src="/gallery/storage/${thumb1 }" style="width: 100%; height: 140px;">
+            <img src="/gallery/storage/${thumb1 }" style="width: 100%; height: 210px;">
           </c:when>
           <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/gallery/images/none1.png -->
-            <IMG src="/gallery/images/none1.png" style="width: 100%; height: 140px;">
+            <IMG src="/gallery/images/none1.png" style="width: 100%; height: 210px;">
           </c:otherwise>
         </c:choose>
         
