@@ -89,7 +89,7 @@
       </c:if>
         
       <div onclick="location.href='./read.do?galleryno=${galleryno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'  
-             style='width: 15%; height: 310px; float: left; margin: 0.5%; padding: 0.1%; background-color: #ebebeb; text-align: left;'>
+             style='width: 15%; height: 310px; float: left; margin: 0.83%; padding: 0.1%; background-color: #ebebeb; text-align: left;'>
         
         <c:choose> 
           <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
